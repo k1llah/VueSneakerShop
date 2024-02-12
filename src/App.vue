@@ -7,17 +7,29 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 let items = ref<any>([])
 const filters = reactive({
-  sortBy: '',
+  sortBy: 'title',
   searchQuery: ''
 })
 // Функция для обработки изменений в инпуте поиска
+const onChangeSelect = (event: any) => {
+  filters.sortBy = event.target.value
+}
 const onSearchInputChange = (event:any) => {
-
+  filters.searchQuery = event.target.value
 }
 
 const axiosGetParams = async () => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/api/${filters.sortBy}`)
+    const params = {
+      sortBy: filters.sortBy
+    }
+    if(filters.searchQuery){
+      //@ts-ignore
+      params.title = filters.searchQuery
+    }
+    const { data } = await axios.get(`http://localhost:3001/api/`,{
+      params
+    })
     console.log(filters.sortBy)
     items.value = data
   } catch (err) {
@@ -26,9 +38,6 @@ const axiosGetParams = async () => {
 };
 
 
-const onChangeSelect = (event: any) => {
-  filters.sortBy = event.target.value
-}
 onMounted(axiosGetParams)
 watch(filters, axiosGetParams)
 console.log(typeof items.value) // Выведет тип переменной items
