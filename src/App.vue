@@ -27,7 +27,7 @@ const axiosGetParams = async () => {
       //@ts-ignore
       params.title = filters.searchQuery
     }
-    const { data } = await axios.get(`http://localhost:3001/api/`,{
+    const { data } = await axios.get(`http://localhost:3001/api`,{
       params
     })
     console.log(filters.sortBy)
@@ -41,6 +41,8 @@ const axiosGetParams = async () => {
 onMounted(axiosGetParams)
 watch(filters, axiosGetParams)
 console.log(typeof items.value) // Выведет тип переменной items
+
+
 </script>
 <template>
   <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
