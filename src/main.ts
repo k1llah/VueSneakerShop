@@ -7,13 +7,16 @@ const router = createRouter({
 	history: createWebHistory(),
 	routes: [{
 		name: 'Main',
-		path: '/Main',
-		component: App.vue
+		path: '/',
+		component: () => import('./components/CardListView.vue')
 	},{
 		name: 'Purchases',
-		path: '/Purchases',
+		path: '/purchases',
 		component: () => import('./components/myPurchases.vue')
 	}
 ]
 })
-createApp(App).mount('#app')
+createApp(App)
+.use(router)
+.mount('#app')
+
