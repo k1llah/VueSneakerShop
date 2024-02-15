@@ -10,8 +10,8 @@
           >Имя</label
         >
         <input
-          type="text"
-          id="nickname"
+          type="name"
+          id="Name"
           class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
         />
       </div>
@@ -24,7 +24,7 @@
           >Email</label
         >
         <input
-          type="text"
+          type="email"
           id="Email"
           class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
         />
