@@ -1,5 +1,5 @@
 <script setup script lang="ts">
-import CardList from './CardList.vue'
+import CardList from '@/components/CardList.vue'
 // import search from './components/search.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
@@ -68,5 +68,5 @@ console.log(typeof items.value) // Выведет тип переменной it
         </div>
       </div>
     </div>
-	<CardList :items="items" />
+	<CardList :items="items"/>
 </template>

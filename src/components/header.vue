@@ -3,8 +3,10 @@
   <header class="flex justify-between border-b border-slate-200 px-8 py-8">
     <div>
       <div class="flex items-center gap-4">
-        <img src="/logo.png" alt="Logo" class="w-10" />
-        <h2 class="text-xl font-bold uppercase">Vue Sneakers</h2>
+        <router-link to="/">
+        <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
+      </router-link>
+        <h2 class="text-lg font-bold uppercase">Benz Shöp</h2>
         <p class="text-slate-400">Магазин лучших кроссовок</p>
       </div>
     </div>
@@ -23,7 +25,7 @@
         <span>Закладки</span>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer" @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />
         <span>Профиль</span>

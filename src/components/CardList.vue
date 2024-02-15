@@ -1,5 +1,4 @@
 <script setup script lang="ts">
-import { idText } from 'typescript';
 import Card from './card.vue'
 // import type { Key } from 'readline';
 interface Item {
