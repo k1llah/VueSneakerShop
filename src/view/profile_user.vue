@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import sign_in from '@/components/sign_in.vue';
+
 </script>
 <template>
+
+  
   <div class="container min-h-[600px]">
     <div class="flex ml-[50px] mt-5 gap-[15px]">
       <button

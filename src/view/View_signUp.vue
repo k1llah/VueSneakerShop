@@ -1,3 +1,8 @@
+<script setup lang="ts">
+	import SignUp_View from '@/components/Sign_up.vue';
+
+</script>
+
 <template>
 	
 		<div class="container min-h-[600px]">
@@ -16,13 +21,11 @@
     </div>
 		<div class="flex mt-[50px] items-center flex-col">
 			<h3 class="text-[28px] font-light">
-				<span class="text-[#7747ff]">Зарегистрируйтесь</span>
+				<span class="text-[#7747ff]" v-if="">Зарегистрируйтесь</span>
 			</h3>
 			
 		</div>
     <SignUp_View/>
   </div>
 </template>
-<script setup lang="ts">
-	import SignUp_View from '@/components/Sign_up.vue';
-</script>
+

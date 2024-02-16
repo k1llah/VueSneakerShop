@@ -4,7 +4,9 @@ import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
-
+defineProps({
+  isSuccessSignUp: Boolean
+})
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);
 const passwordLengthValid = ref(true);
@@ -13,6 +15,9 @@ const emailValid = ref(true);
 const passwordReport = ref("");
 const isSuccessSignUp = ref(false);
 const textSuccessSignUp = ref("");
+let timer = ref(10)
+const isTimerStarted = ref (false)
+
 const submitForm = async (event: Event) => {
   event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
 
@@ -26,6 +31,20 @@ const submitForm = async (event: Event) => {
   passwordLengthValid.value = password.length >= 6;
   passwordContainsLetter.value = /[a-zA-Z]/.test(password);
 
+  const startTimer = () => {
+  if (!isTimerStarted.value) {
+    isTimerStarted.value = true;
+    const interval = setInterval(() => {
+      if (timer.value > 0) {
+        timer.value--;
+      } else {
+        clearInterval(interval);
+        isTimerStarted.value = false;
+      }
+    }, 1000);
+  }
+};
+startTimer()
   if (
     nameNotEmpty.value &&
     emailValid.value &&
@@ -34,14 +53,14 @@ const submitForm = async (event: Event) => {
     password === password_confirmation
   ) {
     try {
-      const create = await axios.post("http://localhost:3001/api/create", {
+      const create = await axios.post("http://localhost:3001/api/createUser", {
         name: name,
         email: email,
         password: md5(password).toString(),
       });
       isSuccessSignUp.value = true;
       textSuccessSignUp.value = "Вы успешно зарегистрировались!";
-      window.location.reload();
+      
     } catch (err) {
       console.error(err);
       isSuccessSignUp.value = false;
@@ -61,11 +80,15 @@ onMounted(() => {
 });
 </script>
 <template>
+  <div  v-if="isTimerStarted == true" class="w-[200px]">
+  <p>{{ timer }}</p>
+  </div>
   <div
     class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white"
-    flex
-    items-center
+   
+
   >
+
     <form class="flex flex-col gap-3" @submit="submitForm">
       <div v-if="isSuccessSignUp">
         <p class="text-lg text-center text-green-700">{{ textSuccessSignUp }}</p>
@@ -140,6 +163,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-```
-
-В этом коде добавлены переменные `passwordLengthValid`, `passwordContainsLetter` и `emailValid` для проверки соответствующих условий ввода. Также добавлена проверка на совпадение паролей `password === password_confirmation`.
