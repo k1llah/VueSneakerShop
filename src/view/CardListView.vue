@@ -1,6 +1,5 @@
 <script setup script lang="ts">
 import CardList from '@/components/CardList.vue'
-// import search from './components/search.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 let items = ref<any>([])

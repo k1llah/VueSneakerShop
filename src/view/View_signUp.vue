@@ -19,12 +19,7 @@
       </button>
       <h2 class="text-3xl">Регистрация</h2>
     </div>
-		<div class="flex mt-[50px] items-center flex-col">
-			<h3 class="text-[28px] font-light">
-				<span class="text-[#7747ff]" v-if="">Зарегистрируйтесь</span>
-			</h3>
-			
-		</div>
+		
     <SignUp_View/>
   </div>
 </template>

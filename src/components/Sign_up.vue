@@ -1,12 +1,8 @@
-
 <script setup lang="ts">
 import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
-defineProps({
-  isSuccessSignUp: Boolean
-})
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);
 const passwordLengthValid = ref(true);
@@ -15,16 +11,19 @@ const emailValid = ref(true);
 const passwordReport = ref("");
 const isSuccessSignUp = ref(false);
 const textSuccessSignUp = ref("");
-let timer = ref(10)
-const isTimerStarted = ref (false)
-
+let timer = ref(10);
+const isTimerStarted = ref(false);
+let localStorageMatch = ref(false)
 const submitForm = async (event: Event) => {
   event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
 
   const name = (document.getElementById("Name") as HTMLInputElement).value;
   const email = (document.getElementById("Email") as HTMLInputElement).value;
-  const password = (document.getElementById("Password") as HTMLInputElement).value;
-  const password_confirmation = (document.getElementById("Password_confirmation") as HTMLInputElement).value;
+  const password = (document.getElementById("Password") as HTMLInputElement)
+    .value;
+  const password_confirmation = (
+    document.getElementById("Password_confirmation") as HTMLInputElement
+  ).value;
 
   nameNotEmpty.value = name.length >= 2;
   emailValid.value = email.includes("@");
@@ -32,19 +31,19 @@ const submitForm = async (event: Event) => {
   passwordContainsLetter.value = /[a-zA-Z]/.test(password);
 
   const startTimer = () => {
-  if (!isTimerStarted.value) {
-    isTimerStarted.value = true;
-    const interval = setInterval(() => {
-      if (timer.value > 0) {
-        timer.value--;
-      } else {
-        clearInterval(interval);
-        isTimerStarted.value = false;
-      }
-    }, 1000);
-  }
-};
-startTimer()
+    if (!isTimerStarted.value) {
+      isTimerStarted.value = true;
+      const interval = setInterval(() => {
+        if (timer.value > 0) {
+          timer.value--;
+        } else {
+          clearInterval(interval);
+          isTimerStarted.value = false;
+        }
+      }, 1000);
+    }
+  };
+  startTimer();
   if (
     nameNotEmpty.value &&
     emailValid.value &&
@@ -60,19 +59,23 @@ startTimer()
       });
       isSuccessSignUp.value = true;
       textSuccessSignUp.value = "Вы успешно зарегистрировались!";
-      
+      const infoUser = await create.data
+      localStorage.id = infoUser.id
+      localStorage.uuid = infoUser.uuid
+      localStorageMatch.value = true
+      location.assign('/')
     } catch (err) {
       console.error(err);
       isSuccessSignUp.value = false;
-      textSuccessSignUp.value = 'Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз или попробуйте позже'
+      textSuccessSignUp.value =
+        "Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз или попробуйте позже";
     }
-    passwordsMatch.value = true
+    passwordsMatch.value = true;
   } else {
     passwordsMatch.value = false;
     passwordReport.value = "Пожалуйста, исправьте ошибки в форме.";
   }
 };
-
 
 // Вызываем clickSubmit при монтировании компонента
 onMounted(() => {
@@ -80,23 +83,34 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div  v-if="isTimerStarted == true" class="w-[200px]">
-  <p>{{ timer }}</p>
+  <div class="flex mt-[50px] items-center flex-col" v-if="isSuccessSignUp == false">
+    <h3 class="text-[28px] font-light">
+      <span class="text-[#7747ff]">Зарегистрируйтесь</span>
+    </h3>
+    <div v-if="isTimerStarted == true" class="w-[200px]">
+      <p>{{ timer }}</p>
+    </div>
   </div>
+
   <div
     class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white"
-   
-
   >
-
     <form class="flex flex-col gap-3" @submit="submitForm">
       <div v-if="isSuccessSignUp">
-        <p class="text-lg text-center text-green-700">{{ textSuccessSignUp }}</p>
+        <p class="text-lg text-center text-green-700">
+          {{ textSuccessSignUp }}
+        </p>
       </div>
       <div class="block relative">
-        <label for="Name" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Имя</label>
+        <label
+          for="Name"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >Имя</label
+        >
         <div v-if="!nameNotEmpty">
-          <p class="text-sm text-red-500">Поле Имя должно содержать минимум два символа</p>
+          <p class="text-sm text-red-500">
+            Поле Имя должно содержать минимум два символа
+          </p>
         </div>
         <input
           type="name"
@@ -107,9 +121,15 @@ onMounted(() => {
       </div>
 
       <div class="block relative">
-        <label for="Email" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
+        <label
+          for="Email"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >Email</label
+        >
         <div v-if="!emailValid">
-          <p class="text-sm text-red-500">Пожалуйста, введите корректный email</p>
+          <p class="text-sm text-red-500">
+            Пожалуйста, введите корректный email
+          </p>
         </div>
         <input
           type="email"
@@ -119,12 +139,20 @@ onMounted(() => {
       </div>
 
       <div class="block relative">
-        <label for="Password" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Пароль</label>
+        <label
+          for="Password"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >Пароль</label
+        >
         <div v-if="!passwordLengthValid">
-          <p class="text-sm text-red-500">Пароль должен содержать минимум шесть символов</p>
+          <p class="text-sm text-red-500">
+            Пароль должен содержать минимум шесть символов
+          </p>
         </div>
         <div v-if="!passwordContainsLetter">
-          <p class="text-sm text-red-500">Пароль должен содержать хотя бы одну букву</p>
+          <p class="text-sm text-red-500">
+            Пароль должен содержать хотя бы одну букву
+          </p>
         </div>
         <input
           type="password"
@@ -134,7 +162,11 @@ onMounted(() => {
         />
       </div>
       <div class="block relative">
-        <label for="Password_confirmation" class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Подтвердите пароль</label>
+        <label
+          for="Password_confirmation"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >Подтвердите пароль</label
+        >
         <div v-if="!passwordsMatch">
           <p class="text-sm text-red-500">{{ passwordReport }}</p>
         </div>
