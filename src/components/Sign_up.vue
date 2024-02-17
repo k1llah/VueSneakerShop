@@ -3,6 +3,7 @@ import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
+import { checkAuth, isAuthenticated, currentUser } from '@/auth';
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);
 const passwordLengthValid = ref(true);
@@ -14,6 +15,11 @@ const textSuccessSignUp = ref("");
 let timer = ref(5);
 const isTimerStarted = ref(false);
 let localStorageMatch = ref(false);
+
+if(isAuthenticated.value == true && currentUser != null){
+  isSuccessSignUp.value = true
+  textSuccessSignUp.value = 'Вы уже зарегистрированы 🤭'
+}
 const submitForm = async (event: Event) => {
   event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
 
@@ -66,8 +72,9 @@ const submitForm = async (event: Event) => {
       startTimer();
       isTimerStarted.value = true
       localStorageMatch.value = true;
+
+      // исправить на роутер
       await setTimeout( async () => {await location.assign("/");}, 5000)
-      
     } catch (err) {
       console.error(err);
       isSuccessSignUp.value = false;
@@ -77,22 +84,21 @@ const submitForm = async (event: Event) => {
     passwordsMatch.value = true;
   } else {
     passwordsMatch.value = false;
-    passwordReport.value = "Пожалуйста, исправьте ошибки в форме.";
+    passwordReport.value = "Пароли не совпадают";
   }
 };
 
 // Вызываем clickSubmit при монтировании компонента
 onMounted(() => {
   submitForm;
+  checkAuth();
 });
 </script>
 <template>
   
   <div
-    class="flex mt-[50px] items-center flex-col"
-    v-if="isSuccessSignUp == false"
-  >
-    <h3 class="text-[28px] font-light">
+    class="flex mt-[50px] items-center flex-col">
+    <h3 class="text-[28px] font-light" v-if="isSuccessSignUp == false">
       <span class="text-[#7747ff]">Зарегистрируйтесь</span>
     </h3>
   </div>
@@ -101,8 +107,8 @@ onMounted(() => {
     class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white"
     
   >
-  <div v-if="isSuccessSignUp == true" class="mt-[100px]" >
-        <p class="text-lg text-center text-green-700">
+  <div class="mt-[30px]" v-if="isSuccessSignUp == true" >
+        <p class="text-[21px] text-center text-green-700">
           {{ textSuccessSignUp }}
         </p>
       </div>
