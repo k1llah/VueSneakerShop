@@ -11,9 +11,9 @@ const emailValid = ref(true);
 const passwordReport = ref("");
 const isSuccessSignUp = ref(false);
 const textSuccessSignUp = ref("");
-let timer = ref(10);
+let timer = ref(5);
 const isTimerStarted = ref(false);
-let localStorageMatch = ref(false)
+let localStorageMatch = ref(false);
 const submitForm = async (event: Event) => {
   event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
 
@@ -42,8 +42,9 @@ const submitForm = async (event: Event) => {
         }
       }, 1000);
     }
+    
   };
-  startTimer();
+  
   if (
     nameNotEmpty.value &&
     emailValid.value &&
@@ -59,16 +60,19 @@ const submitForm = async (event: Event) => {
       });
       isSuccessSignUp.value = true;
       textSuccessSignUp.value = "Вы успешно зарегистрировались!";
-      const infoUser = await create.data
-      localStorage.id = infoUser.id
-      localStorage.uuid = infoUser.uuid
-      localStorageMatch.value = true
-      location.assign('/')
+      const infoUser = await create.data;
+      localStorage.id = infoUser.id;
+      localStorage.uuid = infoUser.uuid;
+      startTimer();
+      isTimerStarted.value = true
+      localStorageMatch.value = true;
+      await setTimeout( async () => {await location.assign("/");}, 5000)
+      
     } catch (err) {
       console.error(err);
       isSuccessSignUp.value = false;
       textSuccessSignUp.value =
-        "Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз или попробуйте позже";
+        "Произошла ошибка при регистрации. Пожалуйста, попробуйте попробуйте позже";
     }
     passwordsMatch.value = true;
   } else {
@@ -83,24 +87,38 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="flex mt-[50px] items-center flex-col" v-if="isSuccessSignUp == false">
+  
+  <div
+    class="flex mt-[50px] items-center flex-col"
+    v-if="isSuccessSignUp == false"
+  >
     <h3 class="text-[28px] font-light">
       <span class="text-[#7747ff]">Зарегистрируйтесь</span>
     </h3>
-    <div v-if="isTimerStarted == true" class="w-[200px]">
-      <p>{{ timer }}</p>
-    </div>
   </div>
 
   <div
     class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white"
+    
   >
-    <form class="flex flex-col gap-3" @submit="submitForm">
-      <div v-if="isSuccessSignUp">
+  <div v-if="isSuccessSignUp == true" class="mt-[100px]" >
         <p class="text-lg text-center text-green-700">
           {{ textSuccessSignUp }}
         </p>
       </div>
+      <div v-if="isTimerStarted == true" class="flex mt-[50px] items-center flex-col text-center justify-center">
+      <p class="text-[27px] font-light">
+        Вы перенаправитесь на главную страницу через:
+        <span class="text-[#7747ff] text-[25px]">{{ timer }}</span>
+      </p>
+    </div>
+  <div v-else-if="isSuccessSignUp == false" >
+        <p class="text-lg text-center text-red-700">
+          {{ textSuccessSignUp }}
+        </p>
+      </div>
+  <form class="flex flex-col gap-3" @submit="submitForm" v-if="isSuccessSignUp == false">
+     
       <div class="block relative">
         <label
           for="Name"
@@ -186,12 +204,16 @@ onMounted(() => {
       >
         Submit
       </button>
+      <div class="text-sm text-center mt-[1.6rem]">
+        Уже есть аккаунт?
+        <router-link to="profile">
+          <p class="text-sm text-[#7747ff]">Войдите!</p>
+        </router-link>
+      </div>
     </form>
-    <div class="text-sm text-center mt-[1.6rem]">
-      Уже есть аккаунт?
-      <router-link to="profile">
-        <p class="text-sm text-[#7747ff]">Войдите!</p>
-      </router-link>
-    </div>
   </div>
 </template>
+// Сделать проверку при загрузке сайта что данные из локал стораджа соответствуют данным из бд 
+так же надо сделать так чтобы когда чел регался и ждал перенаправки, не мог никуда нажать 
+реализовать вход в профиль, сделать так чтобы когда чел зарегался у него пропадало поле входа и появлялся профиль наконец то 
+так же надо сделать так чтобы при регистрации нельзя было использовать символы в имени и убрать проверку на пароль, тк в коде я сам это прописал 
