@@ -79,7 +79,7 @@ const submitForm = async (event: Event) => {
       console.error(err);
       isSuccessSignUp.value = false;
       textSuccessSignUp.value =
-        "Произошла ошибка при регистрации. Пожалуйста, попробуйте попробуйте позже";
+        "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже";
     }
     passwordsMatch.value = true;
   } else {

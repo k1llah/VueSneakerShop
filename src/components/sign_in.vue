@@ -1,12 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import axios from 'axios';
 import { checkAuth, isAuthenticated, currentUser } from '@/auth';
 import profileData from './profile_data.vue'
 
 const email = ref('');
 const password = ref('');
 
-
+const logInFunc = async () => {
+  const email = document.getElementById('email') as HTMLInputElement
+  const password = document.getElementById('password') as HTMLInputElement
+  if(email.value !== null && password.value !== null){  
+  try{
+    const data = await axios.post('http://localhost:3001/api/login', {
+      email: email.value,
+      hash: password.value
+    })
+    
+  } 
+  catch(error){
+    console.log(error)
+  }
+}
+}
 
 
 
@@ -68,7 +84,7 @@ const password = ref('');
   </div>
 
 
-  <div class="container"> 
+  <div class="container" v-if="isAuthenticated == true"> 
     <profile-data/>
   </div>
 </template>

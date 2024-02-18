@@ -7,7 +7,9 @@
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
         <h2 class="text-lg font-bold uppercase">Benz Shöp</h2>
-        <p class="text-slate-400">Магазин лучших кроссовок</p>
+        <router-link to="/sneakers_page">
+        <p class="text-slate-500">Все кроссовки</p>
+      </router-link>
       </div>
     </div>
     <ul class="flex items-center gap-10">

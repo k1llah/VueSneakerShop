@@ -1,24 +1,44 @@
 <script setup lang="ts">
-import sign_in from '@/components/sign_in.vue';
-
+import sign_in from "@/components/sign_in.vue";
+import {isAuthenticated, logOut } from '@/auth';
 </script>
 <template>
-
-
   <div class="container min-h-[600px]">
-    <div class="flex ml-[50px] mt-5 gap-[15px]">
+    <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center">
+      <div class="flex gap-5 ">
       <button
         class="h-[35px] w-[35px] border rounded-[10px] border-[#F2F2F2] flex justify-center items-center text-white hover:bg-slate-600 transition hover:scale-[1.2] disabled:bg-slate-400 cursor-pointer"
         @click="$router.go(-1)"
       >
-        <img
-          src="/arrow-right.svg"
-          class="rotate-180"
-          alt="close button"
-        />
+        <img src="/arrow-right.svg" class="rotate-180" alt="close button" />
       </button>
       <h2 class="text-3xl">Профиль</h2>
     </div>
-    <sign_in/>
-</div>
+
+      <div v-if="isAuthenticated == true">
+        <button 
+          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-[115px] hover:rounded-lg active:translate-x-1 active:translate-y-1 mr-[30px]"
+          @click="logOut()"
+        >
+          <div
+            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              ></path>
+            </svg>
+          </div>
+          <div
+            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+          >
+            Logout
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div></div>
+    <sign_in />
+  </div>
 </template>

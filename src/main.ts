@@ -8,7 +8,7 @@ const router = createRouter({
 	routes: [{
 		name: 'main',
 		path: '/',
-		component: () => import('./view/CardListView.vue')
+		component: () => import('./view/View_main.vue')
 	},{
 		name: 'Purchases',
 		path: '/purchases',
@@ -23,6 +23,11 @@ const router = createRouter({
 		name: 'Sign_up',
 		path: '/sign_up',
 		component: () => import('./view/View_signUp.vue')
+	},
+	{
+		name: 'Sneakers_page',
+		path: '/sneakers_page',
+		component: () => import('./view/CardListView.vue')
 	}
 ]
 })
