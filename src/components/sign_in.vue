@@ -2,24 +2,35 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { checkAuth, isAuthenticated, currentUser } from '@/auth';
+import md5 from 'md5';
 import profileData from './profile_data.vue'
 
 const email = ref('');
 const password = ref('');
-
-const logInFunc = async () => {
+const formReport = ref('')
+const logInFunc = async (event:any) => {
+  event.preventDefault()
   const email = document.getElementById('email') as HTMLInputElement
   const password = document.getElementById('password') as HTMLInputElement
   if(email.value !== null && password.value !== null){  
   try{
     const data = await axios.post('http://localhost:3001/api/login', {
       email: email.value,
-      hash: password.value
+      hash: md5(password.value),
     })
-    
+    console.log( data.data.first_name)
+    if(data.data){
+      localStorage.setItem('id', data.data.id)
+      localStorage.setItem('uuid', data.data.uuid)
+      email.value = ''
+      password.value = ''
+      formReport.value = ''
+      checkAuth() 
+    }
   } 
   catch(error){
     console.log(error)
+    formReport.value = 'Неверный email или пароль'
   }
 }
 }
@@ -41,6 +52,9 @@ const logInFunc = async () => {
       Войдите в аккаунт
     </div>
     <form class="flex flex-col gap-3">
+      <p class="text-lg text-center text-red-700">
+          {{ formReport }}
+        </p>
       <div class="block relative">
         <label
           for="email"
@@ -71,6 +85,8 @@ const logInFunc = async () => {
       <button
         type="submit"
         class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+        @click="logInFunc($event)"
+        
       >
         Submit
       </button>

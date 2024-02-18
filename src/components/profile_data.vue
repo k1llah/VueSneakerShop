@@ -1,5 +1,21 @@
 <script setup lang="ts">
+import axios from 'axios';
+import type { post } from 'node_modules/axios/index.cjs';
 import { ref } from "vue";
+const email = ref('');
+const first_name = ref('')
+const lastName = ref('')
+
+const getData = async function () {
+  try{
+    const data = await axios.post('/profile-data',{
+
+    })
+  }
+  catch(error){
+    console.log(error)
+  }
+}
 </script>
 
 <template>
