@@ -4,7 +4,7 @@ import sign_in from '@/components/sign_in.vue';
 </script>
 <template>
 
-  
+
   <div class="container min-h-[600px]">
     <div class="flex ml-[50px] mt-5 gap-[15px]">
       <button
@@ -18,11 +18,6 @@ import sign_in from '@/components/sign_in.vue';
         />
       </button>
       <h2 class="text-3xl">Профиль</h2>
-    </div>
-		<div class="flex mt-[50px] flex-col justify-center items-center">
-			<h3 class="text-[28px] font-light">
-				Вы   <span class="text-[#7747ff]">не вошли</span>
-			</h3>
     </div>
     <sign_in/>
 </div>

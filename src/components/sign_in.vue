@@ -1,10 +1,26 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { checkAuth, isAuthenticated, currentUser } from '@/auth';
+import profileData from './profile_data.vue'
+
+const email = ref('');
+const password = ref('');
+
+
+
+
 
 </script>
 <template>
   <div
     class="max-w-[330px] m-auto relative flex flex-col p-4 rounded-md text-black bg-white"
+    v-if="isAuthenticated == false"
   >
+  <div class="flex mt-[50px] flex-col justify-center items-center">
+			<h3 class="text-[28px] font-light">
+				Вы   <span class="text-[#7747ff]">не вошли</span>
+			</h3>
+    </div>
     <div class="text-base font-normal mb-4 text-center text-[#1e0e4b] mt-[20px]">
       Войдите в аккаунт
     </div>
@@ -49,6 +65,11 @@
         <p class="text-sm text-[#7747ff]">Зарегистрируйтесь</p></router-link
       >
     </div>
+  </div>
+
+
+  <div class="container"> 
+    <profile-data/>
   </div>
 </template>
 
