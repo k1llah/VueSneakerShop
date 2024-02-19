@@ -18,7 +18,7 @@ const logInFunc = async (event:any) => {
       email: email.value,
       hash: md5(password.value),
     })
-    console.log( data.data.first_name)
+    
     if(data.data){
       localStorage.setItem('id', data.data.id)
       localStorage.setItem('uuid', data.data.uuid)

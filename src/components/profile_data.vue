@@ -1,21 +1,33 @@
 <script setup lang="ts">
 import axios from 'axios';
-import type { post } from 'node_modules/axios/index.cjs';
 import { ref } from "vue";
 const email = ref('');
 const first_name = ref('')
 const lastName = ref('')
+import { isAuthenticated } from '@/auth';
 
 const getData = async function () {
+  if(isAuthenticated.value == true){
   try{
-    const data = await axios.post('/profile-data',{
-
+    const data = await axios.get('http://localhost:3001/api/get-data',{
+      params:{
+        email: email.value,
+        last_name: lastName.value,
+        first_name: first_name.value,
+      }
     })
+    console.log(data.data)
+    
+      email.value = data.data.email
+      first_name.value = data.data.first_name
+      lastName.value = data.data.last_name
   }
   catch(error){
     console.log(error)
   }
 }
+}
+getData()
 </script>
 
 <template>
@@ -29,15 +41,15 @@ const getData = async function () {
       <div class="flex flex-col gap-10">
         <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
           <span class="text-slate-400 text-[16px]">Фамилия:</span>
-          <h4 class="text-black text-[20px]">Не указано</h4>
+          <h4 class="text-black text-[20px]">{{ lastName }}</h4>
         </div>
         <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
           <span class="text-slate-400 text-[16px]">Имя:</span>
-          <h4 class="text-black text-[20px]">Иван</h4>
+          <h4 class="text-black text-[20px]">{{ first_name }}</h4>
         </div>
         <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
           <span class="text-slate-400 text-[16px]">Email:</span>
-          <h4 class="text-black text-[20px]">jYrZu@example.com</h4>
+          <h4 class="text-black text-[20px]">{{ email }}</h4>
         </div>
       </div>
       <div>
