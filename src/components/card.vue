@@ -11,13 +11,15 @@ import { defineProps } from 'vue';
 		onClickAdd: Function,
 		onFavoriteAdd: Function,
 	})
-
 	const onFav = props.onFavoriteAdd as ((payload: MouseEvent) => void)
 	const onclck = props.onClickAdd as ((payload: MouseEvent) => void)
 	
+
+
+
+	
 </script>
 <template>
-	
 		<div class="relative bg-white border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition">
 			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click=" onFavoriteAdd && onFavoriteAdd(id)">
 

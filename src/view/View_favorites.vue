@@ -4,8 +4,6 @@ import { isAuthenticated, currentUser } from "@/auth";
 import axios from 'axios';
 
 const isFav = ref(false)
-
-
 </script>
 <template>
   <div class="container">
