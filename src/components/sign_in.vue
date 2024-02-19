@@ -20,8 +20,8 @@ const logInFunc = async (event:any) => {
     })
     
     if(data.data){
-      localStorage.setItem('id', data.data.id)
-      localStorage.setItem('uuid', data.data.uuid)
+      localStorage.setItem('id', data.data.user.id)
+      localStorage.setItem('uuid', data.data.user.uuid)
       email.value = ''
       password.value = ''
       formReport.value = ''

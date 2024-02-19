@@ -7,20 +7,17 @@ const lastName = ref('')
 import { isAuthenticated } from '@/auth';
 
 const getData = async function () {
+  const uuid = localStorage.getItem('uuid') 
+  const id = localStorage.getItem('id')
   if(isAuthenticated.value == true){
   try{
-    const data = await axios.get('http://localhost:3001/api/get-data',{
-      params:{
-        email: email.value,
-        last_name: lastName.value,
-        first_name: first_name.value,
-      }
-    })
-    console.log(data.data)
-    
-      email.value = data.data.email
-      first_name.value = data.data.first_name
-      lastName.value = data.data.last_name
+    const data = await axios.post('http://localhost:3001/api/get-data',{ uuid, id })
+    email.value = data.data.user.email
+    first_name.value = data.data.user.first_name
+    lastName.value = data.data.user.last_name
+    if(lastName.value == null){
+      lastName.value = 'Не указано'
+    }
   }
   catch(error){
     console.log(error)
@@ -39,15 +36,15 @@ getData()
     </div>
     <div class="flex gap-10">
       <div class="flex flex-col gap-10">
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
+        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
           <span class="text-slate-400 text-[16px]">Фамилия:</span>
           <h4 class="text-black text-[20px]">{{ lastName }}</h4>
         </div>
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
+        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
           <span class="text-slate-400 text-[16px]">Имя:</span>
           <h4 class="text-black text-[20px]">{{ first_name }}</h4>
         </div>
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[200px]">
+        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
           <span class="text-slate-400 text-[16px]">Email:</span>
           <h4 class="text-black text-[20px]">{{ email }}</h4>
         </div>
