@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { isAuthenticated, currentUser } from "@/auth";
-
+import axios from 'axios';
 
 const isFav = ref(false)
 
@@ -22,14 +22,19 @@ const isFav = ref(false)
     </div>
 	</div>
 
-      <div v-if="isAuthenticated == true && isFav !== false ">
+      <div v-if="isAuthenticated == true && isFav == true ">
 
 
 
 
       </div>
 
-
+      <div v-else-if="isAuthenticated == true && isFav == false" class="flex flex-col justify-center items-center h-[500px]">
+      	<div class="w-[500px] text-center">
+				<h1 class="text-2xl">К сожалению у вас нет добавленных <span class="text-2xl text-[#7747ff]">избранных</span> товаров</h1>
+			</div>
+			<div class="max-w-[70px] mt-5"><img src="/emoji-1.png" alt=""></div>
+      </div>
 
 
 

@@ -1,6 +1,13 @@
 <script setup script lang="ts">
 import Card from './card.vue'
 // import type { Key } from 'readline';
+import { ref } from "vue";
+import { isAuthenticated, currentUser } from "@/auth";
+import axios from 'axios';
+
+const isFav = ref(false)
+
+
 interface Item {
   id: number;
   title: string;
@@ -15,12 +22,21 @@ defineProps({
   items: Array<Item>
 });
 
-const onClickAdd = () => {
-  alert('Добавить!')
+const onClickAdd = async () => {
+
+ 
 }
-const onFavoriteAdd = (e: MouseEvent) => {
-  e
+const onFavoriteAdd = async (sneakerId: number) => {
+  try{
+  const postData = await axios.post('http://localhost:3001/api/add-to-favorites', {
+    userId: localStorage.getItem('id'),
+    sneakerId: sneakerId
+}) 
+console.log(postData.data)
   alert('Добавлено в избранное!!')
+} catch(error){
+  console.log(error)
+}
 }
 </script>
 <template>
@@ -29,13 +45,15 @@ const onFavoriteAdd = (e: MouseEvent) => {
       <card
         v-for="item  in items"
         :key="item.id"
+        :id="item.id"
         :title="item.title"
         :image-url="item.imageUrl"
         :price="item.price"
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
         :on-click-add="onClickAdd"
-        :on-favorite-add="onFavoriteAdd"
+        :on-favorite-add=" () => onFavoriteAdd(item.id)"
+        
       />
     </div>
   </div>

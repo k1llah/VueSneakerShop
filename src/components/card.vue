@@ -2,6 +2,7 @@
 <script setup script lang="ts">
 import { defineProps } from 'vue';
 	const props = defineProps({
+		id: Number || String,
 		imageUrl: String,
 		title: String,
 		price: Number,
@@ -18,7 +19,7 @@ import { defineProps } from 'vue';
 <template>
 	
 		<div class="relative bg-white border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition">
-			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click="onFav">
+			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click=" onFavoriteAdd && onFavoriteAdd(id)">
 
 			<img :src="imageUrl" alt="Sneaker">
 			<p class="mt-2">

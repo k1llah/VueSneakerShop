@@ -12,7 +12,7 @@ const router = createRouter({
 	},{
 		name: 'Purchases',
 		path: '/purchases',
-		component: () => import('./view/myPurchases.vue')
+		component: () => import('./view/View_favorites.vue')
 	}
 	,{
 		name: 'Profile',
