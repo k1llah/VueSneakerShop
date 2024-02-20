@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup script lang="ts">
 import { defineProps } from 'vue';
 	const props = defineProps({
@@ -11,7 +10,6 @@ import { defineProps } from 'vue';
 		onClickAdd: Function,
 		onFavoriteAdd: Function,
 	})
-	const onFav = props.onFavoriteAdd as ((payload: MouseEvent) => void)
 	const onclck = props.onClickAdd as ((payload: MouseEvent) => void)
 	
 

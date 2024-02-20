@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { isAuthenticated, currentUser } from "@/auth";
+import { isAuthenticated } from "@/auth";
 import axios from 'axios';
-import card from '@/components/card.vue';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import FavList from '@/components/Fav-list.vue';
 const items = ref<any>([])
 const isFav = ref(false)
@@ -13,11 +12,12 @@ const favorites = async () => {
     const { data } = await axios.post('http://localhost:3001/api/favorites-user', {
       id: localStorage.getItem('id'),
     })
-    console.log(data)
-    if(data !== null || data !== undefined || data.length !== 0){
-      items.value = data
+    console.log(data[0].Favorite)
+    
       isFav.value = true
-    }
+      items.value = data[0].Favorite
+      console.log(items.value)
+    
   } catch(error){
     console.log(error)
   }
@@ -44,8 +44,7 @@ onMounted(() => {
 	</div>
   
       <div v-if="isAuthenticated == true && isFav == true ">
-        
-
+        <FavList :items="items"/>
       </div>
 
       <div v-else-if="isAuthenticated == true && isFav == false" class="flex flex-col justify-center items-center h-[500px]">

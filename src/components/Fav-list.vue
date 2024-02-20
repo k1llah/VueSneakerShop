@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import Card from './card.vue'
 import { ref } from "vue";
 import axios from 'axios';
-
+import card from '@/components/card.vue';
 const isFav = ref(false)
 
 
@@ -14,11 +13,28 @@ interface Item {
   isAdded: boolean;
   isFavorite: boolean;
 }
+const onClickAdd = async () => {
+
+ 
+}
+
 
 defineProps({
-  // Указываем, что items является массивом объектов типа Item
   items: Array<Item>
 });
+
+
+const onFavoriteAdd = async (sneakerId: number) => {
+  try{
+    const removeFav = await axios.post('http://localhost:3001/api/remove-from-favorites', {
+      id: localStorage.getItem('id'),
+      sneakerId: sneakerId
+    })
+  }
+  catch(error){
+    console.log(error)
+  }
+}
 </script>
 <template>
 <div v-if="items">

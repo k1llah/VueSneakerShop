@@ -1,10 +1,6 @@
 <script setup script lang="ts">
 import Card from './card.vue'
-import { ref } from "vue";
 import axios from 'axios';
-
-const isFav = ref(false)
-
 
 interface Item {
   id: number;
