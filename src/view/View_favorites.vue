@@ -2,8 +2,30 @@
 import { ref } from "vue";
 import { isAuthenticated, currentUser } from "@/auth";
 import axios from 'axios';
-
+import card from '@/components/card.vue';
+import { onMounted } from 'vue';
+import FavList from '@/components/Fav-list.vue';
+const items = ref<any>([])
 const isFav = ref(false)
+
+const favorites = async () => {
+  try{
+    const { data } = await axios.post('http://localhost:3001/api/favorites-user', {
+      id: localStorage.getItem('id'),
+    })
+    console.log(data)
+    if(data !== null || data !== undefined || data.length !== 0){
+      items.value = data
+      isFav.value = true
+    }
+  } catch(error){
+    console.log(error)
+  }
+}
+onMounted(() => {
+
+  favorites()
+})
 </script>
 <template>
   <div class="container">
@@ -17,13 +39,12 @@ const isFav = ref(false)
         <img src="/arrow-right.svg" class="rotate-180" alt="close button" />
       </button>
       <h2 class="text-3xl">Избранное</h2>
+      <button @click="favorites">YFa;lskjdf</button>
     </div>
 	</div>
-
+  
       <div v-if="isAuthenticated == true && isFav == true ">
-
-
-
+        
 
       </div>
 
