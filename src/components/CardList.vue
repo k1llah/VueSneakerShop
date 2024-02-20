@@ -1,7 +1,8 @@
 <script setup script lang="ts">
-import Card from './card.vue'
-import axios from 'axios';
-
+import Card from "./card.vue";
+import axios from "axios";
+import { ref } from "vue";
+import Overlay from '@/components/overlay.vue';
 interface Item {
   id: number;
   title: string;
@@ -13,31 +14,37 @@ interface Item {
 
 defineProps({
   // Указываем, что items является массивом объектов типа Item
-  items: Array<Item>
+  items: Array<Item>,
 });
 
-const onClickAdd = async () => {
-
- 
-}
+const onClickAdd = async () => {};
+let showOverlay = ref<Boolean>(false);
 const onFavoriteAdd = async (sneakerId: number) => {
-  try{
-  const postData = await axios.post('http://localhost:3001/api/add-to-favorites', {
-    userId: localStorage.getItem('id'),
-    sneakerId: sneakerId
-}) 
-console.log(postData.data)
-  alert('Добавлено в избранное!!')
-} catch(error){
-  console.log(error)
-}
-}
+  try {
+    const postData = await axios.post(
+      "http://localhost:3001/api/add-to-favorites",
+      {
+        userId: localStorage.getItem("id"),
+        sneakerId: sneakerId,
+      }
+    );
+    showOverlay.value = true;
+    setTimeout(() => {
+      showOverlay.value = false;
+    }, 160);
+    console.log(showOverlay.value)
+    console.log(postData.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
 <template>
+  <overlay :show-overlay="showOverlay"/>
   <div v-if="items">
     <div class="grid grid-cols-4 gap-5">
       <card
-        v-for="item  in items"
+        v-for="item in items"
         :key="item.id"
         :id="item.id"
         :title="item.title"
@@ -46,8 +53,7 @@ console.log(postData.data)
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
         :on-click-add="onClickAdd"
-        :on-favorite-add=" () => onFavoriteAdd(item.id)"
-        
+        :on-favorite-add="() => onFavoriteAdd(item.id)"
       />
     </div>
   </div>

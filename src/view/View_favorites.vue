@@ -4,8 +4,9 @@ import { isAuthenticated } from "@/auth";
 import axios from 'axios';
 import { onMounted, watch } from 'vue';
 import FavList from '@/components/Fav-list.vue';
+
 const items = ref<any>([])
-const isFav = ref(false)
+const isFav = ref<Boolean>(true)
 
 const favorites = async () => {
   try{
@@ -16,6 +17,7 @@ const favorites = async () => {
     
       isFav.value = true
       items.value = data[0].Favorite
+      
       console.log(items.value)
     
   } catch(error){
@@ -30,6 +32,7 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="min-h-[600px]">
+      
 			<div class="flex ml-[50px] mt-5 gap-[15px] ">
 			<div class="flex gap-5 ">
       <button

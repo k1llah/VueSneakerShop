@@ -2,8 +2,9 @@
 import CardList from "@/components/CardList.vue";
 import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
-let items = ref<any>([]);
 
+let items = ref<any>([]);
+let showOverlay = ref<Boolean>(false);
 const filters = reactive({
   sortBy: "title",
   searchQuery: "",
@@ -28,6 +29,7 @@ const axiosGetParams = async () => {
     const { data } = await axios.get(`http://localhost:3001/api`, {
       params,
     });
+    
     console.log(filters.sortBy);
     items.value = data;
   } catch (err) {
@@ -68,5 +70,5 @@ console.log(typeof items.value); // Выведет тип переменной i
       </div>
     </div>
   </div>
-  <CardList :items="items" />
+  <CardList :items="items"/>
 </template>
