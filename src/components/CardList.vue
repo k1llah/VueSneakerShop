@@ -31,9 +31,8 @@ const onFavoriteAdd = async (sneakerId: number) => {
     showOverlay.value = true;
     setTimeout(() => {
       showOverlay.value = false;
-    }, 160);
-    console.log(showOverlay.value)
-    console.log(postData.data);
+    }, 150);
+    
   } catch (error) {
     console.log(error);
   }

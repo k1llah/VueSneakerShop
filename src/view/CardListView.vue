@@ -29,8 +29,7 @@ const axiosGetParams = async () => {
     const { data } = await axios.get(`http://localhost:3001/api`, {
       params,
     });
-    
-    console.log(filters.sortBy);
+  
     items.value = data;
   } catch (err) {
     console.log(err);
@@ -39,7 +38,6 @@ const axiosGetParams = async () => {
 
 onMounted(axiosGetParams);
 watch(filters, axiosGetParams);
-console.log(typeof items.value); // Выведет тип переменной items
 </script>
 
 <template>
