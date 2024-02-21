@@ -24,6 +24,7 @@ const favorites = async () => {
     console.log(error);
   }
 };
+
 onMounted(() => {
   favorites();
 });

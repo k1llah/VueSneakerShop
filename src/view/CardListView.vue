@@ -4,7 +4,6 @@ import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 
 let items = ref<any>([]);
-let showOverlay = ref<Boolean>(false);
 const filters = reactive({
   sortBy: "title",
   searchQuery: "",

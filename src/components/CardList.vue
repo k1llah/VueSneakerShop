@@ -39,7 +39,7 @@ const onFavoriteAdd = async (sneakerId: number) => {
 };
 </script>
 <template>
-  <overlay :show-overlay="showOverlay"/>
+  <overlay :show-overlay-green="showOverlay"/>
   <div v-if="items">
     <div class="grid grid-cols-4 gap-5">
       <card

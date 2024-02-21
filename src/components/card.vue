@@ -10,11 +10,9 @@ import { defineProps } from 'vue';
 		onClickAdd: Function,
 		onFavoriteAdd: Function,
 	})
+	const onFav = props.onFavoriteAdd as ((payload: MouseEvent) => void)
 	const onclck = props.onClickAdd as ((payload: MouseEvent) => void)
 	
-
-
-
 	
 </script>
 <template>
