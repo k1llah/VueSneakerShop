@@ -19,15 +19,16 @@ const favorites = async () => {
 
     isFav.value = true;
     items.value = data[0].Favorite;
-
+    items.value.forEach((el:any) => {
+      el.isFavorite = true
+    })
   } catch (error) {
     console.log(error);
   }
 };
 
-onMounted(() => {
-  favorites();
-});
+favorites();
+
 </script>
 <template>
   <div class="container">

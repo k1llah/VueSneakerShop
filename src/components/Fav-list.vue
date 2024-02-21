@@ -3,6 +3,7 @@ import { ref } from "vue";
 import axios from 'axios';
 import card from '@/components/card.vue';
 import overlay from '@/components/overlay.vue';
+// import { it } from 'node:test';
 
 
 interface Item {
@@ -19,12 +20,14 @@ const onClickAdd = async () => {
 }
 
 
-defineProps({
+const props = defineProps({
   items: Array<Item>
 });
 
+console.log(props.items)
+
 const showOverlay = ref(false)
-const onFavoriteRemove = async (sneakerId: number) => {
+const onFavoriteRemove = async (sneakerId: number, item:Item) => {
   try {
     const postData = await axios.post(
       "http://localhost:3001/api/remove-from-favorites",
@@ -33,7 +36,7 @@ const onFavoriteRemove = async (sneakerId: number) => {
         sneakerId: sneakerId,
       }
     );
-		
+		item.isFavorite = false
     showOverlay.value = true;
     setTimeout(() => {
       showOverlay.value = false;
@@ -48,19 +51,23 @@ const onFavoriteRemove = async (sneakerId: number) => {
 <div v-if="items">
 	<overlay :show-overlay-red="showOverlay"/>
 	<div class="grid grid-cols-4 gap-5">
-      <card
-        v-for="item  in items"
-        :key="item.id"
-        :id="item.id"
-        :title="item.title"
-        :image-url="item.imageUrl"
-        :price="item.price"
-        :is-added="item.isAdded"
-        :is-favorite="item.isFavorite"
-        :on-click-add="onClickAdd"
-        :on-favorite-add=" () => onFavoriteRemove(item.id)"
-        
-      />
+  <template 
+  v-for="item in items"
+      :key="item.id"
+  >
+  <card 
+      v-if="item.isFavorite"
+      :id="item.id"
+      :title="item.title"
+      :image-url="item.imageUrl"
+      :price="item.price"
+      :is-added="item.isAdded"
+      :is-favorite="item.isFavorite"
+      :on-click-add="onClickAdd"
+      :on-favorite-add=" () => onFavoriteRemove(item.id, item)"
+      
+    />
+  </template>
     </div>
 </div>
 

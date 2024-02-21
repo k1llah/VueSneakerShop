@@ -19,7 +19,7 @@ defineProps({
 
 const onClickAdd = async () => {};
 let showOverlay = ref<Boolean>(false);
-const onFavoriteAdd = async (sneakerId: number) => {
+const onFavoriteAdd = async (sneakerId: number, item:Item) => {
   try {
     const postData = await axios.post(
       "http://localhost:3001/api/add-to-favorites",
@@ -28,6 +28,7 @@ const onFavoriteAdd = async (sneakerId: number) => {
         sneakerId: sneakerId,
       }
     );
+      item.isFavorite = true
     showOverlay.value = true;
     setTimeout(() => {
       showOverlay.value = false;
@@ -52,7 +53,7 @@ const onFavoriteAdd = async (sneakerId: number) => {
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
         :on-click-add="onClickAdd"
-        :on-favorite-add="() => onFavoriteAdd(item.id)"
+        :on-favorite-add="() => onFavoriteAdd(item.id, item)"
       />
     </div>
   </div>
