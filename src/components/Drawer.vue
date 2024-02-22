@@ -1,10 +1,11 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup script lang="ts">
 import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
+
+
+
 </script>
 
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
