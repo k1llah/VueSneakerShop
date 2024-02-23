@@ -11,10 +11,11 @@ interface Item {
   isFavorite: boolean;
 }
 
-export const useSneakerStore = defineStore('sneaker', {
+export const useSneaker = defineStore('sneaker', {
   state: () => ({
     items: [] as Item[],
     showOverlay: false,
+    show:false
   }),
   actions: {
     async fetchItems() {

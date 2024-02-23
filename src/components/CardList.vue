@@ -18,7 +18,7 @@ defineProps({
 });
 
 const onClickAdd = async () => {};
-let showOverlay = ref<Boolean>(false);
+let showOverlay = ref(false);
 const onFavoriteAdd = async (sneakerId: number, item:Item) => {
   try {
     const postData = await axios.post(

@@ -54,7 +54,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
   <template 
   v-for="item in items"
       :key="item.id"
-  >
+      v-auto-animate >
   <card 
       v-if="item.isFavorite"
       :id="item.id"

@@ -1,7 +1,10 @@
 <script setup script lang="ts">
 import Header from "./components/header.vue";
+import Drawer from '@/components/Drawer.vue';
 import { onMounted } from "vue";
 import { checkAuth, isAuthenticated, currentUser } from "./auth";
+import {useSneaker} from '@/stores/sneaker'
+const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();
 });
@@ -15,5 +18,18 @@ onMounted(() => {
       </div>
     </section>
   </div>
-  <!-- <Drawer/> -->
+  <transition name="fade">
+    <Drawer v-if="sneakerStore.show"/>
+  </transition>
 </template>
+
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>
