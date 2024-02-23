@@ -50,7 +50,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
 <template>
 <div v-if="items">
 	<overlay :show-overlay-red="showOverlay"/>
-	<div class="grid grid-cols-4 gap-5">
+	<div class="grid grid-cols-4 gap-5" v-auto-animate>
   <template 
   v-for="item in items"
       :key="item.id"

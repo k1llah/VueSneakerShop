@@ -1,7 +1,7 @@
 import './assets/main.css'
 import { createApp } from 'vue';
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
-import { createPinia, createPinia } from 'pinia'
+import { createPinia } from 'pinia'
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
