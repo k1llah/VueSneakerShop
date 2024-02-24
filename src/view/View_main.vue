@@ -2,10 +2,9 @@
 import Swiper from 'swiper';
 import sliderMain from '@/components/sliderMain.vue'
 import { ref, onMounted } from 'vue';
+import scrollText from '@/components/scrollText.vue';
 import 'swiper/css';
-import mainSections from '@/components/mainSections.vue';
 let mySwiper;
-
 const swiperContainer = ref<HTMLElement | null>(null);
 
 onMounted(() => {
@@ -26,7 +25,7 @@ onMounted(() => {
 
 </script>
 <template>
-  <div class="container min-h-[600px]">
+  <div class="container min-h-[10000px]">
   <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center" >
     <div class="flex gap-5">
       <button
@@ -39,19 +38,12 @@ onMounted(() => {
     </div>
   </div>
 
-  <h1 class="text-3xl text-[#000000] text-center font-sans font-[600] mt-10">Добро пожаловать в BENZ SHÖP</h1>
+  <h1 class="text-3xl text-[#000000] text-center font-sans font-[600] mt-10">Приветствуем вас в BENZ SHÖP</h1>
 
   <sliderMain/>
-
   
-
+  <scrollText/>
 
 </div>
 
 </template>
-
-<style scoped>
-.swiper-slide{
-  display: flex !important;
-}
-</style>

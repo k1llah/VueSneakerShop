@@ -2,7 +2,7 @@
 import Header from "./components/header.vue";
 import Drawer from '@/components/Drawer.vue';
 import { onMounted } from "vue";
-import { checkAuth, isAuthenticated, currentUser } from "./auth";
+import { checkAuth } from "./auth";
 import {useSneaker} from '@/stores/sneaker'
 const sneakerStore = useSneaker()
 onMounted(() => {

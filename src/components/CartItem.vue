@@ -5,7 +5,7 @@
 		<div class="flex flex-col">
 			<p>Кроссовки Nike Blaser Mid Suede</p>
 			<div class="flex justify-between mt-2">
-				<b>12.990 RUB</b>
+				<p>12.990 RUB</p>
 				<img class="opacity-40 hover:opacity-100 cursor-pointer transition" src="/close.svg" alt="Close image">
 			</div>
 		</div>

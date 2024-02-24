@@ -1,3 +1,8 @@
+<style>
+*{
+  font-family: Fredoka,Alegreya Sans SC;
+}
+</style>
 <script setup lang="ts">
 import Drawer from './Drawer.vue';
 import { ref } from 'vue'
@@ -16,39 +21,32 @@ let toggleShow = () => {
         <router-link to="/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
-        <h2 class="text-lg font-bold uppercase">Benz Shöp</h2>
+        <h2 class="text-xl font-medium uppercase">Benz Shöp</h2>
         <router-link to="/sneakers_page">
-        <p class="text-slate-500">Все кроссовки</p>
+        <p class="text-slate-700 text-lg hover:scale-[1.05] transition-all 1.3s">Все кроссовки</p>
       </router-link>
       </div>
     </div>
     <ul class="flex items-center gap-10">
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer" @click="toggleShow()"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s" @click="toggleShow()" 
       >
         <img src="/cart.svg" alt="Cart" />
-        <b>205 Руб</b>
+        <p class="text-[18px] font-[500]">205 Руб</p>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
         @click="$router.push({ name: 'Purchases' })"
       >
         <img src="/heart.svg" alt="Cart" />
-        <span>Закладки</span>
+        <span class="text-[19px] font-light">Закладки</span>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer" @click="$router.push({ name: 'Profile' })"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s" @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />
-        <span>Профиль</span>
+        <span class="text-[19px] font-light">Профиль</span>
       </li>
     </ul>
   </header>
-  <!-- <transition name="fade"> -->
-    <!-- <Drawer v-if="show"/> -->
-  <!-- </transition> -->
 </template>
-
-<style scoped>
-
-</style>
