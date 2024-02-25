@@ -2,100 +2,113 @@
 import { ref, onMounted, watchEffect } from "vue";
 import gsap from "gsap";
 
-// Define refs for elements you want to access
 const content = ref<HTMLElement | null>(null);
 const title = ref<HTMLElement | null>(null);
 const isVisible = ref(false);
-// Other variables and functions...
 
 onMounted(() => {
-  // Watch for changes in isVisible and trigger animations accordingly
   watchEffect(() => {
     if (isVisible.value) {
       animateText();
     }
-
   });
-  
 
-  
-  // Add scroll event listener when the component is mounted
   window.addEventListener("scroll", handleScroll);
 });
 
 const handleScroll = () => {
-  // Get the position of content element
   const contentPosition = content.value?.getBoundingClientRect().top || 0;
   const screenPosition = window.innerHeight / 1.8;
-  
-  // If content is visible, trigger animations and remove scroll event listener
+
   if (contentPosition < screenPosition) {
     isVisible.value = true;
     window.removeEventListener("scroll", handleScroll);
   }
 };
 
-// Define function to animate text using GSAP
 const animateText = () => {
   gsap.from(title.value, {
     opacity: 0,
     y: -400,
     duration: 1.2,
-    ease: 'bounce.out',
+    ease: "bounce.out",
   });
 };
 
-// Define ref for dropdowns
 const dropdowns = ref<boolean[]>([true, false, false]);
 
-// Define function to toggle dropdown
 const toggleDropdown = (index: number) => {
   dropdowns.value[index] = !dropdowns.value[index];
-  const dropdownContent = document.querySelector(`.textBlock${index}`) as HTMLDivElement
-  
+  const dropdownContent = document.querySelector(
+    `.textBlock${index}`
+  ) as HTMLDivElement;
+
   if (dropdownContent) {
     if (dropdowns.value[index]) {
-      gsap.to(dropdownContent, { maxHeight: "350px", padding: "20px", duration: 0.7, ease: "power2.out" });
+      gsap.to(dropdownContent, {
+        maxHeight: "370px",
+        padding: "20px",
+        duration: 0.7,
+        ease: "power2.out",
+      });
     } else {
-      gsap.to(dropdownContent, { maxHeight: "0px", padding: "0px", duration: 0.7, ease: "power2.out" });
+      gsap.to(dropdownContent, {
+        maxHeight: "0px",
+        padding: "0px",
+        duration: 0.7,
+        ease: "power2.out",
+      });
     }
   }
 };
 </script>
 <template>
-  <div class="bg-[#f8f8ff] pt-36" ref = "content">
-    <h3 class="text-5xl text-center" ref="title" :class="{ 'hidden-text': !isVisible }">
+  <div class="bg-[#f8f8ff] pt-36" ref="content">
+    <h3
+      class="text-5xl text-center"
+      ref="title"
+      :class="{ 'hidden-text': !isVisible }"
+    >
       <span class="text-[#7747ff]">Почему</span> мы?🤔
     </h3>
     <div class="wrapper w-full mt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
-
         <div class="w-[600px]">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
             @click="toggleDropdown(0)"
           >
-            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
-            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[0], 'rotate-0 transition-all duration-500': !dropdowns[0] }" alt="" />
+            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости 💸</h2>
+            <img
+              class="mr-2 w-8"
+              src="/down.png"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[0],
+                'rotate-0 transition-all duration-500': !dropdowns[0],
+              }"
+              alt=""
+            />
           </div>
-          
-            <div
-            
-              class="textBlock0 flex justify-center bg-white p-[10px]"
-              :class="{ 'open': dropdowns[0], 'closed': !dropdowns[0] }"
-            >
-              <p class="text-[18px] font-[300] leading-[30px]">
-                Доступность для широкого круга клиентов: Низкая стоимость делает
-                товары более доступными для большего количества потребителей,
-                что позволяет вашему магазину привлекать разнообразную
-                аудиторию. Экономия денег для клиентов: Клиенты ценят
-                возможность сэкономить деньги при покупке товаров. Низкие цены
-                могут стать дополнительным стимулом для совершения покупок.
-                Привлечение внимания: Магазины с низкими ценами могут привлечь
-                больше внимания и привлечь больше потенциальных клиентов,
-                особенно тех, кто ценит экономичные покупки.
-              </p>
-            </div>  
+
+          <div
+            class="textBlock0 flex justify-center bg-white p-[10px]"
+            :class="{ closed: !dropdowns[0] }"
+          >
+            <p class="text-[18px] font-[300] leading-[30px]">
+              <span class="font-[700]"
+                >Доступность для широкого круга клиентов:</span
+              >
+              Низкая стоимость делает товары более доступными для большего
+              количества потребителей, что позволяет вашему магазину привлекать
+              разнообразную аудиторию.
+              <span class="font-[700]">Экономия денег для клиентов:</span>
+              Клиенты ценят возможность сэкономить деньги при покупке товаров.
+              Низкие цены могут стать дополнительным стимулом для совершения
+              покупок. Привлечение внимания: Магазины с низкими ценами могут
+              привлечь больше внимания и привлечь больше потенциальных клиентов,
+              особенно тех, кто ценит экономичные покупки.
+            </p>
+          </div>
         </div>
 
         <div class="w-[600px]">
@@ -103,27 +116,37 @@ const toggleDropdown = (index: number) => {
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(1)"
           >
-            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
-            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[1], 'rotate-0 transition-all duration-500': !dropdowns[1] }" alt="" />
+            <h2 class="text-[23px] ml-5">Достоинства быстрой доставки 🏎️</h2>
+            <img
+              class="mr-2 w-8"
+              src="/down.png"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[1],
+                'rotate-0 transition-all duration-500': !dropdowns[1],
+              }"
+              alt=""
+            />
           </div>
-          
-            <div
-            
-              class="textBlock1 flex justify-center bg-white p-[10px]"
-              :class="{ 'open': dropdowns[1], 'closed': !dropdowns[1] }"
-            >
-              <p class="text-[18px] font-[300] leading-[30px]">
-                Доступность для широкого круга клиентов: Низкая стоимость делает
-                товары более доступными для большего количества потребителей,
-                что позволяет вашему магазину привлекать разнообразную
-                аудиторию. Экономия денег для клиентов: Клиенты ценят
-                возможность сэкономить деньги при покупке товаров. Низкие цены
-                могут стать дополнительным стимулом для совершения покупок.
-                Привлечение внимания: Магазины с низкими ценами могут привлечь
-                больше внимания и привлечь больше потенциальных клиентов,
-                особенно тех, кто ценит экономичные покупки.
-              </p>
-            </div>  
+
+          <div
+            class="textBlock1 flex justify-center bg-white p-[10px]"
+            :class="{ closed: !dropdowns[1] }"
+          >
+            <p class="text-[18px] font-[300] leading-[30px]">
+              <span class="font-[700]">Удовлетворение ожиданий клиентов:</span>
+              Быстрая доставка отвечает потребностям клиентов в получении
+              товаров в кратчайшие сроки. Это способствует повышению
+              удовлетворенности клиентов и созданию положительного опыта
+              покупок.
+              <span class="font-[700]">Повышение лояльности клиентов:</span>
+              Быстрая доставка может стать фактором, который заставит клиентов
+              возвращаться к вашему магазину снова и снова. Клиенты ценят
+              эффективное обслуживание и готовы остаться верными бренду, который
+              предлагает быструю доставку. Конкурентное преимущество: В мире
+              электронной торговли быстрая доставка является ключевым
+              конкурентным преимуществом.
+            </p>
+          </div>
         </div>
 
         <div class="w-[600px]">
@@ -131,41 +154,50 @@ const toggleDropdown = (index: number) => {
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(2)"
           >
-            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
-            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[2], 'rotate-0 transition-all duration-500': !dropdowns[2] }" alt="" />
+            <h2 class="text-[23px] ml-5">
+              Безопасность и надежность всех покупок 🔐
+            </h2>
+            <img
+              class="mr-2 w-8"
+              src="/down.png"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[2],
+                'rotate-0 transition-all duration-500': !dropdowns[2],
+              }"
+              alt=""
+            />
           </div>
-          
-            <div
-            
-              class="textBlock2 flex justify-center bg-white p-[10px]"
-              :class="{ 'open': dropdowns[2], 'closed': !dropdowns[2] }"
-            >
-              <p class="text-[18px] font-[300] leading-[30px]">
-                Доступность для широкого круга клиентов: Низкая стоимость делает
-                товары более доступными для большего количества потребителей,
-                что позволяет вашему магазину привлекать разнообразную
-                аудиторию. Экономия денег для клиентов: Клиенты ценят
-                возможность сэкономить деньги при покупке товаров. Низкие цены
-                могут стать дополнительным стимулом для совершения покупок.
-                Привлечение внимания: Магазины с низкими ценами могут привлечь
-                больше внимания и привлечь больше потенциальных клиентов,
-                особенно тех, кто ценит экономичные покупки.
-              </p>
-            </div>  
-        </div>
 
+          <div
+            class="textBlock2 flex justify-center bg-white p-[10px]"
+            :class="{ closed: !dropdowns[2] }"
+          >
+            <p class="text-[18px] font-[300] leading-[30px]">
+              <span class="font-[700]">Безопасные Транзакции:</span> Мы
+              используем надежные платежные системы, обеспечивая безопасность
+              ваших финансов при совершении покупок в нашем магазине. Ваши
+              данные защищены передовыми технологиями шифрования.
+              Гарантированная Конфиденциальность: Мы уважаем вашу
+              конфиденциальность.
+              <span class="font-[700]">Возврат и Обмен без Забот:</span> Наша
+              гибкая политика возврата и обмена обеспечивает вашу уверенность в
+              том, что вы получите именно то, что ожидали.
+              <span class="font-[700]">
+                Сертифицированные Безопасные Товары:</span
+              >
+              Мы тщательно выбираем обувь у проверенных производителей,
+              гарантируя, что каждая пара соответствует стандартам безопасности
+              и качества. Ваши ноги в надежных руках.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
-.open {
-   /* Выберите желаемую высоту */
-
-}
-
 .closed {
-  overflow: hidden; 
+  overflow: hidden;
   max-height: 0px;
   padding: 0px;
 }

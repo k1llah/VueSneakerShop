@@ -1,4 +1,3 @@
-// Файл: sneaker.ts
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
