@@ -14,7 +14,12 @@ onMounted(() => {
     if (isVisible.value) {
       animateText();
     }
+
   });
+  window.addEventListener("click", (event: any) => {
+  toggleDropdown(event);
+});
+
   
   // Add scroll event listener when the component is mounted
   window.addEventListener("scroll", handleScroll);
@@ -52,9 +57,9 @@ const toggleDropdown = (index: number) => {
   
   if (dropdownContent) {
     if (dropdowns.value[index]) {
-      gsap.to(dropdownContent, { height: "350px", padding: "20px", duration: 0.7, ease: "power2.out" });
+      gsap.to(dropdownContent, { maxHeight: "350px", padding: "20px", duration: 0.7, ease: "power2.out" });
     } else {
-      gsap.to(dropdownContent, { height: "0px", duration: 0.7, ease: "power2.out" });
+      gsap.to(dropdownContent, { maxHeight: "0px", padding: "0px", duration: 0.7, ease: "power2.out" });
     }
   }
 };
@@ -100,13 +105,13 @@ const toggleDropdown = (index: number) => {
 </template>
 <style scoped>
 .open {
-  max-height: 1000px; /* Выберите желаемую высоту */
-  transition: max-height 0.7s ease;
+   /* Выберите желаемую высоту */
+
 }
 
 .closed {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.7s ease;
+  overflow: hidden; 
+  max-height: 0px;
+  padding: 0px;
 }
 </style>
