@@ -16,9 +16,7 @@ onMounted(() => {
     }
 
   });
-  window.addEventListener("click", (event: any) => {
-  toggleDropdown(event);
-});
+  
 
   
   // Add scroll event listener when the component is mounted
@@ -48,12 +46,12 @@ const animateText = () => {
 };
 
 // Define ref for dropdowns
-const dropdowns = ref<boolean[]>([false, false, false]);
+const dropdowns = ref<boolean[]>([true, false, false]);
 
 // Define function to toggle dropdown
 const toggleDropdown = (index: number) => {
   dropdowns.value[index] = !dropdowns.value[index];
-  const dropdownContent = document.querySelector('.textBlock') as HTMLDivElement
+  const dropdownContent = document.querySelector(`.textBlock${index}`) as HTMLDivElement
   
   if (dropdownContent) {
     if (dropdowns.value[index]) {
@@ -71,18 +69,19 @@ const toggleDropdown = (index: number) => {
     </h3>
     <div class="wrapper w-full mt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
-        <div class="w-[550px]">
+
+        <div class="w-[600px]">
           <div
-            class="flex justify-end items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
             @click="toggleDropdown(0)"
           >
-            <h2 class="text-[23px]">Достоинства низкой стоимости💸</h2>
-            <img class="mr-3 w-8" src="/down.png" alt="" />
+            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
+            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[0], 'rotate-0 transition-all duration-500': !dropdowns[0] }" alt="" />
           </div>
           
             <div
             
-              class="textBlock flex justify-center bg-white p-5"
+              class="textBlock0 flex justify-center bg-white p-[10px]"
               :class="{ 'open': dropdowns[0], 'closed': !dropdowns[0] }"
             >
               <p class="text-[18px] font-[300] leading-[30px]">
@@ -96,9 +95,65 @@ const toggleDropdown = (index: number) => {
                 больше внимания и привлечь больше потенциальных клиентов,
                 особенно тех, кто ценит экономичные покупки.
               </p>
-            </div>
-          
+            </div>  
         </div>
+
+        <div class="w-[600px]">
+          <div
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
+            @click="toggleDropdown(1)"
+          >
+            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
+            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[1], 'rotate-0 transition-all duration-500': !dropdowns[1] }" alt="" />
+          </div>
+          
+            <div
+            
+              class="textBlock1 flex justify-center bg-white p-[10px]"
+              :class="{ 'open': dropdowns[1], 'closed': !dropdowns[1] }"
+            >
+              <p class="text-[18px] font-[300] leading-[30px]">
+                Доступность для широкого круга клиентов: Низкая стоимость делает
+                товары более доступными для большего количества потребителей,
+                что позволяет вашему магазину привлекать разнообразную
+                аудиторию. Экономия денег для клиентов: Клиенты ценят
+                возможность сэкономить деньги при покупке товаров. Низкие цены
+                могут стать дополнительным стимулом для совершения покупок.
+                Привлечение внимания: Магазины с низкими ценами могут привлечь
+                больше внимания и привлечь больше потенциальных клиентов,
+                особенно тех, кто ценит экономичные покупки.
+              </p>
+            </div>  
+        </div>
+
+        <div class="w-[600px]">
+          <div
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
+            @click="toggleDropdown(2)"
+          >
+            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости💸</h2>
+            <img class="mr-2 w-8" src="/down.png" :class="{ 'rotate-[-180deg] transition-all duration-500': dropdowns[2], 'rotate-0 transition-all duration-500': !dropdowns[2] }" alt="" />
+          </div>
+          
+            <div
+            
+              class="textBlock2 flex justify-center bg-white p-[10px]"
+              :class="{ 'open': dropdowns[2], 'closed': !dropdowns[2] }"
+            >
+              <p class="text-[18px] font-[300] leading-[30px]">
+                Доступность для широкого круга клиентов: Низкая стоимость делает
+                товары более доступными для большего количества потребителей,
+                что позволяет вашему магазину привлекать разнообразную
+                аудиторию. Экономия денег для клиентов: Клиенты ценят
+                возможность сэкономить деньги при покупке товаров. Низкие цены
+                могут стать дополнительным стимулом для совершения покупок.
+                Привлечение внимания: Магазины с низкими ценами могут привлечь
+                больше внимания и привлечь больше потенциальных клиентов,
+                особенно тех, кто ценит экономичные покупки.
+              </p>
+            </div>  
+        </div>
+
       </div>
     </div>
   </div>
