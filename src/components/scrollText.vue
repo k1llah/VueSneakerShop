@@ -1,3 +1,65 @@
+	<script setup lang="ts">
+	import { ref, onMounted, watchEffect } from "vue";
+	import gsap from "gsap";
+	import scrollComponent from './scrollComponent.vue';
+	const content = ref();
+	const isVisible = ref(false);
+	const { title, paragraph1, paragraph2, subtitle } = {
+		title: ref(null),
+		paragraph1: ref(null),
+		paragraph2: ref(null),
+		subtitle: ref(null),
+	};
+	onMounted(() => {
+		watchEffect(() => {
+			if (isVisible.value) {
+				animateText();
+			}
+		});
+	
+		window.addEventListener("scroll", handleScroll);
+	});
+	
+	const handleScroll = () => {
+		const contentPosition = content.value.getBoundingClientRect().top;
+		const screenPosition = window.innerHeight / 1.8;
+	
+		if (contentPosition < screenPosition) {
+			isVisible.value = true;
+			window.removeEventListener("scroll", handleScroll);
+		}
+	};
+	
+	const animateText = () => {
+		gsap.from(title.value, {
+			opacity: 0,
+			y: -400,
+			duration: 1.2,
+			ease: "expo.out",
+		});
+	
+		gsap.from(paragraph1.value, {
+			opacity: 0,
+			x: -400,
+			duration: 1.2,
+			ease: "expo.out",
+		});
+	
+		gsap.from(paragraph2.value, {
+			opacity: 0,
+			x: 400,
+			duration: 1.2,
+			ease: "expo.out",
+		});
+	
+		gsap.from(subtitle.value, {
+			opacity: 0,
+			y: 700,
+			duration: 1.2,
+			ease:	'expo.out',
+		});
+	};
+	</script>
 <template>
   <div>
     <div class="content text-center mt-28 p-10 bg-[#f8f8ff] pb-28" ref="content">
@@ -18,74 +80,11 @@
       <h3 ref="subtitle" class="text-2xl mt-10" :class="{ 'hidden-text': !isVisible }">Погрузитесь в <span class="text-[#7747ff]">мир кроссовок </span> с нами!</h3>
     </div>
   </div>
-	<img src="/public/4-Collins-x-Air-Max.gif" alt="AirMax 95">
+	<img src="/4-Collins-x-Air-Max.gif" alt="AirMax 95">
+
+	<scrollComponent/>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
-import gsap from "gsap";
-import { Back } from 'gsap';
-import { Bounce } from 'gsap';
-import { Elastic } from 'gsap';
-
-const content = ref();
-const isVisible = ref(false);
-const { title, paragraph1, paragraph2, subtitle } = {
-  title: ref(null),
-  paragraph1: ref(null),
-  paragraph2: ref(null),
-  subtitle: ref(null),
-};
-onMounted(() => {
-  watchEffect(() => {
-    if (isVisible.value) {
-      animateText();
-    }
-  });
-
-  window.addEventListener("scroll", handleScroll);
-});
-
-const handleScroll = () => {
-  const contentPosition = content.value.getBoundingClientRect().top;
-  const screenPosition = window.innerHeight / 1.7;
-
-  if (contentPosition < screenPosition) {
-    isVisible.value = true;
-    window.removeEventListener("scroll", handleScroll);
-  }
-};
-
-const animateText = () => {
-  gsap.from(title.value, {
-    opacity: 0,
-    y: -400,
-    duration: 1.2,
-    ease: "power2.out",
-  });
-
-  gsap.from(paragraph1.value, {
-    opacity: 0,
-    x: -400,
-    duration: 1.2,
-    ease: Back.easeInOut,
-  });
-
-  gsap.from(paragraph2.value, {
-    opacity: 0,
-    x: 400,
-    duration: 1.2,
-    ease: Back.easeOut,
-  });
-
-  gsap.from(subtitle.value, {
-    opacity: 0,
-    y: 700,
-    duration: 1.2,
-    ease: Bounce.easeOut,
-  });
-};
-</script>
 
 <style>
 .hidden-text {
