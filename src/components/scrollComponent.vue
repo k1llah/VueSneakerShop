@@ -1,42 +1,62 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
 import gsap from "gsap";
-import { Back } from "gsap";
-const content = ref();
+
+// Define refs for elements you want to access
+const content = ref<HTMLElement | null>(null);
+const title = ref<HTMLElement | null>(null);
 const isVisible = ref(false);
-const {title} = {
-  title: ref(null),
-};
+// Other variables and functions...
+
 onMounted(() => {
+  // Watch for changes in isVisible and trigger animations accordingly
   watchEffect(() => {
     if (isVisible.value) {
       animateText();
     }
   });
-	window.addEventListener("scroll", handleScroll);
+  
+  // Add scroll event listener when the component is mounted
+  window.addEventListener("scroll", handleScroll);
 });
+
 const handleScroll = () => {
-		const contentPosition = content.value.getBoundingClientRect().top;
-		const screenPosition = window.innerHeight / 1.8;
-	
-		if (contentPosition < screenPosition) {
-			isVisible.value = true;
-			window.removeEventListener("scroll", handleScroll);
-		}
-	};
+  // Get the position of content element
+  const contentPosition = content.value?.getBoundingClientRect().top || 0;
+  const screenPosition = window.innerHeight / 1.8;
+  
+  // If content is visible, trigger animations and remove scroll event listener
+  if (contentPosition < screenPosition) {
+    isVisible.value = true;
+    window.removeEventListener("scroll", handleScroll);
+  }
+};
+
+// Define function to animate text using GSAP
 const animateText = () => {
-		gsap.from(title.value, {
-			opacity: 0,
-			y: -400,
-			duration: 1.2,
-			ease:	'bounce.out',
-		});
-	}
+  gsap.from(title.value, {
+    opacity: 0,
+    y: -400,
+    duration: 1.2,
+    ease: 'bounce.out',
+  });
+};
 
-const dropdowns = ref([false, false, false]); // Массив для отслеживания состояния выпадающих меню
+// Define ref for dropdowns
+const dropdowns = ref<boolean[]>([false, false, false]);
 
+// Define function to toggle dropdown
 const toggleDropdown = (index: number) => {
   dropdowns.value[index] = !dropdowns.value[index];
+  const dropdownContent = document.querySelector('.textBlock') as HTMLDivElement
+  
+  if (dropdownContent) {
+    if (dropdowns.value[index]) {
+      gsap.to(dropdownContent, { height: "350px", padding: "20px", duration: 0.7, ease: "power2.out" });
+    } else {
+      gsap.to(dropdownContent, { height: "0px", duration: 0.7, ease: "power2.out" });
+    }
+  }
 };
 </script>
 <template>
@@ -54,10 +74,11 @@ const toggleDropdown = (index: number) => {
             <h2 class="text-[23px]">Достоинства низкой стоимости💸</h2>
             <img class="mr-3 w-8" src="/down.png" alt="" />
           </div>
-          <transition name="fade">
+          
             <div
-              v-show="dropdowns[0]"
+            
               class="textBlock flex justify-center bg-white p-5"
+              :class="{ 'open': dropdowns[0], 'closed': !dropdowns[0] }"
             >
               <p class="text-[18px] font-[300] leading-[30px]">
                 Доступность для широкого круга клиентов: Низкая стоимость делает
@@ -71,22 +92,21 @@ const toggleDropdown = (index: number) => {
                 особенно тех, кто ценит экономичные покупки.
               </p>
             </div>
-          </transition>
+          
         </div>
       </div>
     </div>
   </div>
 </template>
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.7s;
+<style scoped>
+.open {
+  max-height: 1000px; /* Выберите желаемую высоту */
+  transition: max-height 0.7s ease;
 }
 
-.fade-enter, .fade-leave-to {
-	height: auto; /* Используем auto вместо 0 */
-  opacity: 0;
+.closed {
+  max-height: 0;
   overflow: hidden;
-	transition: all 0.7s;
+  transition: max-height 0.7s ease;
 }
 </style>

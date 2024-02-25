@@ -4,7 +4,6 @@ import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import { createPinia } from 'pinia'
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [{
