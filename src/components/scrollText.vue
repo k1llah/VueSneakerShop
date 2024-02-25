@@ -62,7 +62,7 @@
 	</script>
 <template>
   <div>
-    <div class="content text-center mt-28 p-10 bg-[#f8f8ff] pb-28" ref="content">
+    <div class="text-center mt-28 p-10 bg-[#f8f8ff] pb-28" ref="content">
       <!-- Ваш контент здесь -->
       <h2 ref="title" class="text-4xl" :class="{ 'hidden-text': !isVisible }">
         Добро пожаловать в мир стильных и комфортных кроссовок!
