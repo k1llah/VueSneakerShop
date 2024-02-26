@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import "swiper/css/pagination";
 
-const modules = ref([Pagination, Navigation, Autoplay]);
+const modules = ref([Pagination, Autoplay, FreeMode]);
 const items = ref([
   {
     id: 1,
@@ -78,26 +77,25 @@ const items = ref([
 </script>
 
 <template>
-  <div class="mt-40"></div>
+  <div class="mt-40">
   <swiper
-    class="swiper"
+    class="swiper w-[95%]"
     :modules="modules"
     :space-between="10"
     :slides-per-view="4"
-    :centered-slides="true"
-    :loop="true"
-    :navigation="true"
+		:free-mode="true"
 		:autoplay="{
-			delay: 2500,
+			delay: 2000,
 			disableOnInteraction: false,
 		}"
   >
-    <swiper-slide class="slide  flex flex-col items-center text-center " v-for="item in items" key="item.id">
+    <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] " v-for="item in items" key="item.id">
 			<img :src="item.imageUrl" alt="" class="m-auto brightness-0">
 			<p class="brandName pt-5">{{ item.brandName }}</p>
 		</swiper-slide>
    
   </swiper>
+</div>
 </template>
 
 <style scoped>
@@ -106,7 +104,7 @@ const items = ref([
 }
 
 .slide {
-  width: 100%; /* Adjust width as needed */
+
 }
 .swiper-wrapper {
   translate: translate3d(0px, 0px, 0px) !important;
