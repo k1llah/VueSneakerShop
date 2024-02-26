@@ -71,7 +71,7 @@ const toggleDropdown = (index: number) => {
     >
       <span class="text-[#7747ff]">Почему</span> мы?🤔
     </h3>
-    <div class="wrapper w-full mt-36">
+    <div class="wrapper w-full mt-36 pb-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
         <div class="w-[600px]">
           <div
