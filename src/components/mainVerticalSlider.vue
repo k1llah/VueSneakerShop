@@ -8,12 +8,14 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 const items = ref([
-  { id: 1, imageUrl: "/slides/lakeSH.png" },
-  { id: 2, imageUrl: "/slides/slider.JPEG" },
-  { id: 3, imageUrl: "/slides/off-w-jordan.png" },
-  { id: 4, imageUrl: "/slides/nike-sl.png" },
-  { id: 5, imageUrl: "/slides/jordan-sl.png" },
-  { id: 6, imageUrl: "/slides/off-w-sl.png" },
+  { id: 1, imageUrl: "/verticalSlides/converse-img.jpeg" },
+  { id: 2, imageUrl: "/verticalSlides/jordan-5-img.jpeg" },
+  { id: 3, imageUrl: "/verticalSlides/off-w-img.jpeg" },
+  { id: 4, imageUrl: "/verticalSlides/Vans Knu Skool illustration history.jpeg" },
+  { id: 5, imageUrl: "/verticalSlides/jordan1.jpg" },
+  { id: 6, imageUrl: "/verticalSlides/force.jpg" },
+  { id: 7, imageUrl: "/verticalSlides/POSTERS DESIGN.jpeg" },
+  { id: 8, imageUrl: "/verticalSlides/high1J.jpg" },
   // Добавьте свои изображения и другой контент слайдера
 ]);
 const modules = [Pagination, Navigation, EffectFade, Autoplay];
@@ -21,9 +23,9 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 
 
 <template>
-	<div class="bg min-h-[600px]">
-	<div class="bg-white mt-14 w-80 h-80 ml-20 rounded-lg">
-  <div class="flex p-2 gap-1">
+	<div class="bg min-h-[600px] flex justify-around">
+	<div class="bg-white mt-14 w-96 h-96 ml-20 rounded-lg">
+  <div class="flex p-3 gap-1">
     <div class="">
       <span class="bg-blue-500 inline-block center w-3 h-3 rounded-full"></span>
     </div>
@@ -34,18 +36,16 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
       <span class="bg-pink-500 box inline-block center w-3 h-3 rounded-full"></span>
     </div>
   </div>
-  <div class="card__content p-5 pt-0">
-		<p>Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. Покупай кроссовки, которые поднимут тебя на новый уровень!"</p>
+  <div class="card__content p-6 pt-0">
+		<p class="leading-[26px]">Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. <br> <span class="text-[#7747ff] font-[600]">Приглашаем вас</span> исследовать наш ассортимент и открыть для себя свои новые любимые пары обуви. Наша цель - помочь вам шагать вперед с уверенностью и стилем, подчеркивая вашу индивидуальность на каждом шагу.</p>
   </div>
 </div>
-<div class="slider_wrapper">
+<div class="slider_wrapper mt-40">
 	<swiper
-        class="w-full h-96"
+        class="w-full max-h-[600px]"
         :modules="modules"
         direction="vertical"
         :space-between="30"
-        :effect="''"
-        :navigation="true"
         :pagination="{ clickable: true }"
         :autoplay="{
           delay: 2500,
@@ -53,7 +53,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
         }"
       >
         <swiper-slide class="h-full" v-for="item in items" :key="item.id">
-          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[750px] h-[380px] rounded-2xl m-auto" />
+          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] h-[550px] rounded-2xl m-auto" />
         </swiper-slide>
       </swiper>
 </div>
