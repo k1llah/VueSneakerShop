@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import { Pagination, Autoplay, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-
+import gsap from "gsap";
 const modules = ref([Pagination, Autoplay, FreeMode]);
 const items = ref([
   {
@@ -74,10 +74,52 @@ const items = ref([
   },
 
 ]);
+
+
+
+
+const content = ref<HTMLElement | null>(null);
+const title = ref<HTMLElement | null>(null);
+const isVisible = ref(false);
+
+onMounted(() => {
+  watchEffect(() => {
+    if (isVisible.value) {
+      animateText();
+    }
+  });
+
+  window.addEventListener("scroll", handleScroll);
+});
+
+const handleScroll = () => {
+  const contentPosition = content.value?.getBoundingClientRect().top || 0;
+  const screenPosition = window.innerHeight / 1.5;
+
+  if (contentPosition < screenPosition) {
+    isVisible.value = true;
+    window.removeEventListener("scroll", handleScroll);
+  }
+};
+
+const animateText = () => {
+  gsap.from(title.value, {
+    opacity: 0,
+    y: -400,
+    duration: 1.2,
+    ease: 'expo.out',
+  });
+};
 </script>
 
 <template>
-  <div class="mt-40">
+	<div class="w-full" ref="content">
+		<h3 class="text-5xl text-center mt-36 "
+		ref="title"
+      :class="{ 'hidden-text': !isVisible }"
+		>Бренды</h3>
+	</div>
+  <div class="mt-28">
   <swiper
     class="swiper w-[95%]"
     :modules="modules"
@@ -98,15 +140,3 @@ const items = ref([
 </div>
 </template>
 
-<style scoped>
-.swiper {
-  display: flex;
-}
-
-.slide {
-
-}
-.swiper-wrapper {
-  translate: translate3d(0px, 0px, 0px) !important;
-}
-</style>

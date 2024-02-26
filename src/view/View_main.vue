@@ -42,8 +42,12 @@ onMounted(() => {
     </h1>
 
     <sliderMain />
+    <div class="bg-[#f8f8ff]">
+
     <scrollText />
     <MainVerticalSlider />
     <brands/>
+    
+  </div>
   </div>
 </template>

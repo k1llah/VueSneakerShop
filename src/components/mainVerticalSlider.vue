@@ -45,6 +45,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
         class="w-full max-h-[600px]"
         :modules="modules"
         direction="vertical"
+        :loop="true"
         :space-between="30"
         :pagination="{ clickable: true }"
         :autoplay="{
@@ -53,7 +54,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
         }"
       >
         <swiper-slide class="h-full" v-for="item in items" :key="item.id">
-          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] h-[550px] rounded-2xl m-auto" />
+          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] h-[550px] rounded-2xl m-auto cursor-pointer" />
         </swiper-slide>
       </swiper>
 </div>
