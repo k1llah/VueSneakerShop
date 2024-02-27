@@ -1,9 +1,11 @@
 <script setup script lang="ts">
 import Header from "./components/header.vue";
 import Drawer from '@/components/Drawer.vue';
+import Footer from '@/components/footer.vue';
 import { onMounted } from "vue";
 import { checkAuth } from "./auth";
 import {useSneaker} from '@/stores/sneaker'
+import { RouterView } from 'vue-router'
 const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();
@@ -16,11 +18,14 @@ onMounted(() => {
       <div class="container">
         <RouterView />
       </div>
+      <Footer/>
     </section>
   </div>
   <transition name="fade">
     <Drawer v-if="sneakerStore.show"/>
   </transition>
+
+  
 </template>
 
 

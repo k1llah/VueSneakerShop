@@ -63,7 +63,7 @@ const toggleDropdown = (index: number) => {
 };
 </script>
 <template>
-  <div class=" mt-36" ref="content">
+  <div class="mt-36" ref="content">
     <h3
       class="text-5xl text-center"
       ref="title"

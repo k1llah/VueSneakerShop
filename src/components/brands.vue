@@ -52,7 +52,7 @@ const items = ref([
     id: 8,
     imageUrl:
       "https://static.street-beat.ru/upload/iblock/0d9/0d9a80d8726234ca418ef6cde0c523d1.svg",
-			brandName: 'eastPack',
+			brandName: 'Jordan',
   },
   {
     id: 9,

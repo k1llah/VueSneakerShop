@@ -7,6 +7,8 @@ import "swiper/css";
 import MainVerticalSlider from "@/components/mainVerticalSlider.vue";
 import brands from '@/components/brands.vue';
 import genderSeparation from '@/components/genderSeparation.vue';
+import sneakerBlog from '@/components/sneakerBlog.vue';
+import shippinng from '@/components/shippinng.vue';
 let mySwiper;
 const swiperContainer = ref<HTMLElement | null>(null);
 
@@ -25,7 +27,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container min-h-[10000px]">
+  <div class="container">
     <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex gap-5">
         <button
@@ -43,12 +45,15 @@ onMounted(() => {
     </h1>
 
     <sliderMain />
-    <div class="bg-[#f8f8ff]">
 
+    <div class="bg-[#f8f8ff]">
     <scrollText />
     <MainVerticalSlider />
     <brands/>
     <genderSeparation/>
-  </div>
+    <sneakerBlog/>
+    <shippinng/>
+    </div>
+
   </div>
 </template>
