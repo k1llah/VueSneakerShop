@@ -6,6 +6,7 @@ import scrollText from "@/components/scrollText.vue";
 import "swiper/css";
 import MainVerticalSlider from "@/components/mainVerticalSlider.vue";
 import brands from '@/components/brands.vue';
+import genderSeparation from '@/components/genderSeparation.vue';
 let mySwiper;
 const swiperContainer = ref<HTMLElement | null>(null);
 
@@ -47,7 +48,7 @@ onMounted(() => {
     <scrollText />
     <MainVerticalSlider />
     <brands/>
-    
+    <genderSeparation/>
   </div>
   </div>
 </template>
