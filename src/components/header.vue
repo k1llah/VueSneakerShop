@@ -4,7 +4,6 @@
 }
 </style>
 <script setup lang="ts">
-import Drawer from './Drawer.vue';
 import { ref } from 'vue'
 import {useSneaker} from '@/stores/sneaker'
 const sneakerStore = useSneaker()

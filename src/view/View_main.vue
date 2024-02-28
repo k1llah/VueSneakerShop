@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import Swiper from "swiper";
-import sliderMain from "@/components/sliderMain.vue";
+import sliderMain from "@/components/MainComponents/sliderMain.vue";
 import { ref, onMounted } from "vue";
-import scrollText from "@/components/scrollText.vue";
+import scrollText from "@/components/MainComponents/scrollText.vue";
 import "swiper/css";
-import MainVerticalSlider from "@/components/mainVerticalSlider.vue";
-import brands from '@/components/brands.vue';
-import genderSeparation from '@/components/genderSeparation.vue';
-import sneakerBlog from '@/components/sneakerBlog.vue';
-import shippinng from '@/components/shippinng.vue';
+import MainVerticalSlider from "@/components/MainComponents/mainVerticalSlider.vue";
+import brands from '@/components/MainComponents/brands.vue';
+import genderSeparation from '@/components/MainComponents/genderSeparation.vue';
+import sneakerBlog from '@/components/MainComponents/sneakerBlog.vue';
+import shipping from '@/components/MainComponents/shipping.vue';
 let mySwiper;
 const swiperContainer = ref<HTMLElement | null>(null);
 
@@ -52,7 +52,7 @@ onMounted(() => {
     <brands/>
     <genderSeparation/>
     <sneakerBlog/>
-    <shippinng/>
+    <shipping/>
     </div>
 
   </div>

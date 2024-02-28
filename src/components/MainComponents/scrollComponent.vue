@@ -47,14 +47,14 @@ const toggleDropdown = (index: number) => {
     if (dropdowns.value[index]) {
       gsap.to(dropdownContent, {
         maxHeight: "370px",
-        padding: "20px",
+        
         duration: 0.7,
         ease: "power2.out",
       });
     } else {
       gsap.to(dropdownContent, {
         maxHeight: "0px",
-        padding: "0px",
+        
         duration: 0.7,
         ease: "power2.out",
       });
@@ -91,10 +91,10 @@ const toggleDropdown = (index: number) => {
           </div>
 
           <div
-            class="textBlock0 flex justify-center bg-white p-[10px]"
-            :class="{ closed: !dropdowns[0] }" style="max-height: 370px;"
+            class="textBlock0 flex justify-center bg-white"
+            :class="{ closed: !dropdowns[0] }" style="max-height: 370px;" 
           >
-            <p class="text-[18px] font-[300] leading-[30px]">
+            <p class="text-[18px] font-[300] leading-[30px] p-[20px]">
               <span class="font-[700]"
                 >Доступность для широкого круга клиентов:</span
               >
@@ -128,10 +128,10 @@ const toggleDropdown = (index: number) => {
           </div>
 
           <div
-            class="textBlock1 flex justify-center bg-white p-[10px]"
+            class="textBlock1 flex justify-center bg-white"
             :class="{ closed: !dropdowns[1] }"
           >
-            <p class="text-[18px] font-[300] leading-[30px]">
+            <p class="text-[18px] font-[300] leading-[30px] p-[20px]">
               <span class="font-[700]">Удовлетворение ожиданий клиентов:</span>
               Быстрая доставка отвечает потребностям клиентов в получении
               товаров в кратчайшие сроки. Это способствует повышению
@@ -168,10 +168,10 @@ const toggleDropdown = (index: number) => {
           </div>
 
           <div
-            class="textBlock2 flex justify-center bg-white p-[10px]"
+            class="textBlock2 flex justify-center bg-white"
             :class="{ closed: !dropdowns[2] }"
           >
-            <p class="text-[18px] font-[300] leading-[30px]">
+            <p class="text-[18px] font-[300] leading-[30px] p-[20px]">
               <span class="font-[700]">Безопасные Транзакции:</span> Мы
               используем надежные платежные системы, обеспечивая безопасность
               ваших финансов при совершении покупок в нашем магазине. Ваши
@@ -198,6 +198,5 @@ const toggleDropdown = (index: number) => {
 .closed {
   overflow: hidden;
   max-height: 0px;
-  padding: 0px;
 }
 </style>

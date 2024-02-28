@@ -36,7 +36,7 @@ const axiosGetParams = async () => {
 };
 
 onMounted(axiosGetParams);
-watch(filters, debounce(axiosGetParams, 500) );
+watch(filters, debounce(axiosGetParams, 500));
 </script>
 
 <template>

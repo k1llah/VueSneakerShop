@@ -1,6 +1,6 @@
 <script setup script lang="ts">
 import Header from "./components/header.vue";
-import Drawer from '@/components/Drawer.vue';
+import Drawer from '@/components/DrawerComponents/Drawer.vue';
 import Footer from '@/components/footer.vue';
 import { onMounted, computed } from "vue";
 import { checkAuth } from "./auth";
@@ -10,23 +10,24 @@ const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();
 });
+
 const page = computed(()=> window.location.pathname)
 </script>
 <template>
   <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
     <Header />
     <section>
-      <div class="container">
+      <div class="container min-h-[800px]">
         <RouterView />
       </div>
     </section>
     <Footer v-if="page!='/profile'"/>
   </div>
-  <teleport to='body'>
+ 
     <transition name="fade">
       <Drawer v-if="sneakerStore.show"/>
     </transition>
-  </teleport>
+  
 </template>
 
 
