@@ -2,19 +2,19 @@
 import CardList from "@/components/CardList.vue";
 import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
+import {debounce}  from "lodash"
 
 let items = ref<any>([]);
 const filters = reactive({
   sortBy: "title",
   searchQuery: "",
 });
+
 // Функция для обработки изменений в инпуте поиска
 const onChangeSelect = (event: any) => {
   filters.sortBy = event.target.value;
 };
-const onSearchInputChange = (event: any) => {
-  filters.searchQuery = event.target.value;
-};
+
 
 const axiosGetParams = async () => {
   try {
@@ -36,7 +36,7 @@ const axiosGetParams = async () => {
 };
 
 onMounted(axiosGetParams);
-watch(filters, axiosGetParams);
+watch(filters, debounce(axiosGetParams, 500) );
 </script>
 
 <template>
@@ -61,7 +61,7 @@ watch(filters, axiosGetParams);
             placeholder="Search..."
             class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
             v-model="filters.searchQuery"
-            @input="onSearchInputChange"
+            
           />
         </div>
       </div>

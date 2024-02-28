@@ -72,7 +72,6 @@ const animateText = () => {
 .lol {
   background: #6c6c6c;
   background: linear-gradient(to left, #6c6c6c 10%, #000000 67%, #72736d 100%);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 </style>
