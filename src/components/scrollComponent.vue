@@ -92,7 +92,7 @@ const toggleDropdown = (index: number) => {
 
           <div
             class="textBlock0 flex justify-center bg-white p-[10px]"
-            :class="{ closed: !dropdowns[0] }"
+            :class="{ closed: !dropdowns[0] }" style="max-height: 370px;"
           >
             <p class="text-[18px] font-[300] leading-[30px]">
               <span class="font-[700]"
