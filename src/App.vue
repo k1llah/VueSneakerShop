@@ -2,14 +2,15 @@
 import Header from "./components/header.vue";
 import Drawer from '@/components/Drawer.vue';
 import Footer from '@/components/footer.vue';
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { checkAuth } from "./auth";
 import {useSneaker} from '@/stores/sneaker'
-import { RouterView } from 'vue-router'
+import { RouterView, } from 'vue-router'
 const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();
 });
+const page = computed(()=> window.location.pathname)
 </script>
 <template>
   <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
@@ -18,14 +19,14 @@ onMounted(() => {
       <div class="container">
         <RouterView />
       </div>
-      <Footer/>
     </section>
+    <Footer v-if="page!='/profile'"/>
   </div>
-  <transition name="fade">
-    <Drawer v-if="sneakerStore.show"/>
-  </transition>
-
-  
+  <teleport to='body'>
+    <transition name="fade">
+      <Drawer v-if="sneakerStore.show"/>
+    </transition>
+  </teleport>
 </template>
 
 
