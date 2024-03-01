@@ -29,7 +29,12 @@ const router = createRouter({
 		name: 'Sneakers_page',
 		path: '/sneakers_page',
 		component: () => import('./view/CardListView.vue')
-	}
+	},
+	{
+		name: 'dynamic_Sneakers_page',
+		path: '/sneakers_page/:gender',
+		component: () => import('./view/CardListView.vue')
+	},
 ]
 })
 const pinia = createPinia()

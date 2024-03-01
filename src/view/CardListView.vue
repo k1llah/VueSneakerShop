@@ -4,6 +4,23 @@ import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 import {debounce}  from "lodash"
 
+const gender = ref('')
+const genderRu = ref('')
+const pathArr0 = window.location.pathname.split('#')
+const pathArr1 = pathArr0[0].split('?')
+const pathArr = pathArr1[0].split('/')
+if (pathArr[pathArr.length-1] == 'man') {
+  gender.value = 'man'
+  genderRu.value = 'Мужская'
+} else if (pathArr[pathArr.length-1] == 'woman') {
+  gender.value = 'woman'
+  genderRu.value = 'Женская'
+} else if (pathArr[pathArr.length-1] == 'sneakers_page') {
+  
+} else {
+  window.location.assign('/sneakers_page')
+}
+
 let items = ref<any>([]);
 const filters = reactive({
   sortBy: "title",
@@ -42,7 +59,7 @@ watch(filters, debounce(axiosGetParams, 500));
 <template>
   <div class="p-10">
     <div class="flex justify-between items-center">
-      <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
+      <h2 class="text-3xl font-bold mb-8">Все {{ genderRu }} кроссовки</h2>
 
       <div class="flex gap-4">
         <select

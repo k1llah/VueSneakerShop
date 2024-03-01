@@ -1,15 +1,12 @@
 import { ref } from "vue";
 import axios from "axios";
-const onClickOnGender = ref("");
 
-const genderRoute = async () => {
-  if (onClickOnGender.value == "man") {
-    const response = await axios.get("http://localhost:3001/api/manSneakers");
+const genderRoute = async (gender:string) => {
+  
+    const response = await axios.get("http://localhost:3001/api/Sneakers/"+gender);
     const data = response.data;
 		console.log(data)
-  } else {
-    const response = await axios.get("http://localhost:3001/api/womanSneakers");
-    const data = response.data;
-		console.log(data)
-  }
+  
 }
+
+// http://localhost:3001/api/Sneakers/:gender
