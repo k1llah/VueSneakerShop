@@ -29,6 +29,11 @@ const router = createRouter({
 		name: 'Sneakers_page',
 		path: '/sneakers_page',
 		component: () => import('./view/CardListView.vue')
+	},
+	{
+		name: 'gender',
+		path: '/gender',
+		component: () => import('./view/View_gender.vue')
 	}
 ]
 })
