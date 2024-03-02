@@ -1,25 +1,35 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
+import axios from "axios";
 import { useGenderStore } from "@/stores/separate";
+import CardList from './cardsComponents/CardList.vue';
+const items = ref([])
 const genderStore = useGenderStore();
-let gender = ref("");
+  let params = localStorage.getItem('gender');
+	let genderText = ref('');
+	if(localStorage.getItem('gender') == 'man'){
+		genderText.value = 'Мужская обувь'
+	}
+	else if(localStorage.getItem('gender') == 'woman'){
+		genderText.value = 'Женская обувь'
+	}
+  async function genderRoute() {
+		try{
+			if(localStorage.getItem('gender') == 'man' || localStorage.getItem('gender') == 'woman'){
+				const {data} = await axios.get(`http://localhost:3001/api/${params}Sneakers`)
+				items.value = data
+				console.log(items)
+			}
 
+		}
+		catch(error){
+			console.log(error)
+		}
+		}
 
-
-let data = genderStore.sneakersData;
-if (genderStore.onClickOnGender == "man") {
-  gender.value = "Мужская обувь";
-} else if (genderStore.onClickOnGender == "woman") {
-  gender.value = "Женская обувь";
-} else {
-  gender.value =
-    "Произошла какая то ошибка, мы уже работаем над ее исправлением";
-}
-onMounted(async () => {
-await genderStore.genderRoute();
-console.log(genderStore.sneakersData);
+onMounted(() => {
+	genderRoute();
 });
-
 </script>
 <template>
   <div class="flex ml-[50px] mt-5 gap-[15px]">
@@ -30,7 +40,10 @@ console.log(genderStore.sneakersData);
       >
         <img src="/arrow-right.svg" class="rotate-180" alt="close button" />
       </button>
-      <h2 class="text-3xl">{{ gender }}</h2>
+      <h2 class="text-3xl">{{ genderText }}</h2>
     </div>
   </div>
+	<div>
+		<CardList :items="items"/>
+	</div>
 </template>

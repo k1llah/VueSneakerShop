@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { ref, onMounted, watch } from 'vue';
   import { useGenderStore } from '@/stores/separate';
   let genderStore = useGenderStore();
   let clickValue = ref('')
@@ -7,14 +7,16 @@
   
   const setGender = (gender: string) => {
     clickValue.value = gender;
+    localStorage.setItem('gender', gender);
   }
-  localStorage.setItem('gender', clickValue.value)
-  watch(clickValue, (newValue) => {
-    genderStore.onClickOnGender = newValue;
+
+  watch(clickValue, () => {
+    genderStore.onClickOnGender = clickValue.value
+    setGender(clickValue.value)
     console.log(genderStore.onClickOnGender)
     console.log(clickValue.value)
   });
-
+  
 </script>
 <template>
 

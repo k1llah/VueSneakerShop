@@ -1,5 +1,5 @@
 <script setup script lang="ts">
-import CardList from "@/components/CardList.vue";
+import CardList from "@/components/cardsComponents/CardList.vue";
 import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 import {debounce}  from "lodash"
@@ -36,7 +36,7 @@ const axiosGetParams = async () => {
 };
 
 onMounted(axiosGetParams);
-watch(filters, debounce(axiosGetParams, 500));
+watch(filters, debounce(axiosGetParams, 350));
 </script>
 
 <template>

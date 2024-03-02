@@ -23,10 +23,10 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 
 
 <template>
-	<div class="bg min-h-[600px] flex justify-around">
-	<div class="bg-white mt-14 w-96 h-[400px] ml-20 rounded-lg">
-  <div class="flex p-3 gap-1">
-    <div class="">
+  <div class="bg min-h-[600px] flex justify-around">
+    <div class="bg-white mt-14 w-96 h-[400px] ml-20 rounded-lg">
+      <div class="flex p-3 gap-1">
+        <div class="">
       <span class="bg-blue-500 inline-block center w-3 h-3 rounded-full"></span>
     </div>
     <div class="circle">
@@ -61,6 +61,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 </div>
 </template>
 <style scoped>
+
 .bg {
   width: 100%;
   height: 100%;
@@ -124,7 +125,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
     linear-gradient(-45deg, #fff0 0 32.25%, #0002 50%, #000 77.5%) var(--ts),
     linear-gradient(-45deg, #fff0 0 32.25%, #000 60%) var(--ts),
     repeating-linear-gradient(90deg, var(--c0) 0 5%, var(--c1) 0 25%) var(--ts);
-}
 
+}
 
 </style>
