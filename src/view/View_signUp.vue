@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import SignUp_View from '@/components/Sign_up.vue';
+	import SignUp_View from '@/components/profileComponents/Sign_up.vue';
 
 </script>
 

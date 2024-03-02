@@ -2,7 +2,7 @@
 import Card from "./card.vue";
 import axios from "axios";
 import { ref } from "vue";
-import Overlay from '@/components/overlay.vue';
+import Overlay from '@/components/cardsComponents/overlay.vue';
 interface Item {
   id: number;
   title: string;

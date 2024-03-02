@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { isAuthenticated } from "@/auth";
 import axios from "axios";
 import { onMounted, watch } from "vue";
-import FavList from "@/components/Fav-list.vue";
+import FavList from "@/components/cardsComponents/Fav-list.vue";
 
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);

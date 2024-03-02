@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import sign_in from "@/components/sign_in.vue";
+import sign_in from "@/components/profileComponents/sign_in.vue";
 import {isAuthenticated, logOut } from '@/auth';
 </script>
 <template>
