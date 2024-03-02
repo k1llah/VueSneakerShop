@@ -3,6 +3,7 @@ import Card from "./card.vue";
 import axios from "axios";
 import { ref } from "vue";
 import Overlay from '@/components/cardsComponents/overlay.vue';
+import { id } from 'vuetify/locale';
 interface Item {
   id: number;
   title: string;
@@ -10,6 +11,7 @@ interface Item {
   price: number;
   isAdded: boolean;
   isFavorite: boolean;
+  
 }
 
 defineProps({
@@ -17,7 +19,11 @@ defineProps({
   items: Array<Item>,
 });
 
-const onClickAdd = async () => {};
+const onClickAdd = () => {};
+const onClickOnCard = async (sneakerId: number) => {
+  console.log("click");
+  console.log(sneakerId)
+};
 let showOverlay = ref(false)
 const onFavoriteAdd = async (sneakerId: number, item:Item) => {
   try {
@@ -29,10 +35,10 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
       }
     );
       item.isFavorite = true
-    showOverlay.value = true;
+    showOverlay.value = true
     setTimeout(() => {
-      showOverlay.value = false;
-    }, 150);
+      showOverlay.value = false
+    }, 150)
     
   } catch (error) {
     console.log(error);
@@ -54,6 +60,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :is-favorite="item.isFavorite"
         :on-click-add="onClickAdd"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
+        :on-click-on-card="() => onClickOnCard(item.id)"
       />
     </div>
   </div>
