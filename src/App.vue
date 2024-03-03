@@ -5,7 +5,7 @@ import Footer from '@/components/footer.vue';
 import { onMounted, computed } from "vue";
 import { checkAuth } from "./auth";
 import {useSneaker} from '@/stores/sneaker'
-import { RouterView, } from 'vue-router'
+import { RouterView } from 'vue-router'
 const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();

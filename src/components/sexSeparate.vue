@@ -43,7 +43,7 @@ onMounted(() => {
       <h2 class="text-3xl">{{ genderText }}</h2>
     </div>
   </div>
-	<div>
+	<div class="mt-[30px]">
 		<CardList :items="items"/>
 	</div>
 </template>

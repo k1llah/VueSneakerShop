@@ -1,6 +1,6 @@
 <style>
 *{
-  font-family: Fredoka,Alegreya Sans SC;
+  font-family: sans-serif;
 }
 </style>
 <script setup lang="ts">

@@ -5,6 +5,7 @@ import { ref, onMounted } from "vue";
 import scrollText from "@/components/MainComponents/scrollText.vue";
 import "swiper/css";
 import MainVerticalSlider from "@/components/MainComponents/mainVerticalSlider.vue";
+import buttonBack from '@/components/buttonBack.vue';
 import brands from '@/components/MainComponents/brands.vue';
 import genderSeparation from '@/components/MainComponents/genderSeparation.vue';
 import sneakerBlog from '@/components/MainComponents/sneakerBlog.vue';
@@ -29,13 +30,8 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center">
-      <div class="flex gap-5">
-        <button
-          class="h-[35px] w-[35px] border rounded-[10px] border-[#F2F2F2] flex justify-center items-center text-white hover:bg-slate-600 transition hover:scale-[1.2] disabled:bg-slate-400 cursor-pointer"
-          @click="$router.go(-1)"
-        >
-          <img src="/arrow-right.svg" class="rotate-180" alt="close button" />
-        </button>
+      <div class="flex gap-5 items-center">
+      <buttonBack/>
         <h2 class="text-3xl">Главная</h2>
       </div>
     </div>
