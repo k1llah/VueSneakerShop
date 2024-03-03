@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { useAllStore } from "@/stores/all";
 import buttonBack from './buttonBack.vue';
 const allStore = useAllStore();
 const paramsId = localStorage.getItem("sneakerId");
 let itemData = ref();
+const brand = ref()
+let brandImageUrl = ref()
 const brands = allStore.brandImages
 console.log(brands)
 const getDateShoe = async function (params: number) {
@@ -16,16 +18,24 @@ const getDateShoe = async function (params: number) {
       },
     });
     itemData.value = dataShoe.data;
+		brand.value = dataShoe.data.brand
+		console.log(brand.value)
     console.log(itemData.value);
   } catch (error) {
-    console.log(error);
+		console.log(error);
   }
 };
+watch(brand,() =>{
+	brandImageUrl.value = allStore.getBrandImageUrl(brand.value);
+})
+
 onMounted(() => {
   if (paramsId) {
     getDateShoe(parseInt(paramsId));
   }
 });
+
+
 </script>
 <template>
   <div class="flex ml-[50px] mt-5 gap-[15px]">
@@ -82,7 +92,7 @@ onMounted(() => {
         </button>
 
         <button
-          class="overflow-hidden relative w-36 p-2 h-[40px] bg-black text-white border-none rounded-md text-[16px] font-bold cursor-pointer z-10 group flex justify-center items-center"
+          class="overflow-hidden relative w-36 p-2 h-[40px] bg-black text-white border-none rounded-md text-[15px] font-[500] cursor-pointer z-10 group flex justify-center items-center"
         >
           Быстрый заказ
           <span
@@ -100,7 +110,13 @@ onMounted(() => {
           >
         </button>
       </div>
+
+			<p class="text-xl text-slate-600 font-sans font-[400]">
+				Цвет: {{ itemData?.color }}
+			</p>
     </div>
+		<img :src="brandImageUrl" alt="">
+		
   </div>
 
   <div></div>
