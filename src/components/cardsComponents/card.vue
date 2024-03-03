@@ -19,7 +19,7 @@ import { defineProps } from 'vue';
 </script>
 <template>
 		<div class="relative bg-white border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition" @click="onClickOnCard && onClickOnCard(id)">
-			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click=" onFavoriteAdd && onFavoriteAdd(id)">
+			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click.stop=" onFavoriteAdd && onFavoriteAdd(id)">
 
 			<img :src="imageUrl" alt="Sneaker">
 			<p class="mt-2">
@@ -30,7 +30,7 @@ import { defineProps } from 'vue';
 					<span class="text-slate-400">Цена</span>
 					<span>{{ price }} Руб</span>
 				</div>
-				<img :src="!isAdded ? '/plus.svg': '/checked.svg'" @click="onclck" alt="Plus">
+				<img :src="!isAdded ? '/plus.svg': '/checked.svg'" @click.stop="onclck" alt="Plus">
 			</div>
 		</div>
 </template>

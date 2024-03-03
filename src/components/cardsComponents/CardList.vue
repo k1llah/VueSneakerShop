@@ -3,7 +3,6 @@ import Card from "./card.vue";
 import axios from "axios";
 import { ref } from "vue";
 import Overlay from '@/components/cardsComponents/overlay.vue';
-import { id } from 'vuetify/locale';
 interface Item {
   id: number;
   title: string;
@@ -23,6 +22,7 @@ const onClickAdd = () => {};
 const onClickOnCard = async (sneakerId: number) => {
   console.log("click");
   console.log(sneakerId)
+  
 };
 let showOverlay = ref(false)
 const onFavoriteAdd = async (sneakerId: number, item:Item) => {
