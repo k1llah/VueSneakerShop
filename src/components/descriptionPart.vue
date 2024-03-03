@@ -19,22 +19,16 @@ const getDateShoe = async function (params: number) {
     });
     itemData.value = dataShoe.data;
 		brand.value = dataShoe.data.brand
-		console.log(brand.value)
-    console.log(itemData.value);
+		brandImageUrl.value = allStore.getBrandImageUrl(brand.value);
   } catch (error) {
 		console.log(error);
   }
-};
-watch(brand,() =>{
-	brandImageUrl.value = allStore.getBrandImageUrl(brand.value);
-})
-
+}
 onMounted(() => {
   if (paramsId) {
     getDateShoe(parseInt(paramsId));
   }
 });
-
 
 </script>
 <template>
@@ -115,7 +109,7 @@ onMounted(() => {
 				Цвет: {{ itemData?.color }}
 			</p>
     </div>
-		<img :src="brandImageUrl" alt="">
+		<img :src="brandImageUrl" alt="brand name" class="brightness-0">
 		
   </div>
 
