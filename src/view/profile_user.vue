@@ -13,11 +13,11 @@ import buttonBack from '@/components/buttonBack.vue';
 
       <div v-if="isAuthenticated == true">
         <button 
-          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-[115px] hover:rounded-lg active:translate-x-1 active:translate-y-1 mr-[30px]"
+          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 mr-[30px]"
           @click="logOut()"
         >
           <div
-            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3"
+            class="flex items-center justify-center w-full transition-all duration-1200 group-hover:justify-start group-hover:px-3"
           >
             <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
               <path
@@ -26,7 +26,7 @@ import buttonBack from '@/components/buttonBack.vue';
             </svg>
           </div>
           <div
-            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-1300 group-hover:translate-x-0 group-hover:opacity-100"
           >
             Logout
           </div>
