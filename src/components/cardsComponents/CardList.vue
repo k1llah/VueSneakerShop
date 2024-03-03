@@ -1,8 +1,11 @@
 <script setup script lang="ts">
 import Card from "./card.vue";
 import axios from "axios";
-import { ref } from "vue";
+import { ref, } from "vue";
+import { useRouter } from 'vue-router'; 
+import { useAllStore } from '@/stores/all';
 import Overlay from '@/components/cardsComponents/overlay.vue';
+const router = useRouter(); 
 interface Item {
   id: number;
   title: string;
@@ -17,12 +20,18 @@ defineProps({
   // Указываем, что items является массивом объектов типа Item
   items: Array<Item>,
 });
-
+const allStore = useAllStore()
+let paramsId = allStore.idShoe
 const onClickAdd = () => {};
 const onClickOnCard = async (sneakerId: number) => {
-  console.log("click");
-  console.log(sneakerId)
-  
+  router.push(`/description`);
+  paramsId = sneakerId
+  localStorage.setItem('sneakerId', paramsId.toString())
+  const getItem = localStorage.getItem('sneakerId');
+  console.log(paramsId)
+  console.log(getItem)
+  console.log('id',sneakerId)
+
 };
 let showOverlay = ref(false)
 const onFavoriteAdd = async (sneakerId: number, item:Item) => {

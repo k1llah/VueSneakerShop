@@ -72,7 +72,24 @@ const items = ref([
       "https://static.street-beat.ru/upload/iblock/189/189b04d3c24a105f24003e9f13ee53db.svg",
 			brandName: 'Columbia',
   },
-
+  {
+    id: 12,
+    imageUrl:
+      "https://static.street-beat.ru/upload/iblock/a3c/a3cfae237440a133b540ad67792b67eb.svg",
+			brandName: 'New balance',
+  },
+  {
+    id: 13,
+    imageUrl:
+      "https://static.street-beat.ru/upload/iblock/b23/b233da50b4b147d98a6dec186f18dda0.svg",
+			brandName: 'Dr martens',
+  },
+  {
+    id: 14,
+    imageUrl:
+      "https://static.street-beat.ru/upload/iblock/a47/a473eb406a0b7e775e27cfbf0ea84865.svg",
+			brandName: 'Asics',
+  },
 ]);
 
 

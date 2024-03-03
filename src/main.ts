@@ -36,7 +36,12 @@ const router = createRouter({
 		name: 'gender',
 		path: `/gender`,
 		component: () => import('./view/View_gender.vue')
-	}
+	},
+	{
+		name: 'description',
+		path: `/description`,
+		component: () => import('./view/View_sneakerDs.vue')
+	},
 ]
 })
 const pinia = createPinia()
