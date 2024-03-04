@@ -48,7 +48,7 @@ onMounted(() => {
       />
     </div>
 
-    <div class="flex flex-col gap-5 max-w-[370px]">
+    <div class="flex flex-col gap-7 max-w-[370px]">
       <p class="text-3xl text-[#000000] font-sans font-[600]">
         {{ itemData?.title }}
       </p>
@@ -56,13 +56,13 @@ onMounted(() => {
       <p class="text-2xl text-[#000000] font-sans font-[400]">
         {{ itemData?.price }} руб.
       </p>
-      <div class="flex gap-5">
+      <div class="flex gap-5 mt-9">
         <button
           class="rounded-lg overflow-hidden relative w-36 h-10 cursor-pointer flex items-center border border-green-500 bg-green-500 group hover:bg-green-500 active:bg-green-500 active:border-green-500"
         >
           <span
-            class="text-gray-200 font-sans font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300"
-            >Add Item</span
+            class="text-gray-200 font-sans font-semibold ml-5 transform group-hover:translate-x-20 transition-all duration-300"
+            >В корзину</span
           >
           <span
             class="absolute right-0 h-full w-10 rounded-lg bg-green-500 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300"
@@ -108,12 +108,40 @@ onMounted(() => {
 			<p class="text-xl text-slate-600 font-sans font-[400]">
 				Цвет: {{ itemData?.color }}
 			</p>
+			<img :src="brandImageUrl" alt="brand name" class="brightness-0 max-w-20 mt-10">
     </div>
-		<img :src="brandImageUrl" alt="brand name" class="brightness-0">
 		
   </div>
 
-  <div></div>
+  <div class="flex flex-col gap-10 mt-20 justify-center items-center">
+		<div class="max-w-[650px]">
+		<div class="border-b-[3px] border-[#a5b4fc] w-[250px] m-auto p-3 text-center">
+			<h3 class="text-3xl text-700"> О товаре </h3>
+		</div>
+		<div class="flex flex-col gap-5 mt-16">
+			<h4 class="text-2xl text-500 text-center">Описание товара</h4>
+			<p class="text-[20px] text-slate-700 text-400 text-balance "> 
+				{{ itemData?.description }}
+			</p>
+		</div>
+		<div class="flex justify-between items-end gap-10 mt-16 border-b-2 border-slate-800 pb-2">
+			<p class="max-w-[400px] leading-9 text-lg">
+				<span class="text-2xl text-[#7747ff]">Состав:</span>
+				 <br>
+				{{ itemData?.materials }}
+			</p>
+			<p>
+				
+				{{ itemData?.countryMade }}
+			</p>
+		</div>
+		</div>
+	</div>
+	<div class="flex p-7 pb-16 justify-end mt-10">
+	<h4 class="text-base text-slate-400 text-500 text-right max-w-[500px]">
+		Качество товара, его безопасность для жизни, здоровья потребителей, окружающей среды, подтверждено в соответствии с требованиями законодательства. Подробная информация размещена на этикетке или упаковке товара, либо в технической документации к нему.
+	</h4>
+</div>
 </template>
 <style scoped>
 .shadow {
