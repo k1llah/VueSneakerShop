@@ -21,7 +21,7 @@ const page = computed(()=> window.location.pathname)
         <RouterView />
       </div>
     </section>
-    <Footer v-if="page!='/profile'"/>
+    <Footer v-if="page!='/profile' && page!='/description'"/>
   </div>
  
     <transition name="fade">

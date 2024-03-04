@@ -131,8 +131,8 @@
           class="w-24 h-24 rounded-[50%]"
         />
         <p class="text-slate-800 text-[18px]">
-          Project made by K1llah i'm doin this solo, using all my knowledge my
-          first time do pet project, i hope you enjoyed it
+          Project made by K1llah i'm doin this alone, using all my knowledge, my
+          first time do pet project, i hope you enjoyed it!!
         </p>
       </div>
       <div class="flex flex-col gap-2 w-[250px]">

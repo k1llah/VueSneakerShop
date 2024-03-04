@@ -1,0 +1,31 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import buttonBack from "@/components/buttonBack.vue";
+import { useAllStore } from "@/stores/all";
+import EditProfile from './editProfile.vue';
+import myOrders from './myOrders.vue';
+import myAddress from './myAddress.vue';
+const allStore = useAllStore();
+const target = ref("");
+target.value = localStorage.getItem('page')!;
+</script>
+<template>
+  <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
+  <div class="w-full flex justify-center">
+    <div class="bg-white w-[600px] h-[800px] fixed top-10 z-20 p-10 m-auto">
+
+      <div v-if="target == 'orders'">
+				<myOrders/>
+				
+			</div>
+      <div v-else-if="target == 'editProfile'">
+				<EditProfile/>
+			</div>
+			
+
+      <div v-else-if="target == 'address'">
+			<myAddress/>
+			</div>
+    </div>
+  </div>
+</template>

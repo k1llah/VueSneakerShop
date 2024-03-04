@@ -21,7 +21,8 @@ export const useAllStore = defineStore({
         DrMartens: "https://static.street-beat.ru/upload/iblock/b23/b233da50b4b147d98a6dec186f18dda0.svg",
         Asics: "https://static.street-beat.ru/upload/iblock/a47/a473eb406a0b7e775e27cfbf0ea84865.svg"
       
-    }) as any
+    }) as any,
+    isOpened: ref(false),
   }),
   actions: {
     getBrandImageUrl(brandName: string): string {

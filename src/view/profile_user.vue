@@ -36,5 +36,6 @@ import buttonBack from '@/components/buttonBack.vue';
 
     <div></div>
     <sign_in />
+    
   </div>
 </template>
