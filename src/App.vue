@@ -17,7 +17,7 @@ const page = computed(()=> window.location.pathname)
   <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
     <Header />
     <section>
-      <div class="container min-h-[800px]">
+      <div class="container min-h-[800px] m-auto">
         <RouterView />
       </div>
     </section>

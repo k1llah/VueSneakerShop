@@ -46,20 +46,16 @@ watch(() => allStore.isOpened, (newValue) => {
 </script>
 
 <template>
-  <div class="flex m-auto mt-20 justify-around">
-    <div class="">
+  <div class="flex m-auto mt-20 gap-16 justify-center flex-wrap">
+    <div class="flex items-center">
       <img
         :src=" '/' + profileImg"
         alt="profile image"
-        class="w-[150px] rounded-[50%]"
+        class="w-[200px] rounded-[50%]"
       />
-      <button
-        class="border text-gray-50 duration-300 relative group cursor-pointer overflow-hidden h-12 w-[150px] rounded-md bg-neutral-800 p-0 font-extrabold hover:bg-sky-700 text-[13px] mt-[50px]"
-      >
-        Загрузить свое фото
-      </button>
+     
     </div>
-    <div class="flex gap-10">
+   
       <div class="flex flex-col gap-10">
         <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
           <span class="text-slate-400 text-[16px]">Фамилия:</span>
@@ -134,7 +130,7 @@ watch(() => allStore.isOpened, (newValue) => {
         </div>
       </div>
     </div>
-  </div>
+
   <div v-if="toggle == true">
       <dialogWindow/>
     </div>
