@@ -7,7 +7,7 @@ const id = localStorage.getItem("id");
 const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
-const newProfileImg = ref("");
+const newProfileImg = ref();
 const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
 const prevEmail = ref("");
 const prevFirst_name = ref("");
@@ -35,6 +35,16 @@ const isFormChanged = computed(
     lastName.value !== prevLastName.value ||
     newProfileImg.value !== prevProfileImg.value
 );
+
+const handleFileUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const files = target.files;
+  if (files && files.length > 0) {
+    let file = files[0];
+    newProfileImg.value = file.name;
+  }
+  console.log(newProfileImg.value);
+};
 const getData = async function () {
   try {
     let infoUser = await axios.post("http://localhost:3001/api/get-data", {
@@ -69,7 +79,7 @@ const submitForm = async (event: Event) => {
         last_name: lastName.value,
         profileImg: newProfileImg.value,
       });
-      location.reload()
+      location.reload();
     } else if (lastName.value.includes(" ") || lastName.value.length < 2) {
       setTimeout(() => {
         lastNameWarning.value = "";
@@ -150,26 +160,34 @@ watch([email, first_name, lastName, newProfileImg], () => {
     </div>
     <div class="flex gap-5">
       <p class="text-lg">Загрузить свое фото</p>
-      <button
-        class="cursor-pointer bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
-      >
-        <svg
-          class="w-4 h-4"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <label for="upload-button" class="cursor-pointer">
+        <div
+          class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
         >
-          <path
-            d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-            stroke-linejoin="round"
-            stroke-linecap="round"
-          ></path>
-        </svg>
-      </button>
+          <svg
+            class="w-4 h-4"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </div>
+        <input
+          id="upload-button"
+          type="file"
+          class="hidden"
+          accept="image/*"
+          @change="handleFileUpload"
+        />
+      </label>
     </div>
-
     <form class="flex flex-col gap-5" @submit="submitForm" @reset="resetForm">
       <div>
         <label for="inputname" class="block text-gray-800 font-semibold text-sm"
