@@ -1,7 +1,7 @@
 
 <template>
 	<div class="w-100% items-center flex border border-slate-100 p-4 rounded-xl gap-4">
-		<img class="w-16 h-16" src="/sneakers/sneakers-1.jpg" alt="Sneaker">
+		<img class="w-16 h-16" src="" alt="Sneaker">
 		<div class="flex flex-col">
 			<p>Кроссовки Nike Blaser Mid Suede</p>
 			<div class="flex justify-between mt-2">

@@ -1,15 +1,41 @@
 <script setup lang="ts">
 import buttonProfile from "@/components/buttonProfile.vue";
 import axios from "axios";
-import { ref, watch, onMounted } from "vue";
-
+import { ref, watch, onMounted, computed } from "vue";
+const uuid = localStorage.getItem("uuid");
+const id = localStorage.getItem("id");
 const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
-const profileImg = ref("");
+const newProfileImg = ref("");
+const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
+const prevEmail = ref("");
+const prevFirst_name = ref("");
+const prevLastName = ref("");
+const prevProfileImg = ref("");
+const isChanged = ref(false);
+const nameWarning = ref("");
+const emailWarning = ref("");
+const lastNameWarning = ref("");
+const correctDataInput = computed(
+  () =>
+    email.value !== "" &&
+    first_name.value !== "" &&
+    lastName.value !== "" &&
+    newProfileImg.value !== "" &&
+    email.value.includes("@") &&
+    email.value.length >= 2 &&
+    lastName.value.length >= 2 &&
+    first_name.value.length >= 2
+);
+const isFormChanged = computed(
+  () =>
+    email.value !== prevEmail.value ||
+    first_name.value !== prevFirst_name.value ||
+    lastName.value !== prevLastName.value ||
+    newProfileImg.value !== prevProfileImg.value
+);
 const getData = async function () {
-  const uuid = localStorage.getItem("uuid");
-  const id = localStorage.getItem("id");
   try {
     let infoUser = await axios.post("http://localhost:3001/api/get-data", {
       uuid,
@@ -19,28 +45,92 @@ const getData = async function () {
     email.value = data.user.email;
     first_name.value = data.user.first_name;
     lastName.value = data.user.last_name;
-    profileImg.value = data.user.profileImg;
-    if (lastName.value == null) {
-      lastName.value = "Не указано";
-    }
-    console.log(data.value);
-    console.log(email.value);
-    console.log(first_name.value);
-    console.log(lastName.value);
+    newProfileImg.value = data.user.profileImg;
+
+    prevEmail.value = data.user.email;
+    prevFirst_name.value = data.user.first_name;
+    prevLastName.value = data.user.last_name;
+    prevProfileImg.value = data.user.profileImg;
   } catch (error) {
     console.log(error);
   }
 };
 
-
-
-
-let newImageProfile = ref("");
 const submitForm = async (event: Event) => {
+  event.preventDefault();
+  try {
+    if (isFormChanged.value == true && correctDataInput.value == true) {
+      isChanged.value = true;
+      const changedData = axios.post("http://localhost:3001/api/edit-profile", {
+        id: id,
+        uuid: uuid,
+        email: email.value,
+        first_name: first_name.value,
+        last_name: lastName.value,
+        profileImg: newProfileImg.value,
+      });
+      location.reload()
+    } else if (lastName.value.includes(" ") || lastName.value.length < 2) {
+      setTimeout(() => {
+        lastNameWarning.value = "";
+      }, 3000);
+      lastNameWarning.value = "Фамилия содержит пробел или меньше 2 символов";
+    } else if (
+      first_name.value.includes(" ") ||
+      first_name.value.length < 2 ||
+      specialChars.test(first_name.value) == true
+    ) {
+      setTimeout(() => {
+        nameWarning.value = "";
+      }, 3000);
 
-}
+      nameWarning.value =
+        "Имя содержит пробел, спецсимвол или оно меньше 2 символов";
+    } else if (
+      email.value.includes(" ") ||
+      email.value.length < 2 ||
+      !email.value.includes("@")
+    ) {
+      setTimeout(() => {
+        emailWarning.value = "";
+      }, 3000);
+      emailWarning.value =
+        "email содержит пробел, меньше 2 символов или не содержит @";
+    } else {
+      isChanged.value = false;
+      console.log(isChanged.value);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const resetForm = async (event: Event) => {
+  event.preventDefault();
+  if (
+    email.value !== prevEmail.value ||
+    first_name.value !== prevFirst_name.value ||
+    lastName.value !== prevLastName.value ||
+    (newProfileImg.value !== prevProfileImg.value && isChanged.value === true)
+  ) {
+    console.log(isChanged.value);
+
+    email.value = prevEmail.value;
+    first_name.value = prevFirst_name.value;
+    lastName.value = prevLastName.value;
+    newProfileImg.value = prevProfileImg.value;
+  }
+};
+
 onMounted(() => {
   submitForm;
+  getData();
+});
+watch([email, first_name, lastName, newProfileImg], () => {
+  isChanged.value =
+    email.value !== prevEmail.value ||
+    first_name.value !== prevFirst_name.value ||
+    lastName.value !== prevLastName.value ||
+    newProfileImg.value !== prevProfileImg.value;
 });
 </script>
 
@@ -53,7 +143,7 @@ onMounted(() => {
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
     <div>
       <img
-        src="/prof.jpeg"
+        :src="newProfileImg"
         alt="profile image"
         class="w-[150px] rounded-[50%]"
       />
@@ -80,7 +170,7 @@ onMounted(() => {
       </button>
     </div>
 
-    <form class="flex flex-col gap-5" @submit="submitForm">
+    <form class="flex flex-col gap-5" @submit="submitForm" @reset="resetForm">
       <div>
         <label for="inputname" class="block text-gray-800 font-semibold text-sm"
           >Фамилия</label
@@ -94,7 +184,10 @@ onMounted(() => {
             v-model="lastName"
           />
         </div>
-        <label class="pt-1 block text-gray-500 text-sm">Some Description</label>
+        <label
+          class="pt-1 block text-red-700 text-sm max-w-52 transition-all duration-500"
+          >{{ lastNameWarning }}</label
+        >
       </div>
       <div>
         <label for="inputname" class="block text-gray-800 font-semibold text-sm"
@@ -109,7 +202,9 @@ onMounted(() => {
             v-model="first_name"
           />
         </div>
-        <label class="pt-1 block text-gray-500 text-sm">Some Description</label>
+        <label class="pt-1 block text-red-700 text-sm max-w-52">{{
+          nameWarning
+        }}</label>
       </div>
       <div>
         <label
@@ -126,21 +221,26 @@ onMounted(() => {
             v-model="email"
           />
         </div>
-        <label class="pt-1 block text-gray-500 text-sm">Some Description</label>
+        <label class="pt-1 block text-red-700 text-sm max-w-52">{{
+          emailWarning
+        }}</label>
       </div>
-			<div class="flex gap-5">
-				<button
-					type="submit"
-					class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
-				>
-					Submit
-				</button>
-				<button
-					class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
-				>
-					Cancel
-				</button>
-			</div>
+      <div class="flex gap-5">
+        <button
+          type="submit"
+          class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+          :class="{ 'cursor-not-allowed bg-slate-800': !isChanged }"
+        >
+          Submit
+        </button>
+        <button
+          class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+          :class="{ 'cursor-not-allowed bg-slate-800': !isChanged }"
+          type="reset"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   </div>
 </template>

@@ -23,9 +23,6 @@ const getData = async function () {
       lastName.value = data.data.user.last_name;
       profileImg.value = data.data.user.profileImg
       console.log(profileImg.value)
-      if (lastName.value == null) {
-        lastName.value = "Не указано";
-      }
     } catch (error) {
       console.log(error);
     }
