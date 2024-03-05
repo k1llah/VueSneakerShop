@@ -35,6 +35,9 @@ const submitForm = async (event: Event) => {
   emailValid.value = email.includes("@");
   passwordLengthValid.value = password.length >= 6;
   passwordContainsLetter.value = /[a-zA-Z]/.test(password);
+  
+
+
 
   const startTimer = () => {
     if (!isTimerStarted.value) {

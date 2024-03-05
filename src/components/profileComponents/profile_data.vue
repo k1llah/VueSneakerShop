@@ -6,6 +6,7 @@ import dialogWindow from '@/components/profileComponents/dialogWindow.vue';
 const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
+const profileImg = ref("")
 import { isAuthenticated } from "@/auth";
 
 const getData = async function () {
@@ -20,6 +21,8 @@ const getData = async function () {
       email.value = data.data.user.email;
       first_name.value = data.data.user.first_name;
       lastName.value = data.data.user.last_name;
+      profileImg.value = data.data.user.profileImg
+      console.log(profileImg.value)
       if (lastName.value == null) {
         lastName.value = "Не указано";
       }
@@ -49,7 +52,7 @@ watch(() => allStore.isOpened, (newValue) => {
   <div class="flex m-auto mt-20 justify-around">
     <div class="">
       <img
-        src="/prof.jpeg"
+        :src=" '/' + profileImg"
         alt="profile image"
         class="w-[150px] rounded-[50%]"
       />

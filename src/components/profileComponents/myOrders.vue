@@ -18,6 +18,11 @@ import buttonProfile from '@/components/buttonProfile.vue';
 		<h3>
 			Активные заказы
 		</h3>
+
+		<div>
+			
+		</div>
+
 	</div>
 
 	<div>
