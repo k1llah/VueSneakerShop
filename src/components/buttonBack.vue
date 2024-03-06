@@ -100,5 +100,15 @@
   transition: 0.4s;
   transform: translateX(-56px);
 }
+@media screen and (max-width: 645px) {
+  .button{
+    width: 42px;
+    height: 42px;
+  }
+  .button-elem{
+    width: 15px;
 
+    margin: 10px 18px 0 13px;
+  }
+}
 </style>

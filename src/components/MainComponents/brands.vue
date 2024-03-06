@@ -131,12 +131,12 @@ const animateText = () => {
 
 <template>
 	<div class="w-full" ref="content">
-		<h3 class="text-5xl text-center mt-36 "
+		<h3 class="text-center sm:text-2xl sm:mt-20 md:text-5xl md:mt-36"
 		ref="title"
       :class="{ 'hidden-text': !isVisible }"
 		>Бренды</h3>
 	</div>
-  <div class="mt-28">
+  <div class="md:mt-28 sm:mt-12">
   <swiper
     class="swiper w-[95%]"
     :modules="modules"
@@ -149,11 +149,16 @@ const animateText = () => {
 		}"
   >
     <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] " v-for="item in items" key="item.id">
-			<img :src="item.imageUrl" alt="" class="m-auto brightness-0">
-			<p class="brandName pt-5">{{ item.brandName }}</p>
+			<img :src="item.imageUrl" alt="" class="m-auto brightness-0 md:w-[unset] sm:w-[50px]">
+			<p class="brandName pt-5 sm:text-xs">{{ item.brandName }}</p>
 		</swiper-slide>
    
   </swiper>
 </div>
 </template>
 
+<style  >
+.swiper-wrapper{
+  align-items: center;
+}
+</style>

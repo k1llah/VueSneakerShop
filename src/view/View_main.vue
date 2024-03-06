@@ -29,14 +29,14 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center">
-      <div class="flex gap-5 items-center">
+    <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
+      <div class="flex md:gap-5 sm:gap-2 items-center">
       <buttonBack/>
-        <h2 class="text-3xl">Главная</h2>
+        <h2 class="md:text-3xl sm:text-xl">Главная</h2>
       </div>
     </div>
 
-    <h1 class="text-3xl text-[#000000] text-center font-sans font-[600] mt-10">
+    <h1 class=" md:text-3xl sm:text-lg text-[#000000] text-center font-sans font-[600] mt-10">
       Приветствуем вас в BENZ SHÖP
     </h1>
 

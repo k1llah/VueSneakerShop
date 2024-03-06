@@ -6,6 +6,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {useSneaker} from '@/stores/sneaker'
+import burger from '@/components/burger.vue'
 const sneakerStore = useSneaker()
 
 let toggleShow = () => {
@@ -14,37 +15,46 @@ let toggleShow = () => {
 }
 </script>
 <template>
-  <header class="flex justify-between border-b border-slate-200 px-8 py-8">
-    <div>
-      <div class="flex items-center gap-4">
+    <header class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden">
+     
+     <burger/>
+
+
+    </header>
+
+
+
+  <header class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex">
+    <div class="">
+      <div class="flex items-center md:gap-10 lg:gap-4">
         <router-link to="/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
-        <h2 class="text-xl font-medium uppercase">Benz Shöp</h2>
+        <h2 class=" font-medium uppercase lg:text-xl lbick md:text-base hidden sm:text-base">Benz Shöp</h2>
         <router-link to="/sneakers_page">
-        <p class="text-slate-700 text-lg hover:scale-[1.05] transition-all 1.3s">Все кроссовки</p>
+        <p class="text-slate-700  hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm">Все кроссовки</p>
       </router-link>
       </div>
     </div>
-    <ul class="flex items-center gap-10">
+    <ul class="flex items-center gap-10 md:gap-5">
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s" @click="toggleShow()" 
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow()" 
       >
         <img src="/cart.svg" alt="Cart" />
-        <p class="text-[18px] font-[500]">205 Руб</p>
+        <p class="text-[18px] font-[500] md:hidden lg:block" >205 Руб</p>
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
         @click="$router.push({ name: 'Purchases' })"
       >
         <img src="/heart.svg" alt="Cart" />
-        <span class="text-[19px] font-light">Закладки</span>
+        <span class="text-[19px] font-light md:text-[14px] ">Закладки</span>
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s" @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />
-        <span class="text-[19px] font-light">Профиль</span>
+        <span class="text-[19px] font-ligh md:text-[14px]">Профиль</span>
       </li>
     </ul>
   </header>

@@ -62,12 +62,12 @@ const animateText = () => {
 </script>
 <template>
   <div class="text-center mt-28 p-10 pb-28" ref="content">
-    <h2 ref="title" class="text-4xl" :class="{ 'hidden-text': !isVisible }">
+    <h2 ref="title" class=" md:text-4xl sm:text-xl" :class="{ 'hidden-text': !isVisible }">
       Добро пожаловать в мир стильных и комфортных кроссовок!
     </h2>
     <p
       ref="paragraph1"
-      class="text-left mt-28 text-2xl font-[500] leading-[40px]"
+      class="text-left font-[500] md:text-lg md:leading-[40px] md:mt-24 sm:text-base sm:leading-[33px] sm:mt-12"
       :class="{ 'hidden-text': !isVisible }"
     >
       Исследуйте мир кроссовок вместе с нами! Мы предлагаем широкий выбор
@@ -75,7 +75,7 @@ const animateText = () => {
     </p>
     <p
       ref="paragraph2"
-      class="text-right text-2xl font-[300] leading-[40px] mt-24"
+      class="text-right md:text-2xl font-[300] md:leading-[40px] md:mt-24 sm:text-base sm:leading-[33px] sm:mt-12"
       :class="{ 'hidden-text': !isVisible }"
     >
       Опыт покупки, которому вы можете доверять Наша цель — не просто продать
@@ -92,7 +92,7 @@ const animateText = () => {
     </h3>
   </div>
 
-  <img src="/4-Collins-x-Air-Max.gif" alt="AirMax 95" />
+  <img src="/4-Collins-x-Air-Max.gif" class="sm:h-[250px] sm:m-auto md:h-[unset]" alt="AirMax 95" />
 
   <scrollComponent />
 </template>

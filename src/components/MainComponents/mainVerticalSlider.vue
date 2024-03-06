@@ -23,8 +23,8 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 
 
 <template>
-  <div class="bg min-h-[600px] flex justify-around">
-    <div class="bg-white mt-14 w-96 h-[400px] ml-20 rounded-lg">
+  <div class="bg min-h-[600px] flex justify-around flex-wrap">
+    <div class="bg-white mt-14 w-96 h-[400px] rounded-lg md:ml-0 lg:ml-20 sm:h-[450px] ">
       <div class="flex p-3 gap-1">
         <div class="">
       <span class="bg-blue-500 inline-block center w-3 h-3 rounded-full"></span>
@@ -37,12 +37,12 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
     </div>
   </div>
   <div class="card__content p-6 pt-0">
-		<p class="leading-[26px]">Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. <br> <span class="text-[#7747ff] font-[600] text-[19px]">Приглашаем вас </span> исследовать наш ассортимент и открыть для себя свои новые любимые пары обуви. Наша цель - помочь вам шагать вперед с уверенностью и стилем, подчеркивая вашу индивидуальность на каждом шагу.</p>
+		<p class=" sm:text-[15px] leading-[23px] md:leading-[26px]">Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. <br> <span class="text-[#7747ff] font-[600]  pt-2 sm:text-[16px] md:text-[19px]">Приглашаем вас </span> исследовать наш ассортимент и открыть для себя свои новые любимые пары обуви. Наша цель - помочь вам шагать вперед с уверенностью и стилем, подчеркивая вашу индивидуальность на каждом шагу.</p>
   </div>
 </div>
-<div class="slider_wrapper mt-40">
+<div class="slider_wrapper md:mt-20 lg:mt-40 sm:mt-20 sm:pb-10">
 	<swiper
-        class="w-full max-h-[600px]"
+        class="w-full max-h-[600px] sm:w-[90%] sm:max-h-[350px] md:w-full md:max-h-[600px]"
         :modules="modules"
         direction="vertical"
         :loop="true"
@@ -54,7 +54,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
         }"
       >
         <swiper-slide class="h-full" v-for="item in items" :key="item.id">
-          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] h-[550px] rounded-2xl m-auto cursor-pointer" />
+          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] rounded-2xl m-auto cursor-pointer sm:h-[350px] md:h-[550px]" />
         </swiper-slide>
       </swiper>
 </div>

@@ -46,16 +46,16 @@ const animateText = () => {
 </script>
 
 <template>
-  <div class="mt-40 ml-32 flex items-center border-b-2 border-slate-300" ref="content">
+  <div class="md:mt-40 md:ml-32 sm:ml-20 sm:mt-20 flex items-center border-b-2 border-slate-300" ref="content">
     <h2
-      class="text-[45px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol"
+      class="md:text-[45px] sm:text-[30px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol"
       :class="{ 'hidden-text': !isVisible }"
       ref="title"
     >
       Sneaker
     </h2>
     <span
-      class="text-[45px] text-center font-[400] lol"
+      class="md:text-[45px] sm:text-[30px] text-center font-[400] lol"
       :class="{ 'hidden-text': !isVisible }"
       ref="span"
       >Blog</span

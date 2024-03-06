@@ -8,6 +8,7 @@ const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
 const newProfileImg = ref();
+const newProfileFile = ref();
 const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
 const prevEmail = ref("");
 const prevFirst_name = ref("");
@@ -41,6 +42,7 @@ const handleFileUpload = (event: Event) => {
   const files = target.files;
   if (files && files.length > 0) {
     let file = files[0];
+    newProfileFile.value = file;
     newProfileImg.value = file.name;
   }
   console.log(newProfileImg.value);
@@ -71,15 +73,19 @@ const submitForm = async (event: Event) => {
   try {
     if (isFormChanged.value == true && correctDataInput.value == true) {
       isChanged.value = true;
-      const changedData = axios.post("http://localhost:3001/api/edit-profile", {
+      const formData = new FormData();
+      formData.append("file", newProfileFile.value);
+      formData.append("data", JSON.stringify({
         id: id,
         uuid: uuid,
         email: email.value,
         first_name: first_name.value,
         last_name: lastName.value,
         profileImg: newProfileImg.value,
-      });
+      }))
+      const changedData = axios.post("http://localhost:3001/api/edit-profile",formData);
       location.reload();
+      
     } else if (lastName.value.includes(" ") || lastName.value.length < 2) {
       setTimeout(() => {
         lastNameWarning.value = "";
@@ -153,7 +159,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
     <div>
       <img
-        :src="newProfileImg"
+        :src="'http://localhost:3001/img/tablet/'+newProfileImg"
         alt="profile image"
         class="w-[150px] rounded-[50%]"
       />

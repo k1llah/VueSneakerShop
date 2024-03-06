@@ -46,7 +46,7 @@ const toggleDropdown = (index: number) => {
   if (dropdownContent) {
     if (dropdowns.value[index]) {
       gsap.to(dropdownContent, {
-        maxHeight: "370px",
+        maxHeight: "100%",
         
         duration: 0.7,
         ease: "power2.out",
@@ -63,22 +63,23 @@ const toggleDropdown = (index: number) => {
 };
 </script>
 <template>
-  <div class="mt-36" ref="content">
+  <div class="md:mt-36 sm:mt-20" ref="content">
     <h3
-      class="text-5xl text-center"
+      class="text-center sm:text-2xl md:text-5xl "
       ref="title"
       :class="{ 'hidden-text': !isVisible }"
     >
       <span class="text-[#7747ff]">Почему</span> мы?🤔
     </h3>
-    <div class="wrapper w-full mt-36 pb-36">
+    <div class="wrapper w-full pb-36 sm:mt-20 md:mt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
-        <div class="w-[600px]">
+        
+        <div class="sm:w-[320px] md:w-[600px] ">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
             @click="toggleDropdown(0)"
           >
-            <h2 class="text-[23px] ml-5">Достоинства низкой стоимости 💸</h2>
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">Достоинства низкой стоимости 💸</h2>
             <img
               class="mr-2 w-8"
               src="/down.png"
@@ -94,7 +95,7 @@ const toggleDropdown = (index: number) => {
             class="textBlock0 flex justify-center bg-white"
             :class="{ closed: !dropdowns[0] }" style="max-height: 370px;" 
           >
-            <p class="text-[18px] font-[300] leading-[30px] p-[20px]">
+            <p class="sm:text-[14px] md:text-[18px] font-[300] leading-[30px] p-[20px]">
               <span class="font-[700]"
                 >Доступность для широкого круга клиентов:</span
               >
@@ -110,12 +111,12 @@ const toggleDropdown = (index: number) => {
           </div>
         </div>
 
-        <div class="w-[600px]">
+        <div class="sm:w-[320px] md:w-[600px] ">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(1)"
           >
-            <h2 class="text-[23px] ml-5">Достоинства быстрой доставки 🏎️</h2>
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">Достоинства быстрой доставки 🏎️</h2>
             <img
               class="mr-2 w-8"
               src="/down.png"
@@ -148,12 +149,12 @@ const toggleDropdown = (index: number) => {
           </div>
         </div>
 
-        <div class="w-[600px]">
+        <div class="sm:w-[320px] md:w-[600px] ">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(2)"
           >
-            <h2 class="text-[23px] ml-5">
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
               Безопасность и надежность всех покупок 🔐
             </h2>
             <img

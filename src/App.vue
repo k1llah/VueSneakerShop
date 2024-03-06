@@ -14,10 +14,10 @@ onMounted(() => {
 const page = computed(()=> window.location.pathname)
 </script>
 <template>
-  <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
+  <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14">
     <Header />
     <section>
-      <div class="container min-h-[800px] m-auto">
+      <div class="w-full min-h-[800px] m-auto">
         <RouterView />
       </div>
     </section>
