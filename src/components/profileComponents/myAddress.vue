@@ -12,22 +12,8 @@ let isAddress = ref(false);
 import { useAllStore } from "@/stores/all";
 
 const allStore = useAllStore();
-let toggle = ref(true);
-let target = ref("");
 
-const handleOpenPage = (page: string) => {
-	toggle.value = false
-	
-	localStorage.setItem("page2", page)
-	target.value = page
-	console.log(target)
-	};
-	watch(() => localStorage.getItem("page2"), (newPage) => {
-  if (newPage) {
-    
-    target.value = newPage;
-  }
-});
+
 </script>
 <template>
   <div class="flex gap-5 items-center">
@@ -35,10 +21,10 @@ const handleOpenPage = (page: string) => {
     <h2 class="text-3xl">Адреса для доставки</h2>
   </div>
 
-	<div v-if="target == 'edit'" >
+	<div v-if="''" >
 		<editAddress/>
 	</div>
-	<div v-else-if="target == 'add'" >
+	<div v-else-if="''" >
 		<addressAdd/>
 	</div>
   <div class="flex justify-between flex-col items-center mt-12" v-else>
@@ -64,7 +50,7 @@ const handleOpenPage = (page: string) => {
     <div>
       <button
         class="w-[150px] bg-black h-[50px] my-3 flex items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-[#009b49] before:to-[rgb(105,184,141)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]"
-        @click="handleOpenPage('add')"
+        @click=""
       >
         Добавить адрес
       </button>

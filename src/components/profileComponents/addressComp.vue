@@ -22,9 +22,7 @@ import { useAllStore } from '@/stores/all';
 
 
 
-const handleOpenPage = (page: string) => {
-    localStorage.setItem("page2", page);
-};
+
 </script>
 <template>
   <div class="bg-[#f4f4f5] md:max-w-[400px] rounded-xl p-5 mt-5">
@@ -46,7 +44,7 @@ const handleOpenPage = (page: string) => {
 
 			</div>
 			<div class="flex justify-end gap-3">
-				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 text-3xl rounded-xl " @click="handleOpenPage('edit')">⚙️</button>
+				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 text-3xl rounded-xl " @click="">⚙️</button>
 				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 text-2xl rounded-xl ">🗑️</button>
 			</div>
 		</div>
