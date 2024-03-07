@@ -53,14 +53,14 @@ const toggleDropdown = (index: number) => {
       gsap.to(dropdownContent, {
         maxHeight: "1000px",
         
-        duration: 0.7,
-        ease: "power2.out",
+        duration: 1.4,
+        ease: 'power2.out',
       });
     } else {
       gsap.to(dropdownContent, {
         maxHeight: "0px",
         
-        duration: 0.7,
+        duration: 1.4,
         ease: "power2.out",
       });
     }
