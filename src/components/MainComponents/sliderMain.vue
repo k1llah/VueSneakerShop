@@ -52,3 +52,11 @@ export default defineComponent({
     </swiper-slide>
   </swiper>
 </template>
+
+<style>
+@media screen and (max-width: 645px) {
+  .swiper-button-next, .swiper-button-prev{
+    display: none;
+  }
+}
+</style>

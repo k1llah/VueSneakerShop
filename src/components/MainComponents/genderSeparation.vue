@@ -31,7 +31,7 @@
 	</router-link>
 
 		<router-link to="/gender">
-    <div class="relative hover:scale-[1.05] transition-all 1.3s" @click="setGender('woman')">
+    <div class="relative hover:scale-[1.05] transition-all 1.3s" @click="setGender('woman')" >
       <div class="absolute inset-0 bg-black opacity-50 z-10 hover:opacity-0 transition-all 1.1s"></div>
       <div class="md:w-[350px] md:h-[450px] sm:w-[320px] sm:h-[370px] flex justify-center bg-cover items-end" style="background-image: url('/womansPart.jpeg');" >
         <p class="text-center md:text-2xl sm:text-xl font-xl mb-10 text-white z-20">Женская обувь</p>

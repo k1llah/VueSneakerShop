@@ -28,7 +28,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="container">
+  <div class="">
     <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex md:gap-5 sm:gap-2 items-center">
       <buttonBack/>

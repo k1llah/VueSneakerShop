@@ -4,8 +4,8 @@ import sign_in from "@/components/profileComponents/sign_in.vue";
 import buttonBack from '@/components/buttonBack.vue';
 </script>
 <template>
-  <div class="container min-h-[600px]">
-    <div class="flex ml-[50px] mt-5 gap-[15px] justify-between items-center">
+  <div class="min-h-[600px]">
+    <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex gap-5 items-center">
      <buttonBack/>
       <h2 class="text-3xl">Профиль</h2>
@@ -13,7 +13,7 @@ import buttonBack from '@/components/buttonBack.vue';
 
       <div v-if="isAuthenticated == true">
         <button 
-          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 mr-[30px]"
+          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 md:mr-[30px] sm:mr-2"
           @click="logOut()"
         >
           <div

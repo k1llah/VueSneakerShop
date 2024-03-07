@@ -1,14 +1,14 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="footer bg-[#b7d5ff]">
-    <div class="bg-[#cce1ff] flex justify-between p-7">
+  <div class="footer bg-[#b7d5ff] ">
+    <div class="bg-[#cce1ff] flex justify-between p-7 flex-wrap md:gap-0 sm:gap-5 sm:justify-center md:justify-between">
       <div>
         <h2 class="text-[22px] font-[200]">
           Будьте с нами на связи в моих социальных сетях
         </h2>
       </div>
       <div class="flex gap-4">
-        <section class="flex justify-center items-center">
+        <section class="flex justify-center items-center ">
           <a
             href="https://github.com/k1llah?tab=overview&from=2024-02-01&to=2024-02-27"
             class="group flex justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <div class="p-10 flex gap-20 flex-wrap justify-center">
+    <div class="p-10 flex md:gap-20 sm:gap-10 flex-wrap md:justify-center sm:justify-[unset]">
       <div class="w-[250px] flex flex-col gap-5">
         <img
           src="/footer-logo.jpeg"
@@ -135,30 +135,30 @@
           first time do pet project, i hope you enjoyed it!!
         </p>
       </div>
-      <div class="flex flex-col gap-2 w-[250px]">
+      <div class="flex flex-col gap-2 w-[250px] text-slate-600 text-[16px]">
         <p class="text-slate-950 text-[18px]">
           Stack of this project on frontend
         </p>
-        <p class="text-slate-600 text-[16px]">Vue</p>
-        <p class="text-slate-600 text-[16px]">Vite</p>
-        <p class="text-slate-600 text-[16px]">Tailwind Css</p>
-        <p class="text-slate-600 text-[16px]">TypeScript</p>
-        <p class="text-slate-600 text-[16px]">Pinia-State regulation</p>
-        <p class="text-slate-600 text-[16px]">Gsap animation</p>
-        <p class="text-slate-600 text-[16px]">Awesome Swiper</p>
+        <p>Vue</p>
+        <p>Vite</p>
+        <p>Tailwind Css</p>
+        <p>TypeScript</p>
+        <p>Pinia-State regulation</p>
+        <p>Gsap animation</p>
+        <p>Awesome Swiper</p>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 text-slate-600 text-[16px]">
         <p class="text-slate-800 text-[18px]">Backend stack</p>
-        <p class="text-slate-600 text-[16px]">Node.js</p>
-        <p class="text-slate-600 text-[16px]">PostgreSql</p>
-        <p class="text-slate-600 text-[16px]">Prisma</p>
-        <p class="text-slate-600 text-[16px]">Express</p>
-        <p class="text-slate-600 text-[16px]">Cors</p>
+        <p>Node.js</p>
+        <p>PostgreSql</p>
+        <p>Prisma</p>
+        <p>Express</p>
+        <p>Cors</p>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 text-slate-600 text-[16px]">
         <p class="text-slate-800 text-[18px]">Contact</p>
-        <p class="text-slate-600 text-[16px]">Email: surenbound@yandex.ru</p>
-        <p class="text-slate-600 text-[16px]">Location?: Russia 🇷🇺</p>
+        <p>Email: surenbound@yandex.ru</p>
+        <p>Location?: Russia 🇷🇺</p>
       </div>
     </div>
     <div

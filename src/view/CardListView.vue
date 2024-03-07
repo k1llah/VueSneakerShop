@@ -41,12 +41,12 @@ watch(filters, debounce(axiosGetParams, 350));
 
 <template>
   <div class="p-10">
-    <div class="flex justify-between items-center">
+    <div class="flex flex-wrap justify-between items-center">
       <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
-      <div class="flex gap-4">
+      <div class="flex gap-4 md:flex-[unset] sm:flex-col-reverse">
         <select
-          class="py-2 px-3 border rounded-md outline-none"
+          class="py-2 px-3  border rounded-md outline-none"
           @change="onChangeSelect"
         >
           <option value="name">По названию</option>

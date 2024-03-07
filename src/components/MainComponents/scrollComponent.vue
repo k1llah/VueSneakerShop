@@ -25,7 +25,6 @@ const handleScroll = () => {
     window.removeEventListener("scroll", handleScroll);
   }
 };
-
 const animateText = () => {
   gsap.from(title.value, {
     opacity: 0,
@@ -44,9 +43,15 @@ const toggleDropdown = (index: number) => {
   ) as HTMLDivElement;
 
   if (dropdownContent) {
+    const storedHeight = dropdownContent.dataset.storedHeight;
+    const contentHeight = storedHeight ? parseInt(storedHeight) : dropdownContent.scrollHeight;
+    
     if (dropdowns.value[index]) {
+      if (!storedHeight) {
+        dropdownContent.dataset.storedHeight = `${contentHeight}`;
+      }
       gsap.to(dropdownContent, {
-        maxHeight: "100%",
+        maxHeight: "1000px",
         
         duration: 0.7,
         ease: "power2.out",
@@ -74,7 +79,7 @@ const toggleDropdown = (index: number) => {
     <div class="wrapper w-full pb-36 sm:mt-20 md:mt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
         
-        <div class="sm:w-[320px] md:w-[600px] ">
+        <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
             @click="toggleDropdown(0)"
@@ -93,7 +98,7 @@ const toggleDropdown = (index: number) => {
 
           <div
             class="textBlock0 flex justify-center bg-white"
-            :class="{ closed: !dropdowns[0] }" style="max-height: 370px;" 
+            :class="{ closed: !dropdowns[0] }" style="max-height: 1000px;" 
           >
             <p class="sm:text-[14px] md:text-[18px] font-[300] leading-[30px] p-[20px]">
               <span class="font-[700]"
@@ -111,7 +116,7 @@ const toggleDropdown = (index: number) => {
           </div>
         </div>
 
-        <div class="sm:w-[320px] md:w-[600px] ">
+        <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(1)"
@@ -149,7 +154,7 @@ const toggleDropdown = (index: number) => {
           </div>
         </div>
 
-        <div class="sm:w-[320px] md:w-[600px] ">
+        <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
             @click="toggleDropdown(2)"

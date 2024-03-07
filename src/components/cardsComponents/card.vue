@@ -26,8 +26,8 @@ import { defineProps } from 'vue';
 				{{ title }}
 			</p>
 			<div class="flex justify-between mt-5">
-				<div class="flex flex-col">
-					<span class="text-slate-400">Цена</span>
+				<div class="flex flex-col sm:text-sm">
+					<span class="text-slate-400 ">Цена</span>
 					<span>{{ price }} Руб</span>
 				</div>
 				<img :src="!isAdded ? '/plus.svg': '/checked.svg'" @click.stop="onclck" alt="Plus">

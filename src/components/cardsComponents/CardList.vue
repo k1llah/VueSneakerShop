@@ -57,7 +57,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
 <template>
   <overlay :show-overlay-green="showOverlay"/>
   <div v-if="items">
-    <div class="grid grid-cols-4 gap-5" v-auto-animate>
+    <div class="grid md:grid-cols-4 sm:grid-cols-2 md:gap-5 md:0" v-auto-animate>
       <card
         v-for="item in items"
         :key="item.id"

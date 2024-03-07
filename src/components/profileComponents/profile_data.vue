@@ -72,7 +72,7 @@ watch(() => allStore.isOpened, (newValue) => {
       </div>
       <div>
         <div class="flex flex-col gap-10 justify-center h-[100%]">
-          <div class="pb-[10px] w-[200px]">
+          <div class="pb-[10px] ">
             <div class="input">
               <button class="value" @click="handleOpenPage('orders')">
                 <svg
