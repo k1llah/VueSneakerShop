@@ -33,7 +33,7 @@ export const useAllStore = defineStore({
         "https://static.street-beat.ru/upload/iblock/a47/a473eb406a0b7e775e27cfbf0ea84865.svg",
     }) as any,
     isOpened: ref(false),
-    targetPage: ref(),
+    targetPage: '',
   }),
   actions: {
     getBrandImageUrl(brandName: string): string {

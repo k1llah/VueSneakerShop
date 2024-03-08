@@ -20,7 +20,7 @@ import { useAllStore } from '@/stores/all';
 
 
 
-
+	const allStore = useAllStore();
 
 
 </script>
@@ -44,7 +44,7 @@ import { useAllStore } from '@/stores/all';
 
 			</div>
 			<div class="flex justify-end gap-3">
-				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 text-3xl rounded-xl " @click="">⚙️</button>
+				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 text-3xl rounded-xl " @click="allStore.targetPage = 'editAddress'">⚙️</button>
 				<button class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 text-2xl rounded-xl ">🗑️</button>
 			</div>
 		</div>

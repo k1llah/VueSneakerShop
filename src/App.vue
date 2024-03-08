@@ -2,7 +2,7 @@
 import Header from "./components/header.vue";
 import Drawer from '@/components/DrawerComponents/Drawer.vue';
 import Footer from '@/components/footer.vue';
-import { onMounted, computed } from "vue";
+import { onMounted, computed, watch } from "vue";
 import { checkAuth } from "./auth";
 import {useSneaker} from '@/stores/sneaker'
 import { RouterView } from 'vue-router'
@@ -10,8 +10,9 @@ const sneakerStore = useSneaker()
 onMounted(() => {
   checkAuth();
 });
-
 const page = computed(()=> window.location.pathname)
+
+
 </script>
 <template>
   <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14">
