@@ -9,7 +9,7 @@ import buttonProfile from '@/components/buttonProfile.vue';
  <buttonProfile/>
 	<h2 class="text-3xl">Мои заказы</h2>
 </div>
-<div class="container">
+<div>
 
 	<div class="flex justify-center">
 

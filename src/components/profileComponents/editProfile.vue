@@ -152,8 +152,10 @@ watch([email, first_name, lastName, newProfileImg], () => {
 
 <template>
   <div class="flex gap-5 items-center">
+    <div>
     <buttonProfile />
-    <h2 class="text-3xl">Редактирование профиля</h2>
+  </div>
+    <h2 class="md:text-3xl md:text-[unset] sm:text-xl sm:text-right">Редактирование профиля</h2>
   </div>
 
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
@@ -161,17 +163,17 @@ watch([email, first_name, lastName, newProfileImg], () => {
       <img
         :src="'http://localhost:3001/img/tablet/'+newProfileImg"
         alt="profile image"
-        class="w-[150px] rounded-[50%]"
+        class="md:w-[150px] sm:w-[80px] rounded-[50%]"
       />
     </div>
     <div class="flex gap-5">
-      <p class="text-lg">Загрузить свое фото</p>
+      <p class="md:text-lg sm:text-base">Загрузить свое фото</p>
       <label for="upload-button" class="cursor-pointer">
         <div
           class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
         >
           <svg
-            class="w-4 h-4"
+            class="md:w-4 md:h-4 sm:w-2 sm:h-2" 
             stroke="currentColor"
             stroke-width="2"
             viewBox="0 0 24 24"
@@ -194,7 +196,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
         />
       </label>
     </div>
-    <form class="flex flex-col gap-5" @submit="submitForm" @reset="resetForm">
+    <form class="flex flex-col md:gap-5 sm:gap-3" @submit="submitForm" @reset="resetForm">
       <div>
         <label for="inputname" class="block text-gray-800 font-semibold text-sm"
           >Фамилия</label

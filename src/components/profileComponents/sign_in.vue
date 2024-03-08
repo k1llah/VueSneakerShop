@@ -100,7 +100,7 @@ const logInFunc = async (event:any) => {
   </div>
 
 
-  <div class="container" v-if="isAuthenticated == true"> 
+  <div class="p-5" v-if="isAuthenticated == true"> 
     <profile-data/>
   </div>
 </template>

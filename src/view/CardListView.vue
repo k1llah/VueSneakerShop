@@ -44,7 +44,7 @@ watch(filters, debounce(axiosGetParams, 350));
     <div class="flex flex-wrap justify-between items-center">
       <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
-      <div class="flex gap-4 md:flex-[unset] sm:flex-col-reverse">
+      <div class="flex gap-4 md:flex-row sm:flex-col-reverse">
         <select
           class="py-2 px-3  border rounded-md outline-none"
           @change="onChangeSelect"

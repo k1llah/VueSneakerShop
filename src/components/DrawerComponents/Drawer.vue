@@ -12,7 +12,7 @@ import CartItemList from './CartItemList.vue'
 			
 		</div>
   
-    <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-10">
+    <div class="bg-white md:w-96 md:h-full sm:w-56 sm:h-full fixed right-0 top-0 z-20 p-10">
       <Bucket/>
       <CartItemList/>
       <div>

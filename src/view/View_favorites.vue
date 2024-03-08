@@ -32,7 +32,7 @@ favorites();
 
 </script>
 <template>
-  <div class="container">
+  <div>
     <div class="min-h-[600px]">
       <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px]">
         <div class="flex gap-5 items-center">

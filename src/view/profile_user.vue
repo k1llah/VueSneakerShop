@@ -8,12 +8,12 @@ import buttonBack from '@/components/buttonBack.vue';
     <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex gap-5 items-center">
      <buttonBack/>
-      <h2 class="text-3xl">Профиль</h2>
+      <h2 class="md:text-3xl sm:text-2xl">Профиль</h2>
     </div>
 
       <div v-if="isAuthenticated == true">
         <button 
-          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 md:mr-[30px] sm:mr-2"
+          class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 md:mr-[30px] sm:mr-[15px]"
           @click="logOut()"
         >
           <div
