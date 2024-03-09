@@ -34,6 +34,8 @@ export const useAllStore = defineStore({
     }) as any,
     isOpened: ref(false),
     targetPage: '',
+    headerText: 'Мои адреса для доставки',
+    idAddress: 0 as number,
   }),
   actions: {
     getBrandImageUrl(brandName: string): string {

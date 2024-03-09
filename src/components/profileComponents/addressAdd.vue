@@ -10,24 +10,24 @@ const surname = ref("");
 const city = ref("");
 const street = ref("");
 const phoneNumber = ref("");
-const postalCode = ref("");
+const postalCode = ref();
 const buildingNumber = ref("");
-const houseNumber = ref("");
-const apartment = ref("");
-let warning = ref("");
+const houseNumber = ref();
+const apartment = ref();
 let warningAll = ref("");
 const correctDataInput = computed(
   () =>
-    buildingNumber.value !== "" &&
-    houseNumber.value !== "" &&
-    apartment.value !== "" &&
+   
+    houseNumber.value !== null &&
+    apartment.value !== null &&
+    postalCode.value !== null &&
+    phoneNumber.value !== null &&
     name.value.length >= 2 &&
     lastName.value.length >= 2 &&
     surname.value.length >= 2 &&
     city.value.length >= 2 &&
-    street.value.length >= 2 &&
-    phoneNumber.value.length >= 2 &&
-    postalCode.value.length >= 2
+    street.value.length >= 2 
+    
 );
 const createAddress = async () => {
   try {
@@ -35,7 +35,8 @@ const createAddress = async () => {
       const newAddress = await axios.post(
         "http://localhost:3001/api/create-address",
         {
-          name: name.value,
+          userId: localStorage.getItem("id"),
+          firstName: name.value,
           lastName: lastName.value,
           surname: surname.value,
           city: city.value,
@@ -51,7 +52,7 @@ const createAddress = async () => {
     } else if (!correctDataInput.value) {
       setTimeout(() => {
         warningAll.value = "";
-      }, 3000);
+      }, 4000);
       warningAll.value = "*Заполните все обязательные поля или заполните их корректно"
     }
   } catch (error) {
@@ -92,6 +93,7 @@ const createAddress = async () => {
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="tel"
           v-model="phoneNumber"
+          minlength="10"
         />
         
         <input
@@ -106,8 +108,9 @@ const createAddress = async () => {
         <input
           placeholder="Почтовый индекс *"
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-          type="num"
+          type="number"
           v-model="postalCode"
+          minlength="6"
         />
         
         <input
@@ -115,6 +118,7 @@ const createAddress = async () => {
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
           v-model="street"
+          minlength="2"
         />
         
       </div>
@@ -122,7 +126,7 @@ const createAddress = async () => {
         <input
           placeholder="Дом *"
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-          type="text"
+          type="number"
           v-model="houseNumber"
         />
         <input
@@ -130,14 +134,16 @@ const createAddress = async () => {
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
           v-model="buildingNumber"
+        
         />
       </div>
       <div class="flex space-x-4 mb-8">
         <input
           placeholder="Квартира *"
           class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-          type="text"
+          type="number"
           v-model="apartment"
+        
         />
       </div>
       <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
@@ -152,7 +158,7 @@ const createAddress = async () => {
       </button>
       <button
         class="bg-[#7747ff] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-red-600 transition duration-250"
-        @click="allStore.targetPage = ''"
+        @click="allStore.targetPage = '', allStore.headerText = 'Мои адреса для доставки'"
       >
         Вернуться назад
       </button>
