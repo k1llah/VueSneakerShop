@@ -46,7 +46,7 @@ watch(() => allStore.isOpened, (newValue) => {
 </script>
 
 <template>
-  <div class="flex m-auto mt-20 gap-16 justify-center flex-wrap">
+  <div class="flex m-auto mt-20 gap-16 justify-center flex-wrap" >
     <div class="flex items-center">
       <img v-if="profileImg"
         :src="'http://localhost:3001/img/tablet/'+ profileImg"

@@ -14,8 +14,18 @@ const postalCode = ref();
 const buildingNumber = ref("");
 const houseNumber = ref();
 const apartment = ref();
+const prevName = ref("");
+const prevLastName = ref("");
+const prevSurname = ref("");
+const prevCity = ref("");
+const prevStreet = ref("");
+const prevPhoneNumber = ref("");
+const prevPostalCode = ref();
+const prevBuildingNumber = ref("");
+const prevHouseNumber = ref();
+const prevApartment = ref();
 let warningAll = ref("");
-let dataAddress = ref()
+let dataAddress = ref();
 const correctDataInput = computed(
   () =>
     houseNumber.value !== null &&
@@ -28,23 +38,92 @@ const correctDataInput = computed(
     city.value.length >= 2 &&
     street.value.length >= 2
 );
+const isChanged = computed(
+	()=>
+		name.value !== prevName.value ||
+		lastName.value !== prevLastName.value ||
+		surname.value !== prevSurname.value ||
+		city.value !== prevCity.value ||
+		street.value !== prevStreet.value ||
+		phoneNumber.value !== prevPhoneNumber.value ||
+		postalCode.value !== prevPostalCode.value ||
+		buildingNumber.value !== prevBuildingNumber.value ||
+		houseNumber.value !== prevHouseNumber.value ||
+		apartment.value !== prevApartment.value
+	)
+const ChangeBack =
+	()=>{
+		name.value = prevName.value 
+		lastName.value = prevLastName.value 
+		surname.value = prevSurname.value
+		city.value = prevCity.value
+		street.value = prevStreet.value
+		phoneNumber.value = prevPhoneNumber.value
+		postalCode.value = prevPostalCode.value
+		buildingNumber.value = prevBuildingNumber.value
+		houseNumber.value = prevHouseNumber.value
+		apartment.value = prevApartment.value
+  }
 const editAddress = async () => {
   try {
-    const data = await axios.post(
-      "http://localhost:3001/api/get-address",
-      {
-        addressId: allStore.idAddress,
-        userId: localStorage.getItem("id"),
-      }
-			);
-			dataAddress.value = data
+    const data = await axios.post("http://localhost:3001/api/get-address", {
+      addressId: allStore.idAddress,
+      userId: localStorage.getItem("id"),
+    });
+    dataAddress.value = data.data;
+    name.value = dataAddress.value.firstName;
+    lastName.value = dataAddress.value.lastName;
+    surname.value = dataAddress.value.surname;
+    city.value = dataAddress.value.city;
+    street.value = dataAddress.value.street;
+    phoneNumber.value = dataAddress.value.phoneNumber;
+    postalCode.value = dataAddress.value.postalCode;
+    buildingNumber.value = dataAddress.value.buildingNumber;
+    houseNumber.value = dataAddress.value.houseNumber;
+    apartment.value = dataAddress.value.apartment;
+
+    prevName.value = dataAddress.value.firstName;
+    prevLastName.value = dataAddress.value.lastName;
+    prevSurname.value = dataAddress.value.surname;
+    prevCity.value = dataAddress.value.city;
+    prevStreet.value = dataAddress.value.street;
+    prevPhoneNumber.value = dataAddress.value.phoneNumber;
+    prevPostalCode.value = dataAddress.value.postalCode;
+    prevBuildingNumber.value = dataAddress.value.buildingNumber;
+    prevHouseNumber.value = dataAddress.value.houseNumber;
+    prevApartment.value = dataAddress.value.apartment;
   } catch (error) {
     console.log(error);
   }
-	console.log(allStore.idAddress, dataAddress.value);
+  console.log(allStore.idAddress, dataAddress.value);
 };
-editAddress()
+editAddress();
 console.log(allStore.idAddress, dataAddress.value);
+
+
+
+
+const updateAddress = async ()=>{
+  try{
+    const data = await axios.post('http://localhost:3001/api/update-address',{
+      id: allStore.idAddress,
+      userId: localStorage.getItem('id'),
+      firstName: name.value,
+      lastName: lastName.value,
+      surname: surname.value,
+      city: city.value,
+      street: street.value,
+      phoneNumber: phoneNumber.value,
+      postalCode: postalCode.value,
+      buildingNumber: buildingNumber.value,
+      houseNumber: houseNumber.value,
+      apartment: apartment.value
+    })
+    location.reload()
+  } catch(error){
+    console.log(error)
+  }
+}
 </script>
 <template>
   <div class="mt-16">
@@ -135,7 +214,10 @@ console.log(allStore.idAddress, dataAddress.value);
       <button
         class="cursor-pointer duration-200 hover:scale-125 active:scale-100"
         title="Go Back"
-        @click="allStore.targetPage = '', allStore.headerText = 'Мои адреса для доставки'"
+        @click="
+          (allStore.targetPage = ''),
+            (allStore.headerText = 'Мои адреса для доставки')
+        "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -152,16 +234,17 @@ console.log(allStore.idAddress, dataAddress.value);
           ></path>
         </svg>
       </button>
-      <button
-        class="bg-[#60d389] px-7 py-3 rounded-lg text-white text-sm font-normal hover:bg-green-700 transition duration-250"
-        @click="editAddress()"
+      
+			<button
+        class="bg-[#22c55e] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-green-600 transition duration-250" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
+        @click="updateAddress()"
       >
-        Создать адрес
+				Сохранить изменения
       </button>
 
       <button
-        class="bg-[#7747ff] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-red-600 transition duration-250"
-        @click=""
+        class="bg-[#7747ff] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-red-600 transition duration-250" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
+        @click="ChangeBack()"
       >
         Отменить изменения
       </button>

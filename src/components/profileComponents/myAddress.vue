@@ -47,7 +47,7 @@ let address = ref()
 			<h2 class="md:text-2xl sm:text-lg">Мои адреса</h2>
 
       <div
-        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll max-h-[500px] p-5"
+        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll max-h-[500px] p-5" v-auto-animate
 				
       >
         <addressComp v-for="addressData in address" 

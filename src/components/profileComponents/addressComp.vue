@@ -20,7 +20,17 @@ const props = defineProps({
 });
 
 const allStore = useAllStore();
+const deleteAddress = async()=>{
+  try{
+    const data = await axios.post('http://localhost:3001/api/delete-address',{
+      id: props.id,
+      userId: localStorage.getItem('id'),
+    })
 
+  } catch(error){
+    console.log(error)
+  }
+}
 </script>
 <template>
   <div class="bg-[#f4f4f5] md:max-w-[350px] rounded-xl p-5 mt-5 shadow">
@@ -92,6 +102,7 @@ const allStore = useAllStore();
         </button>
         <button
           class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 text-2xl rounded-xl"
+          @click="deleteAddress()"
         >
           🗑️
         </button>
