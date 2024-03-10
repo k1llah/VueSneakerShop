@@ -31,7 +31,7 @@ let address = ref()
 	console.log(allStore.idAddress, allStore.headerText)
 </script>
 <template>
-  <div class="flex md:gap-5 items-center">
+  <div class="flex md:gap-5 items-center sm:gap-2">
 		<div>
     <buttonProfile @click="allStore.targetPage = '', allStore.headerText = 'Мои адреса для доставки'" />
 	</div>
@@ -49,7 +49,7 @@ let address = ref()
 			<h2 class="md:text-2xl sm:text-lg">Мои адреса</h2>
 
       <div
-        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[400px] p-5" v-auto-animate
+        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[550px] p-5" v-auto-animate
 				
       >
         <addressComp v-for="addressData in address" 

@@ -126,35 +126,35 @@ const updateAddress = async ()=>{
 }
 </script>
 <template>
-  <div class="mt-16">
+  <div class="md:mt-16 sm:mt-8 overflow-scroll md:max-h-[auto] sm:max-h-[650px]">
     <form class="flex flex-col">
       <div class="flex flex-col gap-2 justify-center">
         <input
           placeholder="Фамилия *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
           type="text"
           v-model="lastName"
         />
 
         <input
           placeholder="Имя *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
           type="text"
           v-model="name"
         />
 
         <input
           placeholder="Отчество (при наличии)"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
           type="text"
           v-model="surname"
         />
       </div>
 
-      <div class="flex space-x-4 mb-8 mt-3">
+      <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Номер телефона *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="tel"
           v-model="phoneNumber"
           minlength="10"
@@ -162,16 +162,16 @@ const updateAddress = async ()=>{
 
         <input
           placeholder="Город *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
           v-model="city"
         />
       </div>
 
-      <div class="flex space-x-4 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Почтовый индекс *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
           v-model="postalCode"
           minlength="6"
@@ -179,30 +179,30 @@ const updateAddress = async ()=>{
 
         <input
           placeholder="Улица *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
           v-model="street"
           minlength="2"
         />
       </div>
-      <div class="flex space-x-4 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Дом *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
           v-model="houseNumber"
         />
         <input
           placeholder="Корпус"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
           v-model="buildingNumber"
         />
       </div>
-      <div class="flex space-x-4 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Квартира *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
           v-model="apartment"
         />
@@ -210,9 +210,9 @@ const updateAddress = async ()=>{
       <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
     </form>
 
-    <div class="flex gap-5 flex-wrap md:mt-8">
+    <div class="flex gap-5 sm:flex-wrap md:flex-nowrap md:mt-8">
       <button
-        class="cursor-pointer duration-200 hover:scale-125 active:scale-100"
+        class="cursor-pointer duration-200 hover:scale-125 active:scale-100 md:w-12 h-12 sm:w-8 sm:h-8"
         title="Go Back"
         @click="
           (allStore.targetPage = ''),
@@ -221,8 +221,7 @@ const updateAddress = async ()=>{
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
+          
           viewBox="0 0 24 24"
           class="stroke-blue-300"
         >
@@ -236,17 +235,23 @@ const updateAddress = async ()=>{
       </button>
       
 			<button
-        class="bg-[#22c55e] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-green-600 transition duration-250" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
+        class="bg-[#22c55e] px-4 py-2 rounded-lg text-white md:text-base font-normal sm:text-xs hover:bg-green-600 transition duration-250" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
         @click="updateAddress()"
       >
 				Сохранить изменения
       </button>
 
       <button
-        class="bg-[#7747ff] px-4 py-2 rounded-lg text-white text-sm font-normal hover:bg-red-600 transition duration-250" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
+        class="bg-[#7747ff] px-4 py-2 rounded-lg text-white md:text-base font-normal sm:text-xs hover:bg-red-600 transition duration-250 sm:hidden md:block" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
         @click="ChangeBack()"
       >
         Отменить изменения
+      </button>
+      <button
+        class="bg-[#7747ff] px-4 py-2 rounded-lg text-white md:text-base font-normal sm:text-xs hover:bg-red-600 transition duration-250 sm:block md:hidden" :class="{ 'cursor-not-allowed bg-slate-800 hover:cursor-not-allowed hover:bg-slate-800': !isChanged }"
+        @click="ChangeBack()"
+      >
+        Отменить
       </button>
     </div>
   </div>

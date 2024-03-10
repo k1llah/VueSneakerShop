@@ -12,7 +12,7 @@ target.value = localStorage.getItem('page')!;
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
   <div class="w-full flex justify-center">
-    <div class="bg-white md:w-[600px] md:h-[800px] sm:w-[300px] sm:h-[620px] fixed top-10 z-20 md:p-10 sm:p-5 m-auto">
+    <div class="bg-white md:w-[600px] md:h-[800px] sm:w-[80%] sm:h-[80%] fixed top-10 z-20 md:p-10 sm:p-5 m-auto">
 
       <div v-if="target == 'orders'">
 				<myOrders/>
