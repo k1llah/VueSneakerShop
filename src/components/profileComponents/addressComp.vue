@@ -33,75 +33,75 @@ const deleteAddress = async()=>{
 }
 </script>
 <template>
-  <div class="bg-[#f4f4f5] md:max-w-[350px] rounded-xl p-5 mt-5 shadow">
+  <div class="bg-[#f4f4f5] md:max-w-[350px] rounded-xl p-5 md:mt-5 sm:mt-2 shadow">
     <div class="flex flex-col md:text-[18px] sm:text-[14px]">
       <div class="flex flex-col gap-2 justify-around">
         <p>
           Фамилия:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             lastName
           }}</span>
         </p>
         <p>
           Имя:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             firstName
           }}</span>
         </p>
         <p>
           Отчество:
-          <span class="font-[600] text-base text-slate-500">{{ surname }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ surname }}</span>
         </p>
         <p>
           Номер телефона:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             phoneNumber
           }}</span>
         </p>
 
         <p>
           Город:
-          <span class="font-[600] text-base text-slate-500">{{ city }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ city }}</span>
         </p>
         <p>
           Почтовый индекс:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             postalCode
           }}</span>
         </p>
         <p>
           Улица:
-          <span class="font-[600] text-base text-slate-500">{{ street }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ street }}</span>
         </p>
         <p>
           Номер дома:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             houseNumber
           }}</span>
         </p>
 
         <p>
           Номер квартиры:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             apartment
           }}</span>
         </p>
         <p>
           Корпус:
-          <span class="font-[600] text-base text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
             buildingNumber
           }}</span>
         </p>
       </div>
-      <div class="flex justify-end gap-3">
+      <div class="flex justify-end md:gap-3 sm:gap-0">
         <button
-          class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 text-3xl rounded-xl"
+          class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-blue-400 md:text-3xl sm:text-xl rounded-xl"
           @click="allStore.targetPage = 'editAddress', allStore.idAddress = props.id!, allStore.headerText = 'Редактирование адреса'"
         >
           ⚙️
         </button>
         <button
-          class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 text-2xl rounded-xl"
+          class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 md:text-2xl sm:text-xl rounded-xl"
           @click="deleteAddress()"
         >
           🗑️
