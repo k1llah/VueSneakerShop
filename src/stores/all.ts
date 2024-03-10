@@ -47,22 +47,6 @@ export const useAllStore = defineStore({
       }
     },
 
-    getAddresses: async function () {
-      const id = localStorage.getItem("id");
-      const uuid = localStorage.getItem("uuid");
-      try {
-        const response = await axios.post(
-          "http://localhost:3001/api/get-addresses",
-          {
-            userId: id,
-            uuid: uuid,
-          }
-        );
-        const addressData = response.data;
-        return addressData;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    
   },
 });

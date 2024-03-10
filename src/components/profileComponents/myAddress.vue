@@ -21,6 +21,7 @@ let address = ref()
 			})
 			address.value = data.data
 			console.log(address.value)
+			isAddress.value = address.value.length > 0;
 		} catch(error){
 			console.log(error)
 		}
@@ -50,7 +51,7 @@ let address = ref()
 
       <div
         class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[550px] p-5" v-auto-animate
-				
+				v-if="isAddress == true"
       >
         <addressComp v-for="addressData in address" 
 				:key="address"
@@ -70,7 +71,7 @@ let address = ref()
 
       <div
         class="w-full flex justify-center items-center md:min-h-[500px]"
-        v-if="isAddress == true"
+        v-if="isAddress == false"
       >
         <p class="md:text-[20px] sm:text-[18px]">
           У вас нет добавленных адресов
