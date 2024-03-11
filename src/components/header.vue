@@ -4,15 +4,20 @@
 }
 </style>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import {useSneaker} from '@/stores/sneaker'
+import {useAllStore} from '@/stores/all'
 import burger from '@/components/burger.vue'
 const sneakerStore = useSneaker()
-
+const allStore = useAllStore()
 let toggleShow = () => {
   sneakerStore.show = !sneakerStore.show
   console.log(sneakerStore.show)
 }
+const cartIds = ref([]as any)
+onMounted(()=>{
+  cartIds.value = JSON.parse(localStorage.cart)
+})
 </script>
 <template>
     <header class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden">
@@ -41,7 +46,7 @@ let toggleShow = () => {
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow()" 
       >
         <img src="/cart.svg" alt="Cart" />
-        <p class="text-[18px] font-[500] md:hidden lg:block" >205 Руб</p>
+        <p class="text-[14px] font-[500] mt-[-22px] ml-[-10px]" >{{ cartIds.length ? '' + cartIds.length + '' : '' }}</p>
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"

@@ -36,8 +36,10 @@ export const useAllStore = defineStore({
     targetPage: '',
     headerText: 'Мои адреса для доставки',
     idAddress: 0 as number,
-    toCartItem: [],
+    toCartItem: [] as any[],
+    toCartItemIds: [] as number[],
     isOpenedFeedBack: false,
+    
   }),
   actions: {
     getBrandImageUrl(brandName: string): string {
@@ -48,18 +50,16 @@ export const useAllStore = defineStore({
         return "";
       }
     },
-    async addToCart(sneakerId:number){
-      try{
-     const data = await axios.post('http://localhost:3001/api/add-to-cart',{
-      id: sneakerId,
-      userId: localStorage.getItem('id')
-     })
-     this.toCartItem = data.data
-     console.log(this.toCartItem)
-    } catch(error){
-      console.log(error)
-      console.log(this.idShoe)
-    }
+    async addToCart(sneakerId:number, isAdded: boolean) {
+      this.toCartItemIds.push(sneakerId)
+      localStorage.cart = JSON.stringify(this.toCartItemIds)
+      console.log(this.toCartItemIds)
+      isAdded = true
+    //  const data = await axios.post('http://localhost:3001/api/add-to-cart',{
+    //   sneakerId,
+    //   userId: localStorage.getItem('id')
+    //  })
+    //  this.toCartItem = data.data
     }
     
   },

@@ -1,9 +1,16 @@
 <script setup script lang="ts">
 import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
+import axios from 'axios'
+import { onMounted, ref } from 'vue'
 
-
-
+const cartItems = ref([] as any)
+onMounted(async ()=>{
+	const {data} = await axios.get(`http://localhost:3001/api`);
+	const cartIds = JSON.parse(localStorage.cart)
+	cartItems.value = cartIds.map((id: number) => data.find((item: any) => item.id == id))
+	console.log(cartItems.value)
+})
 </script>
 
 <template>

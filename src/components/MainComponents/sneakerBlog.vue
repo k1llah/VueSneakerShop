@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
+import { ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import gsap from "gsap";
 import scrollComponent from "./scrollComponent.vue";
 const content = ref();
@@ -17,6 +17,11 @@ onMounted(() => {
 
   window.addEventListener("scroll", handleScroll);
 });
+
+onBeforeUnmount(()=>{
+  window.removeEventListener("scroll", handleScroll);
+
+})
 
 const handleScroll = () => {
   const contentPosition = content.value.getBoundingClientRect().top;

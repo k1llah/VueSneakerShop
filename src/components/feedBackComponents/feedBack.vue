@@ -7,15 +7,7 @@
 	console.log(allStore.isOpenedFeedBack)
 </script>
 <template >
-<div class="flex flex-col items-center mt-12 container p-10 h-full">
-<templateFeedBack/>
-
-</div>
-<div v-if="allStore.isOpenedFeedBack == true">
-<modalFeedback/>
-</div>
-
-<div>
+  <div class="flex justify-end pr-10">
     <button class="cssbuttons-io-button" @click="allStore.isOpenedFeedBack = true">
   Оставить отзыв
   <div class="icon">
@@ -35,6 +27,17 @@
 </button>
 
   </div>
+<div class="flex flex-col items-center mt-12 container-bg p-10 h-full">
+  
+<templateFeedBack :rate="5"/>
+
+</div>
+<div v-if="allStore.isOpenedFeedBack == true">
+  
+<modalFeedback/>
+</div>
+
+
 </template>
 
 
@@ -47,7 +50,7 @@
 
 
 <style scoped>
-.container {
+.container-bg {
   width: 100%;
   height: 100%;
   --s: 60px;

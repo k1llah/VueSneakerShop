@@ -1,5 +1,10 @@
 <script setup lang="ts">
 	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
+  import { ref } from 'vue';
+  import axios from 'axios';
+  const textValue = ref('');
+  const imageFeedback = ref();
+  
 </script>
 <template >
 
