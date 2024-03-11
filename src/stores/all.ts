@@ -36,7 +36,8 @@ export const useAllStore = defineStore({
     targetPage: '',
     headerText: 'Мои адреса для доставки',
     idAddress: 0 as number,
-    toCartItem: []
+    toCartItem: [],
+    isOpenedFeedBack: false,
   }),
   actions: {
     getBrandImageUrl(brandName: string): string {

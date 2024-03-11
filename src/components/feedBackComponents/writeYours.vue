@@ -5,9 +5,39 @@
 
 
 
-<div>
-	<div class="form-container">
+<div class="flex justify-center mt-16">
+	<div class="form-container ">
       <form class="form">
+        <div class="flex gap-5">
+      <p class="md:text-lg sm:text-base">Загрузить фото для отзыва</p>
+      <label for="upload-button" class="cursor-pointer">
+        <div
+          class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
+        >
+          <svg
+            class="md:w-4 md:h-4 sm:w-2 sm:h-2" 
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </div>
+        <input
+          id="upload-button"
+          type="file"
+          class="hidden"
+          accept="image/*"
+          @change=""
+        />
+      </label>
+    </div>
         <div class="form-group">
           <label for="email">Company Email</label>
           <input name="email" id="email" type="text">

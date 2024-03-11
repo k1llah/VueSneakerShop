@@ -11,128 +11,125 @@ const props = defineProps({
 const stars = [1, 2, 3, 4, 5];
 </script>
 <template>
-  <div class="">
+  
+    <div
+      class="w-80 p-4 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out flex flex-col justify-center gap-5 bg-[#eff6ff]"
+    >
+      <h2 class="text-xl font-semibold">{{ props.author }} Author</h2>
+      <img
+        class="w-full h-40 object-cover rounded-t-lg"
+        alt="Card Image"
+        src="/sneakers/conv.jpeg"
+      
+      />
+      <div class="p-4">
+        <p class="text-gray-600">
+          {{ props.text }}
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
+          ante sit amet tellus ornare tincidunt.
+        </p>
 
-  <div class="flex flex-col gap-6 border-2 border-slate-300 p-10 rounded-xl bg-[#e5e7eb] max-w-[350px] justify-center items-center m-auto shadow">
-		<div class="w-full">
-			<p class="text-xl pb-3">
-				{{ author }}
-        Автор - какой то чел
-			</p>
-			<img src="/sneakers/conv.jpeg"  alt="sneaker" class="w-full h-64 p-2 m-auto" />
-			<p class="text-lg mt-3">
-				{{ text }}
-				лучший магазин очень доволен покупкой хотел бы купить еще, смело советую всем знакомым!!
-			</p>
-		</div>
-    <div>
-      <div class="radio-input">
-        <input
-          value="value-1"
-          name="value-radio"
-          id="value-1"
-          type="radio"
-          class="star s1"
-        />
-        <input
-          value="value-2"
-          name="value-radio"
-          id="value-2"
-          type="radio"
-          class="star s2"
-        />
-        <input
-          value="value-3"
-          name="value-radio"
-          id="value-3"
-          type="radio"
-          class="star s3"
-        />
-        <input
-          value="value-4"
-          name="value-radio"
-          id="value-4"
-          type="radio"
-          class="star s4"
-        />
-        <input
-          value="value-5"
-          name="value-radio"
-          id="value-5"
-          type="radio"
-          class="star s5"
-        />
+        <div class="rating">
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text"
+            ><svg
+              viewBox="0 0 576 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="star-solid"
+            >
+              <path
+                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              ></path></svg
+          ></label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text"
+            ><svg
+              viewBox="0 0 576 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="star-solid"
+            >
+              <path
+                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              ></path></svg
+          ></label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text"
+            ><svg
+              viewBox="0 0 576 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="star-solid"
+            >
+              <path
+                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              ></path></svg
+          ></label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text"
+            ><svg
+              viewBox="0 0 576 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="star-solid"
+            >
+              <path
+                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              ></path></svg
+          ></label>
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text"
+            ><svg
+              viewBox="0 0 576 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="star-solid"
+            >
+              <path
+                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              ></path></svg
+          ></label>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+  
 </template>
 
 <style scoped>
-.radio-input {
-  display: flex;
-  scale: 0.15;
-  transform: rotate(180deg);
-}
-
-.star {
-  margin: 1em;
+.rating:not(:checked) > input {
+  position: absolute;
   appearance: none;
-  --color: white;
-  border-left: 6.4721359549996em solid transparent;
-  border-right: 6.4721359549996em solid transparent;
-  border-bottom: 4em solid var(--color);
-  transform: rotate(0deg);
+}
+
+.rating:not(:checked) > label {
+  float: right;
   cursor: pointer;
+  font-size: 30px;
+  fill: #666;
 }
 
-.star:before {
-  content: "";
-  border-left: 6.4721359549996em solid transparent;
-  border-right: 6.4721359549996em solid transparent;
-  border-top: 4em solid var(--color);
-  position: absolute;
-  left: -6.4721359549996em;
-  transform: rotate(108deg);
+.rating:not(:checked) > label > svg {
+  fill: #666; 
+  transition: fill 0.3s ease; 
 }
 
-.star:after {
-  content: "";
-  border-left: 6.4721359549996em solid transparent;
-  border-right: 6.4721359549996em solid transparent;
-  border-top: 4em solid var(--color);
-  position: absolute;
-  left: -6.4721359549996em;
-  transform: rotate(253deg);
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  fill: #e58e09;
 }
 
-.radio-input > .star:hover ~ .star,
-.radio-input > .star:hover,
-.radio-input > .star:checked ~ .star,
-.radio-input > .star:checked {
-  --color: yellow;
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  fill: #ff9e0b;
 }
 
-.radio-input > .star:checked ~ .star,
-.radio-input > .star:checked {
-  animation: rotate 0.5s linear forwards;
-  transform: rotate(360deg);
-  transition: transform 0.3s;
+.rating > input:checked ~ label > svg {
+  fill: #ffa723; 
 }
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    scale: 1.5;
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.shadow{
-  -webkit-box-shadow: -4px 17px 47px 12px rgba(34, 60, 80, 0.25);
--moz-box-shadow: -4px 17px 47px 12px rgba(34, 60, 80, 0.25);
-box-shadow: -4px 17px 47px 12px rgba(34, 60, 80, 0.25);
-}
+
 </style>
