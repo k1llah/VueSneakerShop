@@ -22,6 +22,7 @@ defineProps({
 });
 const allStore = useAllStore()
 let paramsId = allStore.idShoe
+const onclickAdd = allStore.addToCart
 const onClickAdd = () => {};
 const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
@@ -67,7 +68,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :price="item.price"
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
-        :on-click-add="onClickAdd"
+        :on-click-add="() => onclickAdd(item.id)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
       />

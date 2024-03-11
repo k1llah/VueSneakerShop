@@ -42,6 +42,11 @@ const router = createRouter({
 		path: `/description`,
 		component: () => import('./view/View_sneakerDs.vue')
 	},
+	{
+		name: 'feedback',
+		path: `/feedback`,
+		component: () => import('./view/View_feedback.vue')
+	},
 ]
 })
 const pinia = createPinia()
