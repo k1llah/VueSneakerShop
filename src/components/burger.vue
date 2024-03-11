@@ -39,16 +39,14 @@ const toggleDropdown = (index: number) => {
       <router-link to="/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
-      <img
-        src="/list.png"
-        class="max-w-[40px]"
-        alt=""
-        @click="toggleDropdown(0)"
-        :class="{
-          'rotate-[-90deg] transition-all duration-500': dropdowns[0],
-          'rotate-0 transition-all duration-500': !dropdowns[0],
-        }"
-      />
+      <input type="checkbox" id="checkbox" @click="toggleDropdown(0)">
+    <label for="checkbox" class="toggle">
+        <div class="bars" id="bar1"></div>
+        <div class="bars" id="bar2"></div>
+        <div class="bars" id="bar3"></div>
+    </label>
+
+
     </div>
 
     <div
@@ -91,3 +89,53 @@ const toggleDropdown = (index: number) => {
     </div>
   </div>
 </template>
+<style scoped>
+#checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: .3s;
+}
+
+.bars {
+  width: 100%;
+  height: 4px;
+  background-color: #abcfff;
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+#checkbox:checked + .toggle .bars {
+  margin-left: 13px;
+}
+
+#checkbox:checked + .toggle #bar2 {
+  transform: rotate(135deg);
+  margin-left: 0;
+  transform-origin: center;
+  transition-duration: .3s;
+}
+
+#checkbox:checked + .toggle #bar1 {
+  transform: rotate(45deg);
+  transition-duration: .3s;
+  transform-origin: left center;
+}
+
+#checkbox:checked + .toggle #bar3 {
+  transform: rotate(-45deg);
+  transition-duration: .3s;
+  transform-origin: left center;
+}
+
+</style>
