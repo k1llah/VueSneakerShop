@@ -14,10 +14,10 @@ let toggleShow = () => {
   sneakerStore.show = !sneakerStore.show
   console.log(sneakerStore.show)
 }
-const cartIds = ref([]as any)
-onMounted(()=>{
-  cartIds.value = JSON.parse(localStorage.cart)
-})
+// const cartIds = ref([]as any)
+// onMounted(()=>{
+//   cartIds.value = JSON.parse(localStorage.cart)
+// })
 </script>
 <template>
     <header class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden">
@@ -35,7 +35,7 @@ onMounted(()=>{
         <router-link to="/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
-        <h2 class=" font-medium uppercase lg:text-xl lbick md:text-base hidden sm:text-base">Benz Shöp</h2>
+        <h2 class=" font-medium uppercase lg:text-xl md:text-base hidden sm:text-base">Benz Shöp</h2>
         <router-link to="/sneakers_page">
         <p class="text-slate-700  hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm">Все кроссовки</p>
       </router-link>
@@ -46,7 +46,7 @@ onMounted(()=>{
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow()" 
       >
         <img src="/cart.svg" alt="Cart" />
-        <p class="text-[14px] font-[500] mt-[-22px] ml-[-10px]" >{{ cartIds.length ? '' + cartIds.length + '' : '' }}</p>
+        <p class="text-[14px] font-[500] mt-[-22px] ml-[-10px]" ></p>
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"

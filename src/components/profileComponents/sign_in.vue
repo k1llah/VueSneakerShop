@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
-import { checkAuth, isAuthenticated, currentUser } from '@/auth';
+import { currentUser } from '@/auth';
+
 import md5 from 'md5';
 import profileData from './profile_data.vue'
-
+import { useAuthStore } from '@/stores/authData';
 const email = ref('');
 const password = ref('');
 const formReport = ref('')
+const authStore = useAuthStore()
 const logInFunc = async (event:any) => {
   event.preventDefault()
   const email = document.getElementById('email') as HTMLInputElement
@@ -22,10 +24,14 @@ const logInFunc = async (event:any) => {
     if(data.data){
       localStorage.setItem('id', data.data.user.id)
       localStorage.setItem('uuid', data.data.user.uuid)
+      authStore.id = data.data.user.id
+      authStore.uuid = data.data.user.uuid
+      authStore.role = data.data.user.role
+      console.log(authStore)
       email.value = ''
       password.value = ''
       formReport.value = ''
-      checkAuth() 
+      authStore.checkAuth()
     }
   } 
   catch(error){
@@ -41,7 +47,7 @@ const logInFunc = async (event:any) => {
 <template>
   <div
     class="max-w-[330px] m-auto relative flex flex-col p-4 rounded-md text-black bg-white"
-    v-if="isAuthenticated == false"
+    v-if="authStore.isAuthenticated == false"
   >
   <div class="flex mt-[50px] flex-col justify-center items-center">
 			<h3 class="text-[28px] font-light">
@@ -100,7 +106,7 @@ const logInFunc = async (event:any) => {
   </div>
 
 
-  <div class="p-5" v-if="isAuthenticated == true"> 
+  <div class="p-5" v-if="authStore.isAuthenticated == true"> 
     <profile-data/>
   </div>
 </template>

@@ -3,7 +3,8 @@ import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
-import { checkAuth, isAuthenticated, currentUser } from '@/auth';
+import { currentUser } from '@/auth';
+import { useAuthStore } from '@/stores/authData';
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);
 const passwordLengthValid = ref(true);
@@ -15,8 +16,8 @@ const textSuccessSignUp = ref("");
 let timer = ref(5);
 const isTimerStarted = ref(false);
 let localStorageMatch = ref(false);
-
-if(isAuthenticated.value == true && currentUser != null){
+const authStore = useAuthStore();
+if(authStore.isAuthenticated == true && authStore.currentUser != ({ id: '', uuid: '' })){
   isSuccessSignUp.value = true
   textSuccessSignUp.value = 'Вы уже зарегистрированы 🤭'
 }
@@ -72,6 +73,8 @@ const submitForm = async (event: Event) => {
       const infoUser = await create.data;
       localStorage.id = infoUser.id;
       localStorage.uuid = infoUser.uuid;
+      authStore.id = infoUser.id
+      authStore.uuid = infoUser.uuid
       startTimer();
       isTimerStarted.value = true
       localStorageMatch.value = true;
@@ -94,7 +97,7 @@ const submitForm = async (event: Event) => {
 // Вызываем clickSubmit при монтировании компонента
 onMounted(() => {
   submitForm;
-  checkAuth();
+  authStore.checkAuth();
 });
 </script>
 <template>

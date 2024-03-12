@@ -23,7 +23,7 @@ defineProps({
 const allStore = useAllStore()
 let paramsId = allStore.idShoe
 const onclickAdd = allStore.addToCart
-const onClickAdd = () => {};
+const onClickAdd = () =>{}
 const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
   paramsId = sneakerId

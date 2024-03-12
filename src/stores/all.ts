@@ -50,11 +50,11 @@ export const useAllStore = defineStore({
         return "";
       }
     },
-    async addToCart(sneakerId:number, isAdded: boolean) {
-      this.toCartItemIds.push(sneakerId)
-      localStorage.cart = JSON.stringify(this.toCartItemIds)
-      console.log(this.toCartItemIds)
-      isAdded = true
+    async addToCart(sneakerId:number) {
+      // this.toCartItemIds.push(sneakerId)
+      // localStorage.cart = JSON.stringify(this.toCartItemIds)
+      // console.log(this.toCartItemIds)
+   
     //  const data = await axios.post('http://localhost:3001/api/add-to-cart',{
     //   sneakerId,
     //   userId: localStorage.getItem('id')

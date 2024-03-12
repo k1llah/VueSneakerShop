@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {isAuthenticated, logOut } from '@/auth';
 import sign_in from "@/components/profileComponents/sign_in.vue";
 import buttonBack from '@/components/buttonBack.vue';
+import { useAuthStore } from '@/stores/authData';
+const authStore = useAuthStore()
 </script>
 <template>
   <div class="min-h-[600px]">
@@ -11,10 +12,10 @@ import buttonBack from '@/components/buttonBack.vue';
       <h2 class="md:text-3xl sm:text-2xl">Профиль</h2>
     </div>
 
-      <div v-if="isAuthenticated == true">
+      <div v-if="authStore.isAuthenticated == true">
         <button 
           class="group flex items-center justify-start w-10 h-10 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-900 shadow-lg hover:w-[115px] hover:rounded-[20px] active:translate-x-1 active:translate-y-1 md:mr-[30px] sm:mr-[15px]"
-          @click="logOut()"
+          @click="authStore.logOut()"
         >
           <div
             class="flex items-center justify-center w-full transition-all duration-1200 group-hover:justify-start group-hover:px-3"

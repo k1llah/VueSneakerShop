@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { isAuthenticated } from "@/auth";
 import axios from "axios";
 import { onMounted, watch } from "vue";
 import buttonBack from '@/components/buttonBack.vue';
 import FavList from "@/components/cardsComponents/Fav-list.vue";
-
+import{ useAuthStore } from '@/stores/authData';
+const authStore = useAuthStore();
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);
 
@@ -41,12 +41,12 @@ favorites();
         </div>
       </div>
 
-      <div v-if="isAuthenticated == true && isFav == true" class="mt-[30px]">
+      <div v-if="authStore.isAuthenticated == true && isFav == true" class="mt-[30px]">
         <FavList :items="items" />
       </div>
 
       <div
-        v-else-if="isAuthenticated == true && isFav == false"
+        v-else-if="authStore.isAuthenticated == true && isFav == false"
         class="flex flex-col justify-center items-center h-[500px]"
       >
         <div class="w-[500px] text-center">
@@ -59,7 +59,7 @@ favorites();
       </div>
 
       <div
-        v-else="isAuthenticated == false"
+        v-else="authStore.isAuthenticated == false"
         class="flex flex-col justify-center items-center h-[500px]"
       >
         <div class="w-[500px] text-center">

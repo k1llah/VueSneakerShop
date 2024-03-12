@@ -7,12 +7,13 @@ const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
 const profileImg = ref("")
-import { isAuthenticated } from "@/auth";
-
+import {  } from "@/auth";
+import { useAuthStore } from '@/stores/authData';
+const authStore = useAuthStore();
 const getData = async function () {
   const uuid = localStorage.getItem("uuid");
   const id = localStorage.getItem("id");
-  if (isAuthenticated.value == true) {
+  if (authStore.isAuthenticated == true) {
     try {
       const data = await axios.post("http://localhost:3001/api/get-data", {
         uuid,
@@ -23,9 +24,14 @@ const getData = async function () {
       lastName.value = data.data.user.last_name;
       profileImg.value = data.data.user.profileImg
       console.log(profileImg.value)
+
     } catch (error) {
-      console.log(error);
+      console.log(error,authStore.isAuthenticated);
+      authStore.isAuthenticated = false
+      
     }
+  }else {
+    authStore.isAuthenticated = false
   }
 };
 getData();
