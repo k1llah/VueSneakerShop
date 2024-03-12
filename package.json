@@ -1,7 +1,7 @@
 {
   "name": "vuesneakershop",
   "version": "0.0.0",
-  "homepage": "https://k1llah.github.io/VueSneakerShop",
+  
   "private": true,
   "type": "module",
   "scripts": {
