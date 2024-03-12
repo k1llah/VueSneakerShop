@@ -4,11 +4,10 @@ import axios from 'axios';
 import { checkAuth, isAuthenticated, currentUser } from '@/auth';
 import md5 from 'md5';
 import profileData from './profile_data.vue'
-import { useAuthStore } from '@/stores/authData'
+
 const email = ref('');
 const password = ref('');
 const formReport = ref('')
-const authStore = useAuthStore()
 const logInFunc = async (event:any) => {
   event.preventDefault()
   const email = document.getElementById('email') as HTMLInputElement
@@ -21,9 +20,8 @@ const logInFunc = async (event:any) => {
     })
     
     if(data.data){
-      authStore.id = data.data.id
-      authStore.uuid = data.data.uuid
-      authStore.role = data.data.role
+      localStorage.setItem('id', data.data.user.id)
+      localStorage.setItem('uuid', data.data.user.uuid)
       email.value = ''
       password.value = ''
       formReport.value = ''
@@ -106,4 +104,3 @@ const logInFunc = async (event:any) => {
     <profile-data/>
   </div>
 </template>
-

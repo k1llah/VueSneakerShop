@@ -16,7 +16,6 @@ let timer = ref(5);
 const isTimerStarted = ref(false);
 let localStorageMatch = ref(false);
 
-
 if(isAuthenticated.value == true && currentUser != null){
   isSuccessSignUp.value = true
   textSuccessSignUp.value = 'Вы уже зарегистрированы 🤭'
@@ -73,7 +72,6 @@ const submitForm = async (event: Event) => {
       const infoUser = await create.data;
       localStorage.id = infoUser.id;
       localStorage.uuid = infoUser.uuid;
-      localStorage.role = infoUser.role
       startTimer();
       isTimerStarted.value = true
       localStorageMatch.value = true;
