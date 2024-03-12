@@ -3,7 +3,6 @@ import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
-import { currentUser } from '@/auth';
 import { useAuthStore } from '@/stores/authData';
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);

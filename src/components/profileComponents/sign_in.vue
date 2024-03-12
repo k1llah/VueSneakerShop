@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
-import { currentUser } from '@/auth';
 
 import md5 from 'md5';
 import profileData from './profile_data.vue'

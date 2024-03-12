@@ -7,7 +7,7 @@ const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
 const profileImg = ref("")
-import {  } from "@/auth";
+
 import { useAuthStore } from '@/stores/authData';
 const authStore = useAuthStore();
 const getData = async function () {
