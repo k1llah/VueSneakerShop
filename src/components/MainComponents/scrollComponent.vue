@@ -70,7 +70,7 @@ const toggleDropdown = (index: number) => {
 <template>
   <div class="md:mt-36 sm:mt-20" ref="content">
     <h3
-      class="text-center sm:text-2xl md:text-5xl "
+      class="text-center sm:text-3xl md:text-5xl "
       ref="title"
       :class="{ 'hidden-text': !isVisible }"
     >
