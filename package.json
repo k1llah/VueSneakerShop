@@ -1,13 +1,14 @@
 {
   "name": "vuesneakershop",
   "version": "0.0.0",
+  "homepage": "https://k1llah.github.io/VueSneakerShop",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d build",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
