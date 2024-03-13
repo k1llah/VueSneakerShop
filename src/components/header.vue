@@ -32,11 +32,11 @@ let toggleShow = () => {
   <header class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex">
     <div class="">
       <div class="flex items-center md:gap-10 lg:gap-4">
-        <router-link to="main">
+        <router-link to="/VueSneakerShop/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
         <h2 class=" font-medium uppercase lg:text-xl md:text-base hidden sm:text-base">Benz Shöp</h2>
-        <router-link to="sneakers_page">
+        <router-link to="Sneakers_page">
         <p class="text-slate-700  hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm">Все кроссовки</p>
       </router-link>
       </div>

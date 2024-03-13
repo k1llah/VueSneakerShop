@@ -21,7 +21,7 @@
 <template>
 
   <div class="flex md:gap-20 sm:gap-0 justify-center md:mt-36 sm:mt-24 flex-wrap">
-		<router-link to="gender">
+		<router-link to="Gender">
     <div class="relative hover:scale-[1.05] transition-all 1.3s" @click="setGender('man')">
       <div class="absolute inset-0 bg-black opacity-50 z-10 hover:opacity-0 transition-all 1.1s cursor-pointer"></div>
       <div class="md:w-[350px] md:h-[450px] sm:w-[320px] sm:h-[370px] flex justify-center bg-cover items-end" style="background-image: url('/Nike.jpeg');"  >
@@ -30,7 +30,7 @@
     </div>
 	</router-link>
 
-		<router-link to="gender">
+		<router-link to="Gender">
     <div class="relative hover:scale-[1.05] transition-all 1.3s" @click="setGender('woman')" >
       <div class="absolute inset-0 bg-black opacity-50 z-10 hover:opacity-0 transition-all 1.1s"></div>
       <div class="md:w-[350px] md:h-[450px] sm:w-[320px] sm:h-[370px] flex justify-center bg-cover items-end" style="background-image: url('/womansPart.jpeg');" >

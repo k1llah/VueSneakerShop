@@ -217,7 +217,7 @@ onMounted(() => {
       </button>
       <div class="text-sm text-center mt-[1.6rem]">
         Уже есть аккаунт?
-        <router-link to="profile">
+        <router-link to="Profile">
           <p class="text-sm text-[#7747ff]">Войдите!</p>
         </router-link>
       </div>

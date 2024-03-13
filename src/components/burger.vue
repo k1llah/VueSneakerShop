@@ -36,7 +36,7 @@ const toggleDropdown = (index: number) => {
 <template>
   <div class="w-full overflow-hidden">
     <div class="flex justify-between w-full items-center">
-      <router-link to="main">
+      <router-link to="/VueSneakerShop/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
       <input type="checkbox" id="checkbox" @click="toggleDropdown(0)">
@@ -56,7 +56,7 @@ const toggleDropdown = (index: number) => {
     >
       <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12">
         <li class="border-b-2 border-slate-300 w-full flex justify-center pb-2">
-          <router-link to="sneakers_page">
+          <router-link to="Sneakers_page">
             <p 
               class="text-slate-900 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-base"
             >
