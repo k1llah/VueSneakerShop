@@ -9,42 +9,42 @@ import { useGenderStore } from '@/stores/separate';
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [{
-		name: 'Main',
-		path: '/VueSneakerShop/',
+		name: 'main',
+		path: '/',
 		component: () => import('./view/View_main.vue')
 	},{
 		name: 'Purchases',
-		path: '/VueSneakerShop/purchases',
+		path: '/purchases',
 		component: () => import('./view/View_favorites.vue')
 	}
 	,{
 		name: 'Profile',
-		path: '/VueSneakerShop/profile',
+		path: '/profile',
 		component: () => import('./view/profile_user.vue')
 	}
 	,{
 		name: 'Sign_up',
-		path: '/VueSneakerShop/sign_up',
+		path: '/sign_up',
 		component: () => import('./view/View_signUp.vue')
 	},
 	{
 		name: 'Sneakers_page',
-		path: '/VueSneakerShop/sneakers_page',
+		path: '/sneakers_page',
 		component: () => import('./view/CardListView.vue')
 	},
 	{
-		name: 'Gender',
-		path: `/VueSneakerShop/gender`,
+		name: 'gender',
+		path: `/gender`,
 		component: () => import('./view/View_gender.vue')
 	},
 	{
-		name: 'Description',
-		path: `/VueSneakerShop/description`,
+		name: 'description',
+		path: `/description`,
 		component: () => import('./view/View_sneakerDs.vue')
 	},
 	{
-		name: 'Feedback',
-		path: `/VueSneakerShop/feedback`,
+		name: 'feedback',
+		path: `/feedback`,
 		component: () => import('./view/View_feedback.vue')
 	},
 ]
