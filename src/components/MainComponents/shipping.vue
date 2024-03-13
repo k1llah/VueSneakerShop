@@ -15,7 +15,7 @@
         При заказе доставки по Москве и за МКАД (до бетонного кольца) ты можешь заказать два размера одного товара для примерки и выбрать тот, что подошёл.
       </p>
     </div>
-    <div class="mt-10 flex justify-center items-center flex-wrap md:gap-0 sm: gap-10">
+    <div class="mt-10 flex justify-center items-center md:flex-nowrap sm:flex-wrap md:gap-0 sm: gap-10">
        <h2 class="md:text-2xl sm:text-xl max-w-fit text-balance"><span class="text-[#7747ff]">Оставьте отзыв о нашем магазине</span> или посмотрите что пишут о нас другие покупатели</h2>
        <div>
 

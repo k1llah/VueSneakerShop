@@ -2,14 +2,13 @@
 	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
   import { ref } from 'vue';
   import axios from 'axios';
+  import stars from './stars.vue';
   const textValue = ref('');
   const imageFeedback = ref();
-  
+
+  const rate = ref(0);
 </script>
-<template >
-
-
-
+<template > 
 <div class="flex justify-center mt-16">
 	<div class="form-container ">
       <form class="form">
@@ -43,15 +42,14 @@
         />
       </label>
     </div>
+        
         <div class="form-group">
-          <label for="email">Company Email</label>
-          <input name="email" id="email" type="text">
-        </div>
-        <div class="form-group">
-          <label for="textarea">How Can We Help You?</label>
+          <label for="textarea">Комментарий</label>
           <textarea cols="50" rows="10" id="textarea" name="textarea">          </textarea>
         </div>
-        <button type="submit" class="form-submit-btn">Submit</button>
+        
+        <stars></stars>
+        <button  class="form-submit-btn">Отправить</button>
       </form>
     </div>
 </div>
@@ -176,4 +174,4 @@
 
 
 
-</style>
+</style> 

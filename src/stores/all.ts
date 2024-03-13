@@ -49,18 +49,18 @@ export const useAllStore = defineStore({
       } else {
         return "";
       }
-    },
-    async addToCart(sneakerId:number) {
-      // this.toCartItemIds.push(sneakerId)
-      // localStorage.cart = JSON.stringify(this.toCartItemIds)
-      // console.log(this.toCartItemIds)
-   
-    //  const data = await axios.post('http://localhost:3001/api/add-to-cart',{
-    //   sneakerId,
-    //   userId: localStorage.getItem('id')
-    //  })
-    //  this.toCartItem = data.data
     }
+    // async addToCart(sneakerId:number) {
+    //   // this.toCartItemIds.push(sneakerId)
+    //   // localStorage.cart = JSON.stringify(this.toCartItemIds)
+    //   // console.log(this.toCartItemIds)
+   
+    // //  const data = await axios.post('http://localhost:3001/api/add-to-cart',{
+    // //   sneakerId,
+    // //   userId: localStorage.getItem('id')
+    // //  })
+    // //  this.toCartItem = data.data
+    // }
     
   },
 });

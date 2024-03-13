@@ -23,6 +23,9 @@ const favorites = async () => {
     items.value.forEach((el:any) => {
       el.isFavorite = true
     })
+    if(items.value.length == 0){
+      isFav.value = false
+    }
   } catch (error) {
     console.log(error);
   }
@@ -49,7 +52,7 @@ favorites();
         v-else-if="authStore.isAuthenticated == true && isFav == false"
         class="flex flex-col justify-center items-center h-[500px]"
       >
-        <div class="w-[500px] text-center">
+        <div class="md:w-[500px] sm:w-auto text-center">
           <h1 class="text-2xl">
             К сожалению у вас нет добавленных
             <span class="text-2xl text-[#7747ff]">избранных</span> товаров

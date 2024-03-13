@@ -3,6 +3,7 @@ import { ref } from "vue";
 import buttonBack from "@/components/buttonBack.vue";
 import { useAllStore } from "@/stores/all";
 import writeYours from "./writeYours.vue";
+import stars from './stars.vue';
 const allStore = useAllStore();
 
 console.log(allStore.isOpenedFeedBack);
@@ -35,6 +36,7 @@ console.log(allStore.isOpenedFeedBack);
         <h2 class="text-3xl">Оставить свой отзыв</h2>
       </div>
       <writeYours />
+  
     </div>
   </div>
 </template>
