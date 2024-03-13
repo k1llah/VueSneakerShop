@@ -1,4 +1,4 @@
-const {defineConfig} = require('@vue/cli-service')
-module.exports = defineConfig({
-	publicPath: '/VueSneakerShop/',
-})
+// const {defineConfig} = require('@vue/cli-service')
+// module.exports = defineConfig({
+// 	publicPath: '/VueSneakerShop/',
+// })
