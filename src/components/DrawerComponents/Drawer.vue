@@ -3,7 +3,8 @@ import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
-
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 
 // const cartItems = ref([] as any)
 // onMounted(async ()=>{
