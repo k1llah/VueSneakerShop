@@ -5,6 +5,8 @@ import { ref, } from "vue";
 import { useRouter } from 'vue-router'; 
 import { useAllStore } from '@/stores/all';
 import Overlay from '@/components/cardsComponents/overlay.vue';
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 const router = useRouter(); 
 interface Item {
   id: number;
@@ -22,8 +24,7 @@ defineProps({
 });
 const allStore = useAllStore()
 let paramsId = allStore.idShoe
-const onclickAdd = allStore.addToCart
-const onClickAdd = () =>{}
+
 const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
   paramsId = sneakerId
@@ -68,7 +69,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :price="item.price"
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
-        :on-click-add="() => onclickAdd(item.id)"
+        :on-click-add="() => cartStore.onCartAdd(item.id, item)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
       />

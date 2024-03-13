@@ -4,6 +4,7 @@ import CartItemList from './CartItemList.vue'
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 
+
 // const cartItems = ref([] as any)
 // onMounted(async ()=>{
 // 	const {data} = await axios.get(`http://localhost:3001/api`);
