@@ -9,6 +9,7 @@ const first_name = ref("");
 const lastName = ref("");
 const newProfileImg = ref();
 const newProfileFile = ref();
+const tempFileURL = ref();
 const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
 const prevEmail = ref("");
 const prevFirst_name = ref("");
@@ -44,6 +45,12 @@ const handleFileUpload = (event: Event) => {
     let file = files[0];
     newProfileFile.value = file;
     newProfileImg.value = file.name;
+    prevProfileImg.value=''
+    const reader = new FileReader();
+    reader.onload = function(){
+      tempFileURL.value = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
   console.log(newProfileImg.value);
 };
@@ -134,6 +141,7 @@ const resetForm = async (event: Event) => {
     first_name.value = prevFirst_name.value;
     lastName.value = prevLastName.value;
     newProfileImg.value = prevProfileImg.value;
+    
   }
 };
 
@@ -161,7 +169,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
     <div>
       <img
-        :src="'http://localhost:3001/img/tablet/'+newProfileImg"
+        :src="prevProfileImg? 'http://localhost:3001/img/tablet/'+prevProfileImg: tempFileURL"
         alt="profile image"
         class="md:w-[150px] sm:w-[80px] rounded-[50%]"
       />

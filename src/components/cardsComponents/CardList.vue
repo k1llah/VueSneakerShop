@@ -6,7 +6,17 @@ import { useRouter } from 'vue-router';
 import { useAllStore } from '@/stores/all';
 import Overlay from '@/components/cardsComponents/overlay.vue';
 import { useCartStore } from '@/stores/addToCart';
+import { useAuthStore } from '@/stores/authData';
+import { ca } from 'vuetify/locale'
+const authStore = useAuthStore();
 const cartStore = useCartStore();
+let addToCart = ref()
+if(authStore.isAuthenticated == true){
+  addToCart.value = cartStore.onCartAdd
+}
+else if(authStore.isAuthenticated == false){
+  console.log('you must need to log in or register')
+}
 const router = useRouter(); 
 interface Item {
   id: number;
@@ -69,7 +79,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :price="item.price"
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
-        :on-click-add="() => cartStore.onCartAdd(item.id, item)"
+        :on-click-add="() => addToCart.value(item.id, item)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
       />

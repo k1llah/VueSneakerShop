@@ -48,7 +48,7 @@
           <textarea cols="50" rows="10" id="textarea" name="textarea">          </textarea>
         </div>
         
-        <stars></stars>
+        <stars :prefix="'writeYours'"></stars>
         <button  class="form-submit-btn">Отправить</button>
       </form>
     </div>

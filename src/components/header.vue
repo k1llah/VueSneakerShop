@@ -8,6 +8,10 @@ import { ref,onMounted } from 'vue'
 import {useSneaker} from '@/stores/sneaker'
 import {useAllStore} from '@/stores/all'
 import burger from '@/components/burger.vue'
+import { useCartStore } from '@/stores/addToCart';
+
+const cartStore = useCartStore();
+
 const sneakerStore = useSneaker()
 const allStore = useAllStore()
 let toggleShow = () => {
@@ -43,7 +47,7 @@ let toggleShow = () => {
     </div>
     <ul class="flex items-center gap-10 md:gap-5">
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow()" 
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow(), cartStore.cartDataGet()" 
       >
         <img src="/cart.svg" alt="Cart" />
         <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block  w-[20px] h-[20px] text-center" >5</p>

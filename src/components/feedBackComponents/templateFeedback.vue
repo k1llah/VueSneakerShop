@@ -28,7 +28,7 @@ const rate = ref(props.rate)
           ante sit amet tellus ornare tincidunt.
         </p>
         
-       <stars/>
+       <stars :prefix="'feedback'" :stats="3"/>
       </div>
     </div>
 

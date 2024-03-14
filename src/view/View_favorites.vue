@@ -65,7 +65,7 @@ favorites();
         v-else="authStore.isAuthenticated == false"
         class="flex flex-col justify-center items-center h-[500px]"
       >
-        <div class="w-[500px] text-center">
+        <div class="md:w-[500px] sm:w-auto text-center">
           <h1 class="text-2xl">
             Зарегистрируйтесь или войдите в
             <span class="text-2xl text-[#7747ff]">аккаунт</span> для просмотра и
