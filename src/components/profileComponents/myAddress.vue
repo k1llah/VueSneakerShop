@@ -20,8 +20,8 @@ let address = ref()
 				
 			})
 			address.value = data.data
-			console.log(address.value)
 			isAddress.value = address.value.length > 0;
+			console.log(address.value,isAddress.value)
 		} catch(error){
 			console.log(error)
 		}

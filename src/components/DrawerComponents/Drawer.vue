@@ -2,18 +2,7 @@
 import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
-import { useCartStore } from '@/stores/addToCart';
 
-const cartStore = useCartStore();
-const dataCartItems = ref([] as any);
-
-onMounted(() => {
-  cartStore.cartDataGet().then((items) => {
-    dataCartItems.value = items;
-    console.log(dataCartItems.value); // Вывод данных в консоль после получения
-  });
-});
 
 // const cartItems = ref([] as any)
 // onMounted(async ()=>{

@@ -6,7 +6,7 @@ import axios from "axios";
 export const useCartStore = defineStore({
   id: "cart",
   state: () => ({
-    items: [],
+    items: [] as any,
   }),
   actions: {
     async onCartAdd(sneakerId: number, item: any){
@@ -23,22 +23,7 @@ export const useCartStore = defineStore({
           console.log(error);
         }
       },
-			async cartDataGet(){
-				try{
-					const dataCart = await axios.post(
-						"http://localhost:3001/api/get-cart-items",
-						{
-							userId: localStorage.getItem("id"),
-						}
-					)
-					this.items = dataCart.data
-				
-					console.log(this.items)
-					return this.items
-				} catch(error){
-					console.log(error)
-				}
-			},
+		
 			// else if(item.isAdded == true && authStore.isAuthenticated == true){
 			// 	try{
 			// 		const removeData = await axios.post(

@@ -3,12 +3,12 @@ import Header from "./components/header.vue";
 import Drawer from '@/components/DrawerComponents/Drawer.vue';
 import Footer from '@/components/footer.vue';
 import { onMounted, computed, watch } from "vue";
-
 import {useSneaker} from '@/stores/sneaker'
 import { RouterView } from 'vue-router'
 import { useAuthStore } from './stores/authData';
 const authStore = useAuthStore()
 const sneakerStore = useSneaker()
+
 onMounted(() => {
   authStore.checkAuth();
   console.log(authStore.id)
