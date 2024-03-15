@@ -78,7 +78,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :price="item.price"
         :is-added="item.isAdded"
         :is-favorite="item.isFavorite"
-        :on-click-add="() => addToCart.value(item.id, item)"
+        :on-click-add="() => addToCart(item.id, item)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
       />
