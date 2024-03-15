@@ -36,8 +36,6 @@ export const useAllStore = defineStore({
     targetPage: '',
     headerText: 'Мои адреса для доставки',
     idAddress: 0 as number,
-    toCartItem: [] as any[],
-    toCartItemIds: [] as number[],
     isOpenedFeedBack: false,
     
   }),

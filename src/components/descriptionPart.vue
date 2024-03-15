@@ -28,8 +28,8 @@ onMounted(() => {
   if (paramsId) {
     getDateShoe(parseInt(paramsId));
   }
+  
 });
-
 </script>
 <template>
   <div class="flex md:ml-[50px] sm:ml-3 mt-5 gap-[15px]">

@@ -46,14 +46,14 @@ let address = ref()
 		<addressAdd/>
 	</div>
   <div class="flex justify-between flex-col items-center md:mt-12 sm:mt-5" v-else>
-		<div class="flex flex-col w-full" >
+		<div class="flex flex-col w-full" v-auto-animate>
 			<h2 class="md:text-2xl sm:text-lg">Мои адреса</h2>
 
       <div
-        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[550px] p-5" v-auto-animate
+        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[550px] p-5" 
 				v-if="isAddress == true"
       >
-        <addressComp v-for="addressData in address" 
+        <addressComp v-for="addressData in address" v-auto-animate 
 				:key="address"
 				:id="addressData.id"
 				:first-name="addressData.firstName"
