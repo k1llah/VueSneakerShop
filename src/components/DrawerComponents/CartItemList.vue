@@ -7,7 +7,7 @@ import axios from "axios";
 interface CartItem {
   id: number;
   title: string;
-  image: string;
+  imageUrl: string;
   price: number;
   count: number;
 }
@@ -23,7 +23,7 @@ const cartDataGet = async () => {
         userId: localStorage.getItem("id"),
       }
     );
-    items.value = dataCart.data;
+    items.value = dataCart.data.items;
     isAdded.value = items.value.length > 0;
     console.log(items.value, isAdded.value);
   } catch (error) {
@@ -49,7 +49,7 @@ console.log(items.value);
       :key="item.id"
       :id="item.id"
       :title="item.title"
-      :image="item.image"
+      :img="item.imageUrl"
       :price="item.price"
       :count="item.count"
       :onDelete="() => onDelete(item.id)"

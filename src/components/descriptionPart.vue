@@ -11,7 +11,7 @@ let brandImageUrl = ref()
 const brands = allStore.brandImages
 console.log(brands)
 const getDateShoe = async function (params: number) {
-  try {
+  // try {
     const dataShoe = await axios.get(`http://localhost:3001/api/sneaker`, {
       params: {
         id: paramsId,
@@ -20,15 +20,15 @@ const getDateShoe = async function (params: number) {
     itemData.value = dataShoe.data;
 		brand.value = dataShoe.data.brand
 		brandImageUrl.value = allStore.getBrandImageUrl(brand.value);
-  } catch (error) {
-		console.log(error);
-  }
+  // } catch (error) {
+	// 	console.log(error);
+  // }
 }
-onMounted(() => {
+onMounted(async() => {
   if (paramsId) {
-    getDateShoe(parseInt(paramsId));
+    await getDateShoe(parseInt(paramsId));
   }
-  
+
 });
 </script>
 <template>

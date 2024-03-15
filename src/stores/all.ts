@@ -5,7 +5,7 @@ export const useAllStore = defineStore({
   id: "all",
   state: () => ({
     idShoe: ref<Number>(),
-    brandImages: ref({
+    brandImages: {
       Vans: "https://static.street-beat.ru/upload/iblock/d0c/d0cce4e2fba49304d25a39de2a9ef5d6.svg",
       TheNorthFace:
         "https://static.street-beat.ru/upload/iblock/4f7/4f773befa3ff5485a4e6c2d98c9ef00d.svg",
@@ -31,7 +31,7 @@ export const useAllStore = defineStore({
         "https://static.street-beat.ru/upload/iblock/b23/b233da50b4b147d98a6dec186f18dda0.svg",
       Asics:
         "https://static.street-beat.ru/upload/iblock/a47/a473eb406a0b7e775e27cfbf0ea84865.svg",
-    }) as any,
+    } as any,
     isOpened: ref(false),
     targetPage: '',
     headerText: 'Мои адреса для доставки',

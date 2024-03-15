@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import axios from 'axios';
 export const useAuthStore = defineStore({
-  id: "all",
+  id: "auth",
   state: () => ({
    id: '',
 	 uuid: '',
