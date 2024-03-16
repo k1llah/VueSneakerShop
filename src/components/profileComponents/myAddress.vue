@@ -28,8 +28,6 @@ let address = ref()
 	}
 
 	dataAddress()
-	console.log(address.value)
-	console.log(allStore.idAddress, allStore.headerText)
 </script>
 <template>
   <div class="flex md:gap-5 items-center sm:gap-2">
