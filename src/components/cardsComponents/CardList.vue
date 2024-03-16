@@ -7,6 +7,7 @@ import { useAllStore } from '@/stores/all';
 import Overlay from '@/components/cardsComponents/overlay.vue';
 import { useCartStore } from '@/stores/addToCart';
 import { useAuthStore } from '@/stores/authData';
+import CartItem from '../DrawerComponents/CartItem.vue'
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 let addToCart = ref()
@@ -55,6 +56,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
       }
     );
       item.isFavorite = true
+
     showOverlay.value = true
     setTimeout(() => {
       showOverlay.value = false
