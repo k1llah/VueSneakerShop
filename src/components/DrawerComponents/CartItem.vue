@@ -5,8 +5,10 @@ const props = defineProps({
 	title: String,
 	price: Number,
 	count: Number,
+	isAdded: Boolean,
 	onDelete: Function,
 })
+
 console.log("CartItem props:", props); 
 </script>
 <template>
@@ -16,7 +18,7 @@ console.log("CartItem props:", props);
 			<p class="">{{ title }}</p>
 			<div class="flex justify-between mt-2">
 				<p>{{ price }} руб.</p>
-				<img class="opacity-40 hover:opacity-100 cursor-pointer transition" src="/close.svg" alt="Close image">
+				<img class="opacity-40 hover:opacity-100 cursor-pointer transition" src="/close.svg" alt="Close image" @click="onDelete && onDelete(id)">
 			</div>
 			<div>counter</div>
 		</div>

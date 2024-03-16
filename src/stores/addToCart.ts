@@ -7,6 +7,7 @@ export const useCartStore = defineStore({
   id: "cart",
   state: () => ({
     items: [] as any,
+		isAdded: false,
   }),
   actions: {
     async onCartAdd(sneakerId: number, item: any){
@@ -23,7 +24,22 @@ export const useCartStore = defineStore({
           console.log(error);
         }
       },
-		
+			async onDeleteItem(id: number, item:any) {
+				// ваш код для удаления элемента с id
+				try {
+					const removeData = await axios.post(
+						"http://localhost:3001/api/remove-from-cart",
+						{
+							userId: localStorage.getItem("id"),
+							sneakerId: id,
+						}
+					);
+					
+					item.isAdded = false;
+				} catch (error) {
+					console.log(error);
+				}
+			},
 			// else if(item.isAdded == true && authStore.isAuthenticated == true){
 			// 	try{
 			// 		const removeData = await axios.post(
