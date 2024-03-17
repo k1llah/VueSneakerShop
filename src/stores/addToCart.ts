@@ -16,8 +16,8 @@ export const useCartStore = defineStore({
     items: [] as CartItem[],
 		itemAdded: false,
 		isAdded: false,
-		cartCounter: parseInt(localStorage.getItem('cartCounter') || '0', 10),
-		localCounter: localStorage.getItem('cartCounter')
+		cartCounter: 0,
+		localCounter: parseInt(localStorage.getItem('cartCounter') || '0', 10)
   }),
   actions: {
     async onCartAdd(sneakerId: number, item: any){
@@ -29,9 +29,15 @@ export const useCartStore = defineStore({
               sneakerId: sneakerId,
             }
           );
-					this.cartCounter += 1;
+					this.items = postAddData.data.items
+
+					this.cartCounter = this.items.length
+					console.log(this.items.length, this.items)
+					
+					
           localStorage.setItem('cartCounter', this.cartCounter.toString());
           item.isAdded = true;
+					
 					
         } catch (error) {
           console.log(error);
@@ -58,6 +64,27 @@ export const useCartStore = defineStore({
 						}
 				}
 		},
+		async cartDataGet(){
+			try {
+				const dataCart = await axios.post(
+					"http://localhost:3001/api/get-cart-items",
+					{
+						userId: localStorage.getItem("id"),
+					}
+				);
+				this.items = dataCart.data.items;
+				this.isAdded = this.items.length > 0;
+				if(this.isAdded){
+					this.items.forEach((el:any) => {
+						el.isAdded = true
+					})
+				}
+				console.log(this.isAdded);
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		
 		
 			// else if(item.isAdded == true && authStore.isAuthenticated == true){
 			// 	try{

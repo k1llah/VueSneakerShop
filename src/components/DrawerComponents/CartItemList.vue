@@ -20,30 +20,10 @@ console.log(cartStore.cartCounter)
 // }
 
 // let items = ref<CartItem[]>([]);
-let isAdded = ref(false);
 
-const cartDataGet = async () => {
-  try {
-    const dataCart = await axios.post(
-      "http://localhost:3001/api/get-cart-items",
-      {
-        userId: localStorage.getItem("id"),
-      }
-    );
-    cartStore.items = dataCart.data.items;
-    isAdded.value = cartStore.items.length > 0;
-    if(isAdded.value){
-      cartStore.items.forEach((el:any) => {
-        el.isAdded = true
-      })
-    }
-    console.log(isAdded.value);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-cartDataGet();
+
+cartStore.cartDataGet();
 
 const onDelete = (id: number) => {
   // ваш код для удаления элемента с id
@@ -51,7 +31,7 @@ const onDelete = (id: number) => {
 </script>
 
 <template>
-  <div v-if="isAdded" class="overflow-scroll max-h-[70%]">
+  <div v-if="cartStore.isAdded" class="overflow-scroll max-h-[70%]">
     <div
       class="flex flex-col gap-4 flex-1"
       v-for="item in cartStore.items"
@@ -81,7 +61,7 @@ const onDelete = (id: number) => {
     </p>
   </div>
   <div
-    v-else-if="isAdded == false"
+    v-else-if="cartStore.isAdded == false"
     class="flex flex-col gap-4 items-center min-h-[70%] justify-center"
   >
     <img src="/package-icon.png" alt="" class="max-w-[100px]" />

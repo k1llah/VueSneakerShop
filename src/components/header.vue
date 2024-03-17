@@ -12,6 +12,9 @@ import { useCartStore } from '@/stores/addToCart';
 const cartStore = useCartStore();
 const sneakerStore = useSneaker()
 const allStore = useAllStore()
+onMounted(()=>{
+  cartStore.localCounter
+})
 watch(() => cartStore.cartCounter, (newValue:any) => {
   cartStore.localCounter = newValue;
 });
