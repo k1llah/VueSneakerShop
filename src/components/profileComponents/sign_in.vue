@@ -5,6 +5,8 @@ import axios from 'axios';
 import md5 from 'md5';
 import profileData from './profile_data.vue'
 import { useAuthStore } from '@/stores/authData';
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 const email = ref('');
 const password = ref('');
 const formReport = ref('')
@@ -31,6 +33,7 @@ const logInFunc = async (event:any) => {
       password.value = ''
       formReport.value = ''
       authStore.checkAuth()
+      await cartStore.cartDataGet();
     }
   } 
   catch(error){

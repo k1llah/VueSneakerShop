@@ -4,17 +4,22 @@
 }
 </style>
 <script setup lang="ts">
-import { ref,onMounted, watch } from 'vue'
+import { ref,onMounted, watch, onBeforeMount } from 'vue'
 import {useSneaker} from '@/stores/sneaker'
 import {useAllStore} from '@/stores/all'
 import burger from '@/components/burger.vue'
 import { useCartStore } from '@/stores/addToCart';
+import { useAuthStore } from '@/stores/authData';
 const cartStore = useCartStore();
 const sneakerStore = useSneaker()
 const allStore = useAllStore()
-onMounted(()=>{
-  cartStore.localCounter
+const authStore = useAuthStore();
+onBeforeMount(()=>{
+  cartStore.cartDataGet()
+  cartStore.localCounter = cartStore.items.length
+  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter)
 })
+
 watch(() => cartStore.cartCounter, (newValue:any) => {
   cartStore.localCounter = newValue;
 });

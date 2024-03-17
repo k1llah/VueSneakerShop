@@ -27,11 +27,10 @@ export const useAuthStore = defineStore({
     logOut() {
       localStorage.removeItem('id')
       localStorage.removeItem('uuid')
-      localStorage.removeItem('cartCounter')
+      localStorage.setItem('cartCounter', '0')
       this.isAuthenticated = false
       this.currentUser = this.currentUser = { id: '', uuid: '' };
       this.role = ''
-
     }
     
   },

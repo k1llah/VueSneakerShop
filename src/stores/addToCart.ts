@@ -55,8 +55,10 @@ export const useCartStore = defineStore({
 										}
 								);
 								// Уменьшаем счетчик корзины только если товар был добавлен
+								if(this.cartCounter > 0){
 								this.cartCounter -= 1;
 								localStorage.setItem('cartCounter', this.cartCounter.toString());
+								}
 								// Устанавливаем isAdded в false, чтобы изображение снова стало "Plus svg"
 								item.isAdded = false;
 						} catch (error) {
@@ -79,6 +81,8 @@ export const useCartStore = defineStore({
 						el.isAdded = true
 					})
 				}
+				this.cartCounter = this.items.length
+				localStorage.setItem('cartCounter', this.cartCounter.toString());
 				console.log(this.isAdded);
 			} catch (error) {
 				console.log(error);
