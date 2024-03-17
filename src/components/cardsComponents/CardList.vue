@@ -11,8 +11,10 @@ import CartItem from '../DrawerComponents/CartItem.vue'
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 let addToCart = ref()
+let deleteFromCart = ref()
 if(authStore.isAuthenticated == true){
   addToCart.value = cartStore.onCartAdd
+  deleteFromCart.value = cartStore.onDeleteItem
 }
 else if(authStore.isAuthenticated == false){
   console.log('you must need to log in or register')
@@ -34,7 +36,6 @@ defineProps({
 });
 const allStore = useAllStore()
 let paramsId = allStore.idShoe
-
 const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
   paramsId = sneakerId
@@ -83,6 +84,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :on-click-add="() => addToCart(item.id, item)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
+        :onclck-delete="() => deleteFromCart(item.id, item)"
       />
     </div>
   </div>

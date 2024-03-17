@@ -10,10 +10,12 @@ import { defineProps } from 'vue';
 		onClickAdd: Function,
 		onFavoriteAdd: Function,
 		onClickOnCard: Function,
+		onclckDelete: Function,
 	})
 	const onFav = props.onFavoriteAdd as ((payload: MouseEvent) => void)
 	const onCard = props.onClickOnCard as ((payload: MouseEvent) => void)
 	const onclck = props.onClickAdd as ((payload: MouseEvent) => void)
+	const onclckDelete = props.onclckDelete as ((payload: MouseEvent) => void)
 	
 	
 </script>
@@ -30,7 +32,8 @@ import { defineProps } from 'vue';
 					<span class="text-slate-400 ">Цена</span>
 					<span>{{ price }} Руб</span>
 				</div>
-				<img :src="!isAdded ? '/plus.svg': '/checked.svg'" @click.stop="onclck" alt="Plus">
+				<img v-if="!isAdded" src="/plus.svg" @click.stop="onclck" alt="Plus">
+				<img v-else-if="isAdded" src="/checked.svg" @click.stop="onclckDelete" alt="Delete">
 			</div>
 		</div>
 </template>
