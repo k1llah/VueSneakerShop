@@ -8,17 +8,18 @@ import axios from "axios";
 const sneakerStore = useSneaker()
 const authStore = useAuthStore();
 const cartStore = useCartStore();
-interface CartItem {
-  id: number;
-  title: string;
-  imageUrl: string;
-  price: number;
-  count: number;
-  isAdded: boolean;
-  onDelete: Function;
-}
+console.log(cartStore.cartCounter)
+// interface CartItem {
+//   id: number;
+//   title: string;
+//   imageUrl: string;
+//   price: number;
+//   count: number;
+//   isAdded: boolean;
+//   onDelete: Function;
+// }
 
-let items = ref<CartItem[]>([]);
+// let items = ref<CartItem[]>([]);
 let isAdded = ref(false);
 
 const cartDataGet = async () => {
@@ -29,10 +30,10 @@ const cartDataGet = async () => {
         userId: localStorage.getItem("id"),
       }
     );
-    items.value = dataCart.data.items;
-    isAdded.value = items.value.length > 0;
+    cartStore.items = dataCart.data.items;
+    isAdded.value = cartStore.items.length > 0;
     if(isAdded.value){
-      items.value.forEach((el:any) => {
+      cartStore.items.forEach((el:any) => {
         el.isAdded = true
       })
     }
@@ -53,7 +54,7 @@ const onDelete = (id: number) => {
   <div v-if="isAdded" class="overflow-scroll max-h-[70%]">
     <div
       class="flex flex-col gap-4 flex-1"
-      v-for="item in items"
+      v-for="item in cartStore.items"
       :key="item.id"
       v-auto-animate
     >

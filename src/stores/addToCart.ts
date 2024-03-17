@@ -1,13 +1,22 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
-// import { useAuthStore } from "@/stores/authData";
-// const authStore = useAuthStore();
+interface CartItem {
+  id: number;
+  title: string;
+  imageUrl: string;
+  price: number;
+  count: number;
+  isAdded: boolean;
+  onDelete: Function;
+}
 export const useCartStore = defineStore({
   id: "cart",
   state: () => ({
-    items: [] as any,
+    items: [] as CartItem[],
 		isAdded: false,
+		cartCounter: parseInt(localStorage.getItem('cartCounter') || '0', 10),
+		localCounter: localStorage.getItem('cartCounter')
   }),
   actions: {
     async onCartAdd(sneakerId: number, item: any){
@@ -19,7 +28,10 @@ export const useCartStore = defineStore({
               sneakerId: sneakerId,
             }
           );
+					this.cartCounter += 1;
+          localStorage.setItem('cartCounter', this.cartCounter.toString());
           item.isAdded = true;
+					
         } catch (error) {
           console.log(error);
         }
@@ -35,8 +47,9 @@ export const useCartStore = defineStore({
 						}
 					);
 					
+					this.cartCounter -= 1;
+          localStorage.setItem('cartCounter', this.cartCounter.toString());
 					item.isAdded = false;
-					
 				} catch (error) {
 					console.log(error);
 				}
