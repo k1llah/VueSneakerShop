@@ -31,6 +31,11 @@ const cartDataGet = async () => {
     );
     items.value = dataCart.data.items;
     isAdded.value = items.value.length > 0;
+    if(isAdded.value){
+      items.value.forEach((el:any) => {
+        el.isAdded = true
+      })
+    }
     console.log(isAdded.value);
   } catch (error) {
     console.log(error);
@@ -53,7 +58,7 @@ const onDelete = (id: number) => {
       v-auto-animate
     >
       <CartItem
-        v-if="isAdded"
+        v-if="item.isAdded == true"
         :id="item.id"
         :title="item.title"
         :img="item.imageUrl"

@@ -36,6 +36,7 @@ export const useCartStore = defineStore({
 					);
 					
 					item.isAdded = false;
+					
 				} catch (error) {
 					console.log(error);
 				}
