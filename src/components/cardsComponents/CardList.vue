@@ -41,7 +41,7 @@ const onClickOnCard = async (sneakerId: number) => {
   paramsId = sneakerId
   localStorage.setItem('sneakerId', paramsId.toString())
   const getItem = localStorage.getItem('sneakerId');
-  console.log(paramsId)
+  console.log(paramsId, cartStore.isAdded)
   console.log(getItem)
   console.log('id',sneakerId)
 
@@ -85,6 +85,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
         :onclck-delete="() => deleteFromCart(item.id, item)"
+        
       />
     </div>
   </div>

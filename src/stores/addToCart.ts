@@ -30,14 +30,14 @@ export const useCartStore = defineStore({
             }
           );
 					this.items = postAddData.data.items
-
+					
 					this.cartCounter = this.items.length
 					console.log(this.items.length, this.items)
 					
 					
           localStorage.setItem('cartCounter', this.cartCounter.toString());
           item.isAdded = true;
-					
+				
 					
         } catch (error) {
           console.log(error);
