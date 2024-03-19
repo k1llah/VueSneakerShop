@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 const props = defineProps({
 	id: Number,
@@ -7,6 +8,8 @@ const props = defineProps({
 	count: Number,
 	isAdded: Boolean,
 	onDelete: Function,
+	onMinusCounter: Function,
+	onPlusCounter: Function,
 })
 
 console.log("CartItem props:", props); 
@@ -20,7 +23,11 @@ console.log("CartItem props:", props);
 				<p>{{ price }} руб.</p>
 				<img class="opacity-40 hover:opacity-100 cursor-pointer transition" src="/close.svg" alt="Close image" @click="onDelete && onDelete(id)">
 			</div>
-			<div>counter</div>
+			<div class="flex items-center gap-4 bg-slate-100 max-w-fit p-1 rounded-md">
+				<button class="w-5 h-5 rounded-sm bg-slate-300 text-sm" @click="onMinusCounter && onMinusCounter(id)">-</button>
+				<p>{{ count }}</p>
+				<button class="w-5 h-5 rounded-sm bg-slate-300 text-xs" @click="onPlusCounter && onPlusCounter(id)">+</button>
+			</div>
 		</div>
 	</div>
 </template>

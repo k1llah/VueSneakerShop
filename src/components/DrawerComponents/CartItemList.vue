@@ -9,25 +9,9 @@ const sneakerStore = useSneaker()
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 console.log(cartStore.cartCounter)
-// interface CartItem {
-//   id: number;
-//   title: string;
-//   imageUrl: string;
-//   price: number;
-//   count: number;
-//   isAdded: boolean;
-//   onDelete: Function;
-// }
-
-// let items = ref<CartItem[]>([]);
-
-
-
 cartStore.cartDataGet();
 
-const onDelete = (id: number) => {
-  // ваш код для удаления элемента с id
-};
+
 </script>
 
 <template>
@@ -44,9 +28,11 @@ const onDelete = (id: number) => {
         :title="item.title"
         :img="item.imageUrl"
         :price="item.price"
-        :count="item.count"
+        :count="cartStore.counter"
         :isAdded="item.isAdded"
         :onDelete="() => cartStore.onDeleteItem(item.id, item)"
+        :onMinusCounter="cartStore.counterRemove"
+        :onPlusCounter="cartStore.counterPlus"
       />
     </div>
   </div>

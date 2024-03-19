@@ -17,9 +17,22 @@ export const useCartStore = defineStore({
 		itemAdded: false,
 		isAdded: false,
 		cartCounter: 0,
-		localCounter: parseInt(localStorage.getItem('cartCounter') || '0', 10)
+		localCounter: parseInt(localStorage.getItem('cartCounter') || '0', 10),
+		counter: 1,
+		totalPrice: 0,
+		localPrice: parseInt(localStorage.getItem('totalPrice') || '0', 10),
   }),
   actions: {
+		counterPlus(){
+			this.counter += 1
+		},
+		counterRemove(){
+			if(this.counter > 1){
+				this.counter -= 1
+			}
+			
+		},
+		
     async onCartAdd(sneakerId: number, item: any){
         try {
           const postAddData = await axios.post(
@@ -31,6 +44,13 @@ export const useCartStore = defineStore({
           );
 					this.items = postAddData.data.items
 					
+						this.items.forEach((el:any) => {
+							this.totalPrice += el.price
+							localStorage.setItem('totalPrice', this.totalPrice.toString())
+							console.log(el.price)
+						})
+						
+						console.log(typeof postAddData.data.price)
 					this.cartCounter = this.items.length
 					console.log(this.items.length, this.items)
 					
@@ -59,6 +79,14 @@ export const useCartStore = defineStore({
 								this.cartCounter -= 1;
 								localStorage.setItem('cartCounter', this.cartCounter.toString());
 								}
+								this.items.forEach((el:any) => {
+									if(this.totalPrice > 0){
+									this.totalPrice -= el.price
+									localStorage.setItem('totalPrice', this.totalPrice.toString())
+									console.log(el.price, this.totalPrice)
+
+									}
+								})
 								// Устанавливаем isAdded в false, чтобы изображение снова стало "Plus svg"
 								item.isAdded = false;
 						} catch (error) {
@@ -66,6 +94,7 @@ export const useCartStore = defineStore({
 						}
 				}
 		},
+
 		async cartDataGet(){
 			try {
 				const dataCart = await axios.post(
@@ -81,11 +110,12 @@ export const useCartStore = defineStore({
 						el.isAdded = true
 					})
 				}
+				this.localPrice
 				this.cartCounter = this.items.length
-				localStorage.setItem('cartCounter', this.cartCounter.toString());
-				console.log(this.isAdded);
+				localStorage.setItem('cartCounter', this.cartCounter.toString())
+				console.log(this.isAdded)
 			} catch (error) {
-				console.log(error);
+				console.log(error)
 			}
 		},
 		

@@ -2,15 +2,17 @@
 import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
 import axios from 'axios'
+import { watch } from 'vue';
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore()
+watch([() => cartStore.totalPrice, () => cartStore.items], ([newTotalPrice, newItems]) => {
+  // здесь вы можете выполнить любые действия с новыми значениями
+  cartStore.localPrice = newTotalPrice;
+  // передаем длину newItems в компонент
+  const newLength = newItems.length;
+  // здесь вы можете передать newLength в компонент, например, через props
+});
 
-
-// const cartItems = ref([] as any)
-// onMounted(async ()=>{
-// 	const {data} = await axios.get(`http://localhost:3001/api`);
-// 	const cartIds = JSON.parse(localStorage.cart)
-// 	cartItems.value = cartIds.map((id: number) => data.find((item: any) => item.id == id))
-// 	console.log(cartItems.value)
-// })
 </script>
 
 <template>
@@ -30,7 +32,9 @@ import axios from 'axios'
 						Итого:
 					</span>
 					<div class="flex-1 border-b border-dashed"> </div>
-					<p>12900 RUB</p>
+					<p v-if="cartStore.items.length > 0">{{ (cartStore.localPrice * (1 + 0.05)).toFixed(2) }} RUB</p>
+
+					<p v-else-if="cartStore.items.length <= 0">0 RUB</p>
 				</div>
 
 				<div class="flex gap-2">
@@ -38,7 +42,8 @@ import axios from 'axios'
 						Налог
 					</span>
 					<div class="flex-1 border-b border-dashed"> </div>
-					<p>900 RUB</p>
+					<p v-if="cartStore.items.length > 0">{{ (cartStore.localPrice * 0.05).toFixed(2) }} RUB</p>
+					<p v-if="cartStore.items.length <= 0">0 RUB</p>
 				</div>
 				</div>
 
