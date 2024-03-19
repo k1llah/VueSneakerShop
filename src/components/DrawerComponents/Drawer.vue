@@ -2,17 +2,17 @@
 import Bucket from './bucket.vue'
 import CartItemList from './CartItemList.vue'
 import axios from 'axios'
-import { watch } from 'vue';
+import { onBeforeMount, onMounted, watch } from 'vue';
 import { useCartStore } from '@/stores/addToCart';
 const cartStore = useCartStore()
 watch([() => cartStore.totalPrice, () => cartStore.items], ([newTotalPrice, newItems]) => {
-  // здесь вы можете выполнить любые действия с новыми значениями
-  cartStore.localPrice = newTotalPrice;
-  // передаем длину newItems в компонент
+  cartStore.localPrice = newTotalPrice;  
   const newLength = newItems.length;
-  // здесь вы можете передать newLength в компонент, например, через props
 });
-
+onMounted(()=>{
+	cartStore.cartDataGet();
+	cartStore.localPrice
+})
 </script>
 
 <template>

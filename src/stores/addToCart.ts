@@ -45,7 +45,7 @@ export const useCartStore = defineStore({
 
         this.totalPrice += price;
         localStorage.setItem("totalPrice", this.totalPrice.toString());
-
+				
         console.log(typeof postAddData.data.price);
         this.cartCounter = this.items.length;
         console.log(this.items.length, this.items);
@@ -101,7 +101,8 @@ export const useCartStore = defineStore({
             el.isAdded = true;
           });
         }
-        this.localPrice;
+        this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10);
+				console.log(this.localPrice)
         this.cartCounter = this.items.length;
         localStorage.setItem("cartCounter", this.cartCounter.toString());
         console.log(this.isAdded);
