@@ -57,7 +57,6 @@ export const useCartStore = defineStore({
       }
     },
     async onDeleteItem(id: number, item: any, price: any) {
-      // Проверяем, добавлен ли товар в корзину
       if (item.isAdded) {
         try {
           const removeData = await axios.post(
@@ -67,7 +66,6 @@ export const useCartStore = defineStore({
               sneakerId: id,
             }
           );
-          // Уменьшаем счетчик корзины только если товар был добавлен
           if (this.cartCounter > 0) {
             this.cartCounter -= 1;
             localStorage.setItem("cartCounter", this.cartCounter.toString());
@@ -77,8 +75,6 @@ export const useCartStore = defineStore({
             this.totalPrice -= price;
             localStorage.setItem("totalPrice", this.totalPrice.toString());
           }
-
-          // Устанавливаем isAdded в false, чтобы изображение снова стало "Plus svg"
           item.isAdded = false;
         } catch (error) {
           console.log(error);
@@ -102,10 +98,8 @@ export const useCartStore = defineStore({
           });
         }
         this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10);
-				console.log(this.localPrice)
         this.cartCounter = this.items.length;
         localStorage.setItem("cartCounter", this.cartCounter.toString());
-        console.log(this.isAdded);
       } catch (error) {
         console.log(error);
       }
