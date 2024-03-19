@@ -28,6 +28,7 @@ export const useAuthStore = defineStore({
       localStorage.removeItem('id')
       localStorage.removeItem('uuid')
       localStorage.setItem('cartCounter', '0')
+      localStorage.setItem('totalPrice', '0')
       this.isAuthenticated = false
       this.currentUser = this.currentUser = { id: '', uuid: '' };
       this.role = ''
