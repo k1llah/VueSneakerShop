@@ -30,7 +30,7 @@ cartStore.cartDataGet();
         :price="item.price"
         :count="cartStore.counter"
         :isAdded="item.isAdded"
-        :onDelete="() => cartStore.onDeleteItem(item.id, item)"
+        :onDelete="() => cartStore.onDeleteItem(item.id, item, item.price)"
         :onMinusCounter="cartStore.counterRemove"
         :onPlusCounter="cartStore.counterPlus"
       />
