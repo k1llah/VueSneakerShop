@@ -84,7 +84,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :on-click-add="() => addToCart(item.id, item, item.price)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
-        :onclck-delete="() => deleteFromCart(item.id, item)"
+        :onclck-delete="() => deleteFromCart(item.id, item, item.price)"
         
       />
     </div>
