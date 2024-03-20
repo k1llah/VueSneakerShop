@@ -14,7 +14,6 @@ export const useCartStore = defineStore({
   id: "cart",
   state: () => ({
     items: [] as CartItem[],
-    itemAdded: false,
     isAdded: false,
     cartCounter: 0,
     localCounter: parseInt(localStorage.getItem("cartCounter") || "0", 10),
@@ -51,7 +50,7 @@ export const useCartStore = defineStore({
         console.log(this.items.length, this.items);
 
         localStorage.setItem("cartCounter", this.cartCounter.toString());
-        item.isAdded = true;
+				item.isAdded = true
       } catch (error) {
         console.log(error);
       }
@@ -75,7 +74,7 @@ export const useCartStore = defineStore({
             this.totalPrice -= price;
             localStorage.setItem("totalPrice", this.totalPrice.toString());
           }
-          item.isAdded = false;
+					item.isAdded = false
         } catch (error) {
           console.log(error);
         }
@@ -97,14 +96,14 @@ export const useCartStore = defineStore({
             el.isAdded = true;
           });
         }
-        this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10);
-        this.cartCounter = this.items.length;
-        localStorage.setItem("cartCounter", this.cartCounter.toString());
+        this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10)
+        this.cartCounter = this.items.length
+        localStorage.setItem("cartCounter", this.cartCounter.toString())
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     },
-
+		
     // else if(item.isAdded == true && authStore.isAuthenticated == true){
     // 	try{
     // 		const removeData = await axios.post(

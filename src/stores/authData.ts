@@ -21,6 +21,7 @@ export const useAuthStore = defineStore({
       else {
         this.isAuthenticated = false
         this.currentUser = this.currentUser = { id: '', uuid: '' };
+        localStorage.setItem('totalPrice', '0')
         
       }
     },

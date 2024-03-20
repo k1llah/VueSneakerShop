@@ -34,7 +34,7 @@ const logInFunc = async (event:any) => {
       formReport.value = ''
       authStore.checkAuth()
       await cartStore.cartDataGet();
-      await console.log(cartStore.items)
+      // await console.log(cartStore.items)
       await cartStore.items.forEach((el:any) => {
         cartStore.totalPrice += el.price
         localStorage.setItem('totalPrice', cartStore.totalPrice.toString())
