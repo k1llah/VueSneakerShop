@@ -1,14 +1,14 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
-import axios from "axios";
+import { defineStore } from "pinia"
+import { ref } from "vue"
+import axios from "axios"
 interface CartItem {
-  id: number;
-  title: string;
-  imageUrl: string;
-  price: number;
-  count: number;
-  isAdded: boolean;
-  onDelete: Function;
+  id: number
+  title: string
+  imageUrl: string
+  price: number
+  count: number
+  isAdded: boolean
+  onDelete: Function
 }
 export const useCartStore = defineStore({
   id: "cart",
@@ -23,11 +23,11 @@ export const useCartStore = defineStore({
   }),
   actions: {
     counterPlus() {
-      this.counter += 1;
+      this.counter += 1
     },
     counterRemove() {
       if (this.counter > 1) {
-        this.counter -= 1;
+        this.counter -= 1
       }
     },
 
@@ -40,19 +40,17 @@ export const useCartStore = defineStore({
             sneakerId: sneakerId,
           }
         );
-        this.items = postAddData.data.items;
+        this.items = postAddData.data.items
 
-        this.totalPrice += price;
-        localStorage.setItem("totalPrice", this.totalPrice.toString());
-				
-        console.log(typeof postAddData.data.price);
-        this.cartCounter = this.items.length;
-        console.log(this.items.length, this.items);
-
-        localStorage.setItem("cartCounter", this.cartCounter.toString());
+        this.totalPrice += price
+        localStorage.setItem("totalPrice", this.totalPrice.toString())
+        this.cartCounter = this.items.length
+        console.log(this.items.length, this.items)
+        localStorage.setItem("cartCounter", this.cartCounter.toString())
+				console.log(item.isAdded)
 				item.isAdded = true
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     },
     async onDeleteItem(id: number, item: any, price: any) {
@@ -66,17 +64,19 @@ export const useCartStore = defineStore({
             }
           );
           if (this.cartCounter > 0) {
-            this.cartCounter -= 1;
-            localStorage.setItem("cartCounter", this.cartCounter.toString());
+            this.cartCounter -= 1
+            localStorage.setItem("cartCounter", this.cartCounter.toString())
           }
 
           if (this.totalPrice > 0) {
-            this.totalPrice -= price;
-            localStorage.setItem("totalPrice", this.totalPrice.toString());
+            this.totalPrice -= price
+            localStorage.setItem("totalPrice", this.totalPrice.toString())
           }
 					item.isAdded = false
+					
+					console.log(item.isAdded)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       }
     },
@@ -103,7 +103,15 @@ export const useCartStore = defineStore({
         console.log(error)
       }
     },
-		
+		// checkIfItemInCart(itemId: number) {
+		// 	// проверяем, есть ли этот товар в корзине
+		// 	const itemInCart = this.items.find((item: any) => item.id === itemId);
+		// 	if (itemInCart?.isAdded) {
+		// 		return true
+		// 	} else if(itemInCart?.isAdded == false) {
+		// 		return false
+		// 	}
+		// },
     // else if(item.isAdded == true && authStore.isAuthenticated == true){
     // 	try{
     // 		const removeData = await axios.post(

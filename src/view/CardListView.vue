@@ -3,7 +3,8 @@ import CardList from "@/components/cardsComponents/CardList.vue";
 import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 import {debounce}  from "lodash"
-
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 let items = ref<any>([]);
 const filters = reactive({
   sortBy: "title",
@@ -14,7 +15,6 @@ const filters = reactive({
 const onChangeSelect = (event: any) => {
   filters.sortBy = event.target.value;
 };
-
 
 const axiosGetParams = async () => {
   try {
@@ -30,6 +30,13 @@ const axiosGetParams = async () => {
     });
   
     items.value = data;
+    cartStore.items.forEach((el:any) => {
+      items.value.forEach((item:any) => {
+        if(el.id == item.id){
+          item.isAdded = true
+        }
+      })
+    })
   } catch (err) {
     console.log(err);
   }
