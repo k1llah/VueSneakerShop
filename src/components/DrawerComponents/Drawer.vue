@@ -32,9 +32,9 @@ onMounted(()=>{
 						Итого:
 					</span>
 					<div class="flex-1 border-b border-dashed"> </div>
-					<p v-if="cartStore.items.length > 0">{{ (cartStore.localPrice * (1 + 0.05)).toFixed(2) }} RUB</p>
+					<p v-if="cartStore.items">{{ (cartStore.localPrice * (1 + 0.05)).toFixed(2) }} RUB</p>
+					<p v-else-if="cartStore.items == undefined">0 RUB</p>
 
-					<p v-else-if="cartStore.items.length <= 0">0 RUB</p>
 				</div>
 
 				<div class="flex gap-2">
@@ -42,8 +42,8 @@ onMounted(()=>{
 						Налог
 					</span>
 					<div class="flex-1 border-b border-dashed"> </div>
-					<p v-if="cartStore.items.length > 0">{{ (cartStore.localPrice * 0.05).toFixed(2) }} RUB</p>
-					<p v-if="cartStore.items.length <= 0">0 RUB</p>
+					<p v-if="cartStore.items">{{ (cartStore.localPrice * 0.05).toFixed(2) }} RUB</p>
+					<p v-if="cartStore.items == undefined">0 RUB</p>
 				</div>
 				</div>
 

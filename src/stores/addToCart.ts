@@ -90,14 +90,18 @@ export const useCartStore = defineStore({
           }
         );
         this.items = dataCart.data.items;
-        this.isAdded = this.items.length > 0;
-        if (this.isAdded) {
-          this.items.forEach((el: any) => {
-            el.isAdded = true;
-          });
-        }
-        this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10)
-        this.cartCounter = this.items.length
+        if(this.items !== undefined){
+        this.isAdded = this.items.length > 0
+      }
+      
+      if (this.isAdded) {
+        this.items.forEach((el: any) => {
+          el.isAdded = true;
+        });
+      }
+      this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10)
+      this.cartCounter = this.items.length
+      
         localStorage.setItem("cartCounter", this.cartCounter.toString())
       } catch (error) {
         console.log(error)

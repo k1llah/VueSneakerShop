@@ -3,15 +3,18 @@ import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { useAllStore } from "@/stores/all";
 import buttonBack from './buttonBack.vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/authData';
+const authData = useAuthStore()
+const router = useRouter();
 const allStore = useAllStore();
 const paramsId = localStorage.getItem("sneakerId");
 let itemData = ref();
 const brand = ref()
 let brandImageUrl = ref()
 const brands = allStore.brandImages
-console.log(brands)
 const getDateShoe = async function (params: number) {
-  // try {
+  try {
     const dataShoe = await axios.get(`http://localhost:3001/api/sneaker`, {
       params: {
         id: paramsId,
@@ -20,9 +23,18 @@ const getDateShoe = async function (params: number) {
     itemData.value = dataShoe.data;
 		brand.value = dataShoe.data.brand
 		brandImageUrl.value = allStore.getBrandImageUrl(brand.value);
-  // } catch (error) {
-	// 	console.log(error);
-  // }
+  } catch (error) {
+		console.log(error);
+  }
+}
+function getPathName() {
+  if(authData.isAuthenticated == true){
+    router.push('/order')
+  }
+  else{
+  localStorage.setItem('prevPage', location.pathname);
+  router.push('/sign_up')
+  }
 }
 onMounted(async() => {
   if (paramsId) {
@@ -48,7 +60,7 @@ onMounted(async() => {
       />
     </div>
 
-    <div class="flex flex-col gap-7 max-w-[370px] sm:mt-10 md:mt-0">
+    <div class="flex flex-col gap-7 max-w-[370px] sm:mt-10 md:mt-0 p-4">
       <p class="md:text-3xl sm:text-xl text-[#000000] font-sans font-[600]">
         {{ itemData?.title }}
       </p>
@@ -56,37 +68,12 @@ onMounted(async() => {
       <p class="text-2xl text-[#000000] font-sans font-[400]">
         {{ itemData?.price }} руб.
       </p>
-      <div class="flex md:gap-5 sm:gap-2 mt-9 md:flex-nowrap sm:justify-center md:justify-start sm:mt-2">
-        <button
-          class="rounded-lg overflow-hidden relative w-36 h-10 cursor-pointer flex items-center border border-green-500 bg-green-500 group hover:bg-green-500 active:bg-green-500 active:border-green-500"
-        >
-          <span
-            class="text-gray-200 font-sans font-semibold ml-5 transform group-hover:translate-x-20 transition-all duration-300"
-            >В корзину</span
-          >
-          <span
-            class="absolute right-0 h-full w-10 rounded-lg bg-green-500 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300"
-          >
-            <svg
-              class="svg w-8 text-white"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line x1="12" x2="12" y1="5" y2="19"></line>
-              <line x1="5" x2="19" y1="12" y2="12"></line>
-            </svg>
-          </span>
-        </button>
+      <div class="flex md:gap-5 sm:gap-2 mt-9 md:flex-nowrap sm:mt-2">
+      
 
         <button
           class="overflow-hidden relative w-36 p-2 h-[40px] bg-black text-white border-none rounded-md text-[15px] font-[500] cursor-pointer z-10 group flex justify-center items-center"
+          @click="getPathName() "
         >
           Быстрый заказ
           <span

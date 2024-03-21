@@ -4,7 +4,9 @@ import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 import {debounce}  from "lodash"
 import { useCartStore } from '@/stores/addToCart';
+import { useFavoritesStore } from '@/stores/favorites';
 const cartStore = useCartStore();
+const favoritesStore = useFavoritesStore();
 let items = ref<any>([]);
 const filters = reactive({
   sortBy: "title",
@@ -34,6 +36,13 @@ const axiosGetParams = async () => {
       items.value.forEach((item:any) => {
         if(el.id == item.id){
           item.isAdded = true
+        }
+      })
+    })
+    favoritesStore.items.forEach((el:any) => {
+      items.value.forEach((item:any) => {
+        if(el.id == item.id){
+          item.isFavorite = true
         }
       })
     })

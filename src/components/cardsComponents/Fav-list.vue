@@ -3,9 +3,19 @@ import { ref } from "vue";
 import axios from 'axios';
 import card from '@/components/cardsComponents/card.vue';
 import overlay from '@/components/cardsComponents/overlay.vue';
-
-
-
+import { useCartStore } from '@/stores/addToCart';
+import { useAuthStore } from '@/stores/authData';
+const cartStore = useCartStore();
+const authStore = useAuthStore();
+let deleteFromCart = ref()
+let addToCart = ref()
+if(authStore.isAuthenticated == true){
+  addToCart.value = cartStore.onCartAdd
+  deleteFromCart.value = cartStore.onDeleteItem
+}
+else if(authStore.isAuthenticated == false){
+  console.log('you must need to log in or register')
+}
 interface Item {
   id: number;
   title: string;
@@ -14,17 +24,9 @@ interface Item {
   isAdded: boolean;
   isFavorite: boolean;
 }
-const onClickAdd = async () => {
-
- 
-}
-
-
 const props = defineProps({
   items: Array<Item>
 });
-
-console.log(props.items)
 
 const showOverlay = ref(false)
 const onFavoriteRemove = async (sneakerId: number, item:Item) => {
@@ -37,6 +39,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
       }
     );
 		item.isFavorite = false
+
     showOverlay.value = true;
     setTimeout(() => {
       showOverlay.value = false;
@@ -63,8 +66,9 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
       :price="item.price"
       :is-added="item.isAdded"
       :is-favorite="item.isFavorite"
-      :on-click-add="onClickAdd"
+      :on-click-add="() => cartStore.onCartAdd(item.id, item, item.price)"
       :on-favorite-add=" () => onFavoriteRemove(item.id, item)"
+      :onclck-delete="() => deleteFromCart(item.id, item, item.price)"
       
     />
   </template>

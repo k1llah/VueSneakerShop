@@ -8,7 +8,6 @@ import Overlay from '@/components/cardsComponents/overlay.vue';
 import { useCartStore } from '@/stores/addToCart';
 import { useAuthStore } from '@/stores/authData';
 import CartItem from '../DrawerComponents/CartItem.vue'
-import { id } from 'vuetify/locale'
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 let addToCart = ref()

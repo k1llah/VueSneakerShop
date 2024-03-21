@@ -33,12 +33,15 @@ const logInFunc = async (event:any) => {
       password.value = ''
       formReport.value = ''
       authStore.checkAuth()
-      await cartStore.cartDataGet();
-      // await console.log(cartStore.items)
-      await cartStore.items.forEach((el:any) => {
-        cartStore.totalPrice += el.price
-        localStorage.setItem('totalPrice', cartStore.totalPrice.toString())
-      })
+      if(authStore.isAuthenticated == true && cartStore.items.length > 0){
+        
+        await cartStore.cartDataGet();
+        // await console.log(cartStore.items)
+        await cartStore.items.forEach((el:any) => {
+          cartStore.totalPrice += el.price
+          localStorage.setItem('totalPrice', cartStore.totalPrice.toString())
+        })
+      }
     }
   } 
   catch(error){

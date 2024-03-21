@@ -5,6 +5,8 @@ import { onMounted, watch } from "vue";
 import buttonBack from '@/components/buttonBack.vue';
 import FavList from "@/components/cardsComponents/Fav-list.vue";
 import{ useAuthStore } from '@/stores/authData';
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 const authStore = useAuthStore();
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);
@@ -26,6 +28,13 @@ const favorites = async () => {
     if(items.value.length == 0){
       isFav.value = false
     }
+    cartStore.items.forEach((el:any) => {
+      items.value.forEach((item:any) => {
+        if(el.id == item.id){
+          item.isAdded = true
+        }
+      })
+    })
   } catch (error) {
     console.log(error);
   }

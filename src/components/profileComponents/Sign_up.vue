@@ -3,6 +3,7 @@ import axios from "axios";
 import { onMounted } from "vue";
 import { md5 } from "js-md5";
 import { ref } from "vue";
+import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authData';
 const passwordsMatch = ref(false);
 const nameNotEmpty = ref(true);
@@ -16,6 +17,7 @@ let timer = ref(5);
 const isTimerStarted = ref(false);
 let localStorageMatch = ref(false);
 const authStore = useAuthStore();
+const router = useRouter()
 if(authStore.isAuthenticated == true && authStore.currentUser != ({ id: '', uuid: '' })){
   isSuccessSignUp.value = true
   textSuccessSignUp.value = 'Вы уже зарегистрированы 🤭'
@@ -75,11 +77,19 @@ const submitForm = async (event: Event) => {
       authStore.id = infoUser.id
       authStore.uuid = infoUser.uuid
       startTimer();
+      authStore.isAuthenticated = true
       isTimerStarted.value = true
       localStorageMatch.value = true;
 
       // исправить на роутер
-      await setTimeout( async () => {await location.assign("/");}, 5000)
+      const prevPage = localStorage.getItem("prevPage")
+      if(prevPage && prevPage.includes('description')){
+
+        await setTimeout( async () => {await router.go(-1)}, 5000)
+      }
+      else{
+      await setTimeout( async () => {await location.assign('/');}, 5000)
+      }
     } catch (err) {
       console.error(err);
       isSuccessSignUp.value = false;
@@ -92,7 +102,6 @@ const submitForm = async (event: Event) => {
     passwordReport.value = "Пароли не совпадают";
   }
 };
-
 // Вызываем clickSubmit при монтировании компонента
 onMounted(() => {
   submitForm;
