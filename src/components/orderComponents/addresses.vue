@@ -16,20 +16,21 @@ const dataAddress = async () => {
     console.log(error);
   }
 };
+dataAddress()
 </script>
 <template>
   <div>
     <h2 class="text-3xl ml-20 mt-8">Мои адреса</h2>
   </div>
-  <div v-if="address" class="flex ml-20 overflow-scroll max-h-fit">
+  <div v-if="isAddress" class="flex ml-20 overflow-scroll max-w-[700px] max-h-fit mt-5">
 		<addressTemplate
 		v-for="item in address" 
 		:key="item.id"
 		:id="item.id"
-		:firstName="item.first_name"
+		:firstName="item.firstName"
 		:city="item.city"
 		:street="item.street"
-		:phoneNumber="item.phone_number"
+		:phoneNumber="item.phoneNumber"
 		/>
 	</div>
 	<div v-else class="max-w-[500px] mt-10 ml-20">

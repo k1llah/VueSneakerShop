@@ -1,4 +1,4 @@
-	<script setup lang="ts">
+<script setup lang="ts">
 	const props = defineProps({
 		id: Number,
 		firstName: String,
@@ -7,15 +7,15 @@
 		phoneNumber: String,
 	})
 	</script>
-<template lang="">
-	<div class="flex gap-8 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[420px] p-7 text-base font-light">
-		<ul class="flex flex-col gap-3  list-disc">
-		<li>Имя:{{ props.firstName }} lexa</li>
-		<li>Город:{{ props.city }} sochi</li>
+<template>
+	<div class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light">
+		<ul class="flex flex-col gap-3 list-disc">
+		<li>Имя: {{ props.firstName }}</li>
+		<li>Город: {{ props.city }}</li>
 	</ul>
 	<ul class="flex flex-col gap-3  list-disc">
-		<li>Номер телефона: {{ props.phoneNumber }}+7988888888</li>
-		<li>Улица: {{ props.street }} hphphph</li>
+		<li>Номер телефона: {{ props.phoneNumber }}</li>
+		<li>Улица: {{ props.street }}</li>
 	</ul>
 	<div class="checkbox-wrapper-46">
   <input type="checkbox" id="cbx-46" class="inp-cbx" />
