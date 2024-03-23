@@ -7,13 +7,11 @@ interface Item {
 	imageUrl: string,
 	price: number,
 }
-export const useOrderStore = defineStore({
-  id: "order",
-  
+export const useFormStore = defineStore({
+  id: "form",
+
   state: () => ({
-    items: <Item[]>[],
-		idParam: localStorage.getItem("sneakerId"),
-    amount: 0
+    
   }),
   actions: {
 		

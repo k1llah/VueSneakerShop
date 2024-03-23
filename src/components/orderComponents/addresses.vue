@@ -17,6 +17,7 @@ const dataAddress = async () => {
     });
     address.value = data.data;
     isAddress.value = address.value.length > 0;
+		
     console.log(address.value, isAddress.value);
   } catch (error) {
     console.log(error);
@@ -30,6 +31,7 @@ const getDateShoe = async function (params: any) {
       },
     });
     data.value = dataShoe.data;
+		orderStore.amount = dataShoe.data.price
     console.log(dataShoe.data);
     console.log(dataShoe.data.id);
     console.log(data.value.items);
@@ -44,10 +46,10 @@ onBeforeMount(() => {
 </script>
 <template>
   <div>
-    <h2 class="text-3xl ml-20 mt-8 text-end pr-5">Мои адреса</h2>
+    <h2 class="text-3xl ml-20 mt-8 text-end pr-5 sm:text-2xl">Мои адреса</h2>
   </div>
-  <div class="w-full flex justify-around items-center">
-		<div class="ml-10">
+  <div class="md:w-full sm:w-[90%] flex justify-between p-3 items-center lg:flex-row md:flex-col-reverse md:items-center md:gap-5 sm:flex-col-reverse sm:items-center">
+		<div class="md:ml-10 sm:ml-5 sm:mt-5">
       <templateItem
         :id="data?.id"
         :title="data?.title"
@@ -57,7 +59,7 @@ onBeforeMount(() => {
     </div>
     <div
       v-if="isAddress"
-      class="flex gap-10 ml-20 overflow-scroll max-w-[400px] max-h-fit mt-5"
+      class="flex gap-10 ml-20 sm:ml-5 overflow-scroll lg:max-w-[600px] md:max-w-[400px] sm:max-w-[300px] max-h-fit mt-5"
     >
       <addressTemplate
         v-for="item in address"
@@ -71,7 +73,7 @@ onBeforeMount(() => {
       />
     </div>
 
-    <div v-else class="max-w-[500px] mt-10 ml-20">
+    <div v-else class="max-w-[500px] mt-10 ml-20 sm:ml-10">
       <p class="text-xl">
         К сожалению, у вас нет добавленных адресов, но вы можете добавить свой
         адрес на странице профиля
@@ -80,7 +82,7 @@ onBeforeMount(() => {
         >
       </p>
     </div>
-		
+
    
   </div>
 </template>

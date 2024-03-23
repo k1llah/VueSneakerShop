@@ -6,7 +6,7 @@
 	<div class="flex md:ml-[50px] sm:ml-3 mt-5 gap-[15px]">
     <div class="flex gap-5 items-center">
 			<buttonBack/>
-      <h2 class="text-3xl">Оформление заказа</h2>
+      <h2 class="text-3xl sm:text-[26px]">Оформление заказа</h2>
     </div>
   </div>
 <order/>
