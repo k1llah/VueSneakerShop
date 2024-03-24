@@ -1,16 +1,16 @@
 <script setup lang="ts">
 // https://3dsec.sberbank.ru/payment/rest/register.do
-import { useOrderStore } from '@/stores/order';
+import { useOrderStore } from "@/stores/order";
 const orderStore = useOrderStore();
 </script>
 <template>
-  <div class="lg:max-w-full md:max-w-[90%] ">
+  <div class="lg:max-w-full md:max-w-[90%]">
     <div>
       <h3 class="text-2xl font-medium p-3">Выбрать способ оплаты</h3>
       <div>
         <div class="radio-inputs md:flex-nowrap sm:flex-wrap">
           <label>
-            <input class="radio-input" type="radio" name="engine" />
+            <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'online', console.log(orderStore.methodPayment)" />
             <span class="radio-tile">
               <span class="radio-icon m-auto">
                 <img src="/sbp.svg" alt="" class="h-[100px]" />
@@ -20,7 +20,7 @@ const orderStore = useOrderStore();
           </label>
 
           <label>
-            <input class="radio-input" type="radio" name="engine" />
+            <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'payWhenReceiving' , console.log(orderStore.methodPayment)" />
             <span class="radio-tile">
               <span class="radio-icon">
                 <img src="/paymentImage.png" alt="" class="h-[100px]" />
@@ -31,32 +31,41 @@ const orderStore = useOrderStore();
         </div>
       </div>
       <div>
-				<textarea name="message" id="message" cols="30" rows="10" class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2" placeholder="Сообщение к заказу"></textarea>
-			</div>
-    </div>
-		
-		<div class="container1">
-  <div class="left-side">
-    <div class="card">
-      <div class="card-line"></div>
-      <div class="buttons"></div>
-    </div>
-    <div class="post">
-      <div class="post-line"></div>
-      <div class="screen">
-        <div class="dollar">$</div>
+        <textarea
+          name="message"
+          id="message"
+          cols="30"
+          rows="10"
+          class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2"
+          placeholder="Сообщение к заказу"
+        ></textarea>
       </div>
-      <div class="numbers"></div>
-      <div class="numbers-line2"></div>
     </div>
-  </div>
-  <div class="right-side">
-    <div class="new">Заказать</div>
-  </div>
-</div>
-<div class="ml-3 mb-10">
-			<h3 class="text-2xl font-light ">К оплате: {{ (orderStore.amount * (1 + 0.05)).toFixed(2) }} RUB</h3>
-		</div>
+
+    <div class="container1" @click="orderStore.placeAnOrder()">
+      <div class="left-side">
+        <div class="card">
+          <div class="card-line"></div>
+          <div class="buttons"></div>
+        </div>
+        <div class="post">
+          <div class="post-line"></div>
+          <div class="screen">
+            <div class="dollar">$</div>
+          </div>
+          <div class="numbers"></div>
+          <div class="numbers-line2"></div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="new">Заказать</div>
+      </div>
+    </div>
+    <div class="ml-3 mb-10">
+      <h3 class="text-2xl font-light">
+        К оплате: {{ (orderStore.amount * (1 + 0.05)).toFixed(2) }} RUB
+      </h3>
+    </div>
   </div>
 </template>
 <style scoped>
@@ -172,21 +181,17 @@ const orderStore = useOrderStore();
   width: 1px;
 }
 
-
-
-
-
 .container1 {
   background-color: #ffffff;
-	margin-top: 30px;
-	margin-left: 12px;
+  margin-top: 30px;
+  margin-left: 12px;
   display: flex;
   width: 270px;
   height: 120px;
   position: relative;
   border-radius: 6px;
   transition: 0.3s ease-in-out;
-	margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .container1:hover {
@@ -250,7 +255,7 @@ const orderStore = useOrderStore();
   align-items: center;
   -webkit-box-shadow: 9px 9px 9px -2px rgba(77, 200, 143, 0.72);
   -moz-box-shadow: 9px 9px 9px -2px rgba(77, 200, 143, 0.72);
-  -webkit-box-shadow: 9px 9px 9px -2px rgba(77, 200, 143, 0.72);
+  box-shadow: 9px 9px 9px -2px rgba(77, 200, 143, 0.72);
 }
 
 .card-line {
@@ -279,7 +284,9 @@ const orderStore = useOrderStore();
   width: 8px;
   height: 8px;
   background-color: #379e1f;
-  box-shadow: 0 -10px 0 0 #26850e, 0 10px 0 0 #56be3e;
+  box-shadow:
+    0 -10px 0 0 #26850e,
+    0 10px 0 0 #56be3e;
   border-radius: 50%;
   margin-top: 5px;
   transform: rotate(90deg);
@@ -361,7 +368,9 @@ const orderStore = useOrderStore();
   width: 12px;
   height: 12px;
   background-color: #838183;
-  box-shadow: 0 -18px 0 0 #838183, 0 18px 0 0 #838183;
+  box-shadow:
+    0 -18px 0 0 #838183,
+    0 18px 0 0 #838183;
   border-radius: 2px;
   position: absolute;
   transform: rotate(90deg);
@@ -373,7 +382,9 @@ const orderStore = useOrderStore();
   width: 12px;
   height: 12px;
   background-color: #aaa9ab;
-  box-shadow: 0 -18px 0 0 #aaa9ab, 0 18px 0 0 #aaa9ab;
+  box-shadow:
+    0 -18px 0 0 #aaa9ab,
+    0 18px 0 0 #aaa9ab;
   border-radius: 2px;
   position: absolute;
   transform: rotate(90deg);
@@ -419,5 +430,4 @@ const orderStore = useOrderStore();
     transform: translateY(0);
   }
 }
-
 </style>

@@ -46,7 +46,7 @@ onBeforeMount(() => {
 </script>
 <template>
   <div>
-    <h2 class="text-3xl ml-20 mt-8 text-end pr-5 sm:text-2xl">Мои адреса</h2>
+    <h2 class="md:text-3xl ml-20 mt-8 text-end pr-5 sm:text-2xl">Мои адреса</h2>
   </div>
   <div class="md:w-full sm:w-[90%] flex justify-between p-3 items-center lg:flex-row md:flex-col-reverse md:items-center md:gap-5 sm:flex-col-reverse sm:items-center">
 		<div class="md:ml-10 sm:ml-5 sm:mt-5">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useOrderStore } from "@/stores/order";
+const orderStore = useOrderStore();
 	const props = defineProps({
 		id: Number,
 		firstName: String,
@@ -18,8 +20,8 @@
 		<li>Улица: {{ props.street }}</li>
 	</ul>
 	<div class="checkbox-wrapper-46">
-  <input type="checkbox" id="cbx-46" class="inp-cbx" />
-  <label for="cbx-46" class="cbx"
+  <input type="radio" name="address" :id="`cbx-${props.id}`" class="inp-cbx hidden" />
+  <label :for="`cbx-${props.id}`" class="cbx" @click="console.log('bum'), orderStore.isSelected = true "
     ><span>
       <svg viewBox="0 0 12 10" height="10px" width="12px">
         <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span

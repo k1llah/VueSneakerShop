@@ -9,9 +9,9 @@ interface Item {
 }
 export const useFormStore = defineStore({
   id: "form",
-
   state: () => ({
-    
+		
+		isFormCorrect: false,
   }),
   actions: {
 		
