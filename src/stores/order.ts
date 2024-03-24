@@ -16,6 +16,7 @@ export const useOrderStore = defineStore({
     amount: 0,
     methodPayment: "",
     isSelected: false,
+    addressId: 0,
   }),
   actions: {
     async placeAnOrder() {
@@ -35,7 +36,8 @@ export const useOrderStore = defineStore({
           const pay = await axios.post('http://localhost:3001/api/create-new-order',{
             userId: localStorage.getItem('id'),
             sneakerId: this.idParam,
-            amount: this.amount
+            amount: this.amount,
+            addressId: this.addressId
           })
           console.log(pay)
         }
