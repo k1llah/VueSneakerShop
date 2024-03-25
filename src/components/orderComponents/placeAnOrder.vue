@@ -1,7 +1,10 @@
 <script setup lang="ts">
 // https://3dsec.sberbank.ru/payment/rest/register.do
 import { useOrderStore } from "@/stores/order";
+import { useFormStore } from '@/stores/formStore';
+const formStore = useFormStore();
 const orderStore = useOrderStore();
+
 </script>
 <template>
   <div class="lg:max-w-full md:max-w-[90%]">
@@ -42,7 +45,7 @@ const orderStore = useOrderStore();
       </div>
     </div>
 
-    <div class="container1" @click="orderStore.placeAnOrder()">
+    <div class="container1" @click="orderStore.placeAnOrder(formStore.isFormCorrect)">
       <div class="left-side">
         <div class="card">
           <div class="card-line"></div>

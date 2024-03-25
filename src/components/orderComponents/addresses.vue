@@ -32,6 +32,7 @@ const getDateShoe = async function (params: any) {
     });
     data.value = dataShoe.data;
 		orderStore.amount = dataShoe.data.price
+		
     console.log(dataShoe.data);
     console.log(dataShoe.data.id);
     console.log(data.value.items);

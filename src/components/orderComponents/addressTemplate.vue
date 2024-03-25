@@ -8,7 +8,7 @@ const orderStore = useOrderStore();
 		street: String,
 		phoneNumber: String,
 	})
-	</script>
+</script>
 <template>
 	<div class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light">
 		<ul class="flex flex-col gap-3 list-disc">
@@ -21,8 +21,8 @@ const orderStore = useOrderStore();
 	</ul>
 	<div class="checkbox-wrapper-46">
   <input type="radio" name="address" :id="`cbx-${props.id}`" class="inp-cbx hidden" />
-  <label :for="`cbx-${props.id}`" class="cbx" @click="console.log('bum'), orderStore.isSelected = true "
-    ><span>
+  <label :for="`cbx-${props.id}`" class="cbx" @click="console.log('bum'), orderStore.isSelected = true, orderStore.addressId = props.id!, console.log(orderStore.addressId)">
+    <span>
       <svg viewBox="0 0 12 10" height="10px" width="12px">
         <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
     ><span>Выбрать этот адрес</span>

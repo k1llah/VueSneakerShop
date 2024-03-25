@@ -24,7 +24,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
 </script>
 <template>
   <div class="md:mt-16 sm:mt-8 overflow-scroll md:max-h-[auto] sm:max-h-[650px]max-w-[350px] pl-3">
-    <form class="flex flex-col mr-3 p-5 rounded-2xl shadow-xl" v-if="orderStore.isSelected == false">
+    <form class="flex flex-col mr-3 p-5 rounded-2xl shadow-xl" v-if="!orderStore.isSelected">
       <div class="flex gap-3">
         <input
           placeholder="Фамилия *"

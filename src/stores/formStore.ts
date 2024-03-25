@@ -10,8 +10,7 @@ interface Item {
 export const useFormStore = defineStore({
   id: "form",
   state: () => ({
-		
-		isFormCorrect: false,
+		isFormCorrect: true,
   }),
   actions: {
 		
