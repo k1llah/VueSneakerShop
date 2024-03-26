@@ -41,11 +41,13 @@ const orderStore = useOrderStore();
           rows="10"
           class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2"
           placeholder="Сообщение к заказу"
+					v-model="orderStore.comment"
+					maxlength="150"
         ></textarea>
       </div>
     </div>
 
-    <div class="container1" @click="orderStore.placeAnOrder(formStore.isFormCorrect)">
+    <div class="container1" @click="orderStore.placeAnOrder(formStore.isFormCorrect, )">
       <div class="left-side">
         <div class="card">
           <div class="card-line"></div>

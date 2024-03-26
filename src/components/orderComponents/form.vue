@@ -4,6 +4,7 @@ import axios from "axios";
 import { useAllStore } from "@/stores/all";
 import { useOrderStore } from "@/stores/order";
 import { useFormStore } from '@/stores/formStore';
+import order from './order.vue'
 const formStore = useFormStore();
 const orderStore = useOrderStore();
 const allStore = useAllStore();
@@ -30,7 +31,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Фамилия *"
           class="border-[1px] text-gray-400 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
           type="text"
-          v-model="lastName"
+          v-model="orderStore.lastName"
 					minlength="2"
         />
 
@@ -38,7 +39,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Имя *"
           class="border-[1px] text-gray-400 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
           type="text"
-          v-model="name"
+          v-model="orderStore.firstName"
 					minlength="2"
         />
 
@@ -50,13 +51,13 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Отчество (при наличии)"
           class="border-[1px] text-gray-400 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
           type="text"
-          v-model="surname"
+          v-model="orderStore.surname"
         />
 				<input
           placeholder="Номер телефона *"
           class="border-[1px] text-gray-400 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
           type="tel"
-          v-model="phoneNumber"
+          v-model="orderStore.phone"
 					minlength="10"
         />
       
@@ -69,14 +70,14 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Город *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
-          v-model="city"
+          v-model="orderStore.city"
         />
 				
         <input
           placeholder="Почтовый индекс *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
-          v-model="postalCode"
+          v-model="orderStore.postalCode"
           minlength="6"
         />
 
@@ -86,7 +87,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Улица *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
-          v-model="street"
+          v-model="orderStore.street"
           minlength="2"
         />
 
@@ -94,7 +95,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Дом *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
-          v-model="houseNumber"
+          v-model="orderStore.house"
         />
        
       </div>
@@ -103,13 +104,13 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           placeholder="Квартира *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="number"
-          v-model="apartment"
+          v-model="orderStore.apartment"
         />
 				<input
           placeholder="Корпус"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
           type="text"
-          v-model="buildingNumber"
+          v-model="orderStore.buildingNumber"
         />
       </div>
       <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
@@ -124,4 +125,4 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
       
     </div>
   </div>
-</template>@/stores/formStore
+</template>
