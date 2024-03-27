@@ -2,7 +2,7 @@
 import Bucket from "./bucket.vue";
 import CartItemList from "./CartItemList.vue";
 import axios from "axios";
-import { onBeforeMount, onMounted, watch } from "vue";
+import { onBeforeMount, onMounted, watch, computed, ref } from "vue";
 import { useCartStore } from "@/stores/addToCart";
 import { useOrderStore } from "@/stores/order";
 import { useRouter } from "vue-router";
@@ -15,7 +15,6 @@ watch(
   [() => cartStore.totalPrice, () => cartStore.items],
   ([newTotalPrice, newItems]) => {
     cartStore.localPrice = newTotalPrice;
-    const newLength = newItems.length;
   }
 );
 onMounted(() => {
@@ -58,7 +57,7 @@ onMounted(() => {
 
         <button
           class="bg-lime-500 w-full rounded-xl py-3 text-white hover:bg-lime-700 transition disabled:bg-slate-400 cursor-pointer mt-4"
-          @click="orderStore.targetPageDefine('classic'), router.push('/order'), sneakerStore.show = false"
+          @click="orderStore.targetPageDefine('classic'), router.push('/order'), sneakerStore.show = false" :disabled="cartStore.localCounter <= 0"
         >
           Оформить Заказ
         </button>
