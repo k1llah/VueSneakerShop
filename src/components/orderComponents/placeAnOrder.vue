@@ -2,6 +2,9 @@
 // https://3dsec.sberbank.ru/payment/rest/register.do
 import { useOrderStore } from "@/stores/order";
 import { useFormStore } from '@/stores/formStore';
+import order from './order.vue'
+import modalError from '../modalError.vue';
+import modalWindow from './modalWindow.vue';
 const formStore = useFormStore();
 const orderStore = useOrderStore();
 
@@ -47,7 +50,7 @@ const orderStore = useOrderStore();
       </div>
     </div>
 
-    <div class="container1" @click="orderStore.placeAnOrder(formStore.isFormCorrect, )">
+    <div class="container1" @click="orderStore.placeAnOrder(orderStore.validateOnClick())">
       <div class="left-side">
         <div class="card">
           <div class="card-line"></div>
@@ -72,6 +75,8 @@ const orderStore = useOrderStore();
       </h3>
     </div>
   </div>
+	<modalError v-if="orderStore.errorPayment"/>
+	<modalWindow v-if="orderStore.success"/>
 </template>
 <style scoped>
 .radio-inputs {

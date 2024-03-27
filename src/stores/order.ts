@@ -28,8 +28,29 @@ export const useOrderStore = defineStore({
     postalCode: 0,
     phone: '',
     comment: '',
+    warningAll: "",
+    success: false,
+    errorPayment: false,
+    isFormCorrect: true,
+    targetPage: localStorage.getItem('pageT')
   }),
   actions: {
+    targetPageDefine(targetName: string){
+      this.targetPage = localStorage.setItem('pageT', targetName)!
+    },
+    validateOnClick() {
+      if(this.firstName !== '' && this.lastName !== '' && this.surname !== '' && this.city !== '' && this.street !== '' && this.phone !== '' && this.postalCode !== null && this.house !== '' && this.apartment !== ''){
+        return this.isFormCorrect = true
+    }
+    else if(this.city === '' || this.street === '' || this.phone === '' || this.postalCode === null || this.house === '' || this.apartment === ''){
+    
+      setTimeout(() => {
+        this.warningAll = ''
+      }, 3500);
+      this.warningAll = '*Заполните все обязательные поля или заполните их корректно'
+      }
+      return this.isFormCorrect = false
+     },
     async placeAnOrder(isFormCorrect: boolean, ...args: any) {
       try {
         if (this.isSelected == true) {
@@ -63,7 +84,7 @@ export const useOrderStore = defineStore({
               console.log("Ошибка при выполнении запроса");
             }
             console.log(pay);
-          } else if (this.isSelected == false) {
+          } else if (this.isSelected == false && isFormCorrect) {
             const newAddress = await axios.post(
               "http://localhost:3001/api/create-address",
               {
@@ -94,7 +115,7 @@ export const useOrderStore = defineStore({
               }
             );
             if (pay.status === 200) {
-              console.log(pay);
+              this.success = true
              console.log('daaaa')
             } else {
               console.log("Ошибка при выполнении запроса");
@@ -102,7 +123,7 @@ export const useOrderStore = defineStore({
             console.log(pay, "ezzzz");
           }
         } else if (this.methodPayment === "") {
-          alert("Выберите способ оплаты");
+          this.errorPayment = true;
         } else if (isFormCorrect === false) {
           console.log("isFormCorrect = false");
         } else {

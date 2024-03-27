@@ -44,6 +44,7 @@ onMounted(async () => {
     await getDateShoe();
   }
 });
+
 </script>
 <template>
   <div class="flex md:ml-[50px] sm:ml-3 mt-5 gap-[15px]">
@@ -73,7 +74,7 @@ onMounted(async () => {
       <div class="flex md:gap-5 sm:gap-2 mt-9 md:flex-nowrap sm:mt-2">
         <button
           class="overflow-hidden relative w-36 p-2 h-[40px] bg-black text-white border-none rounded-md text-[15px] font-[500] cursor-pointer z-10 group flex justify-center items-center"
-          @click="getPathName()"
+          @click="orderStore.targetPageDefine('fast'), getPathName()"
         >
           Быстрый заказ
           <span

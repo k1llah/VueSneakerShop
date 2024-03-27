@@ -7,21 +7,9 @@ import { useFormStore } from '@/stores/formStore';
 import order from './order.vue'
 const formStore = useFormStore();
 const orderStore = useOrderStore();
-const allStore = useAllStore();
-const name = ref("");
-const lastName = ref("");
-const surname = ref("");
-const city = ref("");
-const street = ref("");
-const phoneNumber = ref("");
-const postalCode = ref();
-const buildingNumber = ref("");
-const houseNumber = ref();
-const apartment = ref();
-let warningAll = ref("");
-if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && postalCode.value !== '' && buildingNumber.value !== '' && houseNumber.value !== '' && apartment.value !== ''){
-	formStore.isFormCorrect = true
-}
+
+
+
 </script>
 <template>
   <div class="md:mt-16 sm:mt-8 overflow-scroll md:max-h-[auto] sm:max-h-[650px]max-w-[350px] pl-3">
@@ -113,7 +101,7 @@ if(city.value !== '' && street.value !== '' && phoneNumber.value !== '' && posta
           v-model="orderStore.buildingNumber"
         />
       </div>
-      <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
+      <p class="text-red-600 text-[16px]">{{ orderStore.warningAll }}</p>
     </form>
 
     <div class="flex gap-5 sm:flex-wrap md:flex-nowrap md:mt-8">
