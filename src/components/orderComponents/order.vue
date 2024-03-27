@@ -5,10 +5,6 @@ import { useOrderStore } from '@/stores/order';
 	import placeAnOrder from './placeAnOrder.vue';
 	import { watch } from 'vue';
 	const orderStore = useOrderStore();
-	watch(() => orderStore.targetPage, (newValue) => {
-  orderStore.targetPage = newValue
-  
-})
 	// https://3dsec.sberbank.ru/payment/rest/register.do
 </script>
 <template>
@@ -25,7 +21,6 @@ import { useOrderStore } from '@/stores/order';
 	<div class="w-full flex justify-center gap-10 lg:flex-row md:flex-col-reverse md:items-center sm:flex-col-reverse sm:items-center ">
 		<placeAnOrder/>
 		<formVue/>
-		YAPIDOOOR
 	</div>
 </div>
 </template>

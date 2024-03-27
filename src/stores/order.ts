@@ -37,6 +37,7 @@ export const useOrderStore = defineStore({
   actions: {
     targetPageDefine(targetName: string){
       this.targetPage = localStorage.setItem('pageT', targetName)!
+      this.targetPage = targetName
     },
     validateOnClick() {
       if(this.firstName !== '' && this.lastName !== '' && this.surname !== '' && this.city !== '' && this.street !== '' && this.phone !== '' && this.postalCode !== null && this.house !== '' && this.apartment !== ''){
@@ -53,8 +54,7 @@ export const useOrderStore = defineStore({
      },
     async placeAnOrder(isFormCorrect: boolean, ...args: any) {
       try {
-        if (this.isSelected == true) {
-          if (this.methodPayment === "online") {
+        if (this.isSelected == true && this.methodPayment == 'online') {
             const pay = await axios.post(
               "http://localhost:3001/api/sberbank/pay",
               {
@@ -64,9 +64,7 @@ export const useOrderStore = defineStore({
                 amount: 125.0,
               }
             );
-          }
-        } else if (this.methodPayment === "payWhenReceiving") {
-          if (this.isSelected) {
+        } else if (this.methodPayment === "payWhenReceiving" && this.isSelected) {
             const pay = await axios.post(
               "http://localhost:3001/api/create-new-order",
               {
@@ -79,12 +77,13 @@ export const useOrderStore = defineStore({
             );
             if (pay.status === 200) {
               console.log(pay);
-              location.replace("/");
+              this.success = true
             } else {
               console.log("Ошибка при выполнении запроса");
             }
             console.log(pay);
-          } else if (this.isSelected == false && isFormCorrect) {
+          }
+           else if (this.methodPayment === "payWhenReceiving" && this.isSelected == false && isFormCorrect) {
             const newAddress = await axios.post(
               "http://localhost:3001/api/create-address",
               {
@@ -122,7 +121,7 @@ export const useOrderStore = defineStore({
             }
             console.log(pay, "ezzzz");
           }
-        } else if (this.methodPayment === "") {
+         else if (this.methodPayment === "" || this.isSelected && this.methodPayment === "") {
           this.errorPayment = true;
         } else if (isFormCorrect === false) {
           console.log("isFormCorrect = false");
