@@ -35,10 +35,10 @@ const router = useRouter();
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false">
               К заказу
             </button>
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false">
               Продолжить покупки
             </button>
           </div>

@@ -9,10 +9,9 @@ interface Item {
 }
 export const useOrderStore = defineStore({
   id: "order",
-
   state: () => ({
     items: <Item[]>[],
-    idParam: parseInt(localStorage.getItem("sneakerId") || "0", 10),
+    idParam: 0,
     amount: 0,
     methodPayment: "",
     isSelected: false,
@@ -31,7 +30,7 @@ export const useOrderStore = defineStore({
     warningAll: "",
     success: false,
     errorPayment: false,
-    isFormCorrect: true,
+    isFormCorrect: false,
     targetPage: localStorage.getItem('pageT')
   }),
   actions: {
@@ -64,7 +63,7 @@ export const useOrderStore = defineStore({
                 amount: 125.0,
               }
             );
-        } else if (this.methodPayment === "payWhenReceiving" && this.isSelected) {
+        } else if (this.methodPayment === "payWhenReceiving" && this.isSelected && this.idParam != 0) {
             const pay = await axios.post(
               "http://localhost:3001/api/create-new-order",
               {
@@ -83,7 +82,7 @@ export const useOrderStore = defineStore({
             }
             console.log(pay);
           }
-           else if (this.methodPayment === "payWhenReceiving" && this.isSelected == false && isFormCorrect) {
+           else if (this.methodPayment === "payWhenReceiving" && this.isSelected == false && isFormCorrect && this.idParam != 0) {
             const newAddress = await axios.post(
               "http://localhost:3001/api/create-address",
               {

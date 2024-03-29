@@ -11,7 +11,6 @@ const cartStore = useCartStore();
 console.log(cartStore.cartCounter)
 cartStore.cartDataGet();
 
-
 </script>
 
 <template>
