@@ -6,6 +6,7 @@ import { useOrderStore } from "@/stores/order";
 const orderStore = useOrderStore();
 const localStorageId = localStorage.getItem("sneakerId");
 let data = ref();
+let idItems = ref([] as any);
 const getDateShoe = async function (params: any) {
   try {
     const dataShoe = await axios.get(`http://localhost:3001/api/sneaker`, {
@@ -14,6 +15,9 @@ const getDateShoe = async function (params: any) {
       },
     });
     data.value = dataShoe.data;
+    idItems.value = [dataShoe.data.id]
+    orderStore.idParam = idItems.value
+    console.log(orderStore.idParam)
 		orderStore.amount = dataShoe.data.price
 		
     console.log(dataShoe.data);

@@ -11,7 +11,7 @@ export const useOrderStore = defineStore({
   id: "order",
   state: () => ({
     items: <Item[]>[],
-    idParam: 0,
+    idParam: [0],
     amount: 0,
     methodPayment: "",
     isSelected: false,
@@ -31,7 +31,8 @@ export const useOrderStore = defineStore({
     success: false,
     errorPayment: false,
     isFormCorrect: false,
-    targetPage: localStorage.getItem('pageT')
+    targetPage: localStorage.getItem('pageT'),
+    orderNumber: '',
   }),
   actions: {
     targetPageDefine(targetName: string){
@@ -63,7 +64,7 @@ export const useOrderStore = defineStore({
                 amount: 125.0,
               }
             );
-        } else if (this.methodPayment === "payWhenReceiving" && this.isSelected && this.idParam != 0) {
+        } else if (this.methodPayment === "payWhenReceiving" && this.isSelected && this.idParam.length > 0) {
             const pay = await axios.post(
               "http://localhost:3001/api/create-new-order",
               {
@@ -75,14 +76,15 @@ export const useOrderStore = defineStore({
               }
             );
             if (pay.status === 200) {
-              console.log(pay);
+              console.log(pay, this.orderNumber);
+              this.orderNumber = pay.data.orderNumber
               this.success = true
             } else {
               console.log("Ошибка при выполнении запроса");
             }
             console.log(pay);
           }
-           else if (this.methodPayment === "payWhenReceiving" && this.isSelected == false && isFormCorrect && this.idParam != 0) {
+           else if (this.methodPayment === "payWhenReceiving" && this.isSelected == false && isFormCorrect && this.idParam.length > 0) {
             const newAddress = await axios.post(
               "http://localhost:3001/api/create-address",
               {
@@ -114,6 +116,10 @@ export const useOrderStore = defineStore({
             );
             if (pay.status === 200) {
               this.success = true
+              pay.data.forEach((el: any) => {
+                this.orderNumber = el.orderNumber
+                console.log(el.orderNumber)
+              })
              console.log('daaaa')
             } else {
               console.log("Ошибка при выполнении запроса");

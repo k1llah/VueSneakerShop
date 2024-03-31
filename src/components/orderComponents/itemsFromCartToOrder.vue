@@ -9,7 +9,7 @@ const orderStore = useOrderStore();
 let idItems = ref([] as any);
 let data = ref();
 console.log(idItems.value);
-const getDateShoe = async function (params: any) {
+const getDataShoe = async function (params: any) {
   try {
     const dataShoe = await axios.post(
       `http://localhost:3001/api/sneakers-to-order`,
@@ -19,6 +19,7 @@ const getDateShoe = async function (params: any) {
     );
     data.value = dataShoe.data;
     orderStore.idParam = idItems.value
+    console.log(orderStore.idParam)
     orderStore.amount = dataShoe.data.reduce(
       (acc: any, item: any) => acc + item.price,
       0
@@ -38,7 +39,7 @@ onBeforeMount(async () => {
     orderStore.idParam = idItems.value
   });
   if (idItems.value.length > 0) {
-    getDateShoe(idItems.value);
+    getDataShoe(idItems.value);
   } else {
     console.log(data.value, "error");
   }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import buttonProfile from '@/components/buttonProfile.vue';
+import activeOrders from '@/components/profileComponents/ordersInProfile/activeOrders.vue';
 </script>
 <template>
 
@@ -20,7 +21,7 @@ import buttonProfile from '@/components/buttonProfile.vue';
 		</h3>
 
 		<div>
-			
+			<activeOrders />
 		</div>
 
 	</div>
