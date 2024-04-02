@@ -43,7 +43,7 @@ const orderStore = useOrderStore();
         />
 				<input
           placeholder="Номер телефона *"
-          class="border-[1px] text-gray-400 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
+          class="border-[1px] text-gray-400 rounded-md p-2 md:mb-4 sm:mb-0 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-52 sm:w-[80%]"
           type="tel"
           v-model="orderStore.phone"
 					minlength="10"
@@ -53,7 +53,7 @@ const orderStore = useOrderStore();
       
       </div>
 
-      <div class="flex flex-wrap md:flex-nowrap md:gap-3 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:gap-3 md:mb-8 sm:gap-3 sm:mb-3">
 				<input
           placeholder="Город *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
@@ -70,7 +70,7 @@ const orderStore = useOrderStore();
         />
 
       </div>
-      <div class="flex flex-wrap md:flex-nowrap md:gap-3 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:gap-3 md:mb-8 sm:gap-3 sm:mb-3">
         <input
           placeholder="Улица *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
@@ -87,7 +87,7 @@ const orderStore = useOrderStore();
         />
        
       </div>
-      <div class="flex flex-wrap md:flex-nowrap md:gap-3 mb-8">
+      <div class="flex flex-wrap md:flex-nowrap md:gap-3 md:mb-8 sm:gap-3 sm:mb-3">
         <input
           placeholder="Квартира *"
           class="border-[1px] text-gray-400 rounded-md p-2 md:w-52 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"

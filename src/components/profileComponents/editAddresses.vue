@@ -126,7 +126,7 @@ const updateAddress = async ()=>{
 }
 </script>
 <template>
-  <div class="md:mt-16 sm:mt-8 overflow-scroll md:max-h-[auto] sm:max-h-[650px]">
+  <div class="md:mt-16 sm:mt-8 overflow-scroll md:max-h-[auto] sm:max-h-[450px]">
     <form class="flex flex-col">
       <div class="flex flex-col gap-2 justify-center">
         <input
@@ -210,6 +210,7 @@ const updateAddress = async ()=>{
       <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
     </form>
 
+  </div>
     <div class="flex gap-5 sm:flex-wrap md:flex-nowrap md:mt-8">
       <button
         class="cursor-pointer duration-200 hover:scale-125 active:scale-100 md:w-12 h-12 sm:w-8 sm:h-8"
@@ -254,5 +255,4 @@ const updateAddress = async ()=>{
         Отменить
       </button>
     </div>
-  </div>
 </template>

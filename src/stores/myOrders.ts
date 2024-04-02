@@ -7,6 +7,8 @@ export const useMyOrderStore = defineStore({
   state: () => ({
 	orders: [] as any[],
 	itemData: [] as any[],
+	active: false,
+	history: false,
   }),
   actions: {
 		async getDataOrder() {
@@ -20,6 +22,12 @@ export const useMyOrderStore = defineStore({
 						id: order.sneakerDataId
 					})
 					order.items = resItems.data
+				}
+				if(resOrders.data.status !== 'CANCELED' || resOrders.data.status !== 'RECEIVED'){
+					this.active = true
+				}
+				if(resOrders.data.status == 'RECEIVED' || resOrders.data.status == 'CANCELED'){
+					this.history = true
 				}
 			console.log(this.orders)
 			} catch(error){

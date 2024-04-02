@@ -43,7 +43,7 @@ onBeforeMount(() => {
         :city="item.city"
         :street="item.street"
         :phoneNumber="item.phoneNumber"
-        class="min-w-[320px]"
+        class="md:min-w-[320px] sm:min-w-[300px]"
       />
     </div>
 

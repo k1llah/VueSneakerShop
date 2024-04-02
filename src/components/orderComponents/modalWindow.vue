@@ -1,9 +1,22 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useOrderStore } from '@/stores/order';
+import { useAllStore } from '@/stores/all';
+import { ref } from 'vue'
 import order from './order.vue'
+const allStore = useAllStore();
 const orderStore = useOrderStore();
 const router = useRouter();
+let toggle = ref(false)
+let target = ref("");
+const handleOpenPage = (page: string) => {
+  target.value = page;
+  setTimeout(() => {
+    toggle.value = true;
+    allStore.isOpened = toggle.value
+  },200)
+  localStorage.setItem('page', page)
+};
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
@@ -35,7 +48,7 @@ const router = useRouter();
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, handleOpenPage('orders')">
               К заказу
             </button>
             <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false">

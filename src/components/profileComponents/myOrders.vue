@@ -19,20 +19,16 @@ onMounted(async () => {
 <template>
   <div class="flex gap-5 items-center">
     <buttonProfile />
-    <h2 class="text-3xl">Мои заказы</h2>
+    <h2 class="md:text-3xl sm:text-2xl">Мои заказы</h2>
   </div>
-  <div class="overflow-scroll max-h-[650px] bg-[#dbeafe]">
-    <div class="flex flex-col gap-5 p-5 mt-2">
-      <h3 class="text-2xl">Активные заказы</h3>
+  <div class="overflow-scroll md:max-h-[650px] sm:max-h-[550px] md:bg-[#dbeafe]">
+    <div class="flex flex-col gap-5 md:p-5 mt-2 sm:p-0">
+      
 
       <div>
         <orderList />
       </div>
     </div>
 
-    <div class="flex flex-col gap-5 p-5 mt-5">
-      <h3 class="text-2xl">История заказов</h3>
-      <div></div>
-    </div>
   </div>
 </template>

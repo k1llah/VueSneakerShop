@@ -61,9 +61,9 @@ const createAddress = async () => {
 };
 </script>
 <template>
-  <div class="mt-16">
-    <form class="flex flex-col">
-      <div class="flex flex-col gap-2 justify-center">
+  <div class="md:mt-16 sm:mt-8">
+    <form class="flex flex-col max-h-[400px] overflow-scroll">
+      <div class="flex flex-col gap-2 justify-center ">
         <input
           placeholder="Фамилия *"
           class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
@@ -149,7 +149,7 @@ const createAddress = async () => {
       <p class="text-red-600 text-[16px]">{{ warningAll }}</p>
     </form>
 
-    <div class="flex gap-5 flex-wrap justify-center md:mt-4 ">
+    <div class="flex gap-5 justify-center md:mt-4 sm:flex-wrap">
       <button
         class="bg-[#60d389] md:px-7 sm:px-4 py-3 rounded-lg text-white text-sm font-normal hover:bg-green-700 transition duration-250"
         @click="createAddress()"

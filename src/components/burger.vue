@@ -1,18 +1,36 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
-import {useSneaker} from '@/stores/sneaker'
-const sneakerStore = useSneaker()
+import { useSneaker } from "@/stores/sneaker";
+import { ref, onMounted, watch, onBeforeMount } from "vue";
+import { useAllStore } from "@/stores/all";
+import burger from "@/components/burger.vue";
+import { useCartStore } from "@/stores/addToCart";
+import { useAuthStore } from "@/stores/authData";
+const cartStore = useCartStore();
+const allStore = useAllStore();
+const authStore = useAuthStore();
+onBeforeMount(() => {
+  cartStore.cartDataGet();
+  cartStore.localCounter = cartStore.items.length;
+  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter);
+});
+
+watch(
+  () => cartStore.cartCounter,
+  (newValue: any) => {
+    cartStore.localCounter = newValue;
+  }
+);
+
+const sneakerStore = useSneaker();
 let toggleShow = () => {
-  sneakerStore.show = !sneakerStore.show
-  console.log(sneakerStore.show)
-}
+  sneakerStore.show = !sneakerStore.show;
+  console.log(sneakerStore.show);
+};
 import gsap from "gsap";
 const dropdowns = ref<boolean[]>([false]);
 const toggleDropdown = (index: number) => {
   dropdowns.value[index] = !dropdowns.value[index];
-  const dropdownContent = document.querySelector(
-    ".burger"
-  ) as HTMLDivElement;
+  const dropdownContent = document.querySelector(".burger") as HTMLDivElement;
 
   if (dropdownContent) {
     if (dropdowns.value[index]) {
@@ -39,25 +57,23 @@ const toggleDropdown = (index: number) => {
       <router-link to="/">
         <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
       </router-link>
-      <input type="checkbox" id="checkbox" @click="toggleDropdown(0)">
-    <label for="checkbox" class="toggle">
+      <input type="checkbox" id="checkbox" @click="toggleDropdown(0)" />
+      <label for="checkbox" class="toggle">
         <div class="bars" id="bar1"></div>
         <div class="bars" id="bar2"></div>
         <div class="bars" id="bar3"></div>
-    </label>
-
-
+      </label>
     </div>
 
     <div
       class="burger flex justify-center bg-white"
       :class="{ closed: !dropdowns[0] }"
-      style="max-height: 370px; max-height:0px;"
+      style="max-height: 370px; max-height: 0px"
     >
       <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12">
         <li class="border-b-2 border-slate-300 w-full flex justify-center pb-2">
           <router-link to="/sneakers_page">
-            <p 
+            <p
               class="text-slate-900 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-base"
             >
               Все кроссовки
@@ -69,7 +85,7 @@ const toggleDropdown = (index: number) => {
           @click="toggleShow()"
         >
           <img src="/cart.svg" alt="Cart" />
-          <p class="text-[18px] font-[500] md:hidden lg:block">205 Руб</p>
+          <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-100 block  w-[20px] h-[20px] text-center" >{{ cartStore.localCounter }}</p>
         </li>
         <li
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 border-slate-300 w-full justify-center pb-2"
@@ -79,7 +95,7 @@ const toggleDropdown = (index: number) => {
           <span class="text-[19px] font-light md:text-[14px]">Закладки</span>
         </li>
         <li
-          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 border-slate-300 w-full justify-center "
+          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 border-slate-300 w-full justify-center"
           @click="$router.push({ name: 'Profile' })"
         >
           <img src="/profile.svg" alt="Cart" />
@@ -104,7 +120,7 @@ const toggleDropdown = (index: number) => {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .bars {
@@ -112,7 +128,7 @@ const toggleDropdown = (index: number) => {
   height: 4px;
   background-color: #abcfff;
   border-radius: 5px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 #checkbox:checked + .toggle .bars {
@@ -123,19 +139,18 @@ const toggleDropdown = (index: number) => {
   transform: rotate(135deg);
   margin-left: 0;
   transform-origin: center;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 #checkbox:checked + .toggle #bar1 {
   transform: rotate(45deg);
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   transform-origin: left center;
 }
 
 #checkbox:checked + .toggle #bar3 {
   transform: rotate(-45deg);
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   transform-origin: left center;
 }
-
 </style>
