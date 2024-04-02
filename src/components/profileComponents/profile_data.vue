@@ -2,7 +2,9 @@
 import axios from "axios";
 import { ref, watch } from "vue";
 import { useAllStore } from '@/stores/all';
+import { useMyOrderStore } from '@/stores/myOrders';
 import dialogWindow from '@/components/profileComponents/dialogWindow.vue';
+const myOrders = useMyOrderStore();
 const email = ref("");
 const first_name = ref("");
 const lastName = ref("");
@@ -80,7 +82,7 @@ watch(() => allStore.isOpened, (newValue) => {
         <div class="flex flex-col gap-10 justify-center h-[100%]">
           <div class="pb-[10px] ">
             <div class="input">
-              <button class="value" @click="handleOpenPage('orders')">
+              <button class="value" @click="handleOpenPage('orders'), myOrders.getDataOrder()">
                 <svg
                   viewBox="0 0 16 16"
                   xmlns="http://www.w3.org/2000/svg"
