@@ -1,64 +1,90 @@
 <script setup lang="ts">
-	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
-  import { ref } from 'vue';
-  import axios from 'axios';
-  import stars from './stars.vue';
-  const textValue = ref('');
-  const imageFeedback = ref();
-
-  const rate = ref(0);
+import templateFeedBack from "@/components/feedBackComponents/templateFeedback.vue";
+import { ref } from "vue";
+import axios from "axios";
+import stars from "./stars.vue";
+import { useFeedbackStore } from "@/stores/feedback";
+const feedbackStore = useFeedbackStore();
+const textValue = ref("");
+const imageFeedback = ref();
 </script>
-<template > 
-<div class="flex justify-center mt-16">
-	<div class="form-container ">
+<template>
+  <div class="flex justify-center mt-16">
+    <div class="form-container">
       <form class="form">
         <div class="flex gap-5">
-      <p class="md:text-lg sm:text-base">Загрузить фото для отзыва</p>
-      <label for="upload-button" class="cursor-pointer">
-        <div
-          class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
-        >
-          <svg
-            class="md:w-4 md:h-4 sm:w-2 sm:h-2" 
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
+          <p class="md:text-lg sm:text-base">Загрузить фото для отзыва</p>
+          <label for="upload-button" class="cursor-pointer">
+            <div
+              class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
+            >
+              <svg
+                class="md:w-4 md:h-4 sm:w-2 sm:h-2"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </div>
+            <input
+              id="upload-button"
+              type="file"
+              class="hidden"
+              accept="image/*"
+              @change=""
+              @click="feedbackStore.handleFileUpload"
+            />
+          </label>
         </div>
-        <input
-          id="upload-button"
-          type="file"
-          class="hidden"
-          accept="image/*"
-          @change=""
-        />
-      </label>
-    </div>
-        
+
         <div class="form-group">
           <label for="textarea">Комментарий</label>
-          <textarea cols="50" rows="10" id="textarea" name="textarea">          </textarea>
+          <textarea
+            cols="50"
+            rows="10"
+            id="textarea"
+            v-model="feedbackStore.message"
+            name="textarea"
+          >
+          </textarea>
+          <div v-if="feedbackStore.warningShow == 'messageEmpty'">
+            <h4 class="text-red-500 text-sm font-extralight p-1">
+              {{ feedbackStore.textWarning }}
+            </h4>
+          </div>
         </div>
-        
-        <stars :prefix="'writeYours'"></stars>
-        <button  class="form-submit-btn">Отправить</button>
+
+        <stars />
+        <div v-if="feedbackStore.warningShow == 'ratingEmpty'">
+          <h4 class="text-red-500 text-sm font-extralight p-[1px] text-end">
+            {{ feedbackStore.textWarning }}
+          </h4>
+        </div>
+        <div v-if="feedbackStore.warningShow == 'bothEmpty'">
+          <h4 class="text-red-500 text-sm font-extralight p-1">
+            {{ feedbackStore.textWarning }}
+          </h4>
+        </div>
+        <button class="form-submit-btn" @click="feedbackStore.createFeedback">
+          Отправить
+        </button>
       </form>
     </div>
-</div>
+  </div>
 </template>
 <style scoped>
 .form-container {
   width: 400px;
-  background: linear-gradient(#212121, #212121) padding-box,
-              linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+  background:
+    linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
   border: 2px solid transparent;
   padding: 32px 24px;
   font-size: 14px;
@@ -170,8 +196,4 @@
   background-color: #fff;
   border-color: #fff;
 }
-
-
-
-
-</style> 
+</style>

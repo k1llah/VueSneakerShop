@@ -26,7 +26,11 @@ onMounted(async () => {
 					</div>
       </div>
       <p class="text-lg font-medium">Общая стоимость {{ order.amount }} RUB</p>
-      <p class="text-medium font-normal">Статус заказа: {{ order.status }}</p>
+      <p class="text-medium font-normal" v-if="order.status == 'RECEIVED'">Статус заказа: Получен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'CANCELED'">Статус заказа: Отменен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'PENDING'">Статус заказа: В обработке</p>
+      <p class="text-medium font-normal" v-if="order.status == 'SENDED'">Статус заказа: Отправлен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'COMPLETED'">Статус заказа: Прибыл в место назначения</p>
       <p class="text-sm font-light">Был создан {{ order.createdAt }}</p>
     </div>
 		</div>
@@ -48,7 +52,11 @@ onMounted(async () => {
 				</div>
       </div>
       <p class="text-lg font-medium">Общая стоимость {{ order.amount }} RUB</p>
-      <p class="text-medium font-normal">Статус заказа: {{ order.status }}</p>
+      <p class="text-medium font-normal" v-if="order.status == 'RECEIVED'">Статус заказа: Получен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'CANCELED'">Статус заказа: Отменен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'PENDING'">Статус заказа: В обработке</p>
+      <p class="text-medium font-normal" v-if="order.status == 'SENDED'">Статус заказа: Отправлен</p>
+      <p class="text-medium font-normal" v-if="order.status == 'COMPLETED'">Статус заказа: Прибыл в место назначения</p>
       <p class="text-sm font-light">Был создан {{ order.createdAt }}</p>
     </div>
 	</div>

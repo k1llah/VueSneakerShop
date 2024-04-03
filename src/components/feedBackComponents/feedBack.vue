@@ -29,7 +29,7 @@
   </div>
 <div class="flex flex-col items-center mt-12 container-bg p-10 h-full">
   
-<templateFeedBack :rate="5"/>
+<templateFeedBack :rate="3"/>
 
 </div>
 <div v-if="allStore.isOpenedFeedBack == true">

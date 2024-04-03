@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
+import { defineProps, ref, computed } from "vue";
 import stars from './stars.vue';
 const props = defineProps({
   id: Number,
@@ -7,8 +7,7 @@ const props = defineProps({
   image: String,
   text: String,
   rate: Number || String,
-});
-const rate = ref(props.rate)
+})
 </script>
 <template>
     <div
@@ -28,13 +27,7 @@ const rate = ref(props.rate)
           ante sit amet tellus ornare tincidunt.
         </p>
         
-       <stars :prefix="'feedback'" :stats="3"/>
+       <stars :prefix="'feedback'" :stats="props.rate"/>
       </div>
     </div>
-
-  
 </template>
-
-<style scoped>
-
-</style>

@@ -114,7 +114,7 @@ export const useOrderStore = defineStore({
                 orderMessage: this.comment,
               }
             );
-            if (pay.status === 200) {
+            if (pay.status === 200 && pay.data) {
               this.success = true
               pay.data.forEach((el: any) => {
                 this.orderNumber = el.orderNumber
