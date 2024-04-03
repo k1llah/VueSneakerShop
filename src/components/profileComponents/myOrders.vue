@@ -21,7 +21,7 @@ onMounted(async () => {
     <buttonProfile />
     <h2 class="md:text-3xl sm:text-2xl">Мои заказы</h2>
   </div>
-  <div class="overflow-scroll md:max-h-[650px] sm:max-h-[550px] md:bg-[#dbeafe]">
+  <div class="overflow-scroll md:max-h-[650px] md:min-h-[650px] md:mt-5 sm:max-h-[550px] md:bg-[#dbeafe]">
     <div class="flex flex-col gap-5 md:p-5 mt-2 sm:p-0">
       
 

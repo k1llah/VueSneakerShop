@@ -65,9 +65,10 @@ onMounted(async () => {
 	<img src="/emoji-1.png" alt="" class="max-w-[60px]">
 	</div>
 </div>
-<div v-else-if="myOrders.orders.length == 0 || !myOrders.active && !myOrders.history">
-<h3>
-	К сожалению у вас пока нет заказов, вы можете перейти в <router-link to="sneakers_page" class="text-[#914dff]">каталог</router-link> и сделать первый заказ 
+<div v-else-if="myOrders.orders.length == 0 || !myOrders.active && !myOrders.history" class="flex flex-col gap-5 items-center justify-center h-full mt-[40%] text-center">
+<h3 class="text-2xl font-extralight">
+	К сожалению у вас пока нет заказов, вы можете перейти в <router-link to="sneakers_page" class="text-[#914dff]">Каталог</router-link> и сделать первый заказ 
 </h3>
+<img src="/emoji-2.png" alt="" class="max-w-[60px]">
 </div>
 </template>

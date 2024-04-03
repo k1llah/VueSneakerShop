@@ -14,7 +14,7 @@ export const useMyOrderStore = defineStore({
 		async getDataOrder() {
 			try{
 				const resOrders = await axios.post('http://localhost:3001/api/get-orders', {
-					id: localStorage.getItem('id'),
+					userId: localStorage.getItem('id')
 				})
 			this.orders = resOrders.data	
 				for( const order of this.orders){
