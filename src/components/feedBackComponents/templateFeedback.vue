@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { defineProps, ref, computed } from "vue";
+import { useFeedbackStore } from '@/stores/feedback';
 import stars from './stars.vue';
+import successCreatedModal from './successCreatedModal.vue';
+const feedbackStore = useFeedbackStore();
 const props = defineProps({
   id: Number,
   author: String,
@@ -30,4 +33,5 @@ const props = defineProps({
        <stars :prefix="'feedback'" :stats="props.rate"/>
       </div>
     </div>
+    <successCreatedModal v-if="feedbackStore.modalFeedback"/>
 </template>

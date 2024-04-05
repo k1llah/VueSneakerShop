@@ -38,8 +38,7 @@ const imageFeedback = ref();
               type="file"
               class="hidden"
               accept="image/*"
-              @change=""
-              @click="feedbackStore.handleFileUpload"
+              @change="feedbackStore.handleFileUpload"
             />
           </label>
         </div>

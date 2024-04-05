@@ -10,27 +10,30 @@ export const useFeedbackStore = defineStore({
     imageFeedback: ref(),
     tempFileURL: ref(),
     textWarning: "",
-    warningShow: ''
+    warningShow: '',
+    modalFeedback: false,
   }),
   actions: {
     handleFileUpload(event: Event) {
+      
       const target = event.target as HTMLInputElement;
-      const files = target.files;
+      const files = target.files
       if (files && files.length > 0) {
-        let file = files[0];
-        this.imageFeedback = file;
-        const reader = new FileReader();
+        let file = files[0]
+        this.imageFeedback = file
+        const reader = new FileReader()
         reader.onload = () => {
-          this.tempFileURL = reader.result;
-        };
-        reader.readAsDataURL(file);
+          this.tempFileURL = reader.result
+        }
+        reader.readAsDataURL(file)
       }
-      console.log(this.imageFeedback);
+
+      console.log(this.imageFeedback)
     },
     async createFeedback() {
       event?.preventDefault()
       try {
-        if (this.starRating !== 0 && this.message !== "" && this.userId !== null && this.imageFeedback !== undefined) {
+        if (this.starRating !== 0 && this.message !== "" && this.userId !== null) {
           const formData = new FormData();
           formData.append("imageFeedback", this.imageFeedback);
           formData.append("userId", this.userId);
@@ -40,6 +43,10 @@ export const useFeedbackStore = defineStore({
             "http://localhost:3001/api/create-feedback",
             formData
           )
+         this.modalFeedback = true
+         this.message = ''
+         this.imageFeedback = undefined
+         this.starRating = 0
           console.log(createFeedback.data)
         }
         else if(this.message == "" && this.starRating == 0){
