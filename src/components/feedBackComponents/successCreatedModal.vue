@@ -11,9 +11,9 @@ const body = document.querySelector('body')
 
 </script>
 <template>
-  <div class="fixed top-0 left-0 h-full w-full bg-black z-50 opacity-70"></div>
+  <div class="fixed top-0 left-0 h-full w-full bg-black z-50 opacity-80"></div>
 
-  <div class="w-[400px] h-auto flex flex-col absolute gap-1 z-50">
+  <div class="md:w-[400px] sm:w-[300px] top-[30%] h-auto flex flex-col fixed gap-1 z-50">
     <div class="p-5 rounded-lg bg-[#f0fdf3]">
       <div class="flex gap-2">
         <div class="flex-shrink-0">

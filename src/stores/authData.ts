@@ -11,6 +11,18 @@ export const useAuthStore = defineStore({
    currentUser: {id: '', uuid: ''},
   }),
   actions: {
+    async getRole() {
+      try {
+        const data = await axios.post("http://localhost:3001/api/get-data", {
+          uuid: localStorage.getItem("uuid"),
+          id: localStorage.getItem("id"),
+        });
+        this.role = data.data.user.role
+        console.log(this.role)
+      }catch(error){
+        console.log(error)
+      }
+    },
     checkAuth() {
       const idLocal = localStorage.getItem('id')
       const uuidLocal = localStorage.getItem('uuid')

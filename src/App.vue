@@ -10,6 +10,7 @@ const authStore = useAuthStore()
 const sneakerStore = useSneaker()
 
 onMounted(() => {
+  authStore.getRole()
   authStore.checkAuth();
   console.log(authStore.id)
 });
