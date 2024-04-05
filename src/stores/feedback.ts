@@ -12,6 +12,7 @@ export const useFeedbackStore = defineStore({
     textWarning: "",
     warningShow: '',
     modalFeedback: false,
+    authorName: '',
   }),
   actions: {
     handleFileUpload(event: Event) {
@@ -33,12 +34,19 @@ export const useFeedbackStore = defineStore({
     async createFeedback() {
       event?.preventDefault()
       try {
-        if (this.starRating !== 0 && this.message !== "" && this.userId !== null) {
+        const data = await axios.post("http://localhost:3001/api/get-data", {
+          uuid: localStorage.getItem("uuid"),
+          id: localStorage.getItem("id"),
+        });
+        
+        this.authorName = data.data.user.first_name;
+        if (this.starRating !== 0 && this.message !== "" && this.userId !== null && this.authorName !== '') {
           const formData = new FormData();
           formData.append("imageFeedback", this.imageFeedback);
           formData.append("userId", this.userId);
           formData.append("starRating", this.starRating.toString());
           formData.append("messageFeedback", this.message);
+          formData.append("authorName", this.authorName);
           const createFeedback = await axios.post(
             "http://localhost:3001/api/create-feedback",
             formData
