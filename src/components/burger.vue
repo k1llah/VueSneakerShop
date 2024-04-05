@@ -132,7 +132,7 @@ const toggleDropdown = (index: number) => {
         </li>
         <li
         v-if="localRole === 'ADMIN'"
-        class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 "
+        class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2"
         @click="checkIsAdmin()"
       >
         <span class="text-[19px] font-light md:text-[14px]">Админка</span>

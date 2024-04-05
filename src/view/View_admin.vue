@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ref,onBeforeMount } from 'vue';
+import allLinks from '../components/adminComponents/allLinks.vue'
 const localRole = ref(localStorage.getItem("role"));
 const role = ref()
 onBeforeMount(() => {
@@ -29,6 +30,6 @@ async function checkIsAdmin() {
 }
 </script>
 <template>
-
+  <allLinks/>
 </template>
 
