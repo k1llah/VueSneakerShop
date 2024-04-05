@@ -67,7 +67,7 @@ const animateText = () => {
     </h2>
     <p
       ref="paragraph1"
-      class="text-left font-[500] md:text-lg md:leading-[40px] md:mt-24 sm:text-base sm:leading-[33px] sm:mt-12"
+      class="text-left font-[500] md:text-2xl md:leading-[40px] md:mt-24 sm:text-base sm:leading-[33px] sm:mt-12"
       :class="{ 'hidden-text': !isVisible }"
     >
       Исследуйте мир кроссовок вместе с нами! Мы предлагаем широкий выбор

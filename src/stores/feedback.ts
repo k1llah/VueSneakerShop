@@ -19,8 +19,6 @@ export const useFeedbackStore = defineStore({
       if (files && files.length > 0) {
         let file = files[0];
         this.imageFeedback = file;
-        this.imageFeedback = file.name;
-
         const reader = new FileReader();
         reader.onload = () => {
           this.tempFileURL = reader.result;
@@ -32,13 +30,12 @@ export const useFeedbackStore = defineStore({
     async createFeedback() {
       event?.preventDefault()
       try {
-        if (this.starRating !== 0 && this.message !== "" && this.userId !== null) {
+        if (this.starRating !== 0 && this.message !== "" && this.userId !== null && this.imageFeedback !== undefined) {
           const formData = new FormData();
-          formData.append("image", this.imageFeedback);
+          formData.append("imageFeedback", this.imageFeedback);
           formData.append("userId", this.userId);
           formData.append("starRating", this.starRating.toString());
           formData.append("messageFeedback", this.message);
-          formData.append("imageFeedback", this.imageFeedback);
           const createFeedback = await axios.post(
             "http://localhost:3001/api/create-feedback",
             formData
