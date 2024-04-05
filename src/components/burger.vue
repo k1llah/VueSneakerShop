@@ -5,9 +5,38 @@ import { useAllStore } from "@/stores/all";
 import burger from "@/components/burger.vue";
 import { useCartStore } from "@/stores/addToCart";
 import { useAuthStore } from "@/stores/authData";
+import { useRouter } from "vue-router";
+import axios from "axios";
 const cartStore = useCartStore();
 const allStore = useAllStore();
 const authStore = useAuthStore();
+const localRole = ref(localStorage.getItem("role"));
+const role = ref();
+let timer = ref(false);
+const router = useRouter();
+async function checkIsAdmin() {
+  try {
+    const data = await axios.post("http://localhost:3001/api/get-data", {
+      uuid: localStorage.getItem("uuid"),
+      id: localStorage.getItem("id"),
+    });
+    role.value = data.data.user.role;
+    localStorage.setItem("role", role.value);
+  } catch (error) {
+    console.log(error);
+  }
+  setTimeout(() => {
+    if (role.value === "ADMIN") {
+      console.log(role.value);
+      router.push({ name: "admin" });
+    } else {
+      location.reload();
+      alert("Еще че придумал? сегодня не твой день салага");
+    }
+    timer.value = false;
+  }, 3000);
+  timer.value = true;
+}
 onBeforeMount(() => {
   cartStore.cartDataGet();
   cartStore.localCounter = cartStore.items.length;
@@ -80,7 +109,7 @@ const toggleDropdown = (index: number) => {
             </p>
           </router-link>
         </li>
-        <li
+        <li v-if="localRole != 'ADMIN'"
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 border-slate-300 w-full justify-center pb-2"
           @click="toggleShow()"
         >
@@ -101,6 +130,17 @@ const toggleDropdown = (index: number) => {
           <img src="/profile.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Профиль</span>
         </li>
+        <li
+        v-if="localRole === 'ADMIN'"
+        class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 "
+        @click="checkIsAdmin()"
+      >
+        <span class="text-[19px] font-light md:text-[14px]">Админка</span>
+
+        <svg viewBox="25 25 50 50" v-if="timer">
+          <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+      </li>
       </ul>
     </div>
   </div>
@@ -153,4 +193,42 @@ const toggleDropdown = (index: number) => {
   transition-duration: 0.3s;
   transform-origin: left center;
 }
+svg {
+ width: 1.7em;
+ transform-origin: center;
+ animation: rotate4 2s linear infinite;
+}
+
+circle {
+ fill: none;
+ stroke: hsl(214, 97%, 59%);
+ stroke-width: 2;
+ stroke-dasharray: 1, 200;
+ stroke-dashoffset: 0;
+ stroke-linecap: round;
+ animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes dash4 {
+ 0% {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+ }
+
+ 50% {
+  stroke-dasharray: 90, 200;
+  stroke-dashoffset: -35px;
+ }
+
+ 100% {
+  stroke-dashoffset: -125px;
+ }
+}
+
 </style>
