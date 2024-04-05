@@ -1,79 +1,171 @@
 <style>
-*{
+* {
   font-family: sans-serif;
 }
 </style>
 <script setup lang="ts">
-import { ref,onMounted, watch, onBeforeMount } from 'vue'
-import {useSneaker} from '@/stores/sneaker'
-import {useAllStore} from '@/stores/all'
-import burger from '@/components/burger.vue'
-import { useCartStore } from '@/stores/addToCart';
-import { useAuthStore } from '@/stores/authData';
+import { ref, onMounted, watch, onBeforeMount } from "vue";
+import { useRouter } from "vue-router";
+import { useSneaker } from "@/stores/sneaker";
+import { useAllStore } from "@/stores/all";
+import burger from "@/components/burger.vue";
+import { useCartStore } from "@/stores/addToCart";
+import { useAuthStore } from "@/stores/authData";
+import axios from "axios";
 const cartStore = useCartStore();
-const sneakerStore = useSneaker()
-const allStore = useAllStore()
+const router = useRouter();
+const sneakerStore = useSneaker();
+const allStore = useAllStore();
 const authStore = useAuthStore();
-onBeforeMount(()=>{
-  cartStore.cartDataGet()
-  cartStore.localCounter = cartStore.items.length
-  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter)
-})
-
-watch(() => cartStore.cartCounter, (newValue:any) => {
-  cartStore.localCounter = newValue;
+const localRole = ref(localStorage.getItem("role"));
+const role = ref();
+let timer = ref(false);
+onBeforeMount(() => {
+  cartStore.cartDataGet();
+  cartStore.localCounter = cartStore.items.length;
+  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter);
 });
-let toggleShow = () => {
-  sneakerStore.show = !sneakerStore.show
-  console.log(sneakerStore.show)
+async function checkIsAdmin() {
+  try {
+    const data = await axios.post("http://localhost:3001/api/get-data", {
+      uuid: localStorage.getItem("uuid"),
+      id: localStorage.getItem("id"),
+    });
+    role.value = data.data.user.role;
+    localStorage.setItem("role", role.value);
+  } catch (error) {
+    console.log(error);
+  }
+  setTimeout(() => {
+    if (role.value === "ADMIN") {
+      console.log(role.value);
+      router.push({ name: "admin" });
+    } else {
+      location.reload();
+      alert("Еще че придумал? сегодня не твой день салага");
+    }
+    timer.value = false;
+  }, 3000);
+  timer.value = true;
 }
-// const cartIds = ref([]as any)
-// onMounted(()=>{
-//   cartIds.value = JSON.parse(localStorage.cart)
-// })
+watch(
+  () => cartStore.cartCounter,
+  (newValue: any) => {
+    cartStore.localCounter = newValue;
+  }
+);
+let toggleShow = () => {
+  sneakerStore.show = !sneakerStore.show;
+  console.log(sneakerStore.show);
+};
 </script>
 <template>
-    <header class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden">
-     
-     <burger/>
+  <header
+    class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden"
+  >
+    <burger />
+  </header>
 
-
-    </header>
-
-
-
-  <header class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex">
+  <header
+    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex"
+  >
     <div class="">
       <div class="flex items-center md:gap-10 lg:gap-4">
         <router-link to="/">
-        <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
-      </router-link>
-        <h2 class=" font-medium uppercase lg:text-xl md:text-base hidden sm:text-base">Benz Shöp</h2>
+          <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
+        </router-link>
+        <h2
+          class="font-medium uppercase lg:text-xl md:text-base hidden sm:text-base"
+        >
+          Benz Shöp
+        </h2>
         <router-link to="sneakers_page">
-        <p class="text-slate-700  hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm">Все кроссовки</p>
-      </router-link>
+          <p
+            class="text-slate-700 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm"
+          >
+            Все кроссовки
+          </p>
+        </router-link>
       </div>
     </div>
     <ul class="flex items-center gap-10 md:gap-5">
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s " @click="toggleShow()" 
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        @click="toggleShow()"
+        v-if="localRole != 'ADMIN'"
       >
         <img src="/cart.svg" alt="Cart" />
-        <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block  w-[20px] h-[20px] text-center" >{{ cartStore.localCounter }}</p>
+        <p
+          class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block w-[20px] h-[20px] text-center"
+        >
+          {{ cartStore.localCounter }}
+        </p>
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
         @click="$router.push({ name: 'Purchases' })"
       >
         <img src="/heart.svg" alt="Cart" />
-        <span class="text-[19px] font-light md:text-[14px] ">Закладки</span>
+        <span class="text-[19px] font-light md:text-[14px]">Закладки</span>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s" @click="$router.push({ name: 'Profile' })"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />
         <span class="text-[19px] font-light md:text-[14px]">Профиль</span>
       </li>
+      <li
+        v-if="localRole === 'ADMIN'"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        @click="checkIsAdmin()"
+      >
+        <span class="text-[19px] font-light md:text-[14px]">Админка</span>
+
+        <svg viewBox="25 25 50 50" v-if="timer">
+          <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+      </li>
     </ul>
   </header>
 </template>
+<style scoped>
+svg {
+ width: 1.7em;
+ transform-origin: center;
+ animation: rotate4 2s linear infinite;
+}
+
+circle {
+ fill: none;
+ stroke: hsl(214, 97%, 59%);
+ stroke-width: 2;
+ stroke-dasharray: 1, 200;
+ stroke-dashoffset: 0;
+ stroke-linecap: round;
+ animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes dash4 {
+ 0% {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+ }
+
+ 50% {
+  stroke-dasharray: 90, 200;
+  stroke-dashoffset: -35px;
+ }
+
+ 100% {
+  stroke-dashoffset: -125px;
+ }
+}
+
+</style>

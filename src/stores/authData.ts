@@ -18,6 +18,7 @@ export const useAuthStore = defineStore({
           id: localStorage.getItem("id"),
         });
         this.role = data.data.user.role
+        localStorage.setItem("role", this.role)
         console.log(this.role)
       }catch(error){
         console.log(error)
@@ -26,9 +27,11 @@ export const useAuthStore = defineStore({
     checkAuth() {
       const idLocal = localStorage.getItem('id')
       const uuidLocal = localStorage.getItem('uuid')
-      if(idLocal && uuidLocal){
+      const roleLocal = localStorage.getItem('role')
+      if(idLocal && uuidLocal && roleLocal) {
         this.isAuthenticated = true
         this.currentUser = {id: idLocal, uuid: uuidLocal};
+        this.getRole()
       }
       else {
         this.isAuthenticated = false
@@ -40,6 +43,7 @@ export const useAuthStore = defineStore({
     logOut() {
       localStorage.removeItem('id')
       localStorage.removeItem('uuid')
+      localStorage.removeItem('role')
       localStorage.setItem('cartCounter', '0')
       localStorage.setItem('totalPrice', '0')
       this.isAuthenticated = false

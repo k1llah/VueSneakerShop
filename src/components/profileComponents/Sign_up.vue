@@ -5,18 +5,18 @@ import { md5 } from "js-md5";
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authData';
-const passwordsMatch = ref(false);
-const nameNotEmpty = ref(true);
-const passwordLengthValid = ref(true);
-const passwordContainsLetter = ref(true);
-const emailValid = ref(true);
-const passwordReport = ref("");
-const isSuccessSignUp = ref(false);
-const textSuccessSignUp = ref("");
-let timer = ref(5);
-const isTimerStarted = ref(false);
-let localStorageMatch = ref(false);
-const authStore = useAuthStore();
+const passwordsMatch = ref(false)
+const nameNotEmpty = ref(true)
+const passwordLengthValid = ref(true)
+const passwordContainsLetter = ref(true)
+const emailValid = ref(true)
+const passwordReport = ref("")
+const isSuccessSignUp = ref(false)
+const textSuccessSignUp = ref("")
+let timer = ref(5)
+const isTimerStarted = ref(false)
+let localStorageMatch = ref(false)
+const authStore = useAuthStore()
 const router = useRouter()
 if(authStore.isAuthenticated == true && authStore.currentUser != ({ id: '', uuid: '' })){
   isSuccessSignUp.value = true
@@ -69,17 +69,18 @@ const submitForm = async (event: Event) => {
         email: email,
         password: md5(password).toString(),
       });
-      isSuccessSignUp.value = true;
-      textSuccessSignUp.value = "Вы успешно зарегистрировались!";
-      const infoUser = await create.data;
-      localStorage.id = infoUser.id;
-      localStorage.uuid = infoUser.uuid;
+      isSuccessSignUp.value = true
+      textSuccessSignUp.value = "Вы успешно зарегистрировались!"
+      const infoUser = await create.data
+      localStorage.id = infoUser.id
+      localStorage.uuid = infoUser.uuid
+      localStorage.role = infoUser.role
       authStore.id = infoUser.id
       authStore.uuid = infoUser.uuid
       startTimer();
       authStore.isAuthenticated = true
       isTimerStarted.value = true
-      localStorageMatch.value = true;
+      localStorageMatch.value = true
 
       // исправить на роутер
       const prevPage = localStorage.getItem("prevPage")
@@ -104,9 +105,9 @@ const submitForm = async (event: Event) => {
 };
 // Вызываем clickSubmit при монтировании компонента
 onMounted(() => {
-  submitForm;
-  authStore.checkAuth();
-});
+  submitForm
+  authStore.checkAuth()
+})
 </script>
 <template>
   

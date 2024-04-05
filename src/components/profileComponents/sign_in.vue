@@ -25,6 +25,7 @@ const logInFunc = async (event:any) => {
     if(data.data){
       localStorage.setItem('id', data.data.user.id)
       localStorage.setItem('uuid', data.data.user.uuid)
+      localStorage.setItem("role", data.data.user.role)
       authStore.id = data.data.user.id
       authStore.uuid = data.data.user.uuid
       authStore.role = data.data.user.role

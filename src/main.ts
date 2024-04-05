@@ -52,6 +52,13 @@ const router = createRouter({
 		path: `/order`,
 		component: () => import('./view/View_order.vue')
 	},
+	
+	{
+		name: 'admin',
+		path: `/admin`,
+		component: () => import('./view/View_admin.vue')
+	},
+
 ]
 })
 const pinia = createPinia()
