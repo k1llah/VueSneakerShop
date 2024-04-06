@@ -1,53 +1,59 @@
 <script setup lang="ts">
+  import { onBeforeMount } from 'vue';
 	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
 	import { useAllStore } from '@/stores/all';
+  import { useFeedbackStore } from '@/stores/feedback';
 	import modalFeedback from '@/components/feedBackComponents/modalFeedback.vue';
 	let allStore = useAllStore();
+  const feedbackStore = useFeedbackStore();
 
 	console.log(allStore.isOpenedFeedBack)
+  onBeforeMount(() => {
+    feedbackStore.getFeedbacksModerated()
+
+  })
 </script>
-<template >
+<template>
   <div class="flex justify-end pr-10">
-    <button class="cssbuttons-io-button" @click="allStore.isOpenedFeedBack = true">
-  Оставить отзыв
-  <div class="icon">
-    <svg
-      height="24"
-      width="24"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
+    <button
+      class="cssbuttons-io-button"
+      @click="allStore.isOpenedFeedBack = true"
     >
-      <path d="M0 0h24v24H0z" fill="none"></path>
-      <path
-        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-        fill="currentColor"
-      ></path>
-    </svg>
+      Оставить отзыв
+      <div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </button>
   </div>
-</button>
-
+  <div class="flex  mt-12 container-bg p-10 h-full">
+    <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center items-center">
+      <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
+        <templateFeedBack
+    
+          :author="feedback.authorName"
+          :image="feedback.imageFeedback"
+          :text="feedback.messageFeedback"
+          :rate="feedback.rating"
+          :is-moderated="feedback.isModerated"
+        />
+      </div>
+    </div>
   </div>
-<div class="flex flex-col items-center mt-12 container-bg p-10 h-full">
-  
-<templateFeedBack :rate="3"/>
-
-</div>
-<div v-if="allStore.isOpenedFeedBack == true">
-  
-<modalFeedback/>
-</div>
-
-
+  <div v-if="allStore.isOpenedFeedBack == true">
+    <modalFeedback />
+  </div>
 </template>
-
-
-
-
-
-
-
-
-
 
 <style scoped>
 .container-bg {
@@ -69,8 +75,6 @@
     repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%)
       calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
 }
-
-
 
 .cssbuttons-io-button {
   background: #a370f0;
@@ -125,5 +129,4 @@
 .cssbuttons-io-button:active .icon {
   transform: scale(0.95);
 }
-
 </style>

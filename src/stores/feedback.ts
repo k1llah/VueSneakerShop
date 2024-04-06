@@ -13,6 +13,7 @@ export const useFeedbackStore = defineStore({
     warningShow: '',
     modalFeedback: false,
     authorName: '',
+    feedBackData: [] as any[],
   }),
   actions: {
     handleFileUpload(event: Event) {
@@ -47,6 +48,7 @@ export const useFeedbackStore = defineStore({
           formData.append("starRating", this.starRating.toString());
           formData.append("messageFeedback", this.message);
           formData.append("authorName", this.authorName);
+          formData.append("rating", this.starRating.toString())
           const createFeedback = await axios.post(
             "http://localhost:3001/api/create-feedback",
             formData
@@ -83,5 +85,43 @@ export const useFeedbackStore = defineStore({
         throw new Error();
       }
     },
+    async getFeedbacks(){
+      try{
+        const dataFeedback = await axios.get('http://localhost:3001/api/get-feedback-to-moderate')
+        this.feedBackData = dataFeedback.data
+        console.log(this.feedBackData)
+      } catch(error){
+        console.log(error)
+      }
+    },
+    async getFeedbacksModerated(){
+      try{
+        const dataFeedback = await axios.get('http://localhost:3001/api/get-feedback')
+        this.feedBackData = dataFeedback.data
+        console.log(this.feedBackData)
+      } catch(error){
+        console.log(error)
+      }
+    },
+    async moderateFeedback(id: number){
+      try{
+        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
+          id: id
+        })
+       
+      } catch(error){
+        console.log(error)
+      }
+    },
+    async feedbackDelete(id: number){
+      try{
+        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
+          id: id
+        })
+        
+      } catch(error){
+        console.log(error)
+      }
+    }
   },
 });
