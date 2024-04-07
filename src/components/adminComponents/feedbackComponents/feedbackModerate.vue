@@ -17,7 +17,7 @@ onMounted(() => {
 </div>
   <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center mt-14">
     <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
-      <templateFeedback 
+      <templateFeedback v-if="feedback.rating != 0 || feedback.rating != null"
 			:author="feedback.authorName"
 			:image="feedback.imageFeedback"
 			:text="feedback.messageFeedback"

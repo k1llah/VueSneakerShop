@@ -11,14 +11,14 @@ const feedbackStore = useFeedbackStore();
   <div class="rating">
     <input
       type="radio"
-      :id="prefix + '5'"
+      :id="'5'"
       name="5"
       value="5"
       v-model="rateFeedback"
       :disabled="!allStore.isOpenedFeedBack"
-      @click="console.log(prefix + '5', feedbackStore.starRating), feedbackStore.starRating = 5"
+      @click="console.log('5', feedbackStore.starRating), feedbackStore.starRating = 5"
     />
-    <label :for="prefix + '5'" @click="feedbackStore.starRating = 5">
+    <label :for="'5'" @click="feedbackStore.starRating = 5">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
           pathLength="360"
@@ -28,7 +28,7 @@ const feedbackStore = useFeedbackStore();
     </label>
     <input
       type="radio"
-      :id="prefix + '4'"
+      :id="'4'"
       name="4"
       value="4"
       v-model="rateFeedback"
@@ -45,14 +45,14 @@ const feedbackStore = useFeedbackStore();
     </label>
     <input
       type="radio"
-      :id="prefix + '3'"
+      :id="'3'"
       name="3"
       value="3"
       v-model="rateFeedback"
       :disabled="!allStore.isOpenedFeedBack"
-      @click="console.log(prefix + '3', feedbackStore.starRating), feedbackStore.starRating = 3"
+      @click="console.log('3', feedbackStore.starRating), feedbackStore.starRating = 3"
     />
-    <label :for="prefix + '3'" @click="feedbackStore.starRating = 3">
+    <label :for="'3'" @click="feedbackStore.starRating = 3">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
           pathLength="360"
@@ -62,14 +62,14 @@ const feedbackStore = useFeedbackStore();
     </label>
     <input
       type="radio"
-      :id="prefix + '2'"
+      :id="'2'"
       name="2"
       value="2"
       v-model="rateFeedback"
       :disabled="!allStore.isOpenedFeedBack"
-      @click="console.log(prefix + '2', feedbackStore.starRating), feedbackStore.starRating = 2"
+      @click="console.log('2', feedbackStore.starRating), feedbackStore.starRating = 2"
     />
-    <label :for="prefix + '2'" @click="feedbackStore.starRating = 2">
+    <label :for="'2'" @click="feedbackStore.starRating = 2">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
           pathLength="360"
@@ -80,14 +80,14 @@ const feedbackStore = useFeedbackStore();
 
     <input
       type="radio"
-      :id="prefix + '1'"
+      :id="'1'"
       name="1"
       value="1"
       v-model="rateFeedback"
       :disabled="!allStore.isOpenedFeedBack"
-      @click="console.log(prefix + '1', feedbackStore.starRating), feedbackStore.starRating = 1"
+      @click="console.log('1', feedbackStore.starRating), feedbackStore.starRating = 1"
     />
-    <label :for="prefix + '1'" @click="feedbackStore.starRating = 1">
+    <label :for="'1'" @click="feedbackStore.starRating = 1">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
           pathLength="360"

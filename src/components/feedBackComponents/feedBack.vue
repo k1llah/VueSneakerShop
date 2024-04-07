@@ -40,12 +40,13 @@
     <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center items-center">
       <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
         <templateFeedBack
-    
+        v-if="feedback.rating != 0"
           :author="feedback.authorName"
           :image="feedback.imageFeedback"
           :text="feedback.messageFeedback"
           :rate="feedback.rating"
           :is-moderated="feedback.isModerated"
+          console.log(feedback.rating)
         />
       </div>
     </div>

@@ -41,7 +41,7 @@ export const useFeedbackStore = defineStore({
         });
         
         this.authorName = data.data.user.first_name;
-        if (this.starRating !== 0 && this.message !== "" && this.userId !== null && this.authorName !== '') {
+        if (this.starRating !== 0 && this.message.length >= 5 && this.userId !== null && this.authorName !== '') {
           const formData = new FormData();
           formData.append("imageFeedback", this.imageFeedback);
           formData.append("userId", this.userId);
@@ -57,7 +57,7 @@ export const useFeedbackStore = defineStore({
          this.message = ''
          this.imageFeedback = undefined
          this.starRating = 0
-          console.log(createFeedback.data)
+          console.log( this.modalFeedback, 'kk;l;l;kl');
         }
         else if(this.message == "" && this.starRating == 0){
           setTimeout(() => {
@@ -115,7 +115,7 @@ export const useFeedbackStore = defineStore({
     },
     async feedbackDelete(id: number){
       try{
-        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
+        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback-delete', {
           id: id
         })
         

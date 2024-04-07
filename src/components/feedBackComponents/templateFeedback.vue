@@ -23,15 +23,16 @@ const props = defineProps({
       <img
         class="w-full h-40 object-cover rounded-t-lg"
         alt="Card Image"
+        v-if="props.image"
         :src="'http://localhost:3001/img/tablet/' + props.image"
       
       />
       <div class="p-4">
-        <p class="text-gray-600">
+        <p class="text-gray-800 text-lg pb-7">
           {{ props.text }}
         </p>
         
-       <stars :prefix="'feedback'" :stats="props.rate"/>
+       <stars :prefix="props.id" :stats="props.rate"/>
       </div>
       <div class="flex gap-2" v-if="props.isModerated == false">
         <button class=" rounded-md border-2 border-slate-200 p-2 bg-red-500" @click="props.moderateFunctionSkip">

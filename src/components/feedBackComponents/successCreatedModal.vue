@@ -6,9 +6,6 @@ import { useAllStore } from '@/stores/all';
 const allStore = useAllStore();
 const feedbackStore = useFeedbackStore();
 const router = useRouter();
-const body = document.querySelector('body')
-
-
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-50 opacity-80"></div>
@@ -32,7 +29,7 @@ const body = document.querySelector('body')
           </svg>
         </div>
         <div class="flex flex-col gap-5">
-          <p class="font-semibold">Заказ оформлен</p>
+          <p class="font-semibold">Отзыв оставлен</p>
           <p>Ваш отзыв отправлен на модерацию!</p>
             <p>
              Спасибо что оставили отзыв о нашем магазине, мы обязательно выложим его после модерации
