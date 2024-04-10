@@ -12,7 +12,7 @@ const props = defineProps({
   rate: Number || String,
   isModerated: Boolean,
   moderateFunctionSkip: Function,
-  moderateFunctionAccept: Function
+  moderateFunctionAccept: Function,
 })
 </script>
 <template>
@@ -27,15 +27,15 @@ const props = defineProps({
         :src="'http://localhost:3001/img/tablet/' + props.image"
       
       />
-      <div class="p-4">
+      <div class="p-4 bg-[#efefef] rounded-lg">
         <p class="text-gray-800 text-lg pb-7">
           {{ props.text }}
         </p>
         
-       <stars :prefix="props.id" :stats="props.rate"/>
+       <stars :prefix="'feedback'" :stats="props.rate"/>
       </div>
       <div class="flex gap-2" v-if="props.isModerated == false">
-        <button class=" rounded-md border-2 border-slate-200 p-2 bg-red-500" @click="props.moderateFunctionSkip">
+        <button class="rounded-md border-2 border-slate-200 p-2 bg-red-500" @click="props.moderateFunctionSkip">
           да пошел он нах 
         </button>
         <button class=" rounded-md border-2 border-slate-200 p-2 bg-green-500" @click="props.moderateFunctionAccept">

@@ -50,9 +50,8 @@ export const useFeedbackStore = defineStore({
           formData.append("authorName", this.authorName);
           formData.append("rating", this.starRating.toString())
           const createFeedback = await axios.post(
-            "http://localhost:3001/api/create-feedback",
-            formData
-          )
+            "http://localhost:3001/api/create-feedback", formData
+        )
          this.modalFeedback = true
          this.message = ''
          this.imageFeedback = undefined
@@ -115,7 +114,7 @@ export const useFeedbackStore = defineStore({
     },
     async feedbackDelete(id: number){
       try{
-        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback-delete', {
+        const dataFeedback = await axios.post('http://localhost:3001/api/delete-feedback', {
           id: id
         })
         

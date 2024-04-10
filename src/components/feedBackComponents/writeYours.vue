@@ -60,7 +60,7 @@ const imageFeedback = ref();
           </div>
         </div>
 
-        <stars />
+        <stars :prefix="'rating'"/>
         <div v-if="feedbackStore.warningShow == 'ratingEmpty'">
           <h4 class="text-red-500 text-sm font-extralight p-[1px] text-end">
             {{ feedbackStore.textWarning }}

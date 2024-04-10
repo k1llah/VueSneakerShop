@@ -46,7 +46,7 @@
           :text="feedback.messageFeedback"
           :rate="feedback.rating"
           :is-moderated="feedback.isModerated"
-          console.log(feedback.rating)
+          
         />
       </div>
     </div>
