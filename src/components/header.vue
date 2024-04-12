@@ -54,6 +54,9 @@ watch(
     cartStore.localCounter = newValue;
   }
 );
+watch(() => authStore.role, (newValue) => {
+  localRole.value = newValue;
+});
 let toggleShow = () => {
   sneakerStore.show = !sneakerStore.show;
   console.log(sneakerStore.show);

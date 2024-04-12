@@ -50,6 +50,5 @@ export const useAuthStore = defineStore({
       this.currentUser = this.currentUser = { id: '', uuid: '' };
       this.role = ''
     }
-    
   },
 });
