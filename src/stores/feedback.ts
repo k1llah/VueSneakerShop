@@ -117,7 +117,7 @@ export const useFeedbackStore = defineStore({
         console.log(error)
       }
     },
-    async moderateFeedback(id: number, feedback:boolean){
+    async moderateFeedback(id: number){
       try{
         const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
           id: id
@@ -128,13 +128,13 @@ export const useFeedbackStore = defineStore({
         console.log(error)
       }
     },
-    async feedbackDelete(id: number, feedback: boolean){
+    async feedbackDelete(id: number){
       try{
         const dataFeedback = await axios.post('http://localhost:3001/api/delete-feedback', {
           id: id
         })
         this.isModeratedFeedback = true
-        this.feedBackData = this.feedBackData.filter(feedback => feedback.id !== id);
+        this.feedBackData = this.feedBackData.filter(feedback => feedback.id !== id)
       } catch(error){
         console.log(error)
       }

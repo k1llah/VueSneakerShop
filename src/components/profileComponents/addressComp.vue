@@ -3,6 +3,8 @@ import { ref, watch } from "vue";
 import { defineProps } from "vue";
 import { useAllStore } from "@/stores/all";
 import axios from "axios";
+import { useAddressStore } from '@/stores/address';
+const addressStore = useAddressStore()
 const props = defineProps({
   id: Number,
   firstName: String,
@@ -18,19 +20,8 @@ const props = defineProps({
   editAddress: Function,
   deleteAddress: Function,
 });
+const allStore = useAllStore()
 
-const allStore = useAllStore();
-const deleteAddress = async()=>{
-  try{
-    const data = await axios.post('http://localhost:3001/api/delete-address',{
-      id: props.id,
-      userId: localStorage.getItem('id'),
-    })
-
-  } catch(error){
-    console.log(error)
-  }
-}
 </script>
 <template>
   <div class="bg-[#f4f4f5] md:max-w-[350px] rounded-xl p-5 md:mt-5 sm:mt-2 shadow">
@@ -102,7 +93,7 @@ const deleteAddress = async()=>{
         </button>
         <button
           class="w-[54px] h-[54px] hover:transition-all duration-200 hover:bg-red-600 md:text-2xl sm:text-xl rounded-xl"
-          @click="deleteAddress()"
+          @click="addressStore.deleteAddress(props.id!)"
         >
           🗑️
         </button>

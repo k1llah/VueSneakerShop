@@ -15,7 +15,7 @@
   })
 </script>
 <template>
-  <div class="flex md:justify-end md:pr-10 sm:justify-start sm:p-5 sm:mt-5">
+  <div class="flex md:mt-0 md:p-0 md:justify-end md:pr-10 sm:justify-start sm:p-5 sm:mt-5">
     <button
       class="cssbuttons-io-button"
       @click="allStore.isOpenedFeedBack = true"

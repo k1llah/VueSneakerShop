@@ -20,7 +20,7 @@ const correctDataInput = computed(
    
     houseNumber.value !== null &&
     apartment.value !== null &&
-    postalCode.value !== null &&
+    postalCode.value !== '' &&
     phoneNumber.value !== null &&
     name.value.length >= 2 &&
     lastName.value.length >= 2 &&

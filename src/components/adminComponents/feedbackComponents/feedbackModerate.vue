@@ -25,8 +25,8 @@ onMounted(() => {
 			:is-moderated="feedback.isModerated"
 			:index="feedback.id"
 			:is-moderated-feedback="feedback.isModeratedFeedback"
-			:moderate-function-accept="() => feedbackStore.moderateFeedback(feedback.id, feedback)"
-			:moderate-function-skip="() => feedbackStore.feedbackDelete(feedback.id, feedback)"
+			:moderate-function-accept="() => feedbackStore.moderateFeedback(feedback.id)"
+			:moderate-function-skip="() => feedbackStore.feedbackDelete(feedback.id)"
 			/>
     </div>
   </div>
