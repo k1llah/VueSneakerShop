@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import buttonBack from "@/components/buttonBack.vue";
 import { useAllStore } from "@/stores/all";
 import writeYours from "./writeYours.vue";
-import stars from './stars.vue';
 const allStore = useAllStore();
 
 console.log(allStore.isOpenedFeedBack);

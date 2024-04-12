@@ -23,6 +23,7 @@ onMounted(() => {
 			:text="feedback.messageFeedback"
 			:rate="feedback.rating"
 			:is-moderated="feedback.isModerated"
+			:index="feedback.id"
 			:moderate-function-accept="() => feedbackStore.moderateFeedback(feedback.id)"
 			:moderate-function-skip="() => feedbackStore.feedbackDelete(feedback.id)"
 			/>

@@ -2,7 +2,7 @@
 import { defineProps, ref, computed } from "vue";
 import { useFeedbackStore } from '@/stores/feedback';
 import stars from './stars.vue';
-import successCreatedModal from './successCreatedModal.vue';
+
 const feedbackStore = useFeedbackStore();
 const props = defineProps({
   id: Number,
@@ -13,6 +13,7 @@ const props = defineProps({
   isModerated: Boolean,
   moderateFunctionSkip: Function,
   moderateFunctionAccept: Function,
+  index: Number || String,
 })
 </script>
 <template>
@@ -32,7 +33,7 @@ const props = defineProps({
           {{ props.text }}
         </p>
         
-       <stars :prefix="'feedback'" :stats="props.rate"/>
+       <stars :prefix="'feedback'" :stats="props.rate" :index="props.index"/>
       </div>
       <div class="flex gap-2" v-if="props.isModerated == false">
         <button class="rounded-md border-2 border-slate-200 p-2 bg-red-500" @click="props.moderateFunctionSkip">
@@ -43,5 +44,5 @@ const props = defineProps({
         </button>
       </div>
     </div>
-    <successCreatedModal v-if="feedbackStore.modalFeedback"/>
+    
 </template>

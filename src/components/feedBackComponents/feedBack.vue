@@ -4,6 +4,7 @@
 	import { useAllStore } from '@/stores/all';
   import { useFeedbackStore } from '@/stores/feedback';
 	import modalFeedback from '@/components/feedBackComponents/modalFeedback.vue';
+  import successCreatedModal from './successCreatedModal.vue';
 	let allStore = useAllStore();
   const feedbackStore = useFeedbackStore();
 
@@ -46,13 +47,14 @@
           :text="feedback.messageFeedback"
           :rate="feedback.rating"
           :is-moderated="feedback.isModerated"
-          
+          :index="feedback.id"
         />
       </div>
     </div>
   </div>
   <div v-if="allStore.isOpenedFeedBack == true">
     <modalFeedback />
+    <successCreatedModal v-if="feedbackStore.modalFeedback"/>
   </div>
 </template>
 

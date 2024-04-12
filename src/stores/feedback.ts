@@ -56,7 +56,9 @@ export const useFeedbackStore = defineStore({
          this.message = ''
          this.imageFeedback = undefined
          this.starRating = 0
-          console.log( this.modalFeedback, 'kk;l;l;kl');
+          if(this.modalFeedback == true){
+            document.body.style.overflow = 'hidden'
+          }
         }
         else if(this.message == "" && this.starRating == 0){
           setTimeout(() => {
@@ -83,6 +85,9 @@ export const useFeedbackStore = defineStore({
         console.log(error);
         throw new Error();
       }
+    },
+    scrollBlock(){
+      document.body.style.overflow = 'visible'
     },
     async getFeedbacks(){
       try{
