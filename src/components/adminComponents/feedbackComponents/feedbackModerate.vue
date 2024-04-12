@@ -6,7 +6,7 @@ import axios from "axios";
 import { useFeedbackStore } from "@/stores/feedback";
 const feedbackStore = useFeedbackStore();
 onMounted(() => {
-  feedbackStore.getFeedbacks();
+  feedbackStore.getFeedbacksToModerate();
 });
 </script>
 
@@ -17,15 +17,16 @@ onMounted(() => {
 </div>
   <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center mt-14">
     <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
-      <templateFeedback v-if="feedback.rating != 0 || feedback.rating != null"
+      <templateFeedback v-if="feedback.rating != 0 || feedback.rating != null && feedback.isModeratedFeedback !== true"
 			:author="feedback.authorName"
 			:image="feedback.imageFeedback"
 			:text="feedback.messageFeedback"
 			:rate="feedback.rating"
 			:is-moderated="feedback.isModerated"
 			:index="feedback.id"
-			:moderate-function-accept="() => feedbackStore.moderateFeedback(feedback.id)"
-			:moderate-function-skip="() => feedbackStore.feedbackDelete(feedback.id)"
+			:is-moderated-feedback="feedback.isModeratedFeedback"
+			:moderate-function-accept="() => feedbackStore.moderateFeedback(feedback.id, feedback)"
+			:moderate-function-skip="() => feedbackStore.feedbackDelete(feedback.id, feedback)"
 			/>
     </div>
   </div>

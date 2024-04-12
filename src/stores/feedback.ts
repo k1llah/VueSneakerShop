@@ -14,6 +14,7 @@ export const useFeedbackStore = defineStore({
     modalFeedback: false,
     authorName: '',
     feedBackData: [] as any[],
+    isModeratedFeedback: false,
   }),
   actions: {
     handleFileUpload(event: Event) {
@@ -89,43 +90,54 @@ export const useFeedbackStore = defineStore({
     scrollBlock(){
       document.body.style.overflow = 'visible'
     },
-    async getFeedbacks(){
+    async getFeedbacksToModerate(){
       try{
         const dataFeedback = await axios.get('http://localhost:3001/api/get-feedback-to-moderate')
         this.feedBackData = dataFeedback.data
+        if(this.feedBackData !== undefined){
+          
         console.log(this.feedBackData)
+      }
+      if (this.isModeratedFeedback == false) {
+        this.feedBackData.forEach((el: any) => {
+          el.isModeratedFeedback = false;
+
+        });
+      }
       } catch(error){
         console.log(error)
       }
     },
-    async getFeedbacksModerated(){
+    async getFeedbacks(){
       try{
         const dataFeedback = await axios.get('http://localhost:3001/api/get-feedback')
         this.feedBackData = dataFeedback.data
-        console.log(this.feedBackData)
-      } catch(error){
-        console.log(error)
-      }
-    },
-    async moderateFeedback(id: number){
-      try{
-        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
-          id: id
-        })
-       
-      } catch(error){
-        console.log(error)
-      }
-    },
-    async feedbackDelete(id: number){
-      try{
-        const dataFeedback = await axios.post('http://localhost:3001/api/delete-feedback', {
-          id: id
-        })
         
       } catch(error){
         console.log(error)
       }
-    }
+    },
+    async moderateFeedback(id: number, feedback:boolean){
+      try{
+        const dataFeedback = await axios.post('http://localhost:3001/api/moderate-feedback', {
+          id: id
+        })
+        this.isModeratedFeedback = true
+        this.feedBackData = this.feedBackData.filter(feedback => feedback.id !== id);
+      } catch(error){
+        console.log(error)
+      }
+    },
+    async feedbackDelete(id: number, feedback: boolean){
+      try{
+        const dataFeedback = await axios.post('http://localhost:3001/api/delete-feedback', {
+          id: id
+        })
+        this.isModeratedFeedback = true
+        this.feedBackData = this.feedBackData.filter(feedback => feedback.id !== id);
+      } catch(error){
+        console.log(error)
+      }
+    },  
   },
 });

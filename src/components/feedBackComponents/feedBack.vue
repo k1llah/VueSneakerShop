@@ -10,12 +10,12 @@
 
 	console.log(allStore.isOpenedFeedBack)
   onBeforeMount(() => {
-    feedbackStore.getFeedbacksModerated()
+    feedbackStore.getFeedbacks()
 
   })
 </script>
 <template>
-  <div class="flex justify-end pr-10">
+  <div class="flex md:justify-end md:pr-10 sm:justify-start sm:p-5 sm:mt-5">
     <button
       class="cssbuttons-io-button"
       @click="allStore.isOpenedFeedBack = true"
@@ -37,7 +37,7 @@
       </div>
     </button>
   </div>
-  <div class="flex  mt-12 container-bg p-10 h-full">
+  <div class="flex  md:mt-12 container-bg md:p-10 sm:p-0 sm:mt-2 h-full">
     <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center items-center">
       <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
         <templateFeedBack
@@ -58,27 +58,8 @@
   </div>
 </template>
 
-<style scoped>
-.container-bg {
-  width: 100%;
-  height: 100%;
-  --s: 60px;
-  --c1: #180a22;
-  --c2: #5b42f3;
-  --_g: radial-gradient(
-    25% 25% at 25% 25%,
-    var(--c1) 99%,
-    rgba(0, 0, 0, 0) 101%
-  );
-  background:
-    var(--_g) var(--s) var(--s) / calc(2 * var(--s)) calc(2 * var(--s)),
-    var(--_g) 0 0 / calc(2 * var(--s)) calc(2 * var(--s)),
-    radial-gradient(50% 50%, var(--c2) 98%, rgba(0, 0, 0, 0)) 0 0 / var(--s)
-      var(--s),
-    repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%)
-      calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
-}
 
+<style scoped>
 .cssbuttons-io-button {
   background: #a370f0;
   color: white;

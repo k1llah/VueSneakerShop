@@ -14,6 +14,7 @@ const props = defineProps({
   moderateFunctionSkip: Function,
   moderateFunctionAccept: Function,
   index: Number || String,
+  isModeratedFeedback: Boolean,
 })
 </script>
 <template>

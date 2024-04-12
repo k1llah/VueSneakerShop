@@ -107,27 +107,5 @@ export const useCartStore = defineStore({
         console.log(error)
       }
     },
-		// checkIfItemInCart(itemId: number) {
-		// 	// проверяем, есть ли этот товар в корзине
-		// 	const itemInCart = this.items.find((item: any) => item.id === itemId);
-		// 	if (itemInCart?.isAdded) {
-		// 		return true
-		// 	} else if(itemInCart?.isAdded == false) {
-		// 		return false
-		// 	}
-		// },
-    // else if(item.isAdded == true && authStore.isAuthenticated == true){
-    // 	try{
-    // 		const removeData = await axios.post(
-    // 			"http://localhost:3001/api/remove-from-cart",
-    // 			{
-    // 				userId: localStorage.getItem("id"),
-    // 				sneakerId: sneakerId,
-    // 			}
-    // 		)
-    // 	} catch(error){
-    // 		console.log(error)
-    // 	}
-    // }
   },
 });
