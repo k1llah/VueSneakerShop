@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import gsap from "gsap";
+import { useAllStore } from '@/stores/all';
 import scrollComponent from "./scrollComponent.vue";
+import { all } from 'node_modules/axios/index.cjs'
 const content = ref();
+const allStore = useAllStore()
 const isVisible = ref(false);
 const { title, span } = {
   title: ref(null),
@@ -14,7 +17,7 @@ onMounted(() => {
       animateText();
     }
   });
-
+  allStore.getStrapiData()
   window.addEventListener("scroll", handleScroll);
 });
 
@@ -71,7 +74,13 @@ const animateText = () => {
 
 	<div class="h-[650px]">
 		<p class="text-center pt-56 text-[35px]">Тут будет сникерБлог </p>
+    <div v-if="allStore.posts">
+    <div v-for="post in allStore.posts" :key="post.id">
+      <h1>{{ post.Content }}</h1>
+    </div>
+  </div>
 	</div>
+ 
 </template>
 <style>
 .lol {

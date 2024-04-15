@@ -12,7 +12,8 @@ const authData = useAuthStore();
 const router = useRouter();
 const allStore = useAllStore();
 const paramsId = localStorage.getItem("sneakerId");
-orderStore.idParam = Number(paramsId);
+
+// orderStore.idParam = Number(paramsId);
 console.log(orderStore.idParam);
 let itemData = ref();
 const brand = ref();
@@ -45,6 +46,7 @@ onMounted(async () => {
   if (paramsId) {
     await getDateShoe();
   }
+  allStore.getStrapiData()
 });
 
 </script>

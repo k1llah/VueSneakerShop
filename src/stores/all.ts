@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import axios from 'axios';
+import axios from "axios";
 export const useAllStore = defineStore({
   id: "all",
   state: () => ({
@@ -33,14 +33,31 @@ export const useAllStore = defineStore({
         "https://static.street-beat.ru/upload/iblock/a47/a473eb406a0b7e775e27cfbf0ea84865.svg",
     } as any,
     isOpened: ref(false),
-    targetPage: '',
-    headerText: 'Мои адреса для доставки',
+    targetPage: "",
+    headerText: "Мои адреса для доставки",
     idAddress: 0 as number,
     isOpenedFeedBack: false,
     addressData: [] as any[],
-    
+    posts: [] as any[],
+    token:
+      "93502989fdf7ab37488054e2c4268174eb7eaec4d3c8ccf5ee33b867f27031a1ecd97cae45c4d5ce07231bd6abc20bbb17dd5ede5fcbe4a729d6ab5db61a28d73efa94f1b2d40a43187492d25d3f4aa42647c19383ce3a7d14e7f6223a1f8fcc354c280fd4ad79a68c2c64ef57dc77e3fe6fc2d892def029e18723c8c8aad857",
   }),
   actions: {
+    async getStrapiData() {
+      try{
+
+      
+      const res = await axios.get("http://localhost:1337/api/posts", {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        })
+        this.posts = res.data.data.map((post: any) => post.attributes)
+        console.log(res.data.data[0].attributes)
+      } catch(error){
+        console.log(error)
+      } 
+    },
     getBrandImageUrl(brandName: string): string {
       // Проверяем, есть ли ключ с указанным названием бренда
       if (this.brandImages.hasOwnProperty(brandName)) {
@@ -48,6 +65,6 @@ export const useAllStore = defineStore({
       } else {
         return "";
       }
-    }    
+    },
   },
 });
