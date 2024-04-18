@@ -75,14 +75,14 @@ const animateText = () => {
 
 
 
-	<div class="h-[650px] p-5 flex flex-wrap">
-    <div v-if="allStore.posts && allStore.posts.length > 0">
-    <firstPostComponent :titleCover="allStore.posts[1].titleToCover" :coverImage="allStore.posts[1].coverImage.data.attributes.url" :shortDescription="allStore.posts[1].shortDescriptionCover" :hashtags="allStore.posts[1].hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
-    <div v-for="(post, index) in allStore.posts.slice(2)" :key="index">
+	<div class=" p-5">
+    <div v-if="allStore.posts && allStore.posts.length > 0" class="flex w-full flex-row gap-5 flex-wrap justify-start">
+      <div v-for="(post, index) in allStore.posts.slice()" :key="index" >
+        <firstPostComponent v-if="index == 0"  :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
       <!-- <p>{{ post.imageToCover.data.attributes.url }}</p>
       <img v-if="post.imageToCover" :src="'http://localhost:1337' + post.imageToCover.data.attributes.url" class="w-full h-[100px] border-2" alt=""> -->
       
-      <coverTemplate v-if="post.coverImage" :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
+      <coverTemplate v-else :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
     
       <div>
     <!-- Перебираем массив postTemplate и рендерим компоненты -->
