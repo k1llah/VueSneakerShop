@@ -5,6 +5,7 @@ import { marked } from 'marked'
 import { useAllStore } from '@/stores/all';
 import scrollComponent from "./scrollComponent.vue";
 import coverTemplate from '../blogComponents/cover-template.vue';
+import firstPostComponent from '../blogComponents/firstPostComponent.vue';
 const content = ref();
 const allStore = useAllStore()
 const isVisible = ref(false);
@@ -74,10 +75,10 @@ const animateText = () => {
 
 
 
-	<div class="h-[650px]">
-		<p class="text-center pt-56 text-[35px]">Тут будет сникерБлог </p>
-    <div v-if="allStore.posts">
-    <div v-for="(post, index) in allStore.posts" :key="index">
+	<div class="h-[650px] p-5 flex flex-wrap">
+    <div v-if="allStore.posts && allStore.posts.length > 0">
+    <firstPostComponent :titleCover="allStore.posts[1].titleToCover" :coverImage="allStore.posts[1].coverImage.data.attributes.url" :shortDescription="allStore.posts[1].shortDescriptionCover" :hashtags="allStore.posts[1].hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
+    <div v-for="(post, index) in allStore.posts.slice(2)" :key="index">
       <!-- <p>{{ post.imageToCover.data.attributes.url }}</p>
       <img v-if="post.imageToCover" :src="'http://localhost:1337' + post.imageToCover.data.attributes.url" class="w-full h-[100px] border-2" alt=""> -->
       

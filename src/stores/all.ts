@@ -53,7 +53,7 @@ export const useAllStore = defineStore({
           },
         })
         this.posts = res.data.data.map((post: any) => post.attributes)
-        console.log(res.data.data[0].attributes)
+        console.log(res.data.data)
       } catch(error){
         console.log(error)
       } 
