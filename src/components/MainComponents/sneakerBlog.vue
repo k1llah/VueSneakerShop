@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import gsap from "gsap";
+import { marked } from 'marked'
 import { useAllStore } from '@/stores/all';
 import scrollComponent from "./scrollComponent.vue";
-import { all } from 'node_modules/axios/index.cjs'
 const content = ref();
 const allStore = useAllStore()
 const isVisible = ref(false);
@@ -75,8 +75,15 @@ const animateText = () => {
 	<div class="h-[650px]">
 		<p class="text-center pt-56 text-[35px]">Тут будет сникерБлог </p>
     <div v-if="allStore.posts">
-    <div v-for="post in allStore.posts" :key="post.id">
-      <h1>{{ post.Content }}</h1>
+    <div v-for="(post, index) in allStore.posts" :key="index">
+      <!-- <p>{{ post.imageToCover.data.attributes.url }}</p>
+      <img v-if="post.imageToCover" :src="'http://localhost:1337' + post.imageToCover.data.attributes.url" class="w-full h-[100px] border-2" alt=""> -->
+      <div>
+    <!-- Перебираем массив postTemplate и рендерим компоненты -->
+    <div v-for="(component, index) in post.postTemplate" :key="index">
+      
+    </div>
+  </div>
     </div>
   </div>
 	</div>

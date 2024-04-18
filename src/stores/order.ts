@@ -116,8 +116,10 @@ export const useOrderStore = defineStore({
             );
             if (pay.status === 200 && pay.data) {
               this.success = true
+              this.orderNumber = pay.data.orderNumber
               pay.data.forEach((el: any) => {
                 this.orderNumber = el.orderNumber
+
                 console.log(el.orderNumber)
               })
              console.log('daaaa')

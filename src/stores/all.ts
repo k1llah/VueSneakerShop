@@ -40,14 +40,14 @@ export const useAllStore = defineStore({
     addressData: [] as any[],
     posts: [] as any[],
     token:
-      "93502989fdf7ab37488054e2c4268174eb7eaec4d3c8ccf5ee33b867f27031a1ecd97cae45c4d5ce07231bd6abc20bbb17dd5ede5fcbe4a729d6ab5db61a28d73efa94f1b2d40a43187492d25d3f4aa42647c19383ce3a7d14e7f6223a1f8fcc354c280fd4ad79a68c2c64ef57dc77e3fe6fc2d892def029e18723c8c8aad857",
+      "0f97b2ecb3d66470a5385e3aa6f555d4a65e7f5adbbb4a1cc8477c102ca49f73808267246dd1fe0f20ff307e30b23665db6a14477edbf9d1ab18e920936b0de98f02d50028149ead6b3cab6258d27956ada082a98229ab6617f20265b8ea7a8691e094b71c2d3a8906289546718ec45e3efe982dc0110ef4c5ae1a306affb1d6",
   }),
   actions: {
     async getStrapiData() {
       try{
 
       
-      const res = await axios.get("http://localhost:1337/api/posts", {
+      const res = await axios.get("http://localhost:1337/api/posts?populate=*", {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

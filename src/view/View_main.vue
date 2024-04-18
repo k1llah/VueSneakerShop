@@ -35,13 +35,10 @@ onMounted(() => {
         <h2 class="md:text-3xl sm:text-xl">Главная</h2>
       </div>
     </div>
-
     <h1 class=" md:text-3xl sm:text-lg text-[#000000] text-center font-sans font-[600] mt-10">
       Приветствуем вас в BENZ SHÖP
     </h1>
-
     <sliderMain />
-
     <div class="bg-[#f8f8ff]">
     <scrollText />
     <MainVerticalSlider />
