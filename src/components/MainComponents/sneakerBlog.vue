@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { marked } from 'marked'
 import { useAllStore } from '@/stores/all';
 import scrollComponent from "./scrollComponent.vue";
+import coverTemplate from '../blogComponents/cover-template.vue';
 const content = ref();
 const allStore = useAllStore()
 const isVisible = ref(false);
@@ -51,6 +52,7 @@ const animateText = () => {
     ease: "back.inOut",
   });
 };
+
 </script>
 
 <template>
@@ -78,11 +80,12 @@ const animateText = () => {
     <div v-for="(post, index) in allStore.posts" :key="index">
       <!-- <p>{{ post.imageToCover.data.attributes.url }}</p>
       <img v-if="post.imageToCover" :src="'http://localhost:1337' + post.imageToCover.data.attributes.url" class="w-full h-[100px] border-2" alt=""> -->
+      
+      <coverTemplate v-if="post.coverImage" :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
+    
       <div>
     <!-- Перебираем массив postTemplate и рендерим компоненты -->
-    <div v-for="(component, index) in post.postTemplate" :key="index">
-      
-    </div>
+    
   </div>
     </div>
   </div>
