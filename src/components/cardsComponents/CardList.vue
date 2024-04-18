@@ -36,7 +36,7 @@ defineProps({
   items: Array<Item>,
 });
 const allStore = useAllStore()
-let paramsId = allStore.idShoe
+let paramsId;
 const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
   paramsId = sneakerId
@@ -58,7 +58,6 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
       }
     );
       item.isFavorite = true
-
     showOverlay.value = true
     setTimeout(() => {
       showOverlay.value = false

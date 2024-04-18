@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import gsap from "gsap";
-import { marked } from 'marked'
-import { useAllStore } from '@/stores/all';
+import { marked } from "marked";
+import { useAllStore } from "@/stores/all";
+import { useBlog } from "@/stores/sneakerBlog";
 import scrollComponent from "./scrollComponent.vue";
-import coverTemplate from '../blogComponents/cover-template.vue';
-import firstPostComponent from '../blogComponents/firstPostComponent.vue';
+import coverTemplate from "../blogComponents/cover-template.vue";
+import firstPostComponent from "../blogComponents/firstPostComponent.vue";
+const blogStore = useBlog();
 const content = ref();
-const allStore = useAllStore()
+const allStore = useAllStore();
 const isVisible = ref(false);
 const { title, span } = {
   title: ref(null),
@@ -19,14 +21,13 @@ onMounted(() => {
       animateText();
     }
   });
-  allStore.getStrapiData()
+  blogStore.getStrapiData();
   window.addEventListener("scroll", handleScroll);
 });
 
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
-
-})
+});
 
 const handleScroll = () => {
   const contentPosition = content.value.getBoundingClientRect().top;
@@ -53,11 +54,19 @@ const animateText = () => {
     ease: "back.inOut",
   });
 };
-
+let idPost = ref()
+async function handleGetId(id:number | string){
+  idPost.value = id
+  localStorage.setItem('idPost', idPost.value)
+  console.log('idPost-', idPost.value, 'idParam-', id)
+}
 </script>
 
 <template>
-  <div class="md:mt-40 md:ml-32 sm:ml-20 sm:mt-20 flex items-center border-b-2 border-slate-300" ref="content">
+  <div
+    class="md:mt-40 md:ml-32 sm:ml-20 sm:mt-20 flex items-center border-b-2 border-slate-300"
+    ref="content"
+  >
     <h2
       class="md:text-[45px] sm:text-[30px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol"
       :class="{ 'hidden-text': !isVisible }"
@@ -73,31 +82,77 @@ const animateText = () => {
     >
   </div>
 
+  <div class="p-5">
 
+    <div class="flex gap-3 flex-row flex-wrap">
+      <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row">
+        <div
+          v-for="(hashtag, index) in post.attributes.hashtags.data.slice(0, 10)"
+          :key="index"
+          
+        >
+          <p
+            class="text-black text-sm font-medium bg-[#fde68a] p-2 rounded-lg hover:bg-[#eab308] cursor-pointer transition-all duration-200 hover:transition-all hover:duration-200"
+          >
+            {{ hashtag.attributes.hashtagName }}
+          </p>
+        </div>
+      </div>
+    </div>
 
-	<div class=" p-5">
-    <div v-if="allStore.posts && allStore.posts.length > 0" class="flex w-full flex-row gap-5 flex-wrap justify-start">
-      <div v-for="(post, index) in allStore.posts.slice()" :key="index" >
-        <firstPostComponent v-if="index == 0"  :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
-      <!-- <p>{{ post.imageToCover.data.attributes.url }}</p>
-      <img v-if="post.imageToCover" :src="'http://localhost:1337' + post.imageToCover.data.attributes.url" class="w-full h-[100px] border-2" alt=""> -->
-      
-      <coverTemplate v-else :titleCover="post.titleToCover" :coverImage="post.coverImage.data.attributes.url" :shortDescription="post.shortDescriptionCover" :hashtags="post.hashtags.data.map((hashtag:any) => hashtag.attributes.hashtagName)"/>
-    
-      <div>
-    <!-- Перебираем массив postTemplate и рендерим компоненты -->
-    
-  </div>
+    <div
+      v-if="blogStore.posts && blogStore.posts.length > 0"
+      class="flex w-full flex-row gap-5 flex-wrap justify-start mt-5"
+    >
+      <div v-for="(post, index) in blogStore.posts" :key="index">
+        <router-link to="/post_page" @click="handleGetId(post.id)">
+          <firstPostComponent
+            v-if="index == 0"
+            :titleCover="post.attributes.titleToCover"
+            :coverImage="post.attributes.coverImage.data.attributes.url"
+            :shortDescription="post.attributes.shortDescriptionCover"
+            :hashtags="
+              post.attributes.hashtags.data.map(
+                (hashtag: any) => hashtag.attributes.hashtagName
+              )
+            "
+            @click.native="handleGetId(post.id)"
+            
+          />
+
+          <coverTemplate
+            v-else
+            :titleCover="post.attributes.titleToCover"
+            :coverImage="post.attributes.coverImage.data.attributes.url"
+            :shortDescription="post.attributes.shortDescriptionCover"
+            :hashtags="
+              post.attributes.hashtags.data.map(
+                (hashtag: any) => hashtag.attributes.hashtagName
+              )
+            "
+            @click.native="handleGetId(post.id)"
+          />
+          <!-- На завтра -->
+          <!-- export default {
+  async asyncData({ params }) {
+    const id = params.id;
+    // Получение информации о статье из Strapi по ID
+    const response = await fetch(`http://localhost:1337/api/posts/${id}`);
+    const post = await response.json();
+    return { post };
+  },
+}; -->
+
+        </router-link>
+      </div>
     </div>
   </div>
-	</div>
- 
 </template>
 <style>
 .lol {
   background: #6c6c6c;
   background: linear-gradient(to left, #6c6c6c 10%, #000000 67%, #72736d 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 </style>

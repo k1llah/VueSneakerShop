@@ -14,8 +14,8 @@ const props = defineProps({
 	<div class="flex flex-col justify-between p-4 cursor-pointer md:min-w-[550px] sm: min-w-[320px] md:max-w-[350px] sm:max-w-[310px] bg-cover min-h-[350px]"
 	:style="{ 'background-image': `url('http://localhost:1337${props.coverImage}')` }"
 	>
-		<div class="flex max-w-fit gap-3 flex-row bg-[#10b981] p-2 rounded-lg">
-      <p v-for="(hashtag, index) in hashtags" :key="index" class="text-black text-sm font-medium">{{ hashtag }}</p>
+		<div class="flex max-w-fit gap-3 flex-row ">
+      <p v-for="(hashtag, index) in hashtags" :key="index" class="text-black text-xs font-medium bg-[#10b981] p-2 rounded-lg hover:bg-[#eab308] transition-all duration-200 hover:transition-all hover:duration-200">{{ hashtag }}</p>
     </div>
 		<div class="text-white">
 		<h1 class="text-3xl font-bold ">{{ props.titleCover }}</h1>
