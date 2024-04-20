@@ -105,7 +105,7 @@ async function handleGetId(id:number | string){
       class="flex w-full flex-row gap-5 flex-wrap justify-start mt-5"
     >
       <div v-for="(post, index) in blogStore.posts" :key="index">
-        <router-link to="/post_page" @click="handleGetId(post.id)">
+        <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById()">
           <firstPostComponent
             v-if="index == 0"
             :titleCover="post.attributes.titleToCover"
@@ -132,17 +132,6 @@ async function handleGetId(id:number | string){
             "
             @click.native="handleGetId(post.id)"
           />
-          <!-- На завтра -->
-          <!-- export default {
-  async asyncData({ params }) {
-    const id = params.id;
-    // Получение информации о статье из Strapi по ID
-    const response = await fetch(`http://localhost:1337/api/posts/${id}`);
-    const post = await response.json();
-    return { post };
-  },
-}; -->
-
         </router-link>
       </div>
     </div>
