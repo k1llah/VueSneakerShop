@@ -75,12 +75,18 @@ onBeforeMount(async () => {
   <div v-for="(item, index) in blog.infoPost.attributes.postTemplate" :key="index">
     <renderData 
     :title="item.title"
-    :title-id="`title-${item.id.toString()}`"
+    :div-scroll-id="`title-${item.id.toString()}`"
     :mark-down="item.content"
     />
     
   </div>
 </div>
+<router-link to="/">
+<div class="flex items-center p-5 m-auto" >
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+  <p class="btn-shine text-lg">Назад на главную</p>
+</div>
+</router-link>
 
 
 </template>
@@ -166,4 +172,66 @@ button:hover .circle .icon.arrow {
 button:hover .button-text {
  color: #fff;
 }
+
+
+.btn-shine {
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  padding: 12px 18px;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
 </style>
