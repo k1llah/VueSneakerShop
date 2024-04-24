@@ -3,8 +3,9 @@ import { useBlog } from "@/stores/sneakerBlog";
 import { onBeforeMount } from "vue";
 import renderData from "../blogComponents/renderData.vue"
 const blog = useBlog();
+const idPost = parseInt(localStorage.getItem("idPost") || "0", 10);
 onBeforeMount(async () => {
-  await blog.getPostById();
+  await blog.getPostById(idPost);
   console.log(
     blog.infoPost,
     blog.infoPost.attributes.postTemplate[0].id

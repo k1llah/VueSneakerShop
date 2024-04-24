@@ -46,7 +46,6 @@ onMounted(async () => {
   if (paramsId) {
     await getDateShoe();
   }
-  allStore.getStrapiData()
 });
 
 </script>

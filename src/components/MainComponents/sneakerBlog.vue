@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
+import { ref, onMounted, watchEffect, onBeforeUnmount, onBeforeMount } from "vue";
 import gsap from "gsap";
 import { marked } from "marked";
 import { useAllStore } from "@/stores/all";
 import { useBlog } from "@/stores/sneakerBlog";
+import { onBeforeRouteUpdate } from 'vue-router';
 import scrollComponent from "./scrollComponent.vue";
 import coverTemplate from "../blogComponents/cover-template.vue";
 import firstPostComponent from "../blogComponents/firstPostComponent.vue";
@@ -15,20 +16,7 @@ const { title, span } = {
   title: ref(null),
   span: ref(null),
 };
-onMounted(() => {
-  watchEffect(() => {
-    if (isVisible.value) {
-      animateText();
-    }
-  });
-  blogStore.getStrapiData();
-  window.addEventListener("scroll", handleScroll);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
+const idPostStorage = parseInt(localStorage.getItem("idPost") || "0", 10);
 const handleScroll = () => {
   const contentPosition = content.value.getBoundingClientRect().top;
   const screenPosition = window.innerHeight / 1.6;
@@ -60,6 +48,22 @@ async function handleGetId(id:number | string){
   localStorage.setItem('idPost', idPost.value)
   console.log('idPost-', idPost.value, 'idParam-', id)
 }
+
+onMounted(() => {
+  watchEffect(() => {
+    if (isVisible.value) {
+      animateText();
+    }
+  });
+  blogStore.getStrapiData();
+  blogStore.getPostById(idPostStorage);
+  window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+  
+});
 </script>
 
 <template>
@@ -105,7 +109,7 @@ async function handleGetId(id:number | string){
       class="flex w-full flex-row gap-5 flex-wrap justify-start mt-5"
     >
       <div v-for="(post, index) in blogStore.posts" :key="index">
-        <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById()">
+        <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById(post.id)">
           <firstPostComponent
             v-if="index == 0"
             :titleCover="post.attributes.titleToCover"
