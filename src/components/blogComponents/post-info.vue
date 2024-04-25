@@ -92,6 +92,7 @@ onBeforeMount(async () => {
 
 </template>
 <style scoped>
+
 button {
  position: relative;
  display: inline-block;
