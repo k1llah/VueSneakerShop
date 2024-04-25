@@ -15,14 +15,14 @@
         При заказе доставки по Москве и за МКАД (до бетонного кольца) ты можешь заказать два размера одного товара для примерки и выбрать тот, что подошёл.
       </p>
     </div>
-    <div class="mt-10 flex justify-center items-center md:flex-nowrap sm:flex-wrap md:gap-0 sm: gap-10">
-       <h2 class="md:text-2xl sm:text-xl max-w-fit text-balance"><span class="text-[#7747ff]">Оставьте отзыв о нашем магазине</span> или посмотрите что пишут о нас другие покупатели</h2>
+    <div class="mt-10 flex justify-center items-center md:flex-nowrap sm:flex-wrap md:gap-0 sm:gap-10 ">
+       <h2 class="md:text-2xl sm:text-xl max-w-fit text-balance  md:pl-0 sm:pl-2"><span class="text-[#7747ff]">Оставьте отзыв о нашем магазине</span> или посмотрите что пишут о нас другие покупатели</h2>
        <div>
 
         <router-link to="feedback">
     <div class="relative hover:scale-[1.05] transition-all 1.3s">
       <div class="absolute inset-0 bg-black opacity-50 z-10 hover:opacity-0 transition-all 1.1s cursor-pointer"></div>
-      <div class="md:w-[350px] md:h-[150px] sm:w-[300px] sm:h-[200px] flex justify-center bg-cover bg-center top-[-300px] items-end bg-[url('/feedBack2.avif')]"   >
+      <div class="md:w-[350px] md:h-[150px] sm:min-w-[320px] sm:h-[200px] flex justify-center bg-cover bg-center top-[-300px] items-end bg-[url('/feedBack2.avif')]"   >
         <p class="text-center md:text-2xl sm:text-xl font-xl mb-3 text-white z-20">Отзывы</p>
       </div>
     </div>

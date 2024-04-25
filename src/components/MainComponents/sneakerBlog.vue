@@ -86,14 +86,13 @@ onBeforeUnmount(() => {
     >
   </div>
 
-  <div class="p-5">
+  <div>
 
-    <div class="flex gap-3 flex-row flex-wrap">
-      <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row">
+    <div class="flex gap-3 flex-row flex-wrap p-3 mt-5">
+      <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row flex-wrap ">
         <div
           v-for="(hashtag, index) in post.attributes.hashtags.data.slice(0, 10)"
           :key="index"
-          
         >
           <p
             class="text-black text-sm font-medium bg-[#fde68a] p-2 rounded-lg hover:bg-[#eab308] cursor-pointer transition-all duration-200 hover:transition-all hover:duration-200"
@@ -106,7 +105,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="blogStore.posts && blogStore.posts.length > 0"
-      class="flex w-full flex-row gap-5 flex-wrap justify-start mt-5"
+      class="flex w-full flex-row gap-5 flex-wrap md:justify-start sm:justify-center mt-5 m-auto"
     >
       <div v-for="(post, index) in blogStore.posts" :key="index">
         <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById(post.id)">

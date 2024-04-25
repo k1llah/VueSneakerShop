@@ -48,7 +48,7 @@ export default defineComponent({
 		}"
   >
     <swiper-slide class="w-full" v-for="item in items" :key="item.id">
-      <img :src="item.imageUrl" alt="Slide Image" class="object-center md:w-[750px] md:h-[380px] sm:w-[350px] sm:h-[250px] rounded-2xl m-auto" />
+      <img :src="item.imageUrl" alt="Slide Image" class="object-center md:w-[750px] md:h-[380px] sm:w-[350px] sm:h-[200px] rounded-2xl m-auto" />
     </swiper-slide>
   </swiper>
 </template>
