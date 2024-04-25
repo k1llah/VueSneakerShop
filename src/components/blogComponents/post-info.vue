@@ -41,7 +41,7 @@ onBeforeMount(async () => {
       </button>
     </div>
   </div>
-  <div class="flex gap-10 justify-center p-5 flex-wrap-reverse">
+  <div class="flex gap-10 justify-center p-5 md:flex-nowrap sm:flex-wrap-reverse">
     <div>
       <img
         :src="`http://localhost:1337${blog.infoPost.attributes.coverImage.data.attributes.url}`"

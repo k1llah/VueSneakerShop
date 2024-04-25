@@ -86,9 +86,9 @@ onBeforeUnmount(() => {
     >
   </div>
 
-  <div>
+  <div class="md:p-5 sm:p-0">
 
-    <div class="flex gap-3 flex-row flex-wrap p-3 mt-5">
+    <div class="flex gap-3 flex-row flex-wrap p-2 mt-5">
       <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row flex-wrap ">
         <div
           v-for="(hashtag, index) in post.attributes.hashtags.data.slice(0, 10)"
