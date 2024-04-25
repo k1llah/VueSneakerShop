@@ -13,7 +13,7 @@ onBeforeMount(async () => {
 });
 </script>
 <template>
-  <div class="p-4 overflow-scroll flex justify-between items-center">
+  <div class="p-4 overflow-scroll flex justify-between items-center sm:flex-wrap sm:gap-5 md:gap-1">
 		<div class="overflow-scroll max-w-[500px]">
     <div
       v-if="blog.infoPost.attributes"
@@ -41,13 +41,13 @@ onBeforeMount(async () => {
       </button>
     </div>
   </div>
-  <div class="flex gap-10 justify-center p-5">
+  <div class="flex gap-10 justify-center p-5 flex-wrap-reverse">
     <div>
       <img
         :src="`http://localhost:1337${blog.infoPost.attributes.coverImage.data.attributes.url}`"
         alt=""
         v-if="blog.infoPost.attributes"
-        class="max-w-[400px]"
+        class="md:max-w-[400px] sm:max-w-[320px]"
       />
     </div>
     <div class="max-w-fit">
