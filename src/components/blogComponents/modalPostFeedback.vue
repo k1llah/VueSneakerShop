@@ -1,8 +1,37 @@
 <script setup lang="ts">
 import { useBlog } from '@/stores/sneakerBlog';
+import axios from 'axios'
+import { ref } from 'vue'
+import createdModal from './createdModal.vue'
 const blog = useBlog();
+let email = ref('');
+let ideaText = ref('');
+let name = ref('')
+let messageWarning = ref('')
+const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+$/;
 
+async function submit() {
+  event?.preventDefault()
+	try{
+    const isEmailValid = emailRegex.test(email.value)
+		if(email.value.length > 2 && isEmailValid && ideaText.value.length > 5 && name.value.length > 2){
+			const submit = await axios.post('http://localhost:3001/api/post-idea', {
+				name: name.value,
+				email: email.value,
+				ideaText: ideaText.value,
+			})
 
+      blog.isOpenedModalFeedback = true
+      console.log('success', submit)
+		}
+    else if( !isEmailValid){
+      console.log('ALEEEERt')
+    }
+  
+	} catch(error){
+		console.log(error)
+	}
+}
 </script>
 <template>
 	<div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
@@ -14,7 +43,7 @@ const blog = useBlog();
     </p>
   </div>
 
-  <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" action="#">
+  <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" >
     <div>
       <label class="sr-only" for="email">Email</label>
       <div class="relative">
@@ -23,6 +52,7 @@ const blog = useBlog();
           class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
           id="email"
           type="email"
+          v-model="email"
         />
         <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
           <svg
@@ -51,6 +81,7 @@ const blog = useBlog();
           class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
           id="name"
           type="text"
+          v-model="name"
         />
       
       </div>
@@ -63,10 +94,12 @@ const blog = useBlog();
           class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
           id="message"
           type="text"
+          v-model="ideaText"
         />
       </div>
 			<button
         class="inline-block rounded-lg bg-purple-600 px-5 py-3 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-5"
+        @click="submit()"
       >
         Отправить
       </button>
@@ -74,5 +107,5 @@ const blog = useBlog();
 		
   </form>
 </div>
-
+<createdModal v-if="blog.isOpenedModalFeedback"/>
 </template>

@@ -122,7 +122,7 @@ onBeforeMount(async () => {
       <p class="btn-shine text-lg">Назад на главную</p>
     </div>
   </router-link>
-  <modalPostFeedback v-if="blog.isOpenedModal == true"/>
+  <modalPostFeedback v-if="blog.isOpenedModal"/>
 </template>
 <style scoped>
 button {
