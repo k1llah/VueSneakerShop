@@ -2,6 +2,7 @@
 import { useBlog } from "@/stores/sneakerBlog";
 import { onBeforeMount } from "vue";
 import renderData from "../blogComponents/renderData.vue";
+import modalPostFeedback from './modalPostFeedback.vue';
 const blog = useBlog();
 const idPost = parseInt(localStorage.getItem("idPost") || "0", 10);
 onBeforeMount(async () => {
@@ -91,9 +92,11 @@ onBeforeMount(async () => {
         Напиши нам, что было бы интересно узнать, и мы продолжим пополнять нашу
         энциклопедию сникер знаний
       </p>
-     <router-link to="#" class="text-[#914dff] p-2 rounded-lg border-slate-400 border-[1px] max-w-fit md:text-sm sm:text-xs">
+     <button class="text-[#914dff] p-2 rounded-lg border-slate-400 border-[1px] max-w-fit md:text-sm sm:text-xs cursor-pointer" @click="blog.isOpenedModal = true, blog.block()" >
+      <a href="#modal">
         Написать
-     </router-link>
+      </a>
+     </button>
     </div>
     <div class="max-w-[300px]">
       <h4>Напишем историю вместе?</h4>
@@ -119,6 +122,7 @@ onBeforeMount(async () => {
       <p class="btn-shine text-lg">Назад на главную</p>
     </div>
   </router-link>
+  <modalPostFeedback v-if="blog.isOpenedModal == true"/>
 </template>
 <style scoped>
 button {

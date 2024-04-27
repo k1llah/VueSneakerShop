@@ -49,5 +49,12 @@ export const useBlog = defineStore("blog", {
         console.error(error);
       }
     },
+    block(){
+      if(this.isOpenedModal){
+        document.body.style.overflow = 'hidden'
+      }
+      else{
+        document.body.style.overflow = 'visible'}
+    }
   },
 });
