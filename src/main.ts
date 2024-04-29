@@ -68,7 +68,11 @@ const router = createRouter({
 		path: `/post_page`,
 		component: () => import('./view/View_post.vue')
 	},
-
+	{
+		name: 'ideas_admin',
+		path: '/ideas_admin',
+		component: () => import('./components/adminComponents/postComponents/postIdeasModerate.vue'),
+	}
 ]
 })
 const pinia = createPinia()

@@ -20,6 +20,7 @@ async function submit() {
       email.value.length > 2 &&
       isEmailValid &&
       ideaText.value.length > 5 &&
+      ideaText.value.length < 700 &&
       name.value.length >= 2
     ) {
       const submit = await axios.post("http://localhost:3001/api/post-idea", {
@@ -62,6 +63,12 @@ async function submit() {
       }, 3000);
       warningIdea.value = "Текст идеи должен быть больше 5 символов";
     } 
+    else if (ideaText.value.length > 700) {
+      setTimeout(() => {
+        warningIdea.value = "";
+      }, 3000);
+      warningIdea.value = "Текст идеи должен быть меньше 700 символов";
+    }
   } catch (error) {
     console.log(error);
   }
