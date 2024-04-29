@@ -146,6 +146,7 @@
         <p>Pinia-State regulation</p>
         <p>Gsap animation</p>
         <p>Awesome Swiper</p>
+        <p>Strapi</p>
       </div>
       <div class="flex flex-col gap-2 text-slate-600 text-[16px]">
         <p class="text-slate-800 text-[18px]">Backend stack</p>

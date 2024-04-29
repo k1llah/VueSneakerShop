@@ -12,11 +12,11 @@
     <div class="flex justify-center flex-col gap-5">
       <h3 class="md:text-2xl sm:text-lg font-[700]">Бесплатная примерка</h3>
       <p class="text-slate-600 md:text-xl sm:text-base">
-        При заказе доставки по Москве и за МКАД (до бетонного кольца) ты можешь заказать два размера одного товара для примерки и выбрать тот, что подошёл.
+        При заказе доставки по Сочи и самовывозе, ты можешь заказать два размера одного товара для примерки и выбрать тот, что подошёл.
       </p>
     </div>
     <div class="mt-10 flex justify-center items-center flex-wrap md:gap-10 sm:gap-10">
-       <h2 class="md:text-2xl sm:text-xl max-w-[50%]   md:pl-0 sm:pl-2"><span class="text-[#7747ff]">Оставьте отзыв о нашем магазине</span> или посмотрите что пишут о нас другие покупатели</h2>
+       <h2 class="md:text-2xl sm:text-xl md:max-w-[50%] sm:max-w-none   md:pl-0 sm:pl-2"><span class="text-[#7747ff]">Оставьте отзыв о нашем магазине</span> или посмотрите что пишут о нас другие покупатели</h2>
        <div>
 
         <router-link to="feedback">

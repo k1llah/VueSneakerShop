@@ -17,6 +17,6 @@ const props = defineProps({
       <p v-for="(hashtag, index) in hashtags" :key="index" class="text-[#20bbed] text-[13px] hover:text-red-500 transition-all duration-100 md:pl-0 sm:pl-1">{{ hashtag }}</p>
     </div>
 		<h1 class="md:text-2xl sm:text-xl font-bold md:pl-0 sm:pl-1">{{ props.titleCover }}</h1>
-		<p class="md:text-sm font-light md:pl-0 sm:pl-1 sm:text-xs">{{ props.shortDescription }}</p>
+		<p class="md:text-sm font-light md:pl-0 sm:pl-1 sm:text-xs pb-5">{{ props.shortDescription }}</p>
 	</div>
 </template>
