@@ -64,10 +64,9 @@ export const useBlog = defineStore("blog", {
               },
             }
           )
-          this.posts = []
-          this.posts = response.data.data.map((post: any) => post);
+          this.posts = response.data.data
           console.log(this.posts);
-          console.log(response.data);
+          console.log(response.data.data);
         }
       } catch (error) {
         console.error(error);

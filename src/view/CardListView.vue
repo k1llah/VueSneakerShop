@@ -2,9 +2,9 @@
 import CardList from "@/components/cardsComponents/CardList.vue";
 import { onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
-import {debounce}  from "lodash"
-import { useCartStore } from '@/stores/addToCart';
-import { useFavoritesStore } from '@/stores/favorites';
+import { debounce } from "lodash";
+import { useCartStore } from "@/stores/addToCart";
+import { useFavoritesStore } from "@/stores/favorites";
 const cartStore = useCartStore();
 const favoritesStore = useFavoritesStore();
 let items = ref<any>([]);
@@ -30,22 +30,22 @@ const axiosGetParams = async () => {
     const { data } = await axios.get(`http://localhost:3001/api`, {
       params,
     });
-  
+
     items.value = data;
-    cartStore.items.forEach((el:any) => {
-      items.value.forEach((item:any) => {
-        if(el.id == item.id){
-          item.isAdded = true
+    cartStore.items.forEach((el: any) => {
+      items.value.forEach((item: any) => {
+        if (el.id == item.id) {
+          item.isAdded = true;
         }
-      })
-    })
-    favoritesStore.items.forEach((el:any) => {
-      items.value.forEach((item:any) => {
-        if(el.id == item.id){
-          item.isFavorite = true
+      });
+    });
+    favoritesStore.items.forEach((el: any) => {
+      items.value.forEach((item: any) => {
+        if (el.id == item.id) {
+          item.isFavorite = true;
         }
-      })
-    })
+      });
+    });
   } catch (err) {
     console.log(err);
   }
@@ -62,7 +62,7 @@ watch(filters, debounce(axiosGetParams, 350));
 
       <div class="flex gap-4 md:flex-row sm:flex-col-reverse">
         <select
-          class="py-2 px-3  border rounded-md outline-none"
+          class="py-2 px-3 border rounded-md outline-none"
           @change="onChangeSelect"
         >
           <option value="name">По названию</option>
@@ -77,11 +77,10 @@ watch(filters, debounce(axiosGetParams, 350));
             placeholder="Search..."
             class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
             v-model="filters.searchQuery"
-            
           />
         </div>
       </div>
     </div>
   </div>
-  <CardList :items="items"/>
+  <CardList :items="items" />
 </template>

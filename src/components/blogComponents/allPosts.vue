@@ -18,15 +18,17 @@ if(searchInput.value == '' || searchInput.value.length <= 2){
 	blog.getStrapiData();
 }
 else{
+	blog.posts = []
 blog.getPostByHashtag('chill')
 }
 
 
 onMounted(() => {
-  blog.getStrapiData();
+  
   blog.getPostById(idPostStorage);
 	
 });
+// Я сделал debounce КЛЯНУСЬ!!! НО ПОТОМ Я УВИДЕЛ ЧТО ОН УБИРАЕТ МНЕ ПЛАВНУЮ АНИМАЦИЮ И Я РЕШИЛ УБРАТЬ ЕГО!!!!
 </script>
 <template v-auto-animate>
   <div class="p-10">
@@ -40,6 +42,7 @@ onMounted(() => {
           placeholder="Search..."
           class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
 					v-model="searchInput"
+					@input="blog.getPostByHashtag(searchInput)"
         />
       </div>
     </div>
