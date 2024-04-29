@@ -11,7 +11,7 @@ const props = defineProps({
 
 </script>
 <template>
-	<div class="flex flex-col justify-between p-4 cursor-pointer md:min-w-[100%] sm: min-w-full md:max-w-[550px] bg-cover min-h-[350px]"
+	<div class="flex flex-col justify-between p-4 cursor-pointer md:min-w-[100%] sm: min-w-full md:max-w-[450px] bg-cover min-h-[350px]"
 	:style="{ 'background-image': `url('http://localhost:1337${props.coverImage}')` }"
 	>
 		<div class="flex max-w-fit gap-3 flex-row flex-wrap">

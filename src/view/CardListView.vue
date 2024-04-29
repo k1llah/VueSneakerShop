@@ -58,7 +58,7 @@ watch(filters, debounce(axiosGetParams, 350));
 <template>
   <div class="p-10">
     <div class="flex flex-wrap justify-between items-center">
-      <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
+      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8">Все кроссовки</h2>
 
       <div class="flex gap-4 md:flex-row sm:flex-col-reverse">
         <select

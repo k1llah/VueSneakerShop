@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useBlog } from "@/stores/sneakerBlog";
 import { onBeforeMount } from "vue";
+import { useRouter } from 'vue-router';
+const router = useRouter();
 import renderData from "../blogComponents/renderData.vue";
 import modalPostFeedback from './modalPostFeedback.vue';
+
 const blog = useBlog();
 const idPost = parseInt(localStorage.getItem("idPost") || "0", 10);
 onBeforeMount(async () => {
@@ -33,7 +36,7 @@ onBeforeMount(async () => {
       </div>
     </div>
     <div>
-      <button class="learn-more w-52 h-auto">
+      <button class="learn-more w-52 h-auto" @click="router.push('/all_posts')">
         <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
         </span>
@@ -107,8 +110,8 @@ onBeforeMount(async () => {
       </p>
     </div>
   </div>
-  <router-link to="/">
-    <div class="flex items-center p-5 m-auto justify-end">
+  
+    <div class="flex items-center p-5 m-auto justify-end cursor-pointer" @click="router.go(-1)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -119,9 +122,9 @@ onBeforeMount(async () => {
           d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
         />
       </svg>
-      <p class="btn-shine text-lg">Назад на главную</p>
+      <p class="btn-shine text-lg">Назад</p>
     </div>
-  </router-link>
+  
   <modalPostFeedback v-if="blog.isOpenedModal"/>
 </template>
 <style scoped>

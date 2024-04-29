@@ -50,6 +50,29 @@ export const useBlog = defineStore("blog", {
         console.error(error);
       }
     },
+    async getPostByHashtag(hashtag: string) {
+      try {
+        if (hashtag !== null && hashtag !== undefined) {
+          const response = await axios.get(
+            `http://localhost:1337/api/posts?filters\[hashtags\][hashtagName][$contains]=${hashtag}`,
+            {
+              params: {
+              populate: "*",
+            },
+              headers: {
+                Authorization: `Bearer ${this.token}`,
+              },
+            }
+          )
+          this.posts = []
+          this.posts = response.data.data.map((post: any) => post);
+          console.log(this.posts);
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
     block() {
       document.body.style.overflow = "hidden";
     },

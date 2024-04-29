@@ -72,6 +72,11 @@ const router = createRouter({
 		name: 'ideas_admin',
 		path: '/ideas_admin',
 		component: () => import('./components/adminComponents/postComponents/postIdeasModerate.vue'),
+	},
+	{
+		name: 'all_posts',
+		path: '/all_posts',
+		component: () => import('./view/View_all_posts.vue'),
 	}
 ]
 })
