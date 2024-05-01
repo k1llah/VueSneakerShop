@@ -20,6 +20,9 @@ export const useCartStore = defineStore({
     counter: 1,
     totalPrice: 0,
     localPrice: parseInt(localStorage.getItem("totalPrice") || "0", 10),
+    axiosGetParamsStore: function () {
+     
+    },
   }),
   actions: {
     counterPlus() {
@@ -73,7 +76,7 @@ export const useCartStore = defineStore({
             localStorage.setItem("totalPrice", this.totalPrice.toString())
           }
 					item.isAdded = false
-					
+					this.axiosGetParamsStore()
 					console.log(item.isAdded)
         } catch (error) {
           console.log(error)

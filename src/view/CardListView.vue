@@ -12,7 +12,8 @@ const filters = reactive({
   sortBy: "title",
   searchQuery: "",
 });
-
+let realStateOfCart = ref(cartStore.items)
+let onMountedCartState = cartStore.items
 // Функция для обработки изменений в инпуте поиска
 const onChangeSelect = (event: any) => {
   filters.sortBy = event.target.value;
@@ -39,6 +40,7 @@ const axiosGetParams = async () => {
         }
       });
     });
+  
     favoritesStore.items.forEach((el: any) => {
       items.value.forEach((item: any) => {
         if (el.id == item.id) {
@@ -50,7 +52,10 @@ const axiosGetParams = async () => {
     console.log(error);
   }
 };
-
+cartStore.axiosGetParamsStore = axiosGetParams
+if(realStateOfCart.value != onMountedCartState){
+  axiosGetParams()
+}
 onMounted(axiosGetParams);
 watch(filters, debounce(axiosGetParams, 350));
 </script>

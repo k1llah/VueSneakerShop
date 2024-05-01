@@ -14,7 +14,7 @@ cartStore.cartDataGet();
 </script>
 
 <template>
-  <div v-if="cartStore.isAdded" class="overflow-scroll max-h-[70%]">
+  <div v-if="cartStore.isAdded" class="overflow-scroll max-h-[70%]" v-auto-animate>
     <div
       class="flex flex-col gap-4 flex-1"
       v-for="item in cartStore.items"
