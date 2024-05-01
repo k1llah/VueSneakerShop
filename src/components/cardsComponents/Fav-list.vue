@@ -4,7 +4,9 @@ import axios from 'axios';
 import card from '@/components/cardsComponents/card.vue';
 import overlay from '@/components/cardsComponents/overlay.vue';
 import { useCartStore } from '@/stores/addToCart';
+import { useFavoritesStore } from '@/stores/favorites';
 import { useAuthStore } from '@/stores/authData';
+const favoritesStore = useFavoritesStore();
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 let deleteFromCart = ref()
@@ -39,7 +41,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
       }
     );
 		item.isFavorite = false
-
+    favoritesStore.items = favoritesStore.items.filter((el:any) => el.id != sneakerId)
     showOverlay.value = true;
     setTimeout(() => {
       showOverlay.value = false;

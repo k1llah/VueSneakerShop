@@ -21,8 +21,9 @@ export const useCartStore = defineStore({
     totalPrice: 0,
     localPrice: parseInt(localStorage.getItem("totalPrice") || "0", 10),
     axiosGetParamsStore: function () {
-     
+      
     },
+    favArray: [],
   }),
   actions: {
     counterPlus() {

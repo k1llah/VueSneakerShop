@@ -1,47 +1,50 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import axios from "axios";
 import { onMounted, watch } from "vue";
 import buttonBack from '@/components/buttonBack.vue';
 import FavList from "@/components/cardsComponents/Fav-list.vue";
 import{ useAuthStore } from '@/stores/authData';
-import { useCartStore } from '@/stores/addToCart';
-const cartStore = useCartStore();
+import { useFavoritesStore } from '@/stores/favorites';
+const favoriteStore = useFavoritesStore();
 const authStore = useAuthStore();
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);
 
-const favorites = async () => {
-  try {
-    const { data } = await axios.post(
-      "http://localhost:3001/api/favorites-user",
-      {
-        id: localStorage.getItem("id"),
-      }
-    );
+// const favorites = async () => {
+//   try {
+//     const { data } = await axios.post(
+//       "http://localhost:3001/api/favorites-user",
+//       {
+//         id: localStorage.getItem("id"),
+//       }
+//     );
 
-    isFav.value = true;
-    items.value = data[0].Favorite;
-    items.value.forEach((el:any) => {
-      el.isFavorite = true
-    })
-    if(items.value.length == 0){
-      isFav.value = false
-    }
-    cartStore.items.forEach((el:any) => {
-      items.value.forEach((item:any) => {
-        if(el.id == item.id){
-          item.isAdded = true
-        }
-      })
-    })
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     isFav.value = true;
+//     cartStore.favArray = data[0].Favorite
+//     items.value = data[0].Favorite;
+//     items.value.forEach((el:any) => {
+//       el.isFavorite = true
+//     })
+//     if(items.value.length == 0){
+//       isFav.value = false
+//     }
+//     cartStore.items.forEach((el:any) => {
+//       items.value.forEach((item:any) => {
+//         if(el.id == item.id){
+//           item.isAdded = true
+//         }
+//       })
+//     })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-favorites();
-
+// favorites();
+onBeforeMount(() => {
+  favoriteStore.favorites()
+})
 </script>
 <template>
   <div>
@@ -54,7 +57,7 @@ favorites();
       </div>
 
       <div v-if="authStore.isAuthenticated == true && isFav == true" class="mt-[30px]">
-        <FavList :items="items" />
+        <FavList :items="favoriteStore.items" />
       </div>
 
       <div

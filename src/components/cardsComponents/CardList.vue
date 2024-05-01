@@ -55,6 +55,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         sneakerId: sneakerId,
       }
     );
+    cartStore.favArray = postData.data 
       item.isFavorite = true
     showOverlay.value = true
     setTimeout(() => {
@@ -83,7 +84,6 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
         :onclck-delete="() => deleteFromCart(item.id, item, item.price)"
-        
       />
     </div>
   </div>

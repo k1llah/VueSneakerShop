@@ -1,6 +1,6 @@
 <script setup script lang="ts">
 import CardList from "@/components/cardsComponents/CardList.vue";
-import { onMounted, reactive, ref, watch } from "vue";
+import { onBeforeMount, onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
 import { debounce } from "lodash";
 import { useCartStore } from "@/stores/addToCart";
@@ -56,7 +56,13 @@ cartStore.axiosGetParamsStore = axiosGetParams;
 if (realStateOfCart.value != onMountedCartState) {
   axiosGetParams();
 }
-onMounted(axiosGetParams);
+onBeforeMount(() => {
+  favoritesStore.favorites()
+})
+onMounted(() => {
+  favoritesStore.favorites()
+  axiosGetParams()
+});
 watch(filters, debounce(axiosGetParams, 350));
 </script>
 
