@@ -49,9 +49,7 @@ export const useCartStore = defineStore({
         this.axiosGetParamsStore()
         localStorage.setItem("totalPrice", this.totalPrice.toString())
         this.cartCounter = this.items.length
-        console.log(this.items.length, this.items)
         localStorage.setItem("cartCounter", this.cartCounter.toString())
-				console.log(item.isAdded)
       } catch (error) {
         console.log(error)
       }
@@ -75,10 +73,11 @@ export const useCartStore = defineStore({
             this.totalPrice -= price
             localStorage.setItem("totalPrice", this.totalPrice.toString())
           }
+          if(this.totalPrice < 0){
+            this.totalPrice = 0
+          }
           this.items = this.items.filter(feedback => feedback.id !== id);
-					
 					this.axiosGetParamsStore()
-					console.log(item.isAdded)
         } catch (error) {
           console.log(error)
         }
