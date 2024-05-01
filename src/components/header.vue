@@ -113,6 +113,13 @@ let toggleShow = () => {
       </li>
       <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        @click="$router.push('/all_posts')"
+      >
+        <img src="/newspaper.png" alt="Cart" class="max-w-[25px]"  />
+        <span class="text-[19px] font-light md:text-[14px]">Блог</span>
+      </li>
+      <li
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
         @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />

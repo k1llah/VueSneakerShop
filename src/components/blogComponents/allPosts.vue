@@ -39,7 +39,7 @@ onMounted(() => {
         <img src="/search.svg" class="absolute left-3 top-3" alt="" />
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Поиск по хэштегу"
           class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
 					v-model="searchInput"
 					@input="blog.getPostByHashtag(searchInput)"

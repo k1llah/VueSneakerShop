@@ -38,7 +38,7 @@
     </button>
   </div>
   <div class="flex  md:mt-12 container-bg md:p-10 sm:p-0 sm:mt-2 h-full">
-    <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-10 justify-center items-center">
+    <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-5 justify-center items-center">
       <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
         <templateFeedBack
         v-if="feedback.rating != 0"

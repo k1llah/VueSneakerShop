@@ -6,7 +6,7 @@
 	};
 </script>
 <template>
-	<button class="button" @click="onClick">
+	<button class="button  md:w-[50px] md:h-[50px] sm:w-[30px] sm:h-[30px]" @click="onClick">
   <div class="button-box">
     <span class="button-elem">
       <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +31,6 @@
 	.button {
   display: block;
   position: relative;
-  width: 50px;
-  height: 50px;
   margin: 0;
   overflow: hidden;
   outline: none;
@@ -100,15 +98,5 @@
   transition: 0.4s;
   transform: translateX(-56px);
 }
-@media screen and (max-width: 645px) {
-  .button{
-    width: 42px;
-    height: 42px;
-  }
-  .button-elem{
-    width: 15px;
 
-    margin: 10px 18px 0 13px;
-  }
-}
 </style>

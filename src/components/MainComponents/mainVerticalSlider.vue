@@ -42,7 +42,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 </div>
 <div class="slider_wrapper md:mt-20 lg:mt-40 sm:mt-20 sm:pb-10">
 	<swiper
-        class="w-full max-h-[600px] sm:w-[90%] sm:max-h-[350px] md:w-full md:max-h-[600px]"
+        class="w-full max-h-[600px] sm:w-[90%] sm:max-h-[450px] md:w-full md:max-h-[600px]"
         :modules="modules"
         direction="vertical"
         :loop="true"
@@ -54,7 +54,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
         }"
       >
         <swiper-slide class="h-full" v-for="item in items" :key="item.id">
-          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] rounded-2xl m-auto cursor-pointer sm:h-[350px] md:h-[550px]" />
+          <img :src="item.imageUrl" alt="Slide Image" class="object-center w-[350px] rounded-2xl m-auto cursor-pointer sm:h-[450px] md:h-[550px]" />
         </swiper-slide>
       </swiper>
 </div>

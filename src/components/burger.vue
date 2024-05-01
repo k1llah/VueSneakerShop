@@ -64,7 +64,7 @@ const toggleDropdown = (index: number) => {
   if (dropdownContent) {
     if (dropdowns.value[index]) {
       gsap.to(dropdownContent, {
-        maxHeight: "370px",
+        maxHeight: "400px",
 
         duration: 0.7,
         ease: "power2.out",
@@ -97,7 +97,7 @@ const toggleDropdown = (index: number) => {
     <div
       class="burger flex justify-center bg-white"
       :class="{ closed: !dropdowns[0] }"
-      style="max-height: 370px; max-height: 0px"
+      style="max-height: 400px; max-height: 0px"
     >
       <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12">
         <li class="border-b-2 border-slate-300 w-full flex justify-center pb-2">
@@ -123,6 +123,7 @@ const toggleDropdown = (index: number) => {
           <img src="/heart.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Закладки</span>
         </li>
+        
         <li
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 border-slate-300 w-full justify-center"
           @click="$router.push({ name: 'Profile' })"
@@ -130,6 +131,13 @@ const toggleDropdown = (index: number) => {
           <img src="/profile.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Профиль</span>
         </li>
+        <li
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        @click="$router.push('/all_posts')"
+      >
+        <img src="/newspaper.png" alt="Cart" class="max-w-[25px]"  />
+        <span class="text-[19px] font-light md:text-[14px]">Блог</span>
+      </li>
         <li
         v-if="localRole === 'ADMIN'"
         class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2"
