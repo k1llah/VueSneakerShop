@@ -46,8 +46,8 @@ const axiosGetParams = async () => {
         }
       });
     });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { ref, watch } from "vue";
 import { useAllStore } from '@/stores/all';
 import { useMyOrderStore } from '@/stores/myOrders';
+import badassLoader from '@/components/badassLoader.vue';
 import dialogWindow from '@/components/profileComponents/dialogWindow.vue';
 const myOrders = useMyOrderStore();
 const email = ref("");
@@ -54,7 +55,7 @@ watch(() => allStore.isOpened, (newValue) => {
 </script>
 
 <template>
-  <div class="flex m-auto mt-20 gap-16 justify-center flex-wrap" >
+  <div class="flex m-auto mt-20 gap-16 justify-center flex-wrap"  v-auto-animate v-if="email !== '' || first_name !== '' || lastName !== '' || profileImg !== ''">
     <div class="flex items-center">
       <img v-if="profileImg"
         :src="'http://localhost:3001/img/tablet/'+ profileImg"
@@ -138,7 +139,9 @@ watch(() => allStore.isOpened, (newValue) => {
         </div>
       </div>
     </div>
-
+    <div v-else>
+      <badassLoader/>
+    </div>
   <div v-if="toggle == true">
       <dialogWindow/>
     </div>

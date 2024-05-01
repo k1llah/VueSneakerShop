@@ -5,6 +5,5 @@ import { onBeforeMount, ref } from 'vue';
 import allPosts from '../components/blogComponents/allPosts.vue'
 </script>
 <template>
-	
 	<allPosts/>
 </template>
