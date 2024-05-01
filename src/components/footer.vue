@@ -36,7 +36,7 @@
 
         <section class="flex justify-center items-center">
           <a
-            href="/"
+            href="https://www.linkedin.com/in/benźx-k-s-2449892aa/"
             class="group flex justify-center p-[2px] rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
           >
             <svg
@@ -74,7 +74,7 @@
 
         <section class="flex justify-center items-center">
           <a
-            href="/"
+            href="https://t.me/k1llah3h"
             class="group flex justify-center p-[2px] rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
           >
             <svg

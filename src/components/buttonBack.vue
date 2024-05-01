@@ -6,7 +6,7 @@
 	};
 </script>
 <template>
-	<button class="button  md:w-[50px] md:h-[50px] sm:w-[30px] sm:h-[30px]" @click="onClick">
+	<button class="button  w-[50px] h-[50px]" @click="onClick">
   <div class="button-box">
     <span class="button-elem">
       <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
