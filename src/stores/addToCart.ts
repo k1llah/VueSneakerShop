@@ -46,12 +46,12 @@ export const useCartStore = defineStore({
         this.items = postAddData.data.items
 
         this.totalPrice += price
+        this.axiosGetParamsStore()
         localStorage.setItem("totalPrice", this.totalPrice.toString())
         this.cartCounter = this.items.length
         console.log(this.items.length, this.items)
         localStorage.setItem("cartCounter", this.cartCounter.toString())
 				console.log(item.isAdded)
-				item.isAdded = true
       } catch (error) {
         console.log(error)
       }
@@ -76,7 +76,7 @@ export const useCartStore = defineStore({
             localStorage.setItem("totalPrice", this.totalPrice.toString())
           }
           this.items = this.items.filter(feedback => feedback.id !== id);
-					item.isAdded = false
+					
 					this.axiosGetParamsStore()
 					console.log(item.isAdded)
         } catch (error) {
