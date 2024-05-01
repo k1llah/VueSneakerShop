@@ -75,6 +75,7 @@ export const useCartStore = defineStore({
             this.totalPrice -= price
             localStorage.setItem("totalPrice", this.totalPrice.toString())
           }
+          this.items = this.items.filter(feedback => feedback.id !== id);
 					item.isAdded = false
 					this.axiosGetParamsStore()
 					console.log(item.isAdded)
