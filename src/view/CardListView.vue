@@ -56,8 +56,8 @@ cartStore.axiosGetParamsStore = axiosGetParams;
 if (realStateOfCart.value != onMountedCartState) {
   axiosGetParams();
 }
-onBeforeMount(() => {
-  favoritesStore.favorites()
+onBeforeMount(async () => {
+  await favoritesStore.favorites()
 })
 onMounted(() => {
   favoritesStore.favorites()

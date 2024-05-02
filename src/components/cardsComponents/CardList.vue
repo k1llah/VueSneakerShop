@@ -7,7 +7,9 @@ import { useAllStore } from '@/stores/all';
 import Overlay from '@/components/cardsComponents/overlay.vue';
 import { useCartStore } from '@/stores/addToCart';
 import { useAuthStore } from '@/stores/authData';
+import { useFavoritesStore } from '@/stores/favorites';
 import CartItem from '../DrawerComponents/CartItem.vue'
+const favoritesStore = useFavoritesStore();
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 let addToCart = ref()
@@ -68,7 +70,6 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
 };
 </script>
 <template>
-  <overlay :show-overlay-green="showOverlay"/>
   <div v-if="items">
     <div class="grid md:grid-cols-4 sm:grid-cols-2 md:gap-5 md:0" v-auto-animate>
       <card
@@ -82,6 +83,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         :is-favorite="item.isFavorite"
         :on-click-add="() => addToCart(item.id, item, item.price)"
         :on-favorite-add="() => onFavoriteAdd(item.id, item)"
+        :on-favorite-delete=" () => favoritesStore.onFavoriteRemove(item.id, item)"
         :on-click-on-card="() => onClickOnCard(item.id)"
         :onclck-delete="() => deleteFromCart(item.id, item, item.price)"
       />

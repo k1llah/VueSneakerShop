@@ -69,7 +69,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
       :is-added="item.isAdded"
       :is-favorite="item.isFavorite"
       :on-click-add="() => cartStore.onCartAdd(item.id, item, item.price)"
-      :on-favorite-add=" () => onFavoriteRemove(item.id, item)"
+      :on-favorite-delete=" () => onFavoriteRemove(item.id, item)"
       :onclck-delete="() => deleteFromCart(item.id, item, item.price)"
       
     />

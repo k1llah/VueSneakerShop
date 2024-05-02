@@ -9,6 +9,7 @@ import { defineProps } from 'vue';
 		isAdded:Boolean,
 		onClickAdd: Function,
 		onFavoriteAdd: Function,
+		onFavoriteDelete: Function,
 		onClickOnCard: Function,
 		onclckDelete: Function,
 	})
@@ -21,7 +22,8 @@ import { defineProps } from 'vue';
 </script>
 <template>
 		<div class="relative bg-white border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition" @click="onClickOnCard && onClickOnCard(id)">
-			<img :src="!isFavorite ? '/like-1.svg': '/like-2.svg'" class="absolute top-8 left-8" @click.stop=" onFavoriteAdd && onFavoriteAdd(id)">
+			<img v-if="!isFavorite" src="/like-1.svg" class="absolute top-8 left-8" @click.stop=" onFavoriteAdd && onFavoriteAdd(id)">
+			<img v-if="isFavorite" src="/like-2.svg" class="absolute top-8 left-8" @click.stop=" onFavoriteDelete && onFavoriteDelete(id)">
 
 			<img :src="imageUrl" alt="Sneaker">
 			<p class="mt-2">
