@@ -6,12 +6,44 @@ import buttonBack from '@/components/buttonBack.vue';
 import FavList from "@/components/cardsComponents/Fav-list.vue";
 import{ useAuthStore } from '@/stores/authData';
 import { useFavoritesStore } from '@/stores/favorites';
+import { useCartStore } from '@/stores/addToCart';
+const cartStore = useCartStore();
 const favoriteStore = useFavoritesStore();
 const authStore = useAuthStore();
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);
+  async function favorites(){
+			try {
+				const { data } = await axios.post(
+					"http://localhost:3001/api/favorites-user",
+					{
+						id: localStorage.getItem("id"),
+					}
+				);
+        
+        items.value = data;
+				items.value = data[0].Favorite;
+				items.value.forEach((el:any) => {
+					el.isFavorite = true
+				})
+    cartStore.items.forEach((el: any) => {
+      items.value.forEach((item: any) => {
+        if (el.id == item.id) {
+          item.isAdded = true;
+        }
+      });
+    });
+				if(items.value.length == 0){
+					isFav.value = false
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+    cartStore.favorites = favorites
 onBeforeMount(() => {
-  favoriteStore.favorites()
+  cartStore.cartDataGet()
+  favorites()
 })
 </script>
 <template>
@@ -25,7 +57,7 @@ onBeforeMount(() => {
       </div>
 
       <div v-if="authStore.isAuthenticated == true && isFav == true" class="mt-[30px]">
-        <FavList :items="favoriteStore.items" />
+        <FavList :items="items" />
       </div>
 
       <div

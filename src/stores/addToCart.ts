@@ -1,14 +1,14 @@
-import { defineStore } from "pinia"
-import { ref } from "vue"
-import axios from "axios"
+import { defineStore } from "pinia";
+import { ref } from "vue";
+import axios from "axios";
 interface CartItem {
-  id: number
-  title: string
-  imageUrl: string
-  price: number
-  count: number
-  isAdded: boolean
-  onDelete: Function
+  id: number;
+  title: string;
+  imageUrl: string;
+  price: number;
+  count: number;
+  isAdded: boolean;
+  onDelete: Function;
 }
 export const useCartStore = defineStore({
   id: "cart",
@@ -20,17 +20,16 @@ export const useCartStore = defineStore({
     counter: 1,
     totalPrice: 0,
     localPrice: parseInt(localStorage.getItem("totalPrice") || "0", 10),
-    axiosGetParamsStore: function () {
-      
-    },
+    axiosGetParamsStore: function () {},
+    favorites: function () {},
   }),
   actions: {
     counterPlus() {
-      this.counter += 1
+      this.counter += 1;
     },
     counterRemove() {
       if (this.counter > 1) {
-        this.counter -= 1
+        this.counter -= 1;
       }
     },
 
@@ -43,15 +42,15 @@ export const useCartStore = defineStore({
             sneakerId: sneakerId,
           }
         );
-        this.items = postAddData.data.items
-
-        this.totalPrice += price
-        this.axiosGetParamsStore()
-        localStorage.setItem("totalPrice", this.totalPrice.toString())
-        this.cartCounter = this.items.length
-        localStorage.setItem("cartCounter", this.cartCounter.toString())
+        this.items = postAddData.data.items;
+        item.isAdded = true;
+        this.totalPrice += price;
+        this.axiosGetParamsStore();
+        localStorage.setItem("totalPrice", this.totalPrice.toString());
+        this.cartCounter = this.items.length;
+        localStorage.setItem("cartCounter", this.cartCounter.toString());
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     async onDeleteItem(id: number, item: any, price: any) {
@@ -65,21 +64,23 @@ export const useCartStore = defineStore({
             }
           );
           if (this.cartCounter > 0) {
-            this.cartCounter -= 1
-            localStorage.setItem("cartCounter", this.cartCounter.toString())
+            this.cartCounter -= 1;
+            localStorage.setItem("cartCounter", this.cartCounter.toString());
           }
 
           if (this.totalPrice > 0) {
-            this.totalPrice -= price
-            localStorage.setItem("totalPrice", this.totalPrice.toString())
+            this.totalPrice -= price;
+            localStorage.setItem("totalPrice", this.totalPrice.toString());
           }
-          if(this.totalPrice < 0){
-            this.totalPrice = 0
+          if (this.totalPrice < 0) {
+            this.totalPrice = 0;
           }
           this.items = this.items.filter(feedback => feedback.id !== id);
-					this.axiosGetParamsStore()
+          item.isAdded = false;
+          this.axiosGetParamsStore();
+          this.favorites();
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       }
     },
@@ -93,21 +94,24 @@ export const useCartStore = defineStore({
           }
         );
         this.items = dataCart.data.items;
-        if(this.items !== undefined){
-        this.isAdded = this.items.length > 0
-      }
-      
-      if (this.isAdded) {
-        this.items.forEach((el: any) => {
-          el.isAdded = true;
-        });
-      }
-      this.totalPrice = parseInt(localStorage.getItem("totalPrice") || "0", 10)
-      this.cartCounter = this.items.length
-      
-        localStorage.setItem("cartCounter", this.cartCounter.toString())
+        if (this.items !== undefined) {
+          this.isAdded = this.items.length > 0;
+        }
+
+        if (this.isAdded) {
+          this.items.forEach((el: any) => {
+            el.isAdded = true;
+          });
+        }
+        this.totalPrice = parseInt(
+          localStorage.getItem("totalPrice") || "0",
+          10
+        );
+        this.cartCounter = this.items.length;
+
+        localStorage.setItem("cartCounter", this.cartCounter.toString());
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
   },

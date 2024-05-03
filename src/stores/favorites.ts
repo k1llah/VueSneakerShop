@@ -13,7 +13,8 @@ export const useFavoritesStore = defineStore({
   id: "favorites",
   state: () => ({
     items: [] as Array<Item>,
-		isFav: true
+		isFav: true,
+		
   }),
   actions: {
 		async favorites(){
