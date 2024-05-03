@@ -7,11 +7,11 @@ console.log(allStore.isOpenedFeedBack);
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
-  <div class="w-full flex justify-center bg-[#f8f8ff]">
+  <div class="w-full flex justify-center rounded-lg">
     <div
-      class="bg-white md:w-[600px] md:h-[800px] sm:w-[80%] sm:h-[80%] fixed top-10 z-20 md:p-10 sm:p-5 m-auto"
+      class="bg-[#212121] md:w-[600px] md:h-[800px] sm:w-[80%] sm:h-fit fixed top-10 z-20 md:p-10 sm:p-5 md:pb-10 sm:pb-0 m-auto rounded-2xl "
     >
-      <div class="flex gap-5 items-center">
+      <div class="flex md:gap-5 items-center md:p-2 sm:gap-1 sm:p-0 rounded-lg">
         <button class="button" @click="allStore.isOpenedFeedBack = false">
           <div class="button-box">
             <span class="button-elem">
@@ -30,7 +30,7 @@ console.log(allStore.isOpenedFeedBack);
             </span>
           </div>
         </button>
-        <h2 class="text-3xl">Оставить свой отзыв</h2>
+        <h2 class="md:text-3xl sm:text-lg text-white sm:font-extralight md:font-none md:text-left sm:text-right">Оставить свой отзыв</h2>
       </div>
       <writeYours />
   
@@ -38,7 +38,7 @@ console.log(allStore.isOpenedFeedBack);
   </div>
 </template>
 
-<style >
+<style scoped>
 	.button {
   display: block;
   position: relative;
@@ -103,7 +103,7 @@ console.log(allStore.isOpenedFeedBack);
   height: 18px;
   margin: 15px 18px 0 18px;
   transform: rotate(180deg);
-  fill: black;
+  fill: white;
 }
 
 .button:hover .button-box,
@@ -113,13 +113,13 @@ console.log(allStore.isOpenedFeedBack);
 }
 @media screen and (max-width: 645px) {
   .button{
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
   }
   .button-elem{
     width: 15px;
 
-    margin: 10px 18px 0 13px;
+    margin: 14px 18px 0 17px;
   }
 }
 </style>

@@ -57,8 +57,7 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
         sneakerId: sneakerId,
       }
     );
-    cartStore.favArray = postData.data 
-      item.isFavorite = true
+    item.isFavorite = true
     showOverlay.value = true
     setTimeout(() => {
       showOverlay.value = false

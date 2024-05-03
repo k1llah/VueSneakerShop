@@ -10,38 +10,6 @@ const favoriteStore = useFavoritesStore();
 const authStore = useAuthStore();
 const items = ref<any>([]);
 const isFav = ref<Boolean>(true);
-
-// const favorites = async () => {
-//   try {
-//     const { data } = await axios.post(
-//       "http://localhost:3001/api/favorites-user",
-//       {
-//         id: localStorage.getItem("id"),
-//       }
-//     );
-
-//     isFav.value = true;
-//     cartStore.favArray = data[0].Favorite
-//     items.value = data[0].Favorite;
-//     items.value.forEach((el:any) => {
-//       el.isFavorite = true
-//     })
-//     if(items.value.length == 0){
-//       isFav.value = false
-//     }
-//     cartStore.items.forEach((el:any) => {
-//       items.value.forEach((item:any) => {
-//         if(el.id == item.id){
-//           item.isAdded = true
-//         }
-//       })
-//     })
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// favorites();
 onBeforeMount(() => {
   favoriteStore.favorites()
 })

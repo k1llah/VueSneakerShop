@@ -23,7 +23,6 @@ export const useCartStore = defineStore({
     axiosGetParamsStore: function () {
       
     },
-    favArray: [],
   }),
   actions: {
     counterPlus() {

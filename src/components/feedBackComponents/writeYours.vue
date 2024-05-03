@@ -9,7 +9,7 @@ const textValue = ref("");
 const imageFeedback = ref();
 </script>
 <template>
-  <div class="flex justify-center mt-16">
+  <div class="flex justify-center md:mt-16 sm:mt-5">
     <div class="form-container">
       <form class="form">
         <div class="flex gap-5">
