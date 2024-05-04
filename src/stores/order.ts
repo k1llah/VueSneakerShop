@@ -79,6 +79,9 @@ export const useOrderStore = defineStore({
               console.log(pay, this.orderNumber);
               this.orderNumber = pay.data.orderNumber
               this.success = true
+              const clear = axios.post("http://localhost:3001/api/clear-cart", {
+                userId: localStorage.getItem("id"),
+              })
             } else {
               console.log("Ошибка при выполнении запроса");
             }
@@ -114,14 +117,13 @@ export const useOrderStore = defineStore({
                 orderMessage: this.comment,
               }
             );
-            if (pay.status === 200 && pay.data) {
+            if (pay.status === 200) {
               this.success = true
               this.orderNumber = pay.data.orderNumber
-              pay.data.forEach((el: any) => {
-                this.orderNumber = el.orderNumber
-
-                console.log(el.orderNumber)
+              const clear = axios.post("http://localhost:3001/api/clear-cart", {
+                userId: localStorage.getItem("id"),
               })
+             console.log(clear)
              console.log('daaaa')
             } else {
               console.log("Ошибка при выполнении запроса");

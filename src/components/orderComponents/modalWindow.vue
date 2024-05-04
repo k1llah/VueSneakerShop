@@ -2,8 +2,10 @@
 import { useRouter } from 'vue-router';
 import { useOrderStore } from '@/stores/order';
 import { useAllStore } from '@/stores/all';
+import { useCartStore } from '@/stores/addToCart';
 import { ref } from 'vue'
 import order from './order.vue'
+const cartStore = useCartStore();
 const allStore = useAllStore();
 const orderStore = useOrderStore();
 const router = useRouter();
@@ -17,11 +19,21 @@ const handleOpenPage = (page: string) => {
   },200)
   localStorage.setItem('page', page)
 };
+function clearDataAfterOrdered () {
+  cartStore.localCounter = 0
+  localStorage.setItem('counter', cartStore.localCounter.toString())
+  localStorage.setItem('totalPrice', '0')
+  cartStore.totalPrice = 0
+  cartStore.items = []
+  cartStore.axiosGetParamsStore()
+  cartStore.cartDataGet()
+
+}
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
 
-  <div class="w-[400px] h-auto flex flex-col absolute gap-1 z-20">
+  <div class="md:w-[400px] sm:w[310px] h-auto flex flex-col absolute gap-1 z-20">
     <div class="p-5 rounded-lg bg-[#f0fdf3]">
       <div class="flex gap-2">
         <div class="flex-shrink-0">
@@ -48,10 +60,10 @@ const handleOpenPage = (page: string) => {
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, handleOpenPage('orders')">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, handleOpenPage('orders'), clearDataAfterOrdered()">
               К заказу
             </button>
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, clearDataAfterOrdered()">
               Продолжить покупки
             </button>
           </div>

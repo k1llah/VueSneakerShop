@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // https://3dsec.sberbank.ru/payment/rest/register.do
+import { useCartStore } from '@/stores/addToCart';
 import { useOrderStore } from "@/stores/order";
 import { useFormStore } from '@/stores/formStore';
 import order from './order.vue'
@@ -7,7 +8,7 @@ import modalError from '../modalError.vue';
 import modalWindow from './modalWindow.vue';
 const formStore = useFormStore();
 const orderStore = useOrderStore();
-
+const cartStore = useCartStore();
 </script>
 <template>
   <div class="lg:max-w-full md:max-w-[90%]">
@@ -42,7 +43,7 @@ const orderStore = useOrderStore();
           id="message"
           cols="30"
           rows="10"
-          class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2 sm:text-center"
+          class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2 "
           placeholder="Сообщение к заказу"
 					v-model="orderStore.comment"
 					maxlength="150"

@@ -2,6 +2,7 @@
 import { onBeforeMount, ref, reactive } from "vue";
 import axios from "axios";
 import templateItem from "./templateItem.vue";
+import badassLoader from '../badassLoader.vue';
 import { useOrderStore } from "@/stores/order";
 import { useCartStore } from "@/stores/addToCart";
 const cartStore = useCartStore();
@@ -49,7 +50,7 @@ onBeforeMount(async () => {
   <div v-if="data">
     <div
       v-if="data !== undefined"
-      class="md:ml-10 sm:ml-5 sm:mt-5 flex flex-col overflow-scroll max-h-[270px] gap-5 p-3"
+      class="md:ml-10 sm:ml-5 sm:mt-5 flex flex-col overflow-scroll max-h-[410px] gap-5 p-3"
     >
       <!-- Я тупое дерьмо в item in data не нужно было блять писать item in data.items потому что айтемов через точку ПРОСТО НЕТ НАХУЙ!!! поэтому я получал undefined сука ну надо же было так... -->
       <templateItem
@@ -62,5 +63,5 @@ onBeforeMount(async () => {
       />
     </div>
   </div>
-  <div v-if="!data">Loading...</div>
+  <div v-if="!data" class="flex justify-center w-full"><badassLoader/></div>
 </template>
