@@ -3,10 +3,11 @@ import Header from "./components/header.vue";
 import Drawer from "@/components/DrawerComponents/Drawer.vue";
 import Footer from "@/components/footer.vue";
 import backToTop from './components/backToTop.vue';
-import { onMounted, computed, watch, onBeforeMount } from "vue";
+import { onMounted, computed, watch, onBeforeMount, ref } from "vue";
 import { useSneaker } from "@/stores/sneaker";
-import { RouterView } from "vue-router";
+import { RouterView, useRouter } from "vue-router";
 import { useAuthStore } from "./stores/authData";
+const route = useRouter();
 const authStore = useAuthStore();
 const sneakerStore = useSneaker();
 onMounted(() => {
@@ -14,7 +15,10 @@ onMounted(() => {
   authStore.checkAuth();
   console.log(authStore.id);
 });
-const page = computed(() => window.location.pathname);
+const page = ref(window.location.pathname);
+watch(() => route.currentRoute.value.path, (newPath) => {
+  page.value = newPath;
+});
 </script>
 <template>
   <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14">
@@ -22,7 +26,7 @@ const page = computed(() => window.location.pathname);
     <section>
       <div class="w-full min-h-[800px] m-auto">
         <RouterView />
-        <backToTop/>
+        <backToTop v-if="page != '/profile'"/>
       </div>
     </section>
     <Footer v-if="page != '/profile' && page != '/description'" />

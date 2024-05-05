@@ -4,16 +4,22 @@ import { onMounted, onUnmounted, ref } from "vue";
 const scrollUp = () => window.scrollTo({ top: 0, behavior: "smooth" }); //scrollUp
 let buttonToTopVisible = ref(false);
 const scrollPositionY = ref(0);
-
-addEventListener("scroll", () => {
+const handleScroll = () => {
   if (scrollPositionY.value > 500) {
     buttonToTopVisible.value = true;
   } else {
     buttonToTopVisible.value = false;
   }
   scrollPositionY.value = window.scrollY;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
 });
 
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 <template>
   <button
