@@ -13,6 +13,8 @@ const profileImg = ref("")
 
 import { useAuthStore } from '@/stores/authData';
 const authStore = useAuthStore();
+
+
 const getData = async function () {
   const uuid = localStorage.getItem("uuid");
   const id = localStorage.getItem("id");
@@ -46,6 +48,7 @@ const handleOpenPage = (page: string) => {
   toggle.value = true;
   allStore.isOpened = toggle.value
   localStorage.setItem('page', page)
+  document.body.style.overflow = "hidden";
 };
 
 

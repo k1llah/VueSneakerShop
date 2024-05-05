@@ -32,3 +32,8 @@ onMounted(async () => {
 
   </div>
 </template>
+<style scoped>
+*::-webkit-scrollbar {
+  width: 0px;
+}
+</style>

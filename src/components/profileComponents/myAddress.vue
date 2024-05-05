@@ -64,7 +64,7 @@ onBeforeMount(() => {
       </div>
 
       <div
-        class="w-full flex justify-center items-center md:min-h-[500px]"
+        class="w-full flex justify-center items-center md:min-h-[500px] sm:min-h-[400px]"
         v-if="!addressStore.isAddress"
       >
         <p class="md:text-[20px] sm:text-[18px]">

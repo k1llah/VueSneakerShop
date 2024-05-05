@@ -14,7 +14,7 @@ onMounted(async () => {
 		<h3 class="text-2xl mt-2">Активные заказы</h3>
 		
     <div v-for="order in myOrders.orders" :key="order.id" >
-			<div v-if="order.status !== 'RECEIVED' && order.status !== 'CANCELED'" class="flex flex-col gap-5 border-2 border-slate-300 p-4 rounded-xl">
+			<div v-if="order.status !== 'RECEIVED' && order.status !== 'CANCELED'" class="flex flex-col gap-5 border-b-2 border-slate-700 p-4">
       <h2 class="md:text-xl md:font-semibold sm:text-lg sm:font-medium">Заказ №: {{ order.orderNumber }}</h2>
       <div class="flex overflow-scroll gap-5">
 				<div v-for="item in order.items" :key="item.id">
@@ -80,3 +80,12 @@ onMounted(async () => {
 <img src="/emoji-2.png" alt="" class="max-w-[60px]">
 </div>
 </template>
+<style scoped>
+*::-webkit-scrollbar {
+	display: none;
+}
+body::-webkit-scrollbar{
+	width: 0px;
+	
+}
+</style>
