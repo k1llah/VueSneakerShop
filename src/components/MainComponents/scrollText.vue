@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
+import { ref, onMounted, watchEffect, onUnmounted } from "vue";
 import gsap from "gsap";
 import scrollComponent from "./scrollComponent.vue";
 const content = ref();
@@ -59,6 +59,9 @@ const animateText = () => {
     ease: "expo.out",
   });
 };
+onUnmounted(() => {
+  removeEventListener("scroll", handleScroll);
+})
 </script>
 <template>
   <div class="text-center mt-28 p-10 pb-28" ref="content">
