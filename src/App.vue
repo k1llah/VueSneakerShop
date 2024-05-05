@@ -2,6 +2,7 @@
 import Header from "./components/header.vue";
 import Drawer from "@/components/DrawerComponents/Drawer.vue";
 import Footer from "@/components/footer.vue";
+import backToTop from './components/backToTop.vue';
 import { onMounted, computed, watch, onBeforeMount } from "vue";
 import { useSneaker } from "@/stores/sneaker";
 import { RouterView } from "vue-router";
@@ -21,6 +22,7 @@ const page = computed(() => window.location.pathname);
     <section>
       <div class="w-full min-h-[800px] m-auto">
         <RouterView />
+        <backToTop/>
       </div>
     </section>
     <Footer v-if="page != '/profile' && page != '/description'" />

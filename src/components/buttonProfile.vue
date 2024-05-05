@@ -36,7 +36,7 @@
 
 </template>
 
-<style >
+<style scoped>
 	.button {
   display: block;
   position: relative;

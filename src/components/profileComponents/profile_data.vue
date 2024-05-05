@@ -5,6 +5,7 @@ import { useAllStore } from '@/stores/all';
 import { useMyOrderStore } from '@/stores/myOrders';
 import badassLoader from '@/components/badassLoader.vue';
 import dialogWindow from '@/components/profileComponents/dialogWindow.vue';
+
 const myOrders = useMyOrderStore();
 const email = ref("");
 const first_name = ref("");
@@ -141,6 +142,7 @@ watch(() => allStore.isOpened, (newValue) => {
           </div>
         </div>
       </div>
+      <backToTop/>
     </div>
     <div v-else>
       <badassLoader/>

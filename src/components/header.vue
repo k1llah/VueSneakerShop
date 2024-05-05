@@ -1,8 +1,3 @@
-<style>
-* {
-  font-family: sans-serif;
-}
-</style>
 <script setup lang="ts">
 import { ref, onMounted, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
@@ -64,15 +59,15 @@ let toggleShow = () => {
 </script>
 <template>
   <header
-    class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden"
+    class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden" id="header"
   >
     <burger />
   </header>
 
   <header
-    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex"
+    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex" id="header"
   >
-    <div class="">
+    <div class="" id="header">
       <div class="flex items-center md:gap-10 lg:gap-4">
         <router-link to="/">
           <img src="/logo_3.jpeg" alt="Logo" class="w-16" />

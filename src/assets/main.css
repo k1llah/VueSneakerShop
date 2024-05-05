@@ -12,3 +12,6 @@ html {
   --swiper-navigation-size: 35px !important;
   --swiper-theme-color: #deecff !important;
 }
+* {
+  font-family: sans-serif;
+}
