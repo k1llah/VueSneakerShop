@@ -4,9 +4,12 @@ import Drawer from "@/components/DrawerComponents/Drawer.vue";
 import Footer from "@/components/footer.vue";
 import backToTop from './components/backToTop.vue';
 import { onMounted, computed, watch, onBeforeMount, ref } from "vue";
+import { useDark, useToggle } from '@vueuse/core'
 import { useSneaker } from "@/stores/sneaker";
 import { RouterView, useRouter } from "vue-router";
 import { useAuthStore } from "./stores/authData";
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 const route = useRouter();
 const authStore = useAuthStore();
 const sneakerStore = useSneaker();
@@ -14,6 +17,7 @@ onMounted(() => {
   authStore.getRole();
   authStore.checkAuth();
   console.log(authStore.id);
+  
 });
 const page = ref(window.location.pathname);
 watch(() => route.currentRoute.value.path, (newPath) => {
@@ -21,8 +25,8 @@ watch(() => route.currentRoute.value.path, (newPath) => {
 });
 </script>
 <template>
-  <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14">
-    <Header />
+  <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14 dark:bg-slate-900">
+    <Header/>
     <section>
       <div class="w-full min-h-[800px] m-auto">
         <RouterView />
