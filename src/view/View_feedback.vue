@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import buttonBack from "@/components/buttonBack.vue";
 import feedBack from "@/components/feedBackComponents/feedBack.vue";
+import { useDark } from '@vueuse/core';
+const isDark = useDark();
 </script>
 <template>
-  <div class="container-bg">
+  <div class="container-bg"  :class="{'container-dark': isDark}">
   <div class="flex md:ml-[50px] sm:ml-[20px]  gap-[15px]">
-    <div class="flex gap-5 items-center mt-5 bg-white opacity-90 p-3 rounded-2xl">
+    <div class="flex gap-5 items-center mt-5 bg-white bg-opacity-90 dark:bg-opacity-20 p-3 rounded-2xl">
 			<buttonBack/>
 			<h2 class="text-3xl ">Отзывы</h2>
     </div>
@@ -40,4 +42,27 @@ import feedBack from "@/components/feedBackComponents/feedBack.vue";
     repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%)
       calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
 }
+.container-dark {
+  width: 100%;
+  height: 100%;
+  --s: 200px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
 </style>

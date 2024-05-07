@@ -11,7 +11,7 @@ const router = useRouter();
   <div class="fixed top-0 left-0 h-full w-full bg-black z-50 opacity-90"></div>
   <div class="w-full flex justify-center">
   <div class="md:w-[400px] sm:w-[300px] top-[30%] h-auto flex flex-col fixed gap-1 z-50">
-    <div class="p-5 rounded-lg bg-[#f0fdf3]">
+    <div class="p-5 rounded-lg bg-[#f0fdf3] dark:bg-[#115e59] dark:text-ghostWhiteText">
       <div class="flex gap-2">
         <div class="flex-shrink-0">
           <svg
@@ -36,7 +36,7 @@ const router = useRouter();
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="feedbackStore.modalFeedback = false, router.push('/'), allStore.isOpenedFeedBack = false, feedbackStore.scrollBlock()">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 dark:hover:bg-[#14532d] transition-all duration-200" @click="feedbackStore.modalFeedback = false, router.push('/'), allStore.isOpenedFeedBack = false, feedbackStore.scrollBlock()">
               На главную
             </button>
           </div>

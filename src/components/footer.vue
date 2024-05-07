@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="footer bg-[#b7d5ff]">
-    <div class="bg-[#cce1ff] flex justify-between p-7 flex-wrap md:gap-0 sm:gap-5 sm:justify-center md:justify-between">
+  <div class="footer bg-[#b7d5ff] dark:bg-[#082f49] dark:text-ghostWhiteText">
+    <div class="bg-[#cce1ff] dark:bg-[#164e63] flex justify-between p-7 flex-wrap md:gap-0 sm:gap-5 sm:justify-center md:justify-between">
       <div>
         <h2 class="text-[22px] font-[200]">
           Будьте с нами на связи в моих социальных сетях
@@ -11,7 +11,7 @@
         <section class="flex justify-center items-center ">
           <a
             href="https://github.com/k1llah?tab=overview&from=2024-02-01&to=2024-02-27"
-            class="group flex justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
+            class="group flex justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 transition-all duration-500 hover:from-[#331029] hover:to-[#310413] "
           >
             <svg
               class="w-5"
@@ -27,7 +27,7 @@
               ></path>
             </svg>
             <span
-              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700"
+              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700 dark:group-hover:text-ghostWhiteText"
             >
               GitHub
             </span>
@@ -65,7 +65,7 @@
               ></path>
             </svg>
             <span
-              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700"
+              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700 dark:group-hover:text-ghostWhiteText"
             >
               LinkedIn
             </span>
@@ -114,7 +114,7 @@
               ></path>
             </svg>
             <span
-              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700"
+              class="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700 dark:group-hover:text-ghostWhiteText"
             >
               Telegram
             </span>
@@ -130,13 +130,13 @@
           alt="logo"
           class="w-24 h-24 rounded-[50%]"
         />
-        <p class="text-slate-800 text-[18px]">
+        <p class="text-slate-800 text-[18px]  dark:text-ghostWhiteText">
           Project made by K1llah i'm doin this alone, using all my knowledge, my
           first time do pet project, i hope you enjoyed it!!
         </p>
       </div>
-      <div class="flex flex-col gap-2 w-[250px] text-slate-600 text-[16px]">
-        <p class="text-slate-950 text-[18px]">
+      <div class="flex flex-col gap-2 w-[250px] text-slate-600 text-[16px] dark:text-slate-300">
+        <p class="text-slate-950 text-[18px]  dark:text-ghostWhiteText">
           Stack of this project on frontend
         </p>
         <p>Vue</p>
@@ -148,16 +148,16 @@
         <p>Awesome Swiper</p>
         <p>Strapi</p>
       </div>
-      <div class="flex flex-col gap-2 text-slate-600 text-[16px]">
-        <p class="text-slate-800 text-[18px]">Backend stack</p>
+      <div class="flex flex-col gap-2 text-slate-600 text-[16px]  dark:text-slate-300">
+        <p class="text-slate-800 text-[18px]  dark:text-ghostWhiteText">Backend stack</p>
         <p>Node.js</p>
         <p>PostgreSql</p>
         <p>Prisma</p>
         <p>Express</p>
         <p>Cors</p>
       </div>
-      <div class="flex flex-col gap-2 text-slate-600 text-[16px]">
-        <p class="text-slate-800 text-[18px]">Contact</p>
+      <div class="flex flex-col gap-2 text-slate-600 text-[16px]  dark:text-ghostWhiteText">
+        <p class="text-slate-800 text-[18px]  dark:text-ghostWhiteText">Contact</p>
         <p>Email: surenbound@yandex.ru</p>
         <p>Location?: Russia 🇷🇺</p>
       </div>
