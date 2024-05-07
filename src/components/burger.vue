@@ -94,7 +94,7 @@ const toggleDropdown = (index: number) => {
       </router-link>
       <switchModeButton :isDark="!isDark" :changeTheme="toggleDark"/>
     </div>
-      <input type="checkbox" id="checkbox" @click="toggleDropdown(0)" />
+      <input type="checkbox" id="checkbox" v-model="dropdowns[0]" @click="toggleDropdown(0)" />
       <label for="checkbox" class="toggle">
         <div class="bars" id="bar1"></div>
         <div class="bars" id="bar2"></div>
@@ -109,13 +109,13 @@ const toggleDropdown = (index: number) => {
     >
       <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12 ">
         <li class="border-b-2 border-slate-300 dark:border-black w-full flex justify-center pb-2">
-          <router-link to="/sneakers_page">
+          <router-link to="/sneakers_page" @click="toggleDropdown(0)">
             <span class="text-[19px] font-light md:text-[14px]"> Все кроссовки</span>
           </router-link>
         </li>
         <li v-if="localRole != 'ADMIN'"
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 w-full justify-center pb-2 dark:border-black"
-          @click="toggleShow()"
+          @click="toggleShow(), toggleDropdown(0)"
         >
         <img src="/cart.svg" alt="Cart" />
         <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-100 block dark:text-black  w-[20px] h-[20px] text-center" >{{ cartStore.localCounter }}</p>
@@ -123,7 +123,7 @@ const toggleDropdown = (index: number) => {
       </li>
         <li
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 w-full justify-center pb-2 dark:border-black"
-          @click="$router.push({ name: 'Purchases' })"
+          @click="$router.push({ name: 'Purchases' }), toggleDropdown(0)"
         >
           <img src="/heart.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Закладки</span>
@@ -131,14 +131,14 @@ const toggleDropdown = (index: number) => {
         
         <li
           class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 dark:border-black w-full justify-center"
-          @click="$router.push({ name: 'Profile' })"
+          @click="$router.push({ name: 'Profile' }), toggleDropdown(0)"
         >
           <img src="/profile.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Профиль</span>
         </li>
         <li
         class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:border-black"
-        @click="$router.push('/all_posts')"
+        @click="$router.push('/all_posts'), toggleDropdown(0)"
       >
         <img src="/newspaper.png" alt="Cart" class="max-w-[25px]"  />
         <span class="text-[19px] font-light md:text-[14px]">Блог</span>

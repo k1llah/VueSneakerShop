@@ -11,7 +11,7 @@ const authStore = useAuthStore()
     <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex gap-5 items-center">
      <buttonBack/>
-      <h2 class="md:text-3xl sm:text-2xl">Профиль</h2>
+      <h2 class="md:text-3xl sm:text-2xl dark:text-ghostWhiteText">Профиль</h2>
     </div>
 
       <div v-if="authStore.isAuthenticated == true">

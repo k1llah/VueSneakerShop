@@ -61,11 +61,18 @@ const animateText = () => {
 };
 onUnmounted(() => {
   removeEventListener("scroll", handleScroll);
-})
+});
 </script>
 <template>
-  <div class="text-center mt-28 p-10 pb-28 dark:bg-[#3f3f46] dark:text-ghostWhiteText" ref="content">
-    <h2 ref="title" class=" md:text-4xl sm:text-xl dark:text-ghostWhiteText" :class="{ 'hidden-text': !isVisible }">
+  <div
+    class="text-center mt-28 p-10 pb-28 dark:bg-[#3f3f46] dark:text-ghostWhiteText"
+    ref="content"
+  >
+    <h2
+      ref="title"
+      class="md:text-4xl sm:text-xl dark:text-ghostWhiteText"
+      :class="{ 'hidden-text': !isVisible }"
+    >
       Добро пожаловать в мир стильных и комфортных кроссовок!
     </h2>
     <p
@@ -91,11 +98,19 @@ onUnmounted(() => {
       class="text-2xl mt-10"
       :class="{ 'hidden-text': !isVisible }"
     >
-      Погрузитесь в <span class="text-[#7747ff] dark:text-[#10b981]">мир кроссовок </span> с нами!
+      Погрузитесь в
+      <router-link to="/sneakers_page" class="cursor-pointer">
+        <span class="text-[#7747ff] dark:text-[#10b981]">мир кроссовок </span>
+      </router-link>
+      с нами!
     </h3>
   </div>
 
-  <img src="/4-Collins-x-Air-Max.gif" class="sm:h-[250px] sm:m-auto md:h-[unset]" alt="AirMax 95" />
+  <img
+    src="/4-Collins-x-Air-Max.gif"
+    class="sm:h-[250px] sm:m-auto md:h-[unset]"
+    alt="AirMax 95"
+  />
 
   <scrollComponent />
 </template>

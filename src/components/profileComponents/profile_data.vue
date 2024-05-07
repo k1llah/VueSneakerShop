@@ -70,23 +70,23 @@ watch(() => allStore.isOpened, (newValue) => {
     </div>
    
       <div class="flex flex-col gap-10">
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
-          <span class="text-slate-400 text-[16px]">Фамилия:</span>
-          <h4 class="text-black text-[20px]">{{ lastName }}</h4>
+        <div class="border-b-2 border-[#166534] dark:border-[#10b981] pb-[10px] w-[250px]">
+          <span class="text-slate-400 text-[16px] dark:text-ghostWhiteText">Фамилия:</span>
+          <h4 class="text-black text-[20px] dark:text-[#f5f5f5]">{{ lastName }}</h4>
         </div>
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
-          <span class="text-slate-400 text-[16px]">Имя:</span>
-          <h4 class="text-black text-[20px]">{{ first_name }}</h4>
+        <div class="border-b-2 border-[#166534] dark:border-[#10b981] pb-[10px] w-[250px]">
+          <span class="text-slate-400 dark:text-ghostWhiteText text-[16px]">Имя:</span>
+          <h4 class="text-black text-[20px] dark:text-[#f5f5f5]">{{ first_name }}</h4>
         </div>
-        <div class="border-b-2 border-[#166534] pb-[10px] w-[250px]">
-          <span class="text-slate-400 text-[16px]">Email:</span>
-          <h4 class="text-black text-[20px]">{{ email }}</h4>
+        <div class="border-b-2 border-[#166534] dark:border-[#10b981] pb-[10px] w-[250px]">
+          <span class="text-slate-400 text-[16px] dark:text-ghostWhiteText">Email:</span>
+          <h4 class="text-black text-[20px] dark:text-[#f5f5f5]">{{ email }}</h4>
         </div>
       </div>
       <div>
         <div class="flex flex-col gap-10 justify-center h-[100%]">
           <div class="pb-[10px] ">
-            <div class="input">
+            <div class="input bg-[#a8c0df] dark:bg-black">
               <button class="value" @click="handleOpenPage('orders'), myOrders.getDataOrder()">
                 <svg
                   viewBox="0 0 16 16"
@@ -100,7 +100,7 @@ watch(() => allStore.isOpened, (newValue) => {
                 </svg>
                 Мои покупки
               </button>
-              <button class="value" @click="handleOpenPage('editProfile')">
+              <button class="value " @click="handleOpenPage('editProfile')">
                 <svg
                   id="Line"
                   viewBox="0 0 32 32"
@@ -157,7 +157,6 @@ watch(() => allStore.isOpened, (newValue) => {
   display: flex;
   flex-direction: column;
   width: 250px;
-  background-color: #a8c0df;
   justify-content: center;
   border-radius: 5px;
 }
@@ -173,11 +172,13 @@ watch(() => allStore.isOpened, (newValue) => {
   gap: 10px;
   cursor: pointer;
   border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .value:not(:active):hover,
 .value:focus {
   background-color: #21262c;
+  transition: all 0.3s ease;
 }
 
 .value:focus,
