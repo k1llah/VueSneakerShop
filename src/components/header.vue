@@ -71,7 +71,7 @@ let toggleShow = () => {
   </header>
 
   <header
-    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex" id="header"
+    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex dark:text-ghostWhiteText" id="header"
   >
     <div class="" id="header">
       <div class="flex items-center md:gap-10 lg:gap-4">
@@ -85,7 +85,7 @@ let toggleShow = () => {
         </h2>
         <router-link to="sneakers_page">
           <p
-            class="text-slate-700 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm"
+            class="text-slate-700 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-sm dark:text-ghostWhiteText"
           >
             Все кроссовки
           </p>

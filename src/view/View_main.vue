@@ -32,10 +32,10 @@ onMounted(() => {
     <div class="flex md:ml-[50px] sm:ml-[20px] mt-5 gap-[15px] justify-between items-center">
       <div class="flex md:gap-5 sm:gap-2 items-center">
       <buttonBack/>
-        <h2 class="md:text-3xl sm:text-2xl font-extralight">Главная</h2>
+        <h2 class="md:text-3xl sm:text-2xl font-extralight dark:text-ghostWhiteText">Главная</h2>
       </div>
     </div>
-    <h1 class=" md:text-3xl sm:text-xl text-[#000000] text-center font-sans font-[600] mt-10">
+    <h1 class=" md:text-3xl sm:text-xl text-[#000000] text-center font-sans font-[600] mt-10 dark:text-ghostWhiteText">
       Приветствуем вас в BENZ SHÖP
     </h1>
     <sliderMain />

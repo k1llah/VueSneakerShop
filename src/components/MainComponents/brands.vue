@@ -130,13 +130,13 @@ const animateText = () => {
 </script>
 
 <template>
-	<div class="w-full" ref="content">
-		<h3 class="text-center sm:text-2xl sm:mt-20 md:text-5xl md:mt-36"
+	<div class="w-full dark:bg-mainDark" ref="content">
+		<h3 class="text-center sm:text-2xl sm:pt-20 md:text-5xl md:pt-28 dark:text-ghostWhiteText"
 		ref="title"
       :class="{ 'hidden-text': !isVisible }"
 		>Бренды</h3>
 	</div>
-  <div class="md:mt-28 sm:mt-12">
+  <div class="md:pt-28 sm:pt-12 dark:bg-mainDark">
   <swiper
     class="swiper w-[95%]"
     :modules="modules"
@@ -148,9 +148,9 @@ const animateText = () => {
 			disableOnInteraction: false,
 		}"
   >
-    <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] " v-for="item in items" key="item.id">
-			<img :src="item.imageUrl" alt="" class="m-auto brightness-0 md:w-[unset] sm:w-[50px]">
-			<p class="brandName pt-5 sm:text-xs">{{ item.brandName }}</p>
+    <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] dark:p-5 dark:pb-28" v-for="item in items" key="item.id">
+			<img :src="item.imageUrl" alt="" class="m-auto brightness-0 dark:brightness-[100] md:w-[unset] sm:w-[50px]">
+			<p class="brandName pt-5 sm:text-xs dark:text-ghostWhiteText">{{ item.brandName }}</p>
 		</swiper-slide>
    
   </swiper>

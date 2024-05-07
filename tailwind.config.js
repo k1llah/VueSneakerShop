@@ -12,8 +12,9 @@ export default {
         '2xl': '1536px',
       },
       colors:{
-        ghostWhite: '#f8f8ff',
-        primaryDark: '#3f3f46'
+        ghostWhiteText: '#f8f8ff',
+        primaryDark: '#3f3f46',
+        mainDark: '#0a0a0a'
       }
     }
   },

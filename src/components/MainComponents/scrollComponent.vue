@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
 import gsap from "gsap";
-
+import { useDark } from "@vueuse/core";
+const isDark = useDark();
 const content = ref<HTMLElement | null>(null);
 const title = ref<HTMLElement | null>(null);
 const isVisible = ref(false);
@@ -44,22 +45,24 @@ const toggleDropdown = (index: number) => {
 
   if (dropdownContent) {
     const storedHeight = dropdownContent.dataset.storedHeight;
-    const contentHeight = storedHeight ? parseInt(storedHeight) : dropdownContent.scrollHeight;
-    
+    const contentHeight = storedHeight
+      ? parseInt(storedHeight)
+      : dropdownContent.scrollHeight;
+
     if (dropdowns.value[index]) {
       if (!storedHeight) {
         dropdownContent.dataset.storedHeight = `${contentHeight}`;
       }
       gsap.to(dropdownContent, {
         maxHeight: "1000px",
-        
+
         duration: 1.4,
-        ease: 'power2.out',
+        ease: "power2.out",
       });
     } else {
       gsap.to(dropdownContent, {
         maxHeight: "0px",
-        
+
         duration: 1.4,
         ease: "power2.out",
       });
@@ -68,24 +71,29 @@ const toggleDropdown = (index: number) => {
 };
 </script>
 <template>
-  <div class="md:mt-36 sm:mt-20" ref="content">
+  <div
+    class="md:pt-36 sm:pt-20 dark:bg-primaryDark dark:text-ghostWhiteText"
+    ref="content"
+  >
     <h3
-      class="text-center sm:text-3xl md:text-5xl "
+      class="text-center sm:text-3xl md:text-5xl"
       ref="title"
       :class="{ 'hidden-text': !isVisible }"
     >
       <span class="text-[#7747ff]">Почему</span> мы?🤔
     </h3>
-    <div class="wrapper w-full pb-36 sm:mt-20 md:mt-36">
+    <div class="wrapper w-full pb-36 sm:pt-20 md:pt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">
-        
         <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
-            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl"
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl dark:bg-mainDark"
             @click="toggleDropdown(0)"
           >
-            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">Достоинства низкой стоимости 💸</h2>
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
+              Достоинства низкой стоимости 💸
+            </h2>
             <img
+            v-if="!isDark"
               class="mr-2 w-8"
               src="/down.png"
               :class="{
@@ -94,17 +102,50 @@ const toggleDropdown = (index: number) => {
               }"
               alt=""
             />
+            <svg
+            v-if="isDark"
+              class="mr-2 w-8"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="white"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[0],
+                'rotate-0 transition-all duration-500': !dropdowns[0],
+              }"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7 10L12 15L17 10"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
           </div>
 
           <div
-            class="textBlock0 flex justify-center bg-white"
-            :class="{ closed: !dropdowns[0] }" style="max-height: 1000px;" 
+            class="textBlock0 flex justify-center bg-white dark:bg-[#171717]"
+            :class="{ closed: !dropdowns[0] }"
+            style="max-height: 1000px"
           >
-            <p class="sm:text-[14px] md:text-[18px] font-[300] leading-[30px] p-[20px]">
+            <p
+              class="sm:text-[14px] md:text-[18px] font-[300] leading-[30px] p-[20px]"
+            >
               <span class="font-[700]"
                 >Доступность для широкого круга клиентов:</span
               >
-              Мы гордимся тем, что предлагаем широкий ассортимент товаров по выгодным ценам, чтобы каждая ваша покупка стала не только удовольствием, но и разумным решением для вашего бюджета. <br>
+              Мы гордимся тем, что предлагаем широкий ассортимент товаров по
+              выгодным ценам, чтобы каждая ваша покупка стала не только
+              удовольствием, но и разумным решением для вашего бюджета. <br />
               <span class="font-[700]">Экономия денег для клиентов:</span>
               Мы ценим каждого нашего клиента и стремимся делать ваше
               покупательское опыт максимально удобным и приятным. Приходите к
@@ -118,11 +159,14 @@ const toggleDropdown = (index: number) => {
 
         <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
-            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 dark:bg-mainDark"
             @click="toggleDropdown(1)"
           >
-            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">Достоинства быстрой доставки 🏎️</h2>
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
+              Достоинства быстрой доставки 🏎️
+            </h2>
             <img
+              v-if="!isDark"
               class="mr-2 w-8"
               src="/down.png"
               :class="{
@@ -131,10 +175,38 @@ const toggleDropdown = (index: number) => {
               }"
               alt=""
             />
+            <svg
+            v-if="isDark"
+              class="mr-2 w-8"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="white"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[1],
+                'rotate-0 transition-all duration-500': !dropdowns[1],
+              }"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7 10L12 15L17 10"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
           </div>
 
           <div
-            class="textBlock1 flex justify-center bg-white"
+            class="textBlock1 flex justify-center bg-white dark:bg-[#171717]"
             :class="{ closed: !dropdowns[1] }"
           >
             <p class="text-[18px] font-[300] leading-[30px] p-[20px]">
@@ -156,13 +228,14 @@ const toggleDropdown = (index: number) => {
 
         <div class="sm:w-[320px] md:w-[470px] lg:w-[600px]">
           <div
-            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2"
+            class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 dark:bg-mainDark"
             @click="toggleDropdown(2)"
           >
             <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
               Безопасность и надежность всех покупок 🔐
             </h2>
             <img
+            v-if="!isDark"
               class="mr-2 w-8"
               src="/down.png"
               :class="{
@@ -171,10 +244,38 @@ const toggleDropdown = (index: number) => {
               }"
               alt=""
             />
+            <svg
+            v-if="isDark"
+              class="mr-2 w-8"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="white"
+              :class="{
+                'rotate-[-180deg] transition-all duration-500': dropdowns[2],
+                'rotate-0 transition-all duration-500': !dropdowns[2],
+              }"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7 10L12 15L17 10"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
           </div>
 
           <div
-            class="textBlock2 flex justify-center bg-white"
+            class="textBlock2 flex justify-center bg-white dark:bg-[#171717]"
             :class="{ closed: !dropdowns[2] }"
           >
             <p class="text-[18px] font-[300] leading-[30px] p-[20px]">

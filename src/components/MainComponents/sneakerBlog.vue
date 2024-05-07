@@ -68,25 +68,25 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="md:mt-40 md:ml-32 sm:ml-20 sm:mt-20 flex items-center border-b-2 border-slate-300"
+    class="md:pt-40 md:pl-32 sm:pl-20 sm:pt-20 flex items-center border-b-2 border-slate-300 dark:bg-primaryDark"
     ref="content"
   >
     <h2
-      class="md:text-[45px] sm:text-[30px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol"
-      :class="{ 'hidden-text': !isVisible }"
+      class="md:text-[45px] sm:text-[30px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol dark:bg-none dark:bg-ghostWhiteText"
+      :class="{ 'hidden-text': !isVisible } "
       ref="title"
     >
       Sneaker
     </h2>
     <span
-      class="md:text-[45px] sm:text-[30px] text-center font-[400] lol"
+      class="md:text-[45px] sm:text-[30px] text-center font-[400] lol dark:bg-none dark:bg-ghostWhiteText"
       :class="{ 'hidden-text': !isVisible }"
       ref="span"
       >Blog</span
     >
   </div>
 
-  <div class="md:p-5 sm:p-0">
+  <div class="md:p-5 sm:p-0 dark:bg-primaryDark">
 
     <div class="flex gap-3 flex-row flex-wrap p-2 mt-5">
       <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row flex-wrap ">
@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="blogStore.posts && blogStore.posts.length > 0"
-      class="flex w-full flex-row gap-5 flex-wrap md:justify-start sm:justify-center mt-5 m-auto"
+      class="flex w-full flex-row gap-5 flex-wrap md:justify-start sm:justify-center mt-5 m-auto dark:bg-primaryDark"
     >
       <div v-for="(post, index) in blogStore.posts" :key="index">
         <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById(post.id)">

@@ -2,11 +2,12 @@
 import { ref } from "vue";
 import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { useDark } from '@vueuse/core'
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-
+const isDark = useDark()
 const items = ref([
   { id: 1, imageUrl: "/verticalSlides/converse-img.jpeg" },
   { id: 2, imageUrl: "/verticalSlides/jordan-5-img.jpeg" },
@@ -23,8 +24,8 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
 
 
 <template>
-  <div class="bg min-h-[600px] flex justify-around flex-wrap">
-    <div class="bg-white mt-14 w-96 h-[400px] rounded-lg md:ml-0 lg:ml-20 sm:h-[450px] ">
+  <div class="bg min-h-[600px] flex justify-around flex-wrap" :class="{'darkBg': isDark}">
+    <div class="bg-white mt-14 w-96 h-[400px] rounded-lg md:ml-0 lg:ml-20 sm:h-[450px] dark:bg-[#15001f]">
       <div class="flex p-3 gap-1">
         <div class="">
       <span class="bg-blue-500 inline-block center w-3 h-3 rounded-full"></span>
@@ -37,7 +38,7 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
     </div>
   </div>
   <div class="card__content p-6 pt-0">
-		<p class=" sm:text-[15px] leading-[23px] md:leading-[26px]">Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. <br> <span class="text-[#7747ff] font-[600]  pt-2 sm:text-[16px] md:text-[19px]">Приглашаем вас </span> исследовать наш ассортимент и открыть для себя свои новые любимые пары обуви. Наша цель - помочь вам шагать вперед с уверенностью и стилем, подчеркивая вашу индивидуальность на каждом шагу.</p>
+		<p class=" sm:text-[15px] leading-[23px] md:leading-[26px] dark:text-ghostWhiteText">Почувствуй легкость и комфорт на каждом шагу. С нашей обувью ты готов к новым приключениям, новым достижениям, новым высотам. Давай сделаем каждый день запоминающимся, каждый момент активным и ярким. Доверь свои шаги нам, и мы сделаем их незабываемыми. <br> <span class="text-[#7747ff] font-[600]  pt-2 sm:text-[16px] md:text-[19px]">Приглашаем вас </span> исследовать наш ассортимент и открыть для себя свои новые любимые пары обуви. Наша цель - помочь вам шагать вперед с уверенностью и стилем, подчеркивая вашу индивидуальность на каждом шагу.</p>
   </div>
 </div>
 <div class="slider_wrapper md:mt-20 lg:mt-40 sm:mt-20 sm:pb-10">
@@ -126,6 +127,40 @@ const modules = [Pagination, Navigation, EffectFade, Autoplay];
     linear-gradient(-45deg, #fff0 0 32.25%, #000 60%) var(--ts),
     repeating-linear-gradient(90deg, var(--c0) 0 5%, var(--c1) 0 25%) var(--ts);
 
+}
+.darkBg {
+  /* Basic dimensions and centering */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  
+  
+
+  /* Dark mode colors and gradient */
+  background: #121212; /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(
+    135deg,
+    #121212 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    #121212 50%,
+    #121212 75%,
+    #1a1a1a 75%,
+    #1a1a1a
+  );
+  background-size: 40px 40px;
+
+  /* Animation */
+  animation: move 4s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 </style>
