@@ -11,6 +11,10 @@ export default {
         'xl': '1280px',
         '2xl': '1536px',
       },
+      colors:{
+        ghostWhite: '#f8f8ff',
+        primaryDark: '#3f3f46'
+      }
     }
   },
   plugins: []

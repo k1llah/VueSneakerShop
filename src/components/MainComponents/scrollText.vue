@@ -64,8 +64,8 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <div class="text-center mt-28 p-10 pb-28 " ref="content">
-    <h2 ref="title" class=" md:text-4xl sm:text-xl" :class="{ 'hidden-text': !isVisible }">
+  <div class="text-center mt-28 p-10 pb-28 dark:bg-[#3f3f46]" ref="content">
+    <h2 ref="title" class=" md:text-4xl sm:text-xl dark:text-white" :class="{ 'hidden-text': !isVisible }">
       Добро пожаловать в мир стильных и комфортных кроссовок!
     </h2>
     <p
