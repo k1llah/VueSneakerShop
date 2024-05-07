@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDark, useToggle } from "@vueuse/core";
+import switchModeButton from './switchModeButton.vue';
 import { ref, onMounted, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { useSneaker } from "@/stores/sneaker";
@@ -13,12 +15,16 @@ const sneakerStore = useSneaker();
 const allStore = useAllStore();
 const authStore = useAuthStore();
 const localRole = ref(localStorage.getItem("role"));
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
 const role = ref();
 let timer = ref(false);
 onBeforeMount(() => {
   cartStore.cartDataGet();
   cartStore.localCounter = cartStore.items.length;
   console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter);
+  
 });
 async function checkIsAdmin() {
   try {
@@ -43,6 +49,7 @@ async function checkIsAdmin() {
   }, 3000);
   timer.value = true;
 }
+
 watch(
   () => cartStore.cartCounter,
   (newValue: any) => {
@@ -54,7 +61,6 @@ watch(() => authStore.role, (newValue) => {
 });
 let toggleShow = () => {
   sneakerStore.show = !sneakerStore.show;
-  console.log(sneakerStore.show);
 };
 </script>
 <template>
@@ -84,6 +90,9 @@ let toggleShow = () => {
             Все кроссовки
           </p>
         </router-link>
+        <div>
+          <switchModeButton :isDark="!isDark" :changeTheme="toggleDark"/>
+        </div>
       </div>
     </div>
     <ul class="flex items-center gap-10 md:gap-5">
