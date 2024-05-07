@@ -91,7 +91,7 @@ onUnmounted(() => {
       class="text-2xl mt-10"
       :class="{ 'hidden-text': !isVisible }"
     >
-      Погрузитесь в <span class="text-[#7747ff]">мир кроссовок </span> с нами!
+      Погрузитесь в <span class="text-[#7747ff] dark:text-[#10b981]">мир кроссовок </span> с нами!
     </h3>
   </div>
 

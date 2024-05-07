@@ -6,11 +6,15 @@ import burger from "@/components/burger.vue";
 import { useCartStore } from "@/stores/addToCart";
 import { useAuthStore } from "@/stores/authData";
 import { useRouter } from "vue-router";
+import { useDark, useToggle } from '@vueuse/core';
+import switchModeButton from './switchModeButton.vue';
 import axios from "axios";
 const cartStore = useCartStore();
 const allStore = useAllStore();
 const authStore = useAuthStore();
 const localRole = ref(localStorage.getItem("role"));
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 const role = ref();
 let timer = ref(false);
 const router = useRouter();
@@ -83,9 +87,13 @@ const toggleDropdown = (index: number) => {
 <template>
   <div class="w-full overflow-hidden">
     <div class="flex justify-between w-full items-center">
+      <div class="flex gap-3">
       <router-link to="/">
-        <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
+        <img v-if="!isDark" src="/logo_3.jpeg" alt="Logo" class="w-16" />
+        <img v-else-if="isDark" src="/footer-logo.jpeg" alt="Logo" class="w-16 rounded-[50%]" />
       </router-link>
+      <switchModeButton :isDark="!isDark" :changeTheme="toggleDark"/>
+    </div>
       <input type="checkbox" id="checkbox" @click="toggleDropdown(0)" />
       <label for="checkbox" class="toggle">
         <div class="bars" id="bar1"></div>
@@ -95,29 +103,26 @@ const toggleDropdown = (index: number) => {
     </div>
 
     <div
-      class="burger flex justify-center bg-white"
+      class="burger flex justify-center bg-white dark:bg-transparent dark:text-ghostWhiteText"
       :class="{ closed: !dropdowns[0] }"
       style="max-height: 400px; max-height: 0px"
     >
-      <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12">
-        <li class="border-b-2 border-slate-300 w-full flex justify-center pb-2">
+      <ul class="flex items-center gap-10 flex-col w-full md:gap-5 mt-12 ">
+        <li class="border-b-2 border-slate-300 dark:border-black w-full flex justify-center pb-2">
           <router-link to="/sneakers_page">
-            <p
-              class="text-slate-900 hover:scale-[1.05] transition-all 1.3s lg:text-lg md:text-lg sm:text-base"
-            >
-              Все кроссовки
-            </p>
+            <span class="text-[19px] font-light md:text-[14px]"> Все кроссовки</span>
           </router-link>
         </li>
         <li v-if="localRole != 'ADMIN'"
-          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 border-slate-300 w-full justify-center pb-2"
+          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 w-full justify-center pb-2 dark:border-black"
           @click="toggleShow()"
         >
-          <img src="/cart.svg" alt="Cart" />
-          <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-100 block  w-[20px] h-[20px] text-center" >{{ cartStore.localCounter }}</p>
-        </li>
+        <img src="/cart.svg" alt="Cart" />
+        <p class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-100 block dark:text-black  w-[20px] h-[20px] text-center" >{{ cartStore.localCounter }}</p>
+        <span class="text-[19px] font-light md:text-[14px]">Корзина</span>
+      </li>
         <li
-          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 border-slate-300 w-full justify-center pb-2"
+          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s border-b-2 w-full justify-center pb-2 dark:border-black"
           @click="$router.push({ name: 'Purchases' })"
         >
           <img src="/heart.svg" alt="Cart" />
@@ -125,14 +130,14 @@ const toggleDropdown = (index: number) => {
         </li>
         
         <li
-          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 border-slate-300 w-full justify-center"
+          class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 dark:border-black w-full justify-center"
           @click="$router.push({ name: 'Profile' })"
         >
           <img src="/profile.svg" alt="Cart" />
           <span class="text-[19px] font-light md:text-[14px]">Профиль</span>
         </li>
         <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:border-black"
         @click="$router.push('/all_posts')"
       >
         <img src="/newspaper.png" alt="Cart" class="max-w-[25px]"  />
@@ -140,7 +145,7 @@ const toggleDropdown = (index: number) => {
       </li>
         <li
         v-if="localRole === 'ADMIN'"
-        class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2"
+        class="w-full flex items-center justify-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s pb-5 border-b-2 dark:border-black"
         @click="checkIsAdmin()"
       >
         <span class="text-[19px] font-light md:text-[14px]">Админка</span>

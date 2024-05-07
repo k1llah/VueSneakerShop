@@ -76,7 +76,8 @@ let toggleShow = () => {
     <div class="" id="header">
       <div class="flex items-center md:gap-10 lg:gap-4">
         <router-link to="/">
-          <img src="/logo_3.jpeg" alt="Logo" class="w-16" />
+          <img v-if="!isDark" src="/logo_3.jpeg" alt="Logo" class="w-16" />
+          <img v-else-if="isDark" src="/footer-logo.jpeg" alt="Logo" class="w-16 rounded-[50%]" />
         </router-link>
         <h2
           class="font-medium uppercase lg:text-xl md:text-base hidden sm:text-base"

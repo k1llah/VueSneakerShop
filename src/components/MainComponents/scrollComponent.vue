@@ -80,7 +80,7 @@ const toggleDropdown = (index: number) => {
       ref="title"
       :class="{ 'hidden-text': !isVisible }"
     >
-      <span class="text-[#7747ff]">Почему</span> мы?🤔
+      <span class="text-[#7747ff] dark:text-[#10b981]">Почему</span> мы?🤔
     </h3>
     <div class="wrapper w-full pb-36 sm:pt-20 md:pt-36">
       <div class="dropDownMenus flex justify-center flex-col items-center">

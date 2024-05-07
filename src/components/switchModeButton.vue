@@ -19,7 +19,8 @@ const toggleTheme = () => {
         <svg
           height="15"
           width="15"
-          fill="white"
+          class="sm:w-[20px] sm:h-[20px] "
+          fill="yellow"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -36,7 +37,7 @@ const toggleTheme = () => {
         <svg
           height="20"
           width="20"
-          fill="currentColor"
+          fill="#fb923c"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

@@ -165,7 +165,7 @@
     <div
       class="w-full p-10 text-center  border-t-2 border-slate-500"
     >
-      <p class="text-slate-800 text-[18px]">© 2024. All rights reserved.</p>
+      <p class="text-slate-800 text-[18px] dark:text-ghostWhiteText">© 2024. All rights reserved.</p>
     </div>
   </div>
 </template>
