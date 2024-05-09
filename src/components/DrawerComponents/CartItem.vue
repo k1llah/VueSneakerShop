@@ -15,8 +15,8 @@ const props = defineProps({
 console.log("CartItem props:", props); 
 </script>
 <template>
-	<div class="w-100% items-center flex border border-slate-100 p-4 rounded-xl gap-4 md:flex-row sm:flex-col">
-		<img class="w-16 h-16" :src="img" alt="Sneaker">
+	<div class="w-100% items-center flex border border-slate-100 dark:border-slate-500 dark:bg-gray-800 p-4 rounded-xl gap-4 md:flex-row sm:flex-col">
+		<img class="w-16 h-16 dark:rounded-lg" :src="img" alt="Sneaker">
 		<div class="flex flex-col">
 			<p class="">{{ title }}</p>
 			<div class="flex justify-between mt-2">

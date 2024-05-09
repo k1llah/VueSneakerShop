@@ -94,8 +94,8 @@ const onclckDelete = props.onclckDelete as (payload: MouseEvent) => void;
 
     <img
       :src="imageUrl"
-      class="dark:mt-3 sm:max-w-[80%] md:max-w-[100%]"
-      alt="Sneaker"
+      class="dark:mt-3 sm:max-w-[80%] md:max-w-[100%] dark:brightness-[.80] dark:rounded-xl"
+      alt="Sneaker image"
     />
     <p class="mt-2 dark:text-ghostWhiteText">
       {{ title }}
@@ -151,7 +151,7 @@ const onclckDelete = props.onclckDelete as (payload: MouseEvent) => void;
       <svg
         viewBox="0 0 64 64"
         v-else-if="isAdded"
-        class="w-[34px]"
+        class="w-[38px]"
         @click.stop="onclckDelete"
         xmlns="http://www.w3.org/2000/svg"
         fill="green"
@@ -168,6 +168,8 @@ const onclckDelete = props.onclckDelete as (payload: MouseEvent) => void;
           <polyline points="44 24 28 40 20 32"></polyline>
         </g>
       </svg>
+
+      
     </div>
   </div>
 </template>

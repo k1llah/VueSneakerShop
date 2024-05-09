@@ -14,7 +14,7 @@ cartStore.cartDataGet();
 </script>
 
 <template>
-  <div v-if="cartStore.isAdded" class="overflow-scroll max-h-[70%]" v-auto-animate>
+  <div v-if="cartStore.isAdded" class="overflow-scroll max-h-[70%] flex flex-col gap-4" v-auto-animate>
     <div
       class="flex flex-col gap-4 flex-1"
       v-for="item in cartStore.items"
@@ -51,7 +51,7 @@ cartStore.cartDataGet();
   >
     <img src="/package-icon.png" alt="" class="max-w-[100px]" />
     <h3 class="text-2xl">Корзина пустая</h3>
-    <p class="text-slate-500">
+    <p class="text-slate-500 dark:text-slate-400">
       Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
     </p>
   </div>

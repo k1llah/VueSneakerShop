@@ -33,14 +33,14 @@ onMounted(() => {
 <template v-auto-animate>
   <div class="p-10">
     <div class="flex flex-wrap justify-between items-center">
-      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8">Все статьи</h2>
+      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8 dark:text-ghostWhiteText">Все статьи</h2>
 
       <div class="relative">
         <img src="/search.svg" class="absolute left-3 top-3" alt="" />
         <input
           type="text"
           placeholder="Поиск по хэштегу"
-          class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
+          class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 dark:border-none dark:bg-mainDark dark:text-ghostWhiteText"
 					v-model="searchInput"
 					@input="blog.getPostByHashtag(searchInput)"
         />
