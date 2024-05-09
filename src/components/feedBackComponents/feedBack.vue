@@ -26,7 +26,7 @@ import buttonBack from '../buttonBack.vue';
     
     <button
       class="cssbuttons-io-button"
-      @click="allStore.isOpenedFeedBack = true"
+      @click="allStore.isOpenedFeedBack = true, allStore.block()"
     >
       Оставить отзыв
       <div class="icon">

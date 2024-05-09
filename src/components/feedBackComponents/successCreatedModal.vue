@@ -36,7 +36,7 @@ const router = useRouter();
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 dark:hover:bg-[#14532d] transition-all duration-200" @click="feedbackStore.modalFeedback = false, router.push('/'), allStore.isOpenedFeedBack = false, feedbackStore.scrollBlock()">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 dark:hover:bg-[#14532d] transition-all duration-200" @click="feedbackStore.modalFeedback = false, router.push('/'), allStore.isOpenedFeedBack = false, feedbackStore.scrollBlock(), allStore.unlock()">
               На главную
             </button>
           </div>

@@ -41,7 +41,13 @@ export const useAllStore = defineStore({
     
   }),
   actions: {
-    
+    block(){
+      document.body.style.overflow = 'hidden'
+    },
+    unlock(){
+      document.body.style.overflow = 'visible'
+    },
+
     getBrandImageUrl(brandName: string): string {
       // Проверяем, есть ли ключ с указанным названием бренда
       if (this.brandImages.hasOwnProperty(brandName)) {

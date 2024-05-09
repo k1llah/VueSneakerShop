@@ -8,6 +8,10 @@ import { useDark, useToggle } from '@vueuse/core'
 import { useSneaker } from "@/stores/sneaker";
 import { RouterView, useRouter } from "vue-router";
 import { useAuthStore } from "./stores/authData";
+import { useAllStore } from './stores/all';
+import { useBlog } from './stores/sneakerBlog';
+const blog = useBlog()
+const allStore = useAllStore()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 const route = useRouter();
@@ -30,7 +34,7 @@ watch(() => route.currentRoute.value.path, (newPath) => {
     <section>
       <div class="w-full min-h-[800px] m-auto">
         <RouterView />
-        <backToTop v-if="page != '/profile'"/>
+        <backToTop v-if="page != '/profile' && !allStore.isOpenedFeedBack && !blog.isOpenedModal && !blog.isOpenedModalFeedback"/>
       </div>
     </section>
     <Footer v-if="page != '/profile' && page != '/description'" />

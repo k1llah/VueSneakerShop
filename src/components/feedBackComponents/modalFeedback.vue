@@ -12,7 +12,7 @@ console.log(allStore.isOpenedFeedBack);
       class="bg-[#212121] md:w-[600px] md:h-[800px] sm:w-[300px] sm:h-fit fixed  z-20 md:p-10 sm:p-5 md:pb-10 sm:pb-0 m-auto rounded-2xl sm:top-36 md:top-10"
     >
       <div class="flex md:gap-5 items-center md:p-2 sm:gap-1 sm:p-0 rounded-lg">
-        <button class="button" @click="allStore.isOpenedFeedBack = false">
+        <button class="button" @click="allStore.isOpenedFeedBack = false, allStore.unlock()">
           <div class="button-box">
             <span class="button-elem">
               <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
