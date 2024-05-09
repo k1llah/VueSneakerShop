@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useBlog } from "@/stores/sneakerBlog";
 import { onBeforeMount } from "vue";
-import { useRouter } from 'vue-router';
+import { useRouter, onBeforeRouteLeave } from 'vue-router';
 const router = useRouter();
 import renderData from "../blogComponents/renderData.vue";
 import modalPostFeedback from './modalPostFeedback.vue';
@@ -12,6 +12,12 @@ onBeforeMount(async () => {
   await blog.getPostById(idPost);
   console.log(blog.infoPost, blog.infoPost.attributes.postTemplate[0].id);
 });
+onBeforeRouteLeave ((to:any, from:any, next:any) => {
+  blog.isOpenedModal = false
+	blog.isOpenedModalFeedback = false
+	blog.unlock()
+  next()
+})
 </script>
 <template>
   <div

@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { useAllStore } from "@/stores/all";
+import { useRouter } from 'vue-router';
 import writeYours from "./writeYours.vue";
+import { all } from 'axios'
 const allStore = useAllStore();
-
-console.log(allStore.isOpenedFeedBack);
+const router = useRouter()
+const beforeRouteLeave = (to:any, from:any, next:any) => {
+  allStore.isOpenedFeedBack = false
+  allStore.unlock()
+  next()
+}
+router.beforeEach(beforeRouteLeave)
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
-  <div class="w-full flex justify-center rounded-lg ">
+  <div class="w-full flex justify-center rounded-lg">
     <div
       class="bg-[#212121] md:w-[600px] md:h-[800px] sm:w-[300px] sm:h-fit fixed  z-20 md:p-10 sm:p-5 md:pb-10 sm:pb-0 m-auto rounded-2xl sm:top-36 md:top-10"
     >

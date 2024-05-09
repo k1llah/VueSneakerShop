@@ -14,6 +14,7 @@ import buttonBack from '../buttonBack.vue';
     feedbackStore.getFeedbacks()
 
   })
+  
 </script>
 <template>
   <div class="flex md:mt-0 md:p-0 flex-wrap md:pr-10 justify-between items-baseline gap-5 p-3 sm:p-5 sm:mt-5">

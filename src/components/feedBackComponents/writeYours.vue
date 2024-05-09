@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import templateFeedBack from "@/components/feedBackComponents/templateFeedback.vue";
-import { ref } from "vue";
-import axios from "axios";
 import stars from "./stars.vue";
 import { useFeedbackStore } from "@/stores/feedback";
 const feedbackStore = useFeedbackStore();
-const textValue = ref("");
-const imageFeedback = ref();
 </script>
 <template>
   <div class="flex justify-center md:mt-16 sm:mt-2 pb-4">
