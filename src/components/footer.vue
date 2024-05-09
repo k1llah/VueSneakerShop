@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="footer bg-[#b7d5ff] dark:bg-[#082f49] dark:text-ghostWhiteText">
+  <div class="footer bg-[#b7d5ff] dark:bg-[#082f49] dark:text-ghostWhiteText mt-5">
     <div class="bg-[#cce1ff] dark:bg-[#164e63] flex justify-between p-7 flex-wrap md:gap-0 sm:gap-5 sm:justify-center md:justify-between">
       <div>
         <h2 class="text-[22px] font-[200]">

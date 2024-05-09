@@ -25,7 +25,7 @@ watch(() => route.currentRoute.value.path, (newPath) => {
 });
 </script>
 <template>
-  <div class="md:w-4/5 sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14 dark:bg-[#3f3f46]">
+  <div class="md:w-[85%] sm:w-full m-auto bg-white rounded-xl shadow-xl mt-14 dark:bg-[#3f3f46]">
     <Header/>
     <section>
       <div class="w-full min-h-[800px] m-auto">

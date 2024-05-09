@@ -65,16 +65,16 @@ let toggleShow = () => {
 </script>
 <template>
   <header
-    class="hidden justify-between border-b border-slate-200 p-5 sm:flex md:hidden" id="header"
+    class="hidden justify-between border-b border-slate-200 p-5 responsive" id="header"
   >
     <burger />
   </header>
 
   <header
-    class="hidden justify-between border-b border-slate-200 px-8 py-8 md:flex dark:text-ghostWhiteText" id="header"
+    class="hidden justify-between border-b border-slate-200 px-8 py-8  dark:text-ghostWhiteText head" id="header"
   >
     <div class="" id="header">
-      <div class="flex items-center md:gap-10 lg:gap-4">
+      <div class="flex items-center md:gap-5 lg:gap-4">
         <router-link to="/">
           <img v-if="!isDark" src="/logo_3.jpeg" alt="Logo" class="w-16" />
           <img v-else-if="isDark" src="/footer-logo.jpeg" alt="Logo" class="w-16 rounded-[50%]" />
@@ -182,5 +182,14 @@ circle {
   stroke-dashoffset: -125px;
  }
 }
-
+@media (min-width: 815px) {
+  .head{
+    display: flex;
+  }
+}
+@media (max-width: 815px) {
+  .responsive{
+    display: flex
+  }
+}
 </style>

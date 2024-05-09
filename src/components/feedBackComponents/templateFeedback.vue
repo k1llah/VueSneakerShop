@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 <template>
     <div
-      class="w-80 p-4 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out flex flex-col justify-center gap-5 bg-[#eff6ff] mb-5"
+      class="w-80 p-4 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out flex flex-col justify-center gap-5 bg-[#eff6ff] mb-5 dark:bg-mainDark dark:*:text-ghostWhiteText"
     >
       <h2 class="text-xl font-semibold">{{ props.author }}</h2>
       <img
@@ -29,8 +29,8 @@ const props = defineProps({
         :src="'http://localhost:3001/img/tablet/' + props.image"
       
       />
-      <div class="p-4 bg-[#efefef] rounded-lg">
-        <p class="text-gray-800 text-lg pb-7">
+      <div class="p-4 bg-[#efefef] rounded-lg dark:bg-slate-800 ">
+        <p class="text-gray-800 text-lg pb-7 dark:text-ghostWhiteText">
           {{ props.text }}
         </p>
         

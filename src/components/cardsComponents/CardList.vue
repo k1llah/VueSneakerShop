@@ -70,8 +70,8 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
 </script>
 <template>
   <div v-if="items">
-    <div class="grid md:grid-cols-4 sm:grid-cols-2 md:gap-5 md:0" v-auto-animate>
-      <card
+    <div class="all grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-5" v-auto-animate>
+    <card
         v-for="item in items"
         :key="item.id"
         :id="item.id"
@@ -92,3 +92,15 @@ const onFavoriteAdd = async (sneakerId: number, item:Item) => {
     <p>Загрузка данных</p>
   </div>
 </template>
+<style scoped>
+@media (max-width: 640px) {
+  .all{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 430px) {
+  .all{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+</style>
