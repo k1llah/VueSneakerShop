@@ -6,12 +6,7 @@ const isDark = useDark();
 </script>
 <template>
   <div class="container-bg"  :class="{'container-dark': isDark}">
-  <div class="flex md:ml-[50px] sm:ml-[20px]  gap-[15px]">
-    <div class="flex gap-5 items-center mt-5 bg-white bg-opacity-90 dark:bg-opacity-20 p-3 rounded-2xl">
-			<buttonBack/>
-			<h2 class="text-3xl ">Отзывы</h2>
-    </div>
-  </div>
+
 	
   <div>
     <feedBack />

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import buttonBack from '../buttonBack.vue';
   import { onBeforeMount } from 'vue';
 	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
 	import { useAllStore } from '@/stores/all';
@@ -15,7 +16,14 @@
   })
 </script>
 <template>
-  <div class="flex md:mt-0 md:p-0 md:justify-end md:pr-10 sm:justify-start sm:p-5 sm:mt-5">
+  <div class="flex md:mt-0 md:p-0 flex-wrap md:pr-10 justify-between items-baseline gap-5 p-3 sm:p-5 sm:mt-5">
+    <div class="flex md:ml-[50px] sm:ml-[20px]  gap-[15px]">
+    <div class="flex gap-5 items-center mt-5 bg-white bg-opacity-90 dark:bg-opacity-20 p-3 rounded-2xl">
+			<buttonBack/>
+			<h2 class="text-3xl ">Отзывы</h2>
+    </div>
+  </div>
+    
     <button
       class="cssbuttons-io-button"
       @click="allStore.isOpenedFeedBack = true"
@@ -61,7 +69,7 @@
 
 <style scoped>
 .cssbuttons-io-button {
-  background: #a370f0;
+  background: black;
   color: white;
   font-family: inherit;
   padding: 0.35em;
@@ -91,7 +99,6 @@
   height: 2.2em;
   width: 2.2em;
   border-radius: 0.7em;
-  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
   right: 0.3em;
   transition: all 0.3s;
 }
@@ -103,7 +110,7 @@
 .cssbuttons-io-button .icon svg {
   width: 1.1em;
   transition: transform 0.3s;
-  color: #7b52b9;
+  color: black;
 }
 
 .cssbuttons-io-button:hover .icon svg {

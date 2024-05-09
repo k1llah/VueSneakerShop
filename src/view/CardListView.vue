@@ -68,12 +68,12 @@ watch(filters, debounce(axiosGetParams, 350));
 
 <template>
   <div class="p-10">
-    <div class="flex flex-wrap justify-between items-center">
-      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8">Все кроссовки</h2>
+    <div class="flex justify-between gap-3 sm:flex-wrap md:flex-nowrap items-center">
+      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8 dark:text-ghostWhiteText">Все кроссовки</h2>
 
-      <div class="flex gap-4 md:flex-row sm:flex-col-reverse">
+      <div class="flex gap-4 md:flex-row md:flex-wrap md:justify-end sm:flex-col-reverse">
         <select
-          class="py-2 px-3 border rounded-md outline-none"
+          class="py-2 px-3 border rounded-md outline-none dark:bg-mainDark dark:text-ghostWhiteText dark:border-none"
           @change="onChangeSelect"
         >
           <option value="name">По названию</option>
@@ -86,7 +86,7 @@ watch(filters, debounce(axiosGetParams, 350));
           <input
             type="text"
             placeholder="Search..."
-            class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400"
+            class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 dark:bg-mainDark dark:text-ghostWhiteText dark:border-none"
             v-model="filters.searchQuery"
           />
         </div>

@@ -9,8 +9,8 @@ const textValue = ref("");
 const imageFeedback = ref();
 </script>
 <template>
-  <div class="flex justify-center md:mt-16 sm:mt-5">
-    <div class="form-container">
+  <div class="flex justify-center md:mt-16 sm:mt-2 pb-4">
+    <div class="form-container md:w-[400px] sm:w-full">
       <form class="form">
         <div class="flex gap-5">
           <p class="md:text-lg sm:text-base">Загрузить фото для отзыва</p>
@@ -19,7 +19,7 @@ const imageFeedback = ref();
               class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
             >
               <svg
-                class="md:w-4 md:h-4 sm:w-2 sm:h-2"
+                class="md:w-4 md:h-4 sm:w-3 sm:h-3"
                 stroke="currentColor"
                 stroke-width="2"
                 viewBox="0 0 24 24"
@@ -80,7 +80,6 @@ const imageFeedback = ref();
 </template>
 <style scoped>
 .form-container {
-  width: 400px;
   background:
     linear-gradient(#212121, #212121) padding-box,
     linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;

@@ -53,8 +53,7 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
 </script>
 <template>
 <div v-if="items">
-	<overlay :show-overlay-red="showOverlay"/>
-	<div class="grid md:grid-cols-4 sm:grid-cols-2 md:gap-5 md:0" v-auto-animate>
+	<div class="all grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-5" v-auto-animate>
   <template 
   v-for="item in items"
       :key="item.id"
@@ -76,3 +75,15 @@ const onFavoriteRemove = async (sneakerId: number, item:Item) => {
     </div>
 </div>
 </template>
+<style scoped>
+@media (max-width: 640px) {
+  .all{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 430px) {
+  .all{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+</style>
