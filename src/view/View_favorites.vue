@@ -71,7 +71,7 @@ onBeforeMount(() => {
         class="flex flex-col justify-center items-center h-[500px]"
       >
         <div class="md:w-[500px] sm:w-auto text-center">
-          <h1 class="text-2xl">
+          <h1 class="text-2xl dark:text-ghostWhiteText">
             К сожалению у вас нет добавленных
             <span class="text-2xl text-[#7747ff]">избранных</span> товаров
           </h1>
@@ -84,7 +84,7 @@ onBeforeMount(() => {
         class="flex flex-col justify-center items-center h-[500px]"
       >
         <div class="md:w-[500px] sm:w-auto text-center">
-          <h1 class="text-2xl">
+          <h1 class="text-2xl dark:text-ghostWhiteText">
             Зарегистрируйтесь или войдите в
             <span class="text-2xl text-[#7747ff]">аккаунт</span> для просмотра и
             добавления избранных товаров

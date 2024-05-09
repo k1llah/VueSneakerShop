@@ -163,7 +163,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
     <div>
     <buttonProfile />
   </div>
-    <h2 class="md:text-3xl md:text-[unset] sm:text-xl sm:text-right">Редактирование профиля</h2>
+    <h2 class="md:text-3xl md:text-[unset] sm:text-xl sm:text-right dark:text-ghostWhiteText">Редактирование профиля</h2>
   </div>
 
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
@@ -171,17 +171,17 @@ watch([email, first_name, lastName, newProfileImg], () => {
       <img
         :src="prevProfileImg? 'http://localhost:3001/img/tablet/'+prevProfileImg: tempFileURL"
         alt="profile image"
-        class="md:w-[150px] sm:w-[80px] rounded-[50%]"
+        class="md:w-[150px] sm:w-[110px] rounded-[50%]"
       />
     </div>
     <div class="flex gap-5">
-      <p class="md:text-lg sm:text-base">Загрузить свое фото</p>
+      <p class="md:text-lg sm:text-base dark:text-ghostWhiteText">Загрузить свое фото</p>
       <label for="upload-button" class="cursor-pointer">
         <div
           class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
         >
           <svg
-            class="md:w-4 md:h-4 sm:w-2 sm:h-2" 
+            class="md:w-4 md:h-4 sm:w-3 sm:h-3" 
             stroke="currentColor"
             stroke-width="2"
             viewBox="0 0 24 24"
@@ -206,7 +206,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
     </div>
     <form class="flex flex-col md:gap-5 sm:gap-3" @submit="submitForm" @reset="resetForm">
       <div>
-        <label for="inputname" class="block text-gray-800 font-semibold text-sm"
+        <label for="inputname" class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
           >Фамилия</label
         >
         <div class="mt-2">
@@ -214,7 +214,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
             type="text"
             name="lastName"
             id="lastName"
-            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-gray-400 focus:text-gray-800 dark:bg-mainDark dark:text-ghostWhiteText"
             v-model="lastName"
           />
         </div>
@@ -224,7 +224,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
         >
       </div>
       <div>
-        <label for="inputname" class="block text-gray-800 font-semibold text-sm"
+        <label for="inputname" class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
           >Имя</label
         >
         <div class="mt-2">
@@ -232,7 +232,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
             type="text"
             name="inputname"
             id="name"
-            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-gray-400 focus:text-gray-800 dark:bg-mainDark dark:text-ghostWhiteText"
             v-model="first_name"
           />
         </div>
@@ -243,7 +243,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
       <div>
         <label
           for="inputEmail"
-          class="block text-gray-800 font-semibold text-sm"
+          class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
           >Email</label
         >
         <div class="mt-2">
@@ -251,7 +251,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
             type="email"
             name="inputEmail"
             id="email"
-            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+            class="block w-56 rounded-md py-1.5 px-2 ring-1 ring-gray-400 focus:text-gray-800 dark:bg-mainDark dark:text-ghostWhiteText"
             v-model="email"
           />
         </div>
@@ -259,7 +259,7 @@ watch([email, first_name, lastName, newProfileImg], () => {
           emailWarning
         }}</label>
       </div>
-      <div class="flex gap-5">
+      <div class="flex gap-5 mt-3">
         <button
           type="submit"
           class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"

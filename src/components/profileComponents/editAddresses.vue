@@ -131,21 +131,21 @@ const updateAddress = async ()=>{
       <div class="flex flex-col gap-2 justify-center">
         <input
           placeholder="Фамилия *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%] dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="lastName"
         />
 
         <input
           placeholder="Имя *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%] dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="name"
         />
 
         <input
           placeholder="Отчество (при наличии)"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%]"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 sm:w-[80%] dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="surname"
         />
@@ -154,7 +154,7 @@ const updateAddress = async ()=>{
       <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Номер телефона *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="tel"
           v-model="phoneNumber"
           minlength="10"
@@ -162,7 +162,7 @@ const updateAddress = async ()=>{
 
         <input
           placeholder="Город *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="city"
         />
@@ -171,7 +171,7 @@ const updateAddress = async ()=>{
       <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Почтовый индекс *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="postalCode"
           minlength="6"
@@ -179,7 +179,7 @@ const updateAddress = async ()=>{
 
         <input
           placeholder="Улица *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="street"
           minlength="2"
@@ -188,13 +188,13 @@ const updateAddress = async ()=>{
       <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Дом *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="houseNumber"
         />
         <input
           placeholder="Корпус"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="buildingNumber"
         />
@@ -202,7 +202,7 @@ const updateAddress = async ()=>{
       <div class="flex flex-wrap md:flex-nowrap md:space-x-4 sm:space-x-0 md:gap-0 sm:gap-3 mb-8">
         <input
           placeholder="Квартира *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="apartment"
         />

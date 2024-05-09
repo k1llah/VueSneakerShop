@@ -24,62 +24,62 @@ const allStore = useAllStore()
 
 </script>
 <template>
-  <div class="bg-[#f4f4f5] md:max-w-[350px] rounded-xl p-5 md:mt-5 sm:mt-2 shadow">
+  <div class="bg-[#f4f4f5] dark:bg-mainDark md:max-w-[350px] rounded-xl p-5 md:mt-5 sm:mt-2 shadow">
     <div class="flex flex-col md:text-[18px] sm:text-[14px]">
-      <div class="flex flex-col gap-2 justify-around">
+      <div class="flex flex-col gap-2 justify-around dark:text-ghostWhiteText">
         <p>
           Фамилия:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             lastName
           }}</span>
         </p>
         <p>
           Имя:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             firstName
           }}</span>
         </p>
         <p>
           Отчество:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ surname }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{ surname }}</span>
         </p>
         <p>
           Номер телефона:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             phoneNumber
           }}</span>
         </p>
 
         <p>
           Город:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ city }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{ city }}</span>
         </p>
         <p>
           Почтовый индекс:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             postalCode
           }}</span>
         </p>
         <p>
           Улица:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{ street }}</span>
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{ street }}</span>
         </p>
         <p>
           Номер дома:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             houseNumber
           }}</span>
         </p>
 
         <p>
           Номер квартиры:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             apartment
           }}</span>
         </p>
         <p>
           Корпус:
-          <span class="font-[600] md:text-base sm:text-xs text-slate-500">{{
+          <span class="font-[600] md:text-base sm:text-xs text-slate-500 dark:text-gray-400">{{
             buildingNumber
           }}</span>
         </p>

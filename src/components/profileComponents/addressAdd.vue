@@ -62,18 +62,18 @@ const createAddress = async () => {
 </script>
 <template>
   <div class="md:mt-16 sm:mt-8">
-    <form class="flex flex-col max-h-[400px] overflow-scroll">
+    <form class="flex flex-col md:max-h-[450px] sm:max-h-[400px] overflow-scroll">
       <div class="flex flex-col gap-2 justify-center ">
         <input
           placeholder="Фамилия *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="lastName"
         />
         
         <input
           placeholder="Имя *"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="name"
         />
@@ -81,7 +81,7 @@ const createAddress = async () => {
         
         <input
           placeholder="Отчество (при наличии)"
-          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96"
+          class="border-2 text-gray-500 rounded-md p-2 mb-4 focus:bg-gray-60 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 md:w-96 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="surname"
         />
@@ -90,7 +90,7 @@ const createAddress = async () => {
       <div class="flex md:flex-nowrap sm:flex-wrap  md:space-x-4 sm:gap-2 mb-8 mt-3">
         <input
           placeholder="Номер телефона *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="tel"
           v-model="phoneNumber"
           minlength="10"
@@ -98,7 +98,7 @@ const createAddress = async () => {
         
         <input
           placeholder="Город *"
-          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 md:w-1/2 sm:w-[80%] focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="city"
         />
@@ -107,7 +107,7 @@ const createAddress = async () => {
       <div class="flex space-x-4 mb-8 text-sm">
         <input
           placeholder="Почтовый индекс *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="postalCode"
           minlength="6"
@@ -115,7 +115,7 @@ const createAddress = async () => {
         
         <input
           placeholder="Улица *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="street"
           minlength="2"
@@ -125,13 +125,13 @@ const createAddress = async () => {
       <div class="flex space-x-4 mb-8 text-sm">
         <input
           placeholder="Дом *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="houseNumber"
         />
         <input
           placeholder="Корпус"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="text"
           v-model="buildingNumber"
         
@@ -140,7 +140,7 @@ const createAddress = async () => {
       <div class="flex space-x-4 mb-8 text-sm">
         <input
           placeholder="Квартира *"
-          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          class="border-2 text-gray-500 rounded-md p-2 w-1/2 focus:bg-gray600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150 dark:bg-mainDark dark:text-ghostWhiteText"
           type="number"
           v-model="apartment"
         

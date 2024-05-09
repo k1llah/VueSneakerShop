@@ -23,7 +23,7 @@ onBeforeMount(() => {
         "
       />
     </div>
-    <h2 class="md:text-3xl sm:text-xl sm:text-right md:text-left">
+    <h2 class="md:text-3xl sm:text-xl sm:text-right md:text-left dark:text-ghostWhiteText">
       {{ allStore.headerText }}
     </h2>
   </div>
@@ -39,10 +39,10 @@ onBeforeMount(() => {
     v-else
   >
     <div class="flex flex-col w-full" v-auto-animate>
-      <h2 class="md:text-2xl sm:text-lg">Мои адреса</h2>
+      <h2 class="md:text-2xl sm:text-lg dark:text-white">Мои адреса</h2>
 
       <div
-        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[400px] p-5"
+        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[400px] p-5 bg-primaryDark"
         v-if="addressStore.isAddress == true"
       >
         <addressComp
@@ -67,7 +67,7 @@ onBeforeMount(() => {
         class="w-full flex justify-center items-center md:min-h-[500px] sm:min-h-[400px]"
         v-if="!addressStore.isAddress"
       >
-        <p class="md:text-[20px] sm:text-[18px]">
+        <p class="md:text-[20px] sm:text-[18px] dark:text-ghostWhiteText">
           У вас нет добавленных адресов
         </p>
       </div>

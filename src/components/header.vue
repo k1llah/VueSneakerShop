@@ -104,7 +104,7 @@ let toggleShow = () => {
       >
         <img src="/cart.svg" alt="Cart" />
         <p
-          class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block w-[20px] h-[20px] text-center"
+          class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block w-[20px] h-[20px] text-center dark:text-black"
         >
           {{ cartStore.localCounter }}
         </p>
