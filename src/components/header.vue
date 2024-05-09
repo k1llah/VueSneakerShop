@@ -98,33 +98,34 @@ let toggleShow = () => {
     </div>
     <ul class="flex items-center gap-10 md:gap-5">
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black 
+        dark:hover:text-yellow-500 cursor-pointer hover:scale-[1.05] transition-all 1.3s"
         @click="toggleShow()"
         v-if="localRole != 'ADMIN'"
       >
         <img src="/cart.svg" alt="Cart" />
         <p
-          class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block w-[20px] h-[20px] text-center dark:text-black"
+          class="text-[13px] font-[500] mt-[-22px] ml-[-13px] rounded-[50%] bg-gray-300 block w-[20px] h-[20px] text-center dark:text-black "
         >
           {{ cartStore.localCounter }}
         </p>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:hover:text-[#ff0]"
         @click="$router.push({ name: 'Purchases' })"
       >
         <img src="/heart.svg" alt="Cart" />
         <span class="text-[19px] font-light md:text-[14px]">Закладки</span>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:hover:text-[#ff0]"
         @click="$router.push('/all_posts')"
       >
         <img src="/newspaper.png" alt="Cart" class="max-w-[25px]"  />
         <span class="text-[19px] font-light md:text-[14px]">Блог</span>
       </li>
       <li
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:hover:text-[#ff0]"
         @click="$router.push({ name: 'Profile' })"
       >
         <img src="/profile.svg" alt="Cart" />
@@ -132,7 +133,7 @@ let toggleShow = () => {
       </li>
       <li
         v-if="localRole === 'ADMIN'"
-        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s"
+        class="flex items-center gap-3 text-grey-500 hover:text-black cursor-pointer hover:scale-[1.05] transition-all 1.3s dark:hover:text-[#ff0]"
         @click="checkIsAdmin()"
       >
         <span class="text-[19px] font-light md:text-[14px]">Админка</span>

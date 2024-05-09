@@ -17,8 +17,8 @@ const html = computed(() => {
 </script>
 <template>
  <div  class="p-5 pt-0" :id="props.divScrollId">
-  <h1 class="md:text-4xl pt-10 font-extralight sm:text-[28px]" >{{ props.title }}</h1>
-  <div v-if="props.markDown !== undefined" v-html="html">
+  <h1 class="md:text-4xl pt-10 font-extralight sm:text-[28px] dark:text-ghostWhiteText" >{{ props.title }}</h1>
+  <div v-if="props.markDown !== undefined" class="dark:text-ghostWhiteText" v-html="html">
   
   </div>
  </div>

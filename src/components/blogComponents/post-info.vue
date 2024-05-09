@@ -46,7 +46,7 @@ onBeforeRouteLeave ((to:any, from:any, next:any) => {
         <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
         </span>
-        <span class="button-text">Поиск постов</span>
+        <span class="button-text dark:text-ghostWhiteText">Поиск постов</span>
       </button>
     </div>
   </div>
@@ -64,7 +64,7 @@ onBeforeRouteLeave ((to:any, from:any, next:any) => {
     <div class="max-w-fit">
       <ul
         v-if="blog.infoPost.attributes"
-        class="flex flex-col justify-between border-l-2 border-slate-400 pl-3 text-[#4DD4F5] font-extralight"
+        class="flex flex-col justify-between border-l-2 border-slate-400 pl-3 text-[#4DD4F5] dark:text-green-500 font-extralight"
       >
         <li
           v-for="(item, index) in blog.infoPost.attributes.postTemplate"
@@ -93,7 +93,8 @@ onBeforeRouteLeave ((to:any, from:any, next:any) => {
       />
     </div>
   </div>
-  <div class="flex justify-center p-5 border-[6px] border-[#f8f32a] items-center gap-14 flex-wrap sm:flex-col md:flex-row">
+
+  <div class="flex justify-center p-5 border-[6px] border-[#f8f32a] items-center gap-14 flex-wrap sm:flex-col md:flex-row dark:text-ghostWhiteText dark:bg-mainDark">
     <div><img src="/feedbackPost.jpg" class="sm:max-w-[285px] md:max-w-[320px]" alt="" /></div>
     <div class="max-w-[300px] flex flex-col gap-3">
       <h3 class="text-xl font-bold">Не нашел, что искал?</h3>
@@ -120,9 +121,10 @@ onBeforeRouteLeave ((to:any, from:any, next:any) => {
     <div class="flex items-center p-5 m-auto justify-end cursor-pointer" @click="router.push('/')">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 448 512"
+        class="dark:fill-white"
       >
         <path
           d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
@@ -196,7 +198,7 @@ button.learn-more .button-text {
   bottom: 0;
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
-  color: #282936;
+  
   font-weight: 700;
   line-height: 1.6;
   text-align: center;
