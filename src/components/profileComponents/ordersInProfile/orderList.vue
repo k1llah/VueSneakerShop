@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useAllStore } from '@/stores/all';
 import { onMounted, ref } from "vue";
 import templateOrder from "./templateOrder.vue";
 import { useMyOrderStore } from "@/stores/myOrders";
+const allStore = useAllStore();
 const myOrders = useMyOrderStore();
 onMounted(async () => {
   await myOrders.getDataOrder();
@@ -11,7 +13,7 @@ onMounted(async () => {
 <template>
   <div
     v-if="myOrders.orders.length !== 0"
-    class="flex overflow-scroll gap-5 flex-col max-h-[600px] bg-white dark:bg-black md:p-5 sm:p-2"
+    class="flex overflow-scroll gap-5 flex-col max-h-[600px] bg-white dark:bg-black md:p-5 sm:p-2 dark:border-l-2 dark:border-white"
   >
     <h3 class="text-2xl mt-2 dark:text-ghostWhiteText">Активные заказы</h3>
 
@@ -73,7 +75,7 @@ onMounted(async () => {
     </div>
 
     <h3 class="text-2xl mt-2 dark:text-ghostWhiteText">История заказов</h3>
-
+    <div v-if="!myOrders.history">
     <div v-for="order in myOrders.orders" :key="order.id">
       <div
         v-if="order.status == 'RECEIVED' || order.status == 'CANCELED'"
@@ -116,17 +118,18 @@ onMounted(async () => {
         </p>
       </div>
     </div>
-    <div v-if="myOrders.history" class="flex flex-col gap-5 items-center p-5">
-      <h3 class="text-xl font-extralight dark:text-ghostWhiteText">
+  </div>
+    <div v-if="!myOrders.history" class="flex flex-col gap-5 items-center p-5">
+      <h3 class="text-xl font-extralight dark:text-ghostWhiteText text-center">
         К сожалению тут ничего нет
       </h3>
-      <img src="/emoji-1.png" alt="" class="max-w-[60px]" />
+      <p class="text-[60px]" >🤕</p>
     </div>
     <div v-if="!myOrders.active" class="flex flex-col gap-5 items-center p-5">
-      <h3 class="text-xl font-extralight dark:text-ghostWhiteText">
+      <h3 class="text-xl font-extralight dark:text-ghostWhiteText text-center">
         К сожалению тут ничего нет
       </h3>
-      <img src="/emoji-1.png" alt="" class="max-w-[60px]" />
+      <p class="text-[60px]" >🤕</p>
     </div>
   </div>
   <div
@@ -137,7 +140,7 @@ onMounted(async () => {
   >
     <h3 class="text-2xl font-extralight dark:text-ghostWhiteText">
       К сожалению у вас пока нет заказов, вы можете перейти в
-      <router-link to="sneakers_page" class="text-[#7747ff] dark:text-[#10b981]"
+      <router-link to="sneakers_page" @click="allStore.unlock()" class="text-[#7747ff] dark:text-[#10b981]"
         >Каталог</router-link
       >
       и сделать первый заказ

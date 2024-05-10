@@ -4,13 +4,12 @@ import { useOrderStore } from '@/stores/order';
 import { useAllStore } from '@/stores/all';
 import { useCartStore } from '@/stores/addToCart';
 import { ref } from 'vue'
-import order from './order.vue'
-const cartStore = useCartStore();
-const allStore = useAllStore();
-const orderStore = useOrderStore();
-const router = useRouter();
+const cartStore = useCartStore()
+const allStore = useAllStore()
+const orderStore = useOrderStore()
+const router = useRouter()
 let toggle = ref(false)
-let target = ref("");
+let target = ref("")
 const handleOpenPage = (page: string) => {
   target.value = page;
   setTimeout(() => {
@@ -28,20 +27,30 @@ function clearDataAfterOrdered () {
   cartStore.axiosGetParamsStore()
   cartStore.cartDataGet()
 }
-onBeforeRouteLeave ((next:any) => {
-  orderStore.success = false 
-  orderStore.isSelected = false
-  orderStore.isFormCorrect = false
-  clearDataAfterOrdered()
-  allStore.unlock()
-  router.push('/')
-  next()
+onBeforeRouteLeave ((to, from, next) => {
+  if (to.path === '/profile' || to.path === '/sneakers_page') {
+    orderStore.success = false;
+    orderStore.isSelected = false;
+    orderStore.isFormCorrect = false;
+    clearDataAfterOrdered();
+    allStore.unlock();
+    next();
+  } else {
+    orderStore.success = false;
+    orderStore.isSelected = false;
+    orderStore.isFormCorrect = false;
+    clearDataAfterOrdered();
+    allStore.unlock();
+    router.push('/');
+    next();
+  }
+
 })
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
 
-  <div class="md:w-[400px] sm:w[310px] h-auto flex flex-col absolute gap-1 z-20">
+  <div class="md:w-[400px] sm:w[310px] h-auto flex flex-col absolute gap-1 z-20" id="success">
     <div class="p-5 rounded-lg bg-[#f0fdf3] dark:bg-[#115e59] dark:text-slate-200">
       <div class="flex gap-2">
         <div class="flex-shrink-0">

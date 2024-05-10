@@ -14,7 +14,7 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <div class="flex md:gap-5 items-center sm:gap-2">
+  <div class="flex md:gap-5 items-center sm:gap-2 md:p-3 sm:p-3">
     <div>
       <buttonProfile
         @click="
@@ -36,14 +36,14 @@ onBeforeMount(() => {
   </div>
   <div
     class="flex justify-between flex-col items-center md:mt-12 sm:mt-5"
-    v-else
+    v-else 
   >
     <div class="flex flex-col w-full" v-auto-animate>
-      <h2 class="md:text-2xl sm:text-lg dark:text-white">Мои адреса</h2>
+      <h2 class="md:text-2xl sm:text-lg dark:text-white md:pl-5 sm:pl-3">Мои адреса</h2>
 
       <div
-        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[400px] p-5 bg-primaryDark"
-        v-if="addressStore.isAddress == true"
+        class="border-2 border-slate-500 w-full mt-5 min-h-80 overflow-scroll md:max-h-[500px] sm:max-h-[400px] md:p-5 sm:p-2 bg-primaryDark"
+        v-if="addressStore.isAddress == true" v-auto-animate
       >
         <addressComp
           v-for="addressData in addressStore.addressData"
@@ -64,12 +64,13 @@ onBeforeMount(() => {
       </div>
 
       <div
-        class="w-full flex justify-center items-center md:min-h-[500px] sm:min-h-[400px]"
+        class="w-full flex justify-center flex-col items-center md:min-h-[500px] sm:min-h-[400px]"
         v-if="!addressStore.isAddress"
       >
-        <p class="md:text-[20px] sm:text-[18px] dark:text-ghostWhiteText">
+        <p class="md:text-[20px] sm:text-[18px] text-center dark:text-ghostWhiteText">
           У вас нет добавленных адресов
         </p>
+        <p class="text-[60px]">🥱</p>
       </div>
     </div>
     <div>

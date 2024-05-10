@@ -4,12 +4,14 @@ import Drawer from "@/components/DrawerComponents/Drawer.vue";
 import Footer from "@/components/footer.vue";
 import backToTop from './components/backToTop.vue';
 import { onMounted, computed, watch, onBeforeMount, ref } from "vue";
+import { useOrderStore } from './stores/order';
 import { useDark, useToggle } from '@vueuse/core'
 import { useSneaker } from "@/stores/sneaker";
 import { RouterView, useRouter } from "vue-router";
 import { useAuthStore } from "./stores/authData";
 import { useAllStore } from './stores/all';
 import { useBlog } from './stores/sneakerBlog';
+const orderStore = useOrderStore();
 const blog = useBlog()
 const allStore = useAllStore()
 const isDark = useDark()
@@ -34,7 +36,7 @@ watch(() => route.currentRoute.value.path, (newPath) => {
     <section>
       <div class="w-full min-h-[800px] m-auto">
         <RouterView />
-        <backToTop v-if="page != '/profile' && !allStore.isOpenedFeedBack && !blog.isOpenedModal && !blog.isOpenedModalFeedback"/>
+        <backToTop v-if="page != '/profile' && !allStore.isOpenedFeedBack && !blog.isOpenedModal && !blog.isOpenedModalFeedback && !orderStore.errorPayment && !orderStore.success"/>
       </div>
     </section>
     <Footer v-if="page != '/profile' && page != '/description'" />

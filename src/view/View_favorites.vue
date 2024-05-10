@@ -73,10 +73,10 @@ onBeforeMount(() => {
         <div class="md:w-[500px] sm:w-auto text-center">
           <h1 class="text-2xl dark:text-ghostWhiteText">
             К сожалению у вас нет добавленных
-            <span class="text-2xl text-[#7747ff]">избранных</span> товаров
+            <span class="text-2xl text-[#7747ff] dark:text-green-600">избранных</span> товаров
           </h1>
         </div>
-        <div class="max-w-[70px] mt-5"><img src="/emoji-1.png" alt="" /></div>
+        <p class="text-[70px]">👿</p>
       </div>
 
       <div

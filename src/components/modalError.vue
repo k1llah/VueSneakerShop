@@ -12,7 +12,7 @@ onBeforeRouteLeave((to, from, next) => {
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
-  <div class="notifications-container z-20 m-auto md:text-xl md:w-[450px] sm:w-[300px] h-auto flex flex-col absolute items-center justify-center">
+  <div class="notifications-container z-20 m-auto md:text-xl md:w-[450px] sm:w-[300px] h-auto flex flex-col absolute items-center justify-center" id="error">
     <div class="p-6 bg-[#f8e71c] rounded-lg">
       <div class="flex gap-4">
         <div class="flex-shrink-0">
