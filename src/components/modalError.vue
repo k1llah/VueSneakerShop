@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { onBeforeRouteLeave } from 'vue-router';
 import { useOrderStore } from '@/stores/order';
+import { useAllStore } from '@/stores/all';
+const allStore = useAllStore()
 const orderStore = useOrderStore();
+onBeforeRouteLeave((to, from, next) => {
+  orderStore.errorPayment = false
+  allStore.unlock()
+  next()
+})
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
@@ -31,7 +39,7 @@ const orderStore = useOrderStore();
             </p>
           
           
-            <button class="dad-joke-button-main p-2 max-w-fit" type="button" @click="orderStore.errorPayment = false">
+            <button class="dad-joke-button-main p-2 max-w-fit" type="button" @click="orderStore.errorPayment = false, allStore.unlock()">
               Вернуться к оформлению
 						</button>
         </div>
@@ -40,11 +48,6 @@ const orderStore = useOrderStore();
   </div>
 </template>
 <style scoped>
-.notifications-container {
-
-}
-
-
 .dad-joke {
   padding: 1.5rem;
   border-radius: 0.375rem;

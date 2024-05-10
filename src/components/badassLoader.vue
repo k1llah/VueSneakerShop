@@ -15,7 +15,7 @@
         <circle class="back" cx="17" cy="17" r="14"></circle>
         <circle class="front" cx="17" cy="17" r="14"></circle>
     </svg>
-    <div class="text" data-text="Загрузка"></div>
+    <div class="text dark:text-ghostWhiteText" data-text="Загрузка"></div>
 </div>
 </div>
 
@@ -25,7 +25,7 @@
   --background: #62abff;
   --front-color: #4f29f0;
   --back-color: #c3c8de;
-  --text-color: #414856;
+  --text-color: gray;
   width: 64px;
   height: 64px;
   border-radius: 50px;

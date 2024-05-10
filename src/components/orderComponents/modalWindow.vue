@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter, onBeforeRouteLeave } from 'vue-router';
 import { useOrderStore } from '@/stores/order';
 import { useAllStore } from '@/stores/all';
 import { useCartStore } from '@/stores/addToCart';
@@ -27,14 +27,22 @@ function clearDataAfterOrdered () {
   cartStore.items = []
   cartStore.axiosGetParamsStore()
   cartStore.cartDataGet()
-
 }
+onBeforeRouteLeave ((next:any) => {
+  orderStore.success = false 
+  orderStore.isSelected = false
+  orderStore.isFormCorrect = false
+  clearDataAfterOrdered()
+  allStore.unlock()
+  router.push('/')
+  next()
+})
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
 
   <div class="md:w-[400px] sm:w[310px] h-auto flex flex-col absolute gap-1 z-20">
-    <div class="p-5 rounded-lg bg-[#f0fdf3]">
+    <div class="p-5 rounded-lg bg-[#f0fdf3] dark:bg-[#115e59] dark:text-slate-200">
       <div class="flex gap-2">
         <div class="flex-shrink-0">
           <svg
@@ -60,10 +68,10 @@ function clearDataAfterOrdered () {
             </p>
           
           <div class="flex gap-2">
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, handleOpenPage('orders'), clearDataAfterOrdered()">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 dark:hover:bg-[#14532d]" @click="router.push('/profile'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, handleOpenPage('orders'), clearDataAfterOrdered() , allStore.unlock()">
               К заказу
             </button>
-            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 "@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, clearDataAfterOrdered()">
+            <button type="button" class="text-sm p-2 rounded-md hover:bg-green-200 transition-all duration-200 dark:hover:bg-[#14532d]"@click="router.push('/sneakers_page'), orderStore.success = false, orderStore.isSelected = false, orderStore.isFormCorrect = false, clearDataAfterOrdered(), allStore.unlock()">
               Продолжить покупки
             </button>
           </div>

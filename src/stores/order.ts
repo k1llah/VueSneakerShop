@@ -79,9 +79,11 @@ export const useOrderStore = defineStore({
               console.log(pay, this.orderNumber);
               this.orderNumber = pay.data.orderNumber
               this.success = true
+              document.body.style.overflow = 'hidden'
               const clear = axios.post("http://localhost:3001/api/clear-cart", {
                 userId: localStorage.getItem("id"),
               })
+              this.methodPayment = ''
             } else {
               console.log("Ошибка при выполнении запроса");
             }
@@ -123,6 +125,8 @@ export const useOrderStore = defineStore({
               const clear = axios.post("http://localhost:3001/api/clear-cart", {
                 userId: localStorage.getItem("id"),
               })
+              this.methodPayment = ''
+              document.body.style.overflow = 'hidden'
              console.log(clear)
              console.log('daaaa')
             } else {
@@ -130,8 +134,9 @@ export const useOrderStore = defineStore({
             }
             console.log(pay, "ezzzz");
           }
-         else if (this.methodPayment === "" || this.isSelected && this.methodPayment === "") {
+         else if (this.isSelected && this.methodPayment === "" || this.methodPayment === '' && this.isFormCorrect ) {
           this.errorPayment = true;
+          document.body.style.overflow = 'hidden'
         } else if (isFormCorrect === false) {
           console.log("isFormCorrect = false");
         } else {

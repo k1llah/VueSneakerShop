@@ -1,11 +1,15 @@
 <script setup lang="ts">
 // https://3dsec.sberbank.ru/payment/rest/register.do
+import { useAllStore } from '@/stores/all';
 import { useCartStore } from '@/stores/addToCart';
 import { useOrderStore } from "@/stores/order";
 import { useFormStore } from '@/stores/formStore';
+import { useDark } from '@vueuse/core';
 import order from './order.vue'
 import modalError from '../modalError.vue';
 import modalWindow from './modalWindow.vue';
+const allStore = useAllStore();
+const isDark = useDark()
 const formStore = useFormStore();
 const orderStore = useOrderStore();
 const cartStore = useCartStore();
@@ -13,26 +17,27 @@ const cartStore = useCartStore();
 <template>
   <div class="lg:max-w-full md:max-w-[90%]">
     <div>
-      <h3 class="text-2xl font-medium p-3">Выбрать способ оплаты</h3>
+      <h3 class="text-2xl font-medium p-3 dark:text-ghostWhiteText">Выбрать способ оплаты</h3>
       <div>
         <div class="radio-inputs md:flex-nowrap sm:flex-wrap">
           <label>
             <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'online', console.log(orderStore.methodPayment)" />
-            <span class="radio-tile">
+            <span class="radio-tile bg-white dark:bg-mainDark">
               <span class="radio-icon m-auto">
-                <img src="/sbp.svg" alt="" class="h-[100px]" />
+                <img src="/sbp.svg" alt="" class="h-[100px]" v-if="!isDark"/>
+                <img src="/sbpLight.svg" alt="" class="h-[100px]" v-if="isDark"/>
               </span>
-              <span class="radio-label">Онлайн оплата</span>
+              <span class="radio-label dark:text-ghostWhiteText text-[#707070]">Онлайн оплата</span>
             </span>
           </label>
 
           <label>
             <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'payWhenReceiving' , console.log(orderStore.methodPayment)" />
-            <span class="radio-tile">
+            <span class="radio-tile dark:bg-mainDark dark:text-ghostWhiteText">
               <span class="radio-icon">
                 <img src="/paymentImage.png" alt="" class="h-[100px]" />
               </span>
-              <span class="radio-label">Оплата при получении</span>
+              <span class="radio-label dark:text-ghostWhiteText text-[#707070]">Оплата при получении</span>
             </span>
           </label>
         </div>
@@ -43,7 +48,7 @@ const cartStore = useCartStore();
           id="message"
           cols="30"
           rows="10"
-          class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2 "
+          class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2 dark:bg-mainDark dark:text-ghostWhiteText"
           placeholder="Сообщение к заказу"
 					v-model="orderStore.comment"
 					maxlength="150"
@@ -51,7 +56,7 @@ const cartStore = useCartStore();
       </div>
     </div>
 
-    <div class="container1" @click="orderStore.placeAnOrder(orderStore.validateOnClick())">
+    <div class="container1 bg-white dark:bg-mainDark" @click="orderStore.placeAnOrder(orderStore.validateOnClick())">
       <div class="left-side">
         <div class="card">
           <div class="card-line"></div>
@@ -66,18 +71,18 @@ const cartStore = useCartStore();
           <div class="numbers-line2"></div>
         </div>
       </div>
-      <div class="right-side">
-        <div class="new">Заказать</div>
+      <div class="right-side dark:bg-mainDark">
+        <div class="new dark:text-ghostWhiteText">Заказать</div>
       </div>
     </div>
     <div class="ml-3 mb-10">
-      <h3 class="text-2xl font-light">
+      <h3 class="text-2xl font-light dark:text-ghostWhiteText">
         К оплате: {{ (orderStore.amount * (1 + 0.05)).toFixed(2) }} RUB
       </h3>
     </div>
   </div>
-	<modalError v-if="orderStore.errorPayment"/>
 	<modalWindow v-if="orderStore.success"/>
+	<modalError v-if="orderStore.errorPayment"/>
 </template>
 <style scoped>
 .radio-inputs {
@@ -135,7 +140,6 @@ const cartStore = useCartStore();
   min-height: 120px;
   border-radius: 0.5rem;
   border: 2px solid #b5bfd9;
-  background-color: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: 0.15s ease;
   cursor: pointer;
@@ -174,7 +178,6 @@ const cartStore = useCartStore();
 }
 
 .radio-label {
-  color: #707070;
   transition: 0.375s ease;
   text-align: center;
   font-size: 13px;
@@ -193,7 +196,6 @@ const cartStore = useCartStore();
 }
 
 .container1 {
-  background-color: #ffffff;
   margin-top: 30px;
   margin-left: 12px;
   display: flex;

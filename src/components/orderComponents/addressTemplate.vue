@@ -10,7 +10,7 @@ const orderStore = useOrderStore();
 	})
 </script>
 <template>
-	<div class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light ">
+	<div class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light dark:text-ghostWhiteText dark:border-mainDark">
 		<ul class="flex flex-col gap-3 list-disc">
 		<li>Имя: {{ props.firstName }}</li>
 		<li>Город: {{ props.city }}</li>
