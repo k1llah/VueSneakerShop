@@ -10,7 +10,6 @@ const blog = useBlog();
 const idPost = parseInt(localStorage.getItem("idPost") || "0", 10);
 onBeforeMount(async () => {
   await blog.getPostById(idPost);
-  console.log(blog.infoPost, blog.infoPost.attributes.postTemplate[0].id);
 });
 onBeforeRouteLeave ((to:any, from:any, next:any) => {
   blog.isOpenedModal = false

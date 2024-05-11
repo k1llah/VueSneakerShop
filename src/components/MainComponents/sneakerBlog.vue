@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect, onBeforeUnmount, onBeforeMount } from "vue";
+import {
+  ref,
+  onMounted,
+  watchEffect,
+  onBeforeUnmount,
+  onBeforeMount,
+} from "vue";
 import gsap from "gsap";
 import { marked } from "marked";
 import { useAllStore } from "@/stores/all";
 import { useBlog } from "@/stores/sneakerBlog";
-import { onBeforeRouteUpdate } from 'vue-router';
+import { onBeforeRouteUpdate } from "vue-router";
 import scrollComponent from "./scrollComponent.vue";
 import coverTemplate from "../blogComponents/cover-template.vue";
 import firstPostComponent from "../blogComponents/firstPostComponent.vue";
@@ -42,11 +48,10 @@ const animateText = () => {
     ease: "back.inOut",
   });
 };
-let idPost = ref()
-async function handleGetId(id:number | string){
-  idPost.value = id
-  localStorage.setItem('idPost', idPost.value)
-  console.log('idPost-', idPost.value, 'idParam-', id)
+let idPost = ref();
+async function handleGetId(id: number | string) {
+  idPost.value = id;
+  localStorage.setItem("idPost", idPost.value);
 }
 
 onMounted(() => {
@@ -62,7 +67,6 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
-  
 });
 </script>
 
@@ -73,7 +77,7 @@ onBeforeUnmount(() => {
   >
     <h2
       class="md:text-[45px] sm:text-[30px] text-center font-[400] text-gradient text-gradient-to-r from-purple-600 via-cyan-400 to-red-500 lol dark:bg-none dark:bg-ghostWhiteText"
-      :class="{ 'hidden-text': !isVisible } "
+      :class="{ 'hidden-text': !isVisible }"
       ref="title"
     >
       Sneaker
@@ -87,9 +91,12 @@ onBeforeUnmount(() => {
   </div>
 
   <div class="md:p-5 sm:p-0 dark:bg-primaryDark">
-
     <div class="flex gap-3 flex-row flex-wrap p-2 pt-5">
-      <div v-for="(post, index) in blogStore.posts" :key="index" class="flex gap-2 flex-row flex-wrap ">
+      <div
+        v-for="(post, index) in blogStore.posts"
+        :key="index"
+        class="flex gap-2 flex-row flex-wrap"
+      >
         <div
           v-for="(hashtag, index) in post.attributes.hashtags.data.slice(0, 10)"
           :key="index"
@@ -108,7 +115,10 @@ onBeforeUnmount(() => {
       class="flex w-full flex-row gap-5 flex-wrap md:justify-start sm:justify-center md:mt-5 m-auto dark:bg-primaryDark"
     >
       <div v-for="(post, index) in blogStore.posts" :key="index">
-        <router-link to="/post_page" @click="handleGetId(post.id), blogStore.getPostById(post.id)">
+        <router-link
+          to="/post_page"
+          @click="handleGetId(post.id), blogStore.getPostById(post.id)"
+        >
           <firstPostComponent
             v-if="index == 0"
             :titleCover="post.attributes.titleToCover"
@@ -120,7 +130,6 @@ onBeforeUnmount(() => {
               )
             "
             @click.native="handleGetId(post.id)"
-            
           />
 
           <coverTemplate

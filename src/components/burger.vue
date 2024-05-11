@@ -31,7 +31,6 @@ async function checkIsAdmin() {
   }
   setTimeout(() => {
     if (role.value === "ADMIN") {
-      console.log(role.value);
       router.push({ name: "admin" });
     } else {
       location.reload();
@@ -44,7 +43,6 @@ async function checkIsAdmin() {
 onBeforeMount(() => {
   cartStore.cartDataGet();
   cartStore.localCounter = cartStore.items.length;
-  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter);
 });
 
 watch(
@@ -57,7 +55,6 @@ watch(
 const sneakerStore = useSneaker();
 let toggleShow = () => {
   sneakerStore.show = !sneakerStore.show;
-  console.log(sneakerStore.show);
 };
 import gsap from "gsap";
 const dropdowns = ref<boolean[]>([false]);

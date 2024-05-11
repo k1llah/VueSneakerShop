@@ -23,8 +23,6 @@ let timer = ref(false);
 onBeforeMount(() => {
   cartStore.cartDataGet();
   cartStore.localCounter = cartStore.items.length;
-  console.log(cartStore.items.length, cartStore.items, cartStore.cartCounter);
-  
 });
 async function checkIsAdmin() {
   try {
@@ -39,7 +37,6 @@ async function checkIsAdmin() {
   }
   setTimeout(() => {
     if (role.value === "ADMIN") {
-      console.log(role.value);
       router.push({ name: "admin" });
     } else {
       location.reload();

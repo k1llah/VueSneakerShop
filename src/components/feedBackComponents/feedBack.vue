@@ -1,33 +1,33 @@
 <script setup lang="ts">
-import buttonBack from '../buttonBack.vue';
-  import { onBeforeMount } from 'vue';
-	import templateFeedBack from '@/components/feedBackComponents/templateFeedback.vue';
-	import { useAllStore } from '@/stores/all';
-  import { useFeedbackStore } from '@/stores/feedback';
-	import modalFeedback from '@/components/feedBackComponents/modalFeedback.vue';
-  import successCreatedModal from './successCreatedModal.vue';
-	let allStore = useAllStore();
-  const feedbackStore = useFeedbackStore();
-
-	console.log(allStore.isOpenedFeedBack)
-  onBeforeMount(() => {
-    feedbackStore.getFeedbacks()
-
-  })
-  
+import buttonBack from "../buttonBack.vue";
+import { onBeforeMount } from "vue";
+import templateFeedBack from "@/components/feedBackComponents/templateFeedback.vue";
+import { useAllStore } from "@/stores/all";
+import { useFeedbackStore } from "@/stores/feedback";
+import modalFeedback from "@/components/feedBackComponents/modalFeedback.vue";
+import successCreatedModal from "./successCreatedModal.vue";
+let allStore = useAllStore();
+const feedbackStore = useFeedbackStore();
+onBeforeMount(() => {
+  feedbackStore.getFeedbacks();
+});
 </script>
 <template>
-  <div class="flex md:mt-0 md:p-0 flex-wrap md:pr-10 justify-between items-baseline gap-5 p-3 sm:p-5 sm:mt-5">
-    <div class="flex md:ml-[50px] sm:ml-[20px]  gap-[15px]">
-    <div class="flex gap-5 items-center mt-5 bg-white bg-opacity-90 dark:bg-opacity-20 p-3 rounded-2xl">
-			<buttonBack/>
-			<h2 class="text-3xl ">Отзывы</h2>
+  <div
+    class="flex md:mt-0 md:p-0 flex-wrap md:pr-10 justify-between items-baseline gap-5 p-3 sm:p-5 sm:mt-5"
+  >
+    <div class="flex md:ml-[50px] sm:ml-[20px] gap-[15px]">
+      <div
+        class="flex gap-5 items-center mt-5 bg-white bg-opacity-90 dark:bg-opacity-20 p-3 rounded-2xl"
+      >
+        <buttonBack />
+        <h2 class="text-3xl">Отзывы</h2>
+      </div>
     </div>
-  </div>
-    
+
     <button
       class="cssbuttons-io-button"
-      @click="allStore.isOpenedFeedBack = true, allStore.block()"
+      @click="(allStore.isOpenedFeedBack = true), allStore.block()"
     >
       Оставить отзыв
       <div class="icon">
@@ -46,11 +46,14 @@ import buttonBack from '../buttonBack.vue';
       </div>
     </button>
   </div>
-  <div class="flex  md:mt-12 container-bg md:p-10 sm:p-0 sm:mt-2 h-full">
-    <div v-if="feedbackStore.feedBackData" class="flex flex-wrap gap-5 justify-center items-center">
+  <div class="flex md:mt-12 container-bg md:p-10 sm:p-0 sm:mt-2 h-full">
+    <div
+      v-if="feedbackStore.feedBackData"
+      class="flex flex-wrap gap-5 justify-center items-center"
+    >
       <div v-for="feedback in feedbackStore.feedBackData" :key="feedback.id">
         <templateFeedBack
-        v-if="feedback.rating != 0"
+          v-if="feedback.rating != 0"
           :author="feedback.authorName"
           :image="feedback.imageFeedback"
           :text="feedback.messageFeedback"
@@ -63,10 +66,9 @@ import buttonBack from '../buttonBack.vue';
   </div>
   <div v-if="allStore.isOpenedFeedBack == true">
     <modalFeedback />
-    <successCreatedModal v-if="feedbackStore.modalFeedback"/>
+    <successCreatedModal v-if="feedbackStore.modalFeedback" />
   </div>
 </template>
-
 
 <style scoped>
 .cssbuttons-io-button {

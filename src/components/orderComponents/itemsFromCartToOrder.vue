@@ -9,7 +9,6 @@ const cartStore = useCartStore();
 const orderStore = useOrderStore();
 let idItems = ref([] as any);
 let data = ref();
-console.log(idItems.value);
 const getDataShoe = async function (params: any) {
   try {
     const dataShoe = await axios.post(
@@ -20,14 +19,10 @@ const getDataShoe = async function (params: any) {
     );
     data.value = dataShoe.data;
     orderStore.idParam = idItems.value
-    console.log(orderStore.idParam)
     orderStore.amount = dataShoe.data.reduce(
       (acc: any, item: any) => acc + item.price,
       0
     );
-    console.log(orderStore.idParam);
-    console.log(dataShoe.data[0].price);
-    console.log(data.value.items);
   } catch (error) {
     console.log(error);
   }

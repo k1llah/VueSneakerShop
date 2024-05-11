@@ -30,7 +30,6 @@ async function submit() {
       });
 
       blog.isOpenedModalFeedback = true;
-      console.log("success", submit);
     } 
     else if (
       !isEmailValid &&

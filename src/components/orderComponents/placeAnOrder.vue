@@ -1,15 +1,15 @@
 <script setup lang="ts">
 // https://3dsec.sberbank.ru/payment/rest/register.do
-import { useAllStore } from '@/stores/all';
-import { useCartStore } from '@/stores/addToCart';
+import { useAllStore } from "@/stores/all";
+import { useCartStore } from "@/stores/addToCart";
 import { useOrderStore } from "@/stores/order";
-import { useFormStore } from '@/stores/formStore';
-import { useDark } from '@vueuse/core';
-import order from './order.vue'
-import modalError from '../modalError.vue';
-import modalWindow from './modalWindow.vue';
+import { useFormStore } from "@/stores/formStore";
+import { useDark } from "@vueuse/core";
+import order from "./order.vue";
+import modalError from "../modalError.vue";
+import modalWindow from "./modalWindow.vue";
 const allStore = useAllStore();
-const isDark = useDark()
+const isDark = useDark();
 const formStore = useFormStore();
 const orderStore = useOrderStore();
 const cartStore = useCartStore();
@@ -17,27 +17,50 @@ const cartStore = useCartStore();
 <template>
   <div class="lg:max-w-full md:max-w-[90%]">
     <div>
-      <h3 class="text-2xl font-medium p-3 dark:text-ghostWhiteText">Выбрать способ оплаты</h3>
+      <h3 class="text-2xl font-medium p-3 dark:text-ghostWhiteText">
+        Выбрать способ оплаты
+      </h3>
       <div>
         <div class="radio-inputs md:flex-nowrap sm:flex-wrap">
           <label>
-            <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'online', console.log(orderStore.methodPayment)" />
+            <input
+              class="radio-input"
+              type="radio"
+              name="payment"
+              @click="orderStore.methodPayment = 'online'"
+            />
             <span class="radio-tile bg-white dark:bg-mainDark">
               <span class="radio-icon m-auto">
-                <img src="/sbp.svg" alt="" class="h-[100px]" v-if="!isDark"/>
-                <img src="/sbpLight.svg" alt="" class="h-[100px]" v-if="isDark"/>
+                <img src="/sbp.svg" alt="" class="h-[100px]" v-if="!isDark" />
+                <img
+                  src="/sbpLight.svg"
+                  alt=""
+                  class="h-[100px]"
+                  v-if="isDark"
+                />
               </span>
-              <span class="radio-label dark:text-ghostWhiteText text-[#707070]">Онлайн оплата</span>
+              <span class="radio-label dark:text-ghostWhiteText text-[#707070]"
+                >Онлайн оплата</span
+              >
             </span>
           </label>
 
           <label>
-            <input class="radio-input" type="radio" name="payment" @click="orderStore.methodPayment = 'payWhenReceiving' , console.log(orderStore.methodPayment)" />
+            <input
+              class="radio-input"
+              type="radio"
+              name="payment"
+              @click="
+                (orderStore.methodPayment = 'payWhenReceiving'),
+              "
+            />
             <span class="radio-tile dark:bg-mainDark dark:text-ghostWhiteText">
               <span class="radio-icon">
                 <img src="/paymentImage.png" alt="" class="h-[100px]" />
               </span>
-              <span class="radio-label dark:text-ghostWhiteText text-[#707070]">Оплата при получении</span>
+              <span class="radio-label dark:text-ghostWhiteText text-[#707070]"
+                >Оплата при получении</span
+              >
             </span>
           </label>
         </div>
@@ -50,13 +73,16 @@ const cartStore = useCartStore();
           rows="10"
           class="resize-none outline-none mt-5 border-[1px] border-slate-300 rounded-xl p-3 max-h-[120px] ml-2 dark:bg-mainDark dark:text-ghostWhiteText"
           placeholder="Сообщение к заказу"
-					v-model="orderStore.comment"
-					maxlength="150"
+          v-model="orderStore.comment"
+          maxlength="150"
         ></textarea>
       </div>
     </div>
 
-    <div class="container1 bg-white dark:bg-mainDark" @click="orderStore.placeAnOrder(orderStore.validateOnClick())">
+    <div
+      class="container1 bg-white dark:bg-mainDark"
+      @click="orderStore.placeAnOrder(orderStore.validateOnClick())"
+    >
       <div class="left-side">
         <div class="card">
           <div class="card-line"></div>
@@ -81,8 +107,8 @@ const cartStore = useCartStore();
       </h3>
     </div>
   </div>
-	<modalWindow v-if="orderStore.success"/>
-	<modalError v-if="orderStore.errorPayment"/>
+  <modalWindow v-if="orderStore.success" />
+  <modalError v-if="orderStore.errorPayment" />
 </template>
 <style scoped>
 .radio-inputs {

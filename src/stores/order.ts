@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { nextTick } from 'vue';
+import { nextTick } from "vue";
 import axios from "axios";
 interface Item {
   id: number;
@@ -96,7 +96,6 @@ export const useOrderStore = defineStore({
             }
           );
           if (pay.status === 200) {
-            console.log(pay, this.orderNumber);
             this.orderNumber = pay.data.orderNumber;
             this.success = true;
             document.body.style.overflow = "hidden";
@@ -104,7 +103,9 @@ export const useOrderStore = defineStore({
               userId: localStorage.getItem("id"),
             });
             nextTick(() => {
-              const element = document.getElementById("success") as HTMLDivElement;
+              const element = document.getElementById(
+                "success"
+              ) as HTMLDivElement;
               if (element) {
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
               }
@@ -113,7 +114,6 @@ export const useOrderStore = defineStore({
           } else {
             console.log("Ошибка при выполнении запроса");
           }
-          console.log(pay);
         } else if (
           this.methodPayment === "payWhenReceiving" &&
           this.isSelected == false &&
@@ -156,19 +156,18 @@ export const useOrderStore = defineStore({
               userId: localStorage.getItem("id"),
             });
             nextTick(() => {
-              const element = document.getElementById("success") as HTMLDivElement;
+              const element = document.getElementById(
+                "success"
+              ) as HTMLDivElement;
               if (element) {
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
               }
             });
             this.methodPayment = "";
             document.body.style.overflow = "hidden";
-            console.log(clear);
-            console.log("daaaa");
           } else {
             console.log("Ошибка при выполнении запроса");
           }
-          console.log(pay, "ezzzz");
         } else if (
           (this.isSelected && this.methodPayment === "") ||
           (this.methodPayment === "" && this.isFormCorrect)
@@ -181,10 +180,6 @@ export const useOrderStore = defineStore({
               element.scrollIntoView({ behavior: "smooth", block: "center" });
             }
           });
-        } else if (isFormCorrect === false) {
-          console.log("isFormCorrect = false");
-        } else {
-          console.log("idk");
         }
       } catch (error) {
         console.log(error);

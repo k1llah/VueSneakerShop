@@ -43,9 +43,6 @@ const onClickOnCard = async (sneakerId: number) => {
   router.push(`/description`);
   paramsId = sneakerId
   localStorage.setItem('sneakerId', paramsId.toString())
-  
-  console.log(paramsId, cartStore.isAdded)
-  console.log('id',sneakerId)
 };
 let showOverlay = ref(false)
 const onFavoriteAdd = async (sneakerId: number, item:Item) => {

@@ -22,8 +22,6 @@ export const useBlog = defineStore("blog", {
           }
         );
         this.posts = res.data.data.map((post: any) => post);
-
-        console.log(this.posts);
       } catch (error) {
         console.log(error);
       }
@@ -43,8 +41,6 @@ export const useBlog = defineStore("blog", {
             }
           );
           this.infoPost = response.data.data;
-
-          console.log(response.data.data);
         }
       } catch (error) {
         console.error(error);
@@ -57,16 +53,14 @@ export const useBlog = defineStore("blog", {
             `http://localhost:1337/api/posts?filters\[hashtags\][hashtagName][$contains]=${hashtag}`,
             {
               params: {
-              populate: "*",
-            },
+                populate: "*",
+              },
               headers: {
                 Authorization: `Bearer ${this.token}`,
               },
             }
-          )
-          this.posts = response.data.data
-          console.log(this.posts);
-          console.log(response.data.data);
+          );
+          this.posts = response.data.data;
         }
       } catch (error) {
         console.error(error);

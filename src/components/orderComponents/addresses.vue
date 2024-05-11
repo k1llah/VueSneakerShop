@@ -12,8 +12,6 @@ const dataAddress = async () => {
     });
     address.value = data.data;
     isAddress.value = address.value.length > 0;
-
-    console.log(address.value, isAddress.value);
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +24,9 @@ onBeforeMount(() => {
 <template>
   <div class="flex flex-col overflow-scroll">
     <div>
-      <h2 class="md:text-3xl ml-20 mt-8 text-end md:pr-5 sm:pr-0 sm:text-2xl dark:text-ghostWhiteText">
+      <h2
+        class="md:text-3xl ml-20 mt-8 text-end md:pr-5 sm:pr-0 sm:text-2xl dark:text-ghostWhiteText"
+      >
         Мои адреса
       </h2>
     </div>
@@ -51,7 +51,9 @@ onBeforeMount(() => {
       <p class="text-xl dark:text-white">
         К сожалению, у вас нет добавленных адресов, но вы можете добавить свой
         адрес на странице профиля
-        <router-link to="profile" class="text-[#7747ff] dark:text-green-500 cursor-pointer"
+        <router-link
+          to="profile"
+          class="text-[#7747ff] dark:text-green-500 cursor-pointer"
           >во вкладке мои адреса</router-link
         >
       </p>

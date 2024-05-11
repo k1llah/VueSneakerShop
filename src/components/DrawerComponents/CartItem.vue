@@ -12,7 +12,6 @@ const props = defineProps({
 	onPlusCounter: Function,
 })
 
-console.log("CartItem props:", props); 
 </script>
 <template>
 	<div class="w-100% items-center flex border border-slate-100 dark:border-slate-500 dark:bg-gray-800 p-4 rounded-xl gap-4 md:flex-row sm:flex-col">

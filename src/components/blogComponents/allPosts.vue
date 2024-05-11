@@ -12,7 +12,6 @@ const idPostStorage = parseInt(localStorage.getItem("idPost") || "0", 10);
 async function handleGetId(id: number | string) {
   idPost.value = id;
   localStorage.setItem("idPost", idPost.value);
-  console.log("idPost-", idPost.value, "idParam-", id);
 }
 if(searchInput.value == '' || searchInput.value.length <= 2){
 	blog.getStrapiData();

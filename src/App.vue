@@ -22,8 +22,6 @@ const sneakerStore = useSneaker();
 onMounted(() => {
   authStore.getRole();
   authStore.checkAuth();
-  console.log(authStore.id);
-  
 });
 const page = ref(window.location.pathname);
 watch(() => route.currentRoute.value.path, (newPath) => {

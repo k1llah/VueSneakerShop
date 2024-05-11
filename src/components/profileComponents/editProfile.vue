@@ -45,14 +45,13 @@ const handleFileUpload = (event: Event) => {
     let file = files[0];
     newProfileFile.value = file;
     newProfileImg.value = file.name;
-    prevProfileImg.value=''
+    prevProfileImg.value = "";
     const reader = new FileReader();
-    reader.onload = function(){
+    reader.onload = function () {
       tempFileURL.value = reader.result;
     };
     reader.readAsDataURL(file);
   }
-  console.log(newProfileImg.value);
 };
 const getData = async function () {
   try {
@@ -82,17 +81,22 @@ const submitForm = async (event: Event) => {
       isChanged.value = true;
       const formData = new FormData();
       formData.append("file", newProfileFile.value);
-      formData.append("data", JSON.stringify({
-        id: id,
-        uuid: uuid,
-        email: email.value,
-        first_name: first_name.value,
-        last_name: lastName.value,
-        profileImg: newProfileImg.value,
-      }))
-      const changedData = axios.post("http://localhost:3001/api/edit-profile",formData);
+      formData.append(
+        "data",
+        JSON.stringify({
+          id: id,
+          uuid: uuid,
+          email: email.value,
+          first_name: first_name.value,
+          last_name: lastName.value,
+          profileImg: newProfileImg.value,
+        })
+      );
+      const changedData = axios.post(
+        "http://localhost:3001/api/edit-profile",
+        formData
+      );
       location.reload();
-      
     } else if (lastName.value.includes(" ") || lastName.value.length < 2) {
       setTimeout(() => {
         lastNameWarning.value = "";
@@ -121,7 +125,6 @@ const submitForm = async (event: Event) => {
         "email содержит пробел, меньше 2 символов или не содержит @";
     } else {
       isChanged.value = false;
-      console.log(isChanged.value);
     }
   } catch (error) {
     console.log(error);
@@ -135,13 +138,10 @@ const resetForm = async (event: Event) => {
     lastName.value !== prevLastName.value ||
     (newProfileImg.value !== prevProfileImg.value && isChanged.value === true)
   ) {
-    console.log(isChanged.value);
-
     email.value = prevEmail.value;
     first_name.value = prevFirst_name.value;
     lastName.value = prevLastName.value;
     newProfileImg.value = prevProfileImg.value;
-    
   }
 };
 
@@ -161,27 +161,37 @@ watch([email, first_name, lastName, newProfileImg], () => {
 <template>
   <div class="flex gap-5 items-center">
     <div>
-    <buttonProfile />
-  </div>
-    <h2 class="md:text-3xl md:text-[unset] sm:text-xl sm:text-right dark:text-ghostWhiteText">Редактирование профиля</h2>
+      <buttonProfile />
+    </div>
+    <h2
+      class="md:text-3xl md:text-[unset] sm:text-xl sm:text-right dark:text-ghostWhiteText"
+    >
+      Редактирование профиля
+    </h2>
   </div>
 
   <div class="m-auto flex flex-col items-center mt-10 gap-9">
     <div>
       <img
-        :src="prevProfileImg? 'http://localhost:3001/img/tablet/'+prevProfileImg: tempFileURL"
+        :src="
+          prevProfileImg
+            ? 'http://localhost:3001/img/tablet/' + prevProfileImg
+            : tempFileURL
+        "
         alt="profile image"
         class="md:w-[150px] sm:w-[110px] rounded-[50%]"
       />
     </div>
     <div class="flex gap-5">
-      <p class="md:text-lg sm:text-base dark:text-ghostWhiteText">Загрузить свое фото</p>
+      <p class="md:text-lg sm:text-base dark:text-ghostWhiteText">
+        Загрузить свое фото
+      </p>
       <label for="upload-button" class="cursor-pointer">
         <div
           class="bg-gray-800 px-3 py-2 rounded-md text-white tracking-wider shadow-xl animate-bounce hover:animate-none"
         >
           <svg
-            class="md:w-4 md:h-4 sm:w-3 sm:h-3" 
+            class="md:w-4 md:h-4 sm:w-3 sm:h-3"
             stroke="currentColor"
             stroke-width="2"
             viewBox="0 0 24 24"
@@ -204,9 +214,15 @@ watch([email, first_name, lastName, newProfileImg], () => {
         />
       </label>
     </div>
-    <form class="flex flex-col md:gap-5 sm:gap-3" @submit="submitForm" @reset="resetForm">
+    <form
+      class="flex flex-col md:gap-5 sm:gap-3"
+      @submit="submitForm"
+      @reset="resetForm"
+    >
       <div>
-        <label for="inputname" class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
+        <label
+          for="inputname"
+          class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
           >Фамилия</label
         >
         <div class="mt-2">
@@ -224,7 +240,9 @@ watch([email, first_name, lastName, newProfileImg], () => {
         >
       </div>
       <div>
-        <label for="inputname" class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
+        <label
+          for="inputname"
+          class="block text-gray-800 font-semibold text-sm dark:text-slate-400"
           >Имя</label
         >
         <div class="mt-2">

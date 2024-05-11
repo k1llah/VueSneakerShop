@@ -18,7 +18,6 @@ const genderStore = useGenderStore();
 			if(localStorage.getItem('gender') == 'man' || localStorage.getItem('gender') == 'woman'){
 				const {data} = await axios.get(`http://localhost:3001/api/${params}Sneakers`)
 				items.value = data
-				console.log(items)
 			}
 
 		}

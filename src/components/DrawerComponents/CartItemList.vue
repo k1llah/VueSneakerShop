@@ -8,7 +8,6 @@ import axios from "axios";
 const sneakerStore = useSneaker()
 const authStore = useAuthStore();
 const cartStore = useCartStore();
-console.log(cartStore.cartCounter)
 cartStore.cartDataGet();
 
 </script>

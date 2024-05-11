@@ -10,9 +10,7 @@
 		toggle.value = !toggle.value
     allStore.isOpened = toggle.value
     document.body.style.overflow = 'visible'
-    console.log(allStore.isOpened)
 	};
-  console.log(allStore.isOpened)
 </script>
 <template>
 	<button class="button" @click="onClick">

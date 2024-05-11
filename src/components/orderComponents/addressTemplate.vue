@@ -1,35 +1,45 @@
 <script setup lang="ts">
 import { useOrderStore } from "@/stores/order";
 const orderStore = useOrderStore();
-	const props = defineProps({
-		id: Number,
-		firstName: String,
-		city: String,
-		street: String,
-		phoneNumber: String,
-	})
+const props = defineProps({
+  id: Number,
+  firstName: String,
+  city: String,
+  street: String,
+  phoneNumber: String,
+});
 </script>
 <template>
-	<div class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light dark:text-ghostWhiteText dark:border-mainDark">
-		<ul class="flex flex-col gap-3 list-disc">
-		<li>Имя: {{ props.firstName }}</li>
-		<li>Город: {{ props.city }}</li>
-	</ul>
-	<ul class="flex flex-col gap-3  list-disc">
-		<li>Номер телефона: {{ props.phoneNumber }}</li>
-		<li>Улица: {{ props.street }}</li>
-	</ul>
-	<div class="checkbox-wrapper-46">
-  <input type="radio" name="address" :id="`cbx-${props.id}`" class="inp-cbx hidden" />
-  <label :for="`cbx-${props.id}`" class="cbx" @click="console.log('bum'), orderStore.isSelected = true, orderStore.addressId = props.id!, console.log(orderStore.addressId)">
-    <span>
-      <svg viewBox="0 0 12 10" height="10px" width="12px">
-        <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
-    ><span>Выбрать этот адрес</span>
-  </label>
-</div>
-	</div>
-
+  <div
+    class="flex gap-5 flex-wrap border-[3px] rounded-xl border-slate-200 max-w-[350px] p-7 text-base font-light dark:text-ghostWhiteText dark:border-mainDark"
+  >
+    <ul class="flex flex-col gap-3 list-disc">
+      <li>Имя: {{ props.firstName }}</li>
+      <li>Город: {{ props.city }}</li>
+    </ul>
+    <ul class="flex flex-col gap-3 list-disc">
+      <li>Номер телефона: {{ props.phoneNumber }}</li>
+      <li>Улица: {{ props.street }}</li>
+    </ul>
+    <div class="checkbox-wrapper-46">
+      <input
+        type="radio"
+        name="address"
+        :id="`cbx-${props.id}`"
+        class="inp-cbx hidden"
+      />
+      <label
+        :for="`cbx-${props.id}`"
+        class="cbx"
+        @click="orderStore.addressId = props.id!"
+      >
+        <span>
+          <svg viewBox="0 0 12 10" height="10px" width="12px">
+            <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+        ><span>Выбрать этот адрес</span>
+      </label>
+    </div>
+  </div>
 </template>
 <style scoped>
 .checkbox-wrapper-46 input[type="checkbox"] {
@@ -109,5 +119,4 @@ const orderStore = useOrderStore();
     transform: scale(0.9);
   }
 }
-
 </style>

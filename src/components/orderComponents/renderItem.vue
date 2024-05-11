@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from "vue";
-import axios from 'axios';
+import axios from "axios";
 import templateItem from "./templateItem.vue";
 import { useOrderStore } from "@/stores/order";
 const orderStore = useOrderStore();
@@ -15,21 +15,16 @@ const getDateShoe = async function (params: any) {
       },
     });
     data.value = dataShoe.data;
-    idItems.value = [dataShoe.data.id]
-    orderStore.idParam = idItems.value
-    console.log(orderStore.idParam)
-		orderStore.amount = dataShoe.data.price
-		
-    console.log(dataShoe.data);
-    console.log(dataShoe.data.id);
-    console.log(data.value.items);
+    idItems.value = [dataShoe.data.id];
+    orderStore.idParam = idItems.value;
+    orderStore.amount = dataShoe.data.price;
   } catch (error) {
     console.log(error);
   }
 };
 onBeforeMount(() => {
   getDateShoe(localStorageId);
-})
+});
 </script>
 <template>
   <div class="md:ml-10 sm:ml-5 sm:mt-5">

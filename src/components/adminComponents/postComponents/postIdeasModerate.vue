@@ -16,7 +16,6 @@ async function getIdeas(){
 	try{
 		const response = await axios.get('http://localhost:3001/api/get-ideas')
 		dataIdeas.value = response.data
-		console.log(dataIdeas.value)
 	} catch(error){
 		console.log(error)
 	}
