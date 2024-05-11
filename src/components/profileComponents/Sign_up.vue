@@ -114,21 +114,21 @@ onMounted(() => {
   <div
     class="flex mt-[50px] items-center flex-col">
     <h3 class="text-[28px] font-light" v-if="isSuccessSignUp == false">
-      <span class="text-[#7747ff]">Зарегистрируйтесь</span>
+      <span class="text-[#7747ff] dark:text-green-500">Зарегистрируйтесь</span>
     </h3>
   </div>
 
   <div
-    class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white"
+    class="max-w-[370px] m-auto mt-5 relative flex flex-col p-4 rounded-md text-black bg-white dark:bg-transparent"
     
   >
   <div class="mt-[30px]" v-if="isSuccessSignUp == true" >
-        <p class="text-[21px] text-center text-green-700">
+        <p class="text-[21px] text-center text-green-500">
           {{ textSuccessSignUp }}
         </p>
       </div>
       <div v-if="isTimerStarted == true" class="flex mt-[50px] items-center flex-col text-center justify-center">
-      <p class="text-[27px] font-light">
+      <p class="text-[27px] font-light dark:text-ghostWhiteText">
         Вы перенаправитесь на главную страницу через:
         <span class="text-[#7747ff] text-[25px]">{{ timer }}</span>
       </p>
@@ -143,7 +143,7 @@ onMounted(() => {
       <div class="block relative">
         <label
           for="Name"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Имя</label
         >
         <div v-if="!nameNotEmpty">
@@ -162,7 +162,7 @@ onMounted(() => {
       <div class="block relative">
         <label
           for="Email"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Email</label
         >
         <div v-if="!emailValid">
@@ -180,7 +180,7 @@ onMounted(() => {
       <div class="block relative">
         <label
           for="Password"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Пароль</label
         >
         <div v-if="!passwordLengthValid">
@@ -203,7 +203,7 @@ onMounted(() => {
       <div class="block relative">
         <label
           for="Password_confirmation"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Подтвердите пароль</label
         >
         <div v-if="!passwordsMatch">
@@ -216,19 +216,19 @@ onMounted(() => {
         />
       </div>
       <div>
-        <a class="text-sm text-[#7747ff]" href="#">Forgot your password? </a>
+        <a class="text-sm text-[#7747ff] dark:text-green-500" href="#">Forgot your password? </a>
       </div>
       <button
-        class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+        class="bg-[#7747ff] dark:bg-green-500 w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
         id="buttonSubmit"
         type="submit"
       >
         Submit
       </button>
-      <div class="text-sm text-center mt-[1.6rem]">
+      <div class="text-sm text-center mt-[1.6rem] dark:text-ghostWhiteText">
         Уже есть аккаунт?
         <router-link to="profile">
-          <p class="text-sm text-[#7747ff]">Войдите!</p>
+          <p class="text-sm text-[#7747ff] dark:text-green-500">Войдите!</p>
         </router-link>
       </div>
     </form>

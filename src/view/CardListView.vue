@@ -1,4 +1,5 @@
 <script setup script lang="ts">
+import badassLoader from "@/components/badassLoader.vue";
 import CardList from "@/components/cardsComponents/CardList.vue";
 import { onBeforeMount, onMounted, reactive, ref, watch } from "vue";
 import axios from "axios";
@@ -57,21 +58,27 @@ if (realStateOfCart.value != onMountedCartState) {
   axiosGetParams();
 }
 onBeforeMount(async () => {
-  await favoritesStore.favorites()
-})
+  await favoritesStore.favorites();
+});
 onMounted(() => {
-  favoritesStore.favorites()
-  axiosGetParams()
+  favoritesStore.favorites();
+  axiosGetParams();
 });
 watch(filters, debounce(axiosGetParams, 350));
 </script>
 
 <template>
   <div class="p-10">
-    <div class="flex justify-between gap-3 sm:flex-wrap md:flex-nowrap items-center">
-      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8 dark:text-ghostWhiteText">Все кроссовки</h2>
+    <div
+      class="flex justify-between gap-3 sm:flex-wrap md:flex-nowrap items-center"
+    >
+      <h2 class="text-3xl font-bold md:mb-0 sm:mb-8 dark:text-ghostWhiteText">
+        Все кроссовки
+      </h2>
 
-      <div class="flex gap-4 md:flex-row md:flex-wrap md:justify-end sm:flex-col-reverse">
+      <div
+        class="flex gap-4 md:flex-row md:flex-wrap md:justify-end sm:flex-col-reverse"
+      >
         <select
           class="py-2 px-3 border rounded-md outline-none dark:bg-mainDark dark:text-ghostWhiteText dark:border-none"
           @change="onChangeSelect"
@@ -94,4 +101,7 @@ watch(filters, debounce(axiosGetParams, 350));
     </div>
   </div>
   <CardList :items="items" />
+  <div v-if="items == ''" class="flex justify-center w-full">
+    <badassLoader/>
+  </div>
 </template>

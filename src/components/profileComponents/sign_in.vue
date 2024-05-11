@@ -47,6 +47,9 @@ const logInFunc = async (event:any) => {
   } 
   catch(error){
     console.log(error)
+    setTimeout(() => {
+    formReport.value = ''  
+    }, 3000)
     formReport.value = 'Неверный email или пароль'
   }
 }
@@ -57,15 +60,15 @@ const logInFunc = async (event:any) => {
 </script>
 <template>
   <div
-    class="max-w-[330px] m-auto relative flex flex-col p-4 rounded-md text-black bg-white"
+    class="max-w-[330px] m-auto relative flex flex-col p-4 rounded-md text-black bg-white dark:bg-transparent dark:text-ghostWhiteText"
     v-if="authStore.isAuthenticated == false"
   >
   <div class="flex mt-[50px] flex-col justify-center items-center">
 			<h3 class="text-[28px] font-light">
-				Вы   <span class="text-[#7747ff]">не вошли</span>
+				Вы   <span class="text-[#7747ff] dark:text-green-500">не вошли</span>
 			</h3>
     </div>
-    <div class="text-base font-normal mb-4 text-center text-[#1e0e4b] mt-[20px]">
+    <div class="text-base font-normal mb-4 text-center text-[#1e0e4b] dark:text-ghostWhiteText mt-[20px]">
       Войдите в аккаунт
     </div>
     <form class="flex flex-col gap-3">
@@ -75,7 +78,7 @@ const logInFunc = async (event:any) => {
       <div class="block relative">
         <label
           for="email"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Email</label
         >
         <input
@@ -87,7 +90,7 @@ const logInFunc = async (event:any) => {
       <div class="block relative">
         <label
           for="password"
-          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 dark:text-ghostWhiteText"
           >Password</label
         >
         <input
@@ -97,11 +100,11 @@ const logInFunc = async (event:any) => {
         />
       </div>
       <div>
-        <a class="text-sm text-[#7747ff]" href="#">Забыли пароль? </a>
+        <a class="text-sm text-[#7747ff] dark:text-green-500" href="#">Забыли пароль? </a>
       </div>
       <button
         type="submit"
-        class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+        class="bg-[#7747ff] dark:bg-green-500 w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
         @click="logInFunc($event)"
         
       >
@@ -111,7 +114,7 @@ const logInFunc = async (event:any) => {
     <div class="text-sm text-center mt-[1.6rem]">
       У вас нет аккаунта?
       <router-link to="Sign_up">
-        <p class="text-sm text-[#7747ff]">Зарегистрируйтесь</p></router-link
+        <p class="text-sm text-[#7747ff] dark:text-green-500">Зарегистрируйтесь</p></router-link
       >
     </div>
   </div>

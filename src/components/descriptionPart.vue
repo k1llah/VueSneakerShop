@@ -50,7 +50,7 @@ onMounted(async () => {
 
 </script>
 <template>
-  <div class="flex md:ml-[50px] sm:ml-3 mt-5 gap-[15px]">
+  <div class="flex md:ml-[50px] sm:ml-3 mt-5 gap-[15px] dark:text-ghostWhiteText">
     <div class="flex gap-5 items-center">
       <buttonBack />
       <h2 class="text-3xl">Описание</h2>
@@ -61,17 +61,17 @@ onMounted(async () => {
     <div>
       <img
         :src="itemData?.imageUrl"
-        class="shadow md:max-w-[410px] sm:max-w-[300px] border-slate-200 border-[1px] rounded-2xl p-5"
+        class="shadow md:max-w-[410px] sm:max-w-[300px] border-slate-200 border-[1px] rounded-2xl p-5 dark:rounded-xl dark:border-none dark:brightness-75 dark:p-0"
         alt="sneaker"
       />
     </div>
 
     <div class="flex flex-col gap-7 max-w-[370px] sm:mt-10 md:mt-0 p-4">
-      <p class="md:text-3xl sm:text-xl text-[#000000] font-sans font-[600]">
+      <p class="md:text-3xl sm:text-xl text-[#000000] dark:text-ghostWhiteText font-sans font-[600]">
         {{ itemData?.title }}
       </p>
 
-      <p class="text-2xl text-[#000000] font-sans font-[400]">
+      <p class="text-2xl text-[#000000] dark:text-ghostWhiteText font-sans font-[400]">
         {{ itemData?.price }} руб.
       </p>
       <div class="flex md:gap-5 sm:gap-2 mt-9 md:flex-nowrap sm:mt-2">
@@ -96,13 +96,13 @@ onMounted(async () => {
         </button>
       </div>
 
-      <p class="text-xl text-slate-600 font-sans font-[400]">
+      <p class="text-xl text-slate-600 dark:text-slate-400 font-sans font-[400]">
         Цвет: {{ itemData?.color }}
       </p>
       <img
         :src="brandImageUrl"
         alt="brand name"
-        class="brightness-0 max-w-20 mt-10"
+        class="brightness-0 max-w-20 mt-10 dark:brightness-[100]"
       />
     </div>
   </div>
@@ -110,16 +110,16 @@ onMounted(async () => {
   <div class="flex flex-col gap-10 mt-20 justify-center items-center sm:p-5">
     <div class="max-w-[650px]">
       <div
-        class="border-b-[3px] border-[#a5b4fc] w-[250px] m-auto p-3 text-center"
+        class="border-b-[3px] border-[#a5b4fc] dark:border-green-500 w-[250px] m-auto p-3 text-center"
       >
-        <h3 class="md:text-3xl sm:text-2xl text-700">О товаре</h3>
+        <h3 class="md:text-3xl sm:text-2xl text-700 dark:text-ghostWhiteText">О товаре</h3>
       </div>
       <div class="flex flex-col gap-5 mt-16">
-        <h4 class="md:text-2xl sm:text-xl text-500 text-center">
+        <h4 class="md:text-2xl sm:text-xl text-500 text-center dark:text-ghostWhiteText">
           Описание товара
         </h4>
         <p
-          class="md:text-[20px] sm:text-[16px] text-slate-700 text-400 text-balance"
+          class="md:text-[20px] sm:text-[16px] text-slate-700 dark:text-slate-300 text-400 text-balance"
         >
           {{ itemData?.description }}
         </p>
@@ -127,19 +127,19 @@ onMounted(async () => {
       <div
         class="flex justify-between items-end gap-10 mt-16 border-b-2 border-slate-800 pb-2 sm:flex-wrap"
       >
-        <p class="max-w-[400px] leading-9 md:text-lg sm:text-base">
-          <span class="md:text-2xl text-[#7747ff] sm:text-xl">Состав:</span>
+        <p class="max-w-[400px] leading-9 md:text-lg sm:text-base dark:text-ghostWhiteText">
+          <span class="md:text-2xl text-[#7747ff] dark:text-green-500 sm:text-xl">Состав:</span>
           <br />
           {{ itemData?.materials }}
         </p>
-        <p>
+        <p class="dark:text-ghostWhiteText">
           {{ itemData?.countryMade }}
         </p>
       </div>
     </div>
   </div>
   <div class="flex p-7 pb-16 justify-end mt-10">
-    <h4 class="text-base text-slate-400 text-500 text-right max-w-[500px]">
+    <h4 class="text-base text-slate-400 text-500 text-right max-w-[500px] dark:text-orange-500">
       Качество товара, его безопасность для жизни, здоровья потребителей,
       окружающей среды, подтверждено в соответствии с требованиями
       законодательства. Подробная информация размещена на этикетке или упаковке

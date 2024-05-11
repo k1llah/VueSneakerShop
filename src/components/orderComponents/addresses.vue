@@ -48,10 +48,10 @@ onBeforeMount(() => {
     </div>
 
     <div v-else class="max-w-[500px] mt-10 ml-20 sm:ml-10">
-      <p class="text-xl">
+      <p class="text-xl dark:text-white">
         К сожалению, у вас нет добавленных адресов, но вы можете добавить свой
         адрес на странице профиля
-        <router-link to="profile" class="text-[#7747ff] cursor-pointer"
+        <router-link to="profile" class="text-[#7747ff] dark:text-green-500 cursor-pointer"
           >во вкладке мои адреса</router-link
         >
       </p>
