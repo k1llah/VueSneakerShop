@@ -27,13 +27,15 @@ async function favorites() {
     items.value.forEach((el: any) => {
       el.isFavorite = true;
     });
-    cartStore.items.forEach((el: any) => {
-      items.value.forEach((item: any) => {
-        if (el.id == item.id) {
-          item.isAdded = true;
-        }
+    if(cartStore.items !== undefined){
+      cartStore.items.forEach((el: any) => {
+        items.value.forEach((item: any) => {
+          if (el.id == item.id) {
+            item.isAdded = true;
+          }
+        });
       });
-    });
+    }
     if (items.value.length == 0) {
       isFav.value = false;
     }

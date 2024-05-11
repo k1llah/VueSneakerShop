@@ -107,7 +107,7 @@ export const useCartStore = defineStore({
           localStorage.getItem("totalPrice") || "0",
           10
         );
-        this.cartCounter = this.items.length;
+        if(this.items !== undefined) this.cartCounter = this.items.length;
 
         localStorage.setItem("cartCounter", this.cartCounter.toString());
       } catch (error) {
