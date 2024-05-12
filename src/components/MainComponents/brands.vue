@@ -138,7 +138,7 @@ const animateText = () => {
 	</div>
   <div class="md:pt-28 sm:pt-12 dark:bg-mainDark">
   <swiper
-    class="swiper w-[95%]"
+    class="swiper md:w-[95%] sm:w-full"
     :modules="modules"
     :space-between="10"
     :slides-per-view="4"
@@ -148,7 +148,7 @@ const animateText = () => {
 			disableOnInteraction: false,
 		}"
   >
-    <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] dark:p-5 dark:pb-28" v-for="item in items" key="item.id">
+    <swiper-slide class="slide  flex flex-col items-center text-center w-[100px] dark:p-5 sm:p-0 dark:pb-28" v-for="item in items" key="item.id">
 			<img :src="item.imageUrl" alt="" class="m-auto brightness-0 dark:brightness-[100] md:w-[unset] sm:w-[50px]">
 			<p class="brandName pt-5 sm:text-xs dark:text-ghostWhiteText">{{ item.brandName }}</p>
 		</swiper-slide>
