@@ -44,7 +44,7 @@ const onclckDelete = props.onclckDelete as (payload: MouseEvent) => void;
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      class="absolute top-[8%] left-[18%]"
+      class="absolute top-[8%] left-[18%] z-10"
       @click.stop="onFavoriteAdd && onFavoriteAdd(id)"
     >
       <rect
@@ -71,7 +71,7 @@ const onclckDelete = props.onclckDelete as (payload: MouseEvent) => void;
       viewBox="0 0 32 32"
       fill="red"
       xmlns="http://www.w3.org/2000/svg"
-      class="absolute top-[8%] left-[18%]"
+      class="absolute top-[8%] left-[18%] z-10"
       @click.stop="onFavoriteDelete && onFavoriteDelete(id)"
     >
       <rect

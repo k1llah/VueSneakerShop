@@ -36,6 +36,18 @@ onBeforeMount(() => {
       />
     </div>
   </div>
+ 
+  <div
+    v-if="authStore.isAuthenticated == true &&  cartStore.localCounter <= 0 "
+    class="flex flex-col gap-4 items-center min-h-[70%] justify-center"
+  >
+    <img src="/package-icon.png" alt="" class="max-w-[100px]" />
+    <h3 class="text-2xl">Корзина пустая</h3>
+    <p class="text-slate-500 dark:text-slate-400">
+      Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+    </p>
+  </div>
+
   <div
     v-else-if="authStore.isAuthenticated == false"
     class="flex flex-col gap-4 items-center min-h-[70%] justify-center"
@@ -44,16 +56,6 @@ onBeforeMount(() => {
     <h3 class="text-2xl">Корзина пустая</h3>
     <p class="text-slate-500">
      <RouterLink to="/profile" @click="sneakerStore.show = !sneakerStore.show" class="text-[#7747ff]"> Войдите </RouterLink> или <RouterLink to="/sign_up" @click="sneakerStore.show = !sneakerStore.show" class="text-[#7747ff]">зарегистрируйтесь</RouterLink> чтобы добавлять товары в корзину
-    </p>
-  </div>
-  <div
-    v-else-if="cartStore.isAdded == false "
-    class="flex flex-col gap-4 items-center min-h-[70%] justify-center"
-  >
-    <img src="/package-icon.png" alt="" class="max-w-[100px]" />
-    <h3 class="text-2xl">Корзина пустая</h3>
-    <p class="text-slate-500 dark:text-slate-400">
-      Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
     </p>
   </div>
 </template>
