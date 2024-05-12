@@ -31,7 +31,7 @@ const props = defineProps({
       <label
         :for="`cbx-${props.id}`"
         class="cbx"
-        @click="orderStore.addressId = props.id!"
+        @click="orderStore.addressId = props.id!, orderStore.isSelected = true"
       >
         <span>
           <svg viewBox="0 0 12 10" height="10px" width="12px">

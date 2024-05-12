@@ -8,7 +8,9 @@ import axios from "axios";
 const sneakerStore = useSneaker()
 const authStore = useAuthStore();
 const cartStore = useCartStore();
-cartStore.cartDataGet();
+onBeforeMount(() => {
+  cartStore.cartDataGet();
+});
 
 </script>
 
@@ -45,7 +47,7 @@ cartStore.cartDataGet();
     </p>
   </div>
   <div
-    v-else-if="cartStore.isAdded == false"
+    v-else-if="cartStore.isAdded == false "
     class="flex flex-col gap-4 items-center min-h-[70%] justify-center"
   >
     <img src="/package-icon.png" alt="" class="max-w-[100px]" />

@@ -25,7 +25,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-show="sneakerStore.show" class="" :class="{ 'cartVisible transition-opacity duration-700 opacity-100': sneakerStore.show, 'cart opacity-0 transition-opacity  duration-700' : !sneakerStore.show }">
+  <div v-if="sneakerStore.show" class="" :class="{ 'cartVisible transition-opacity duration-700 opacity-100': sneakerStore.show, 'cart opacity-0 transition-opacity  duration-700' : !sneakerStore.show }">
       
     <div
     class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"
@@ -71,7 +71,6 @@ onMounted(() => {
 .cart{
   z-index: 999;
   position: relative;
-  
 }
 .cartVisible{
   position: relative;

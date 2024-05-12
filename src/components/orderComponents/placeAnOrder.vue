@@ -50,9 +50,7 @@ const cartStore = useCartStore();
               class="radio-input"
               type="radio"
               name="payment"
-              @click="
-                (orderStore.methodPayment = 'payWhenReceiving'),
-              "
+              @click="orderStore.methodPayment = 'payWhenReceiving'"
             />
             <span class="radio-tile dark:bg-mainDark dark:text-ghostWhiteText">
               <span class="radio-icon">

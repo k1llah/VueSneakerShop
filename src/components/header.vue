@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useDark, useToggle } from "@vueuse/core";
-import Drawer from './DrawerComponents/Drawer.vue';
 import switchModeButton from './switchModeButton.vue';
 import { ref, onMounted, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
@@ -62,7 +61,6 @@ let toggleShow = () => {
 };
 </script>
 <template>
-  <Drawer />
   <header
     class="hidden justify-between border-b border-slate-200 p-5 responsive" id="header"
   >
