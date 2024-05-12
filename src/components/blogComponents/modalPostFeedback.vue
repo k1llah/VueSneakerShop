@@ -2,6 +2,7 @@
 import { useBlog } from "@/stores/sneakerBlog";
 import axios from "axios";
 import { ref } from "vue";
+import { onBeforeRouteLeave } from "vue-router";
 import createdModal from "./createdModal.vue";
 const blog = useBlog();
 let email = ref("");
@@ -72,19 +73,26 @@ async function submit() {
     console.log(error);
   }
 }
+onBeforeRouteLeave((to:any, from:any, next:any) => {
+  blog.isOpenedModal = false
+	blog.isOpenedModalFeedback = false
+	blog.unlock()
+  next()
+})
+
 </script>
 <template>
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
   <div
-    class="mx-auto max-w-lg px-4 pb-14 pt-5 sm:px-6 lg:px-8 z-20 relative bg-slate-100 rounded-xl bottom-[600px]"
+    class="mx-auto max-w-lg px-4 pb-14 pt-5 sm:px-6 lg:px-8 z-20 relative bg-slate-100 rounded-xl bottom-[600px] dark:bg-mainDark"
     id="modal"
   >
   <div class="flex justify-end w-full cursor-pointer" @click="blog.isOpenedModal = false, blog.unlock()">
-    <svg xmlns="http://www.w3.org/2000/svg" class="max-w-6" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="max-w-6 dark:fill-white" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
   </div>
     <div class="mx-auto max-w-lg text-center mt-10">
-      <h1 class="text-2xl font-bold sm:text-3xl">Напишите свою идею</h1>
-      <p class="mt-4 text-gray-600">
+      <h1 class="text-2xl font-bold sm:text-3xl dark:text-ghostWhiteText">Напишите свою идею</h1>
+      <p class="mt-4 text-gray-600 dark:text-gray-300">
         мы обязательно рассмотрим ваше предложение и постараемся сделать статью
         на эту тему!!
       </p>
@@ -96,7 +104,7 @@ async function submit() {
         <div class="relative">
           <input
             placeholder="Введите свой email *"
-            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent dark:bg-transparent dark:border-[1px] dark:border-green-600"
             id="email"
             type="email"
             v-model="email"
@@ -130,7 +138,7 @@ async function submit() {
         <div class="relative">
           <input
             placeholder="Введите свое имя *"
-            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent dark:bg-transparent dark:border-[1px] dark:border-green-600"
             id="name"
             type="text"
             v-model="name"
@@ -145,7 +153,7 @@ async function submit() {
         <div class="relative">
           <input
             placeholder="Введите сообщение *"
-            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+            class="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent dark:bg-transparent dark:border-[1px] dark:border-green-600"
             id="message"
             type="text"
             v-model="ideaText"

@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
         </router-link>
       </div>
     </div>
-    <div v-if="blogStore.posts !== undefined" class="flex justify-center w-full md:p-10 sm:p-7">
+    <div v-if="blogStore.posts.length == 0" class="flex justify-center w-full md:p-10 sm:p-7">
     <p class="text-center text-red-500 md:text-3xl sm:text-xl">Произошла ошибка, мы исправимся!</p>
     </div>
   </div>
