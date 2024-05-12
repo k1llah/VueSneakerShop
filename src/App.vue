@@ -40,8 +40,9 @@ watch(() => route.currentRoute.value.path, (newPath) => {
     <Footer v-if="page != '/profile' && page != '/description'" />
   </div>
 
+  
   <transition name="fade">
-    <Drawer v-if="sneakerStore.show" />
+    <Drawer />
   </transition>
 </template>
 
@@ -56,3 +57,7 @@ watch(() => route.currentRoute.value.path, (newPath) => {
   opacity: 0;
 }
 </style>
+  
+
+
+

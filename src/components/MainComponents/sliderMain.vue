@@ -36,7 +36,7 @@ export default defineComponent({
 
 <template>
   <swiper
-    class="w-full mt-12"
+    class="w-full mt-12 z-0"
     :modules="modules"
     :space-between="30"
     :effect="'fade'"
@@ -47,13 +47,13 @@ export default defineComponent({
 			disableOnInteraction: false,
 		}"
   >
-    <swiper-slide class="w-full" v-for="item in items" :key="item.id">
-      <img :src="item.imageUrl" alt="Slide Image" class="object-center md:w-[750px] md:h-[380px] sm:w-[350px] sm:h-[200px] rounded-2xl m-auto" />
+    <swiper-slide class="w-full z-0" v-for="item in items" :key="item.id">
+      <img :src="item.imageUrl" alt="Slide Image" class="object-center md:w-[750px] md:h-[380px] sm:w-[350px] sm:h-[200px] z-0 rounded-2xl m-auto" />
     </swiper-slide>
   </swiper>
 </template>
 
-<style>
+<style scoped>
 @media screen and (max-width: 645px) {
   .swiper-button-next, .swiper-button-prev{
     display: none;

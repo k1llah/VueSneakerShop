@@ -21,16 +21,18 @@ onMounted(() => {
   cartStore.cartDataGet();
   cartStore.localPrice;
 });
+
 </script>
 
 <template>
-  <div>
+  <div v-show="sneakerStore.show" class="" :class="{ 'cartVisible transition-opacity duration-700 opacity-100': sneakerStore.show, 'cart opacity-0 transition-opacity  duration-700' : !sneakerStore.show }">
+      
     <div
-      class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"
+    class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"
     ></div>
 
     <div
-      class="bg-white dark:bg-mainDark dark:text-ghostWhiteText md:w-96 md:h-full sm:w-72 sm:h-full fixed right-0 top-0 z-20 p-10"
+      class="bg-white dark:bg-mainDark dark:text-ghostWhiteText md:w-96 md:h-full sm:w-72 sm:h-full fixed right-0 top-0 z-20 p-10 opacity-100" 
     >
       <Bucket />
       <CartItemList />
@@ -65,3 +67,34 @@ onMounted(() => {
     </div>
   </div>
 </template>
+<style scoped>
+.cart{
+  z-index: 999;
+  position: relative;
+  
+}
+.cartVisible{
+  position: relative;
+  z-index: 9999;
+  opacity: 1;
+  transition: all linear 400ms;
+  animation: opacityOpen 0.5s ease;
+}
+@keyframes opacityOpen {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes opacityClose {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+</style>
