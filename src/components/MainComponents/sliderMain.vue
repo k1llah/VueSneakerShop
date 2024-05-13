@@ -24,6 +24,8 @@ export default defineComponent({
       { id: 4, imageUrl: "/slides/nike-sl.png" },
       { id: 5, imageUrl: "/slides/jordan-sl.png" },
       { id: 6, imageUrl: "/slides/off-w-sl.png" },
+      { id: 7, imageUrl: "/public/Screenshot 2024-05-13 at 8.07.07 PM.png" },
+      { id: 6, imageUrl: "/slides/off-w-sl.png" },
       // Добавьте свои изображения и другой контент слайдера
     ]);
     return {

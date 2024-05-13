@@ -89,7 +89,7 @@ const toggleDropdown = (index: number) => {
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 rounded-t-xl dark:bg-mainDark"
             @click="toggleDropdown(0)"
           >
-            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[20px] md:ml-5">
               Достоинства низкой стоимости 💸
             </h2>
             <img
@@ -138,7 +138,7 @@ const toggleDropdown = (index: number) => {
             style="max-height: 1000px"
           >
             <p
-              class="sm:text-[18px] sm:ml-2 md:text-[23px] font-[300] leading-[30px] p-[20px]"
+              class="sm:text-[18px] sm:ml-2 md:text-[20px] font-[300] leading-[30px] p-[20px]"
             >
               <span class="font-[700] text-[18px]"
                 >Доступность для широкого круга клиентов:</span
@@ -162,7 +162,7 @@ const toggleDropdown = (index: number) => {
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 dark:bg-mainDark"
             @click="toggleDropdown(1)"
           >
-            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23px] md:ml-5">
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[20px] md:ml-5">
               Достоинства быстрой доставки 🏎️
             </h2>
             <img
@@ -231,7 +231,7 @@ const toggleDropdown = (index: number) => {
             class="flex justify-between items-center gap-8 bg-[#e3e3e3] p-2 dark:bg-mainDark"
             @click="toggleDropdown(2)"
           >
-            <h2 class="sm:text-[18px] sm:ml-2 md:text-[23xp] md:ml-5">
+            <h2 class="sm:text-[18px] sm:ml-2 md:text-[20px] md:ml-5">
               Безопасность и надежность всех покупок 🔐
             </h2>
             <img
