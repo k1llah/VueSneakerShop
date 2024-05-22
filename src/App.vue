@@ -1,4 +1,4 @@
-<script setup script lang="ts">
+<script setup lang="ts">
 import Header from "./components/header.vue";
 import Drawer from "@/components/DrawerComponents/Drawer.vue";
 import Footer from "@/components/footer.vue";

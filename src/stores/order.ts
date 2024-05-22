@@ -95,6 +95,7 @@ export const useOrderStore = defineStore({
               PayStatus: "whenReceived",
             }
           );
+          console.log(pay)
           if (pay.status === 200) {
             this.orderNumber = pay.data.orderNumber;
             this.success = true;
@@ -149,6 +150,7 @@ export const useOrderStore = defineStore({
               orderMessage: this.comment,
             }
           );
+          console.log(pay)
           if (pay.status === 200) {
             this.success = true;
             this.orderNumber = pay.data.orderNumber;
